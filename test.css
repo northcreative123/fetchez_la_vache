@@ -1,1 +1,9 @@
 body { background: #bada55 !important; }
+
+.hide-me { display: none !important; }
+
+.user-type-toggle { font-size: 3rem; }
+button.user-type-selected {
+	 background: #ccc !important;
+ 	 color: #000 !important;
+}
