@@ -1,3 +1,5 @@
+import { clients, points } from "data";
+
 $(function() {
 
 	const audiences = ['businesses', 'videographers'];
@@ -33,18 +35,11 @@ $(function() {
 
 	toggle_content = function (audience) {
 		// Show/hide content based on user type
-		console.log('All audience elements: ' + JSON.stringify(audience_elements));
+		// console.log('All audience elements: ' + JSON.stringify(audience_elements));
 		$( audience_elements ).not( '.' + audience + '-content' ).remove();
 		console.log('Audience update: ' + audience);
 		$('.' + audience + '-content').addClass('enabled');
 	}
-
-	set_scroll_listener = function () {
-		window.addEventListener('scroll', () => {
-			document.body.style.setProperty('--scroll', window.pageYOffset / (document.body.offsetHeight - window.innerHeight)); 
-		}, false);
-	}
-
 
 	// Initialize audience content selection?
 	if ($( audience_elements ).length) {
@@ -60,11 +55,10 @@ $(function() {
 		toggle_content(audience);
 		// highlight current user type
 		$('#'+ audience + '-btn').addClass('audience-selected');
-		//set_scroll_listener();
 	}
 
 	// Initialize scroll animated elements
-	//console.log(document.querySelector('[data-scroll-container]'))
+	// console.log(document.querySelector('[data-scroll-container]'))
 	if (document.querySelector('[data-scroll-container]')) {
 		const scroll = new LocomotiveScroll({
 		    el: document.querySelector('[data-scroll-container]'),
@@ -72,155 +66,38 @@ $(function() {
 		});
 	}
 
+  
+    // http://ip-api.com/json/24.127.12.129
+    // ipinfo.io/24.127.12.129?token=d094b46883a2e4
+	async function getUserLocation(ip) {
+    	const response = await fetch('https://ipinfo.io/' + ip + '?token=d094b46883a2e4')
+        .then((response) => { return response.json() })
+        .then((json) => {
+            const data = json;
+            console.log('Location data: ' + JSON.stringify(data));
+            console.log('Lat/Lon: ' + data.loc);
+            return data.city;
+        })
+        .catch((err) => { return `Error getting location data: ${err}` });
+    }
+  
+	async function getUserIP() {
+		try {
+			const response = await fetch('https://api.ipify.org?format=json')
+            .then((response) => { return response.json() })
+            .then((json) => {
+                const ip = json.ip;
+                console.log('IP Address: ' + ip);
+                const city = getUserLocation(ip);
+                return city;
+            })
+            .catch((err) => { return `Error getting IP Address: ${err}` });
 
-});
-
-
-/* META.AI:
-
-// Get all elements with the scroll-animate class
-var animateElems = document.querySelectorAll('.scroll-animate');
-
-// Loop through each element
-animateElems.forEach(function(elem) {
-  // Get the element's height and the viewport height
-  var elemHeight = elem.offsetHeight;
-  var viewportHeight = window.innerHeight;
-
-  // Check if the element is too big
-  if (elemHeight > viewportHeight) {
-	// Calculate the overage percentage
-	var overagePercentage = (elemHeight / viewportHeight) * 100;
-
-	// Apply a class to the body based on the overage percentage
-	document.body.classList.add('overage-' + Math.floor(overagePercentage / 10) * 10);
-  }
-});
-
-$(window).on('scroll', function() {
-  var elem = $('#myElement'); // replace with your element
-  var state = getElementViewportState(elem);
-
-  switch (state) {
-	case 'entering':
-	  // animate element entering the viewport
-	  break;
-	case 'fully-in':
-	  // animate element fully in the viewport
-	  break;
-	case 'leaving':
-	  // animate element leaving the viewport
-	  break;
-  }
-});
-*/
-
-
-animation_preflight = function(elements) {
-	$(elements).each(function(elem) {
-		let elemHeight = elem.offsetHeight;
-		let viewportHeight = window.innerHeight;
-
-		if (elemHeight > viewportHeight) {
-			let overagePercentage = (elemHeight / viewportHeight) * 100;
-			$('body').addClass('overage-' + Math.floor(overagePercentage / 10) * 10);
+		} catch (error) {
+			console.error('Error getting user location:', error);
 		}
-	});
-}
-
-function getElementViewportState(elem) {
-	let $elem = $(elem);
-	let $window = $(window);
-
-	let docViewTop = $window.scrollTop();
-	let docViewBottom = docViewTop + $window.height();
-
-	let elemTop = parseInt($elem.offset().top);
-	let elemBottom = elemTop + $elem.height();
-	let returnState = 'unknown';
-
-	if (elemBottom <= docViewTop) {
-		returnState = 'below';
-	} 
-	if (elemTop >= docViewBottom) {
-		returnState = 'above';
-	} 
-	if (elemTop >= docViewTop && elemTop < docViewBottom) {
-		returnState = 'entering';
-	} 
-	if (elemBottom > docViewTop && elemBottom <= docViewBottom) {
-		returnState = 'leaving';
-	} 
-	if (elemTop > docViewTop && elemBottom < docViewBottom) {
-		returnState = 'inside';
-	} 
-	if (elemTop < docViewTop && elemBottom > docViewBottom) {
-		returnState = 'partially-in'; // too big?
 	}
-	console.log( 'el: ' + $elem.text() + ', state: ' + returnState + ', elTop: ' + elemTop + ', elBottom: ' + elemBottom + ', vpTop: ' + docViewTop + ', vpBottom: ' + docViewBottom );
-	return {'state': returnState, 'elTop': elemTop, 'elBottom': elemBottom};
-}
 
+	getUserIP(); //.then(location => console.log(location));
 
-// https://codepen.io/Mehul_Rojasara/pen/gOwdvyG
-$.fn.moveIt = function(){
-	let $window = $(window);
-	let instances = [];
-
-	$(this).each(function(){
-		instances.push(new moveItItem($(this)));
-	});
-
-	window.addEventListener('scroll', function(){
-		let scrollTop = $window.scrollTop();
-		const allowedValues = ['entering', 'leaving', 'inside'];
-		instances.forEach(function(inst){
-			// get state here
-			//let currentState = getElementViewportState($(inst));
-			//if (allowedValues.includes(currentState)) {
-				//console.log('inst: ' + JSON.stringify(inst));
-				inst.update(scrollTop);
-			//}
-		});
-	}, { passive: true });
-}
-
-let moveItItem = function(el) {
-	this.el = $(el);
-	this.state = getElementViewportState(el);
-	this.speed = parseInt(this.el.attr('data-scroll-speed'));
-	this.startwhen = this.el.attr('data-scroll-start-when');
-	this.starthow = this.el.attr('data-scroll-start-how');
-	this.endwhen = this.el.attr('data-scroll-end-when');
-	this.endhow = this.el.attr('data-scroll-end-how');
-	//console.log('el: ' + el.text() + ', state: ' + this.state);
-};
-
-moveItItem.prototype.update = function() {
-	let scrollTop = $(window).scrollTop();
-	this.elstate = getElementViewportState(this.el); // {'state': returnState, 'elTop': elemTop, 'elBottom': elemBottom}
-	console.log('el: ' + this.el.text() + ', state: ' + this.elstate.state + ', scrollTop: ' + scrollTop);
-	const allowedValues = ['entering', 'leaving', 'inside'];
-	if (allowedValues.includes(this.elstate.state)) {
-		// el: L, state: above, elTop: 1898, elBottom: 1998, vpTop: 500, vpBottom: 1364
-
-		//this.el.css('transform', 'translateY(' + (scrollTop + (this.elstate.elemTop - this.speed)) + 'px)'); // ??
-		//this.el.css('transform', 'translateY(' + -(scrollTop / this.speed) + 'px)'); // UP
-		this.el.css('transform', 'translateY(' + (scrollTop / this.speed) + 'px)'); // DOWN
-		//this.el.css('transform', 'translateX(' + -(scrollTop / this.speed) + 'px)'); // LEFT
-		//this.el.css('transform', 'translateX(' + (scrollTop / this.speed) + 'px)'); // RIGHT
-		//this.el.css('transform', 'translate(' + -(scrollTop / this.speed) + 'px, ' + -(scrollTop / this.speed) + 'px)'); // UP-LEFT
-	}
-};
-
-// Initialization
-/*
-$(function() {
-	let animated = $('.scroll-animate');
-	animation_preflight(animated);
-	$(animated).moveIt();
 });
-*/
-
-
-
