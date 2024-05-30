@@ -1,4 +1,3 @@
-import { clients, points } from "data";
 
 $(function() {
 
