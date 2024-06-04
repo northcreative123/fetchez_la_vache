@@ -572,6 +572,16 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
 
 
 
+/* section: process */
+ul.process-list {
+	padding: 1rem;
+	list-style: none;
+	background: rgba(255, 255, 255, .5);
+}
+
+
+
+
 /* section: client types */
 ul.tile-list {
     display: flex;
