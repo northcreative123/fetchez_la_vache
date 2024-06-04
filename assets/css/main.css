@@ -577,6 +577,7 @@ ul.process-list {
 	padding: 1rem;
 	list-style: none;
 	background: rgba(255, 255, 255, .5);
+	border-radius: var(--base-radius);
 }
 
 
@@ -626,15 +627,63 @@ ul.tile-list li.tile h4 { padding-top: 1rem; }
 
 
 /* section: testimonials */
+.featured-testimonials {
+	display: block;
+}
+.testimonial-list {
+	list-style: none;
+    margin: 0;
+    padding: 0;
+	flex: 1.5;
+    padding: 1rem 2rem;
+	display: none;
+}
+.featured-testimonials h4 { display: block; }
+.featured-testimonials h4 a {
+	font-size: 3rem;
+    line-height: 4.5rem;
+}
+.featured-testimonials h4.one:hover ~ .card-panel .card.one,
+.featured-testimonials h4.two:hover ~ .card-panel .card.two,
+.featured-testimonials h4.three:hover ~ .card-panel .card.three,
+.featured-testimonials h4.four:hover ~ .card-panel .card.four,
+.featured-testimonials h4.one:focus ~ .card-panel .card.one,
+.featured-testimonials h4.two:focus ~ .card-panel .card.two,
+.featured-testimonials h4.three:focus ~ .card-panel .card.three,
+.featured-testimonials h4.four:focus ~ .card-panel .card.four {
+	opacity: 1;
+}
+.featured-testimonials .card-panel {
+	display: inline-block; 
+	text-align: center; 
+	background: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40vw;
+	padding-right: 20vw;
+    border: 2px dotted #ccc;
+    height: 20rem;
+}
+.featured-testimonials .card-panel .card {
+	position: absolute;
+	border-radius: var(--base-radius);
+	background: rgba(0, 0, 0, .2);
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+	font-size: 2rem;
+	opacity: 0;
+}
+
+/* originally: https://codepen.io/Klax/pen/RwERrYL
 .testimonials-container {
 	width: 100%;
 	height: 100%;
 	display: flex;
 	align-items: flex-start;
-	/* justify-content: space-evenly; */
 	flex-direction: column;
-	/* position: relative; */
-
 	width: 100vw;
 	height: 69vh;
 	position: absolute !important;
@@ -645,9 +694,7 @@ ul.tile-list li.tile h4 { padding-top: 1rem; }
 	width: 43%;
 	margin-left: 10vw;
 	font-size: 2.5rem;
-	/* letter-spacing: 5px; */
 	color: #fff;
-	/* font-family: var(--font-fam); */
 	text-transform: uppercase;
 	white-space: nowrap;
 	cursor: pointer;
@@ -721,16 +768,17 @@ ul.tile-list li.tile h4 { padding-top: 1rem; }
 .testimonials-container:hover h4:hover {
 	opacity: 1;
 }
-
+*/
 
 
 /* section: industry list */
+div.featured-industries { display: flex; gap: 1rem; }
 ul.industry-list {
 	list-style: none;
     margin: 0;
     padding: 0;
     text-align: center;
-	width: 66%;
+	flex: 1.5;
     padding: 1rem 2rem;
 	display: inline-block;
 }
@@ -753,7 +801,13 @@ ul.industry-list li i.fa-solid {
 	padding-right: .5rem;
 	vertical-align: middle;
 }
-.card-panel { width: 33%; display: inline-block; text-align: center; }
+.card-panel { 
+	flex: 1; 
+	display: inline-block; 
+	text-align: center; 
+	background: #ccc;
+	border-radius: var(--base-radius);
+}
 
 
 
@@ -840,7 +894,36 @@ section .chunklet p.standout {
 	border-radius: var(--base-radius);
 	margin: 3rem 1rem 1rem
 }
-	
+
+
+
+
+/* section: cta */
+#cta_section h2 * { 
+	vertical-align: bottom; 
+	margin: 0;
+	padding: 0;
+}
+#cta_section h2 span {
+	max-width: 0;
+	/* transition: max-width 0.15s ease-out; */
+	overflow: hidden;
+	display: inline-block;
+	-webkit-animation: out 2s;
+  }
+  #cta_section h2:hover span {
+	max-width: 500px;
+	/* transition: max-width 2s ease-in-out; */
+	-webkit-animation: in 2s;
+  }
+  @-webkit-keyframes in {
+	from { max-width: 0; }
+	to { max-width: 500px; }
+  }
+  @-webkit-keyframes out {
+	0% { max-width: 500px; }
+	100% { max-width: 0; }
+  }
 	
 
 
