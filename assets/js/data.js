@@ -53,6 +53,7 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
             "featured_video": ["729848380"]
         }
     },
@@ -67,6 +68,7 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": false,
+            "home_testimonials": false,
             "featured_video": ["821026684"]
         }
     },
@@ -81,6 +83,7 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
             "featured_video": ["821028098"]
         }
     },
@@ -109,7 +112,7 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
-            "testimonials": true,
+            "home_testimonials": true,
             "featured_video": ["821031409"],
             "testimonial": {
                 "contact": "Jon Teodoro",
