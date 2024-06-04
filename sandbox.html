@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>🤖 Webflow BS</title>
+	<title>🤖 Webflow Sandbox</title>
 
 	<!-- Mobile Specific Metas
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://assets-global.website-files.com/63fbf496c1ef8e3b436600f3/643f14763f12832853854be9_favicon-32x32.png" rel="shortcut icon" type="image/x-icon">
 
 	<!-- FONT
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -20,7 +21,7 @@
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" /> <!-- https://animate.style/ -->
 	<link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet" />
-	<link href="main_static.css" rel="stylesheet" />
+	<link href="assets/css/main.css" rel="stylesheet" />
 
 	<!-- Scripts
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -32,27 +33,68 @@
 
 <body class="poppins-regular">
 	
-	<header id="header" data-scroll-section>
-        <h1 class="logo">logo</h1>
-		
+	<header id="header" class="global-header" data-scroll-section>
+		<h1 class="logo"><a href="/" title="Homepage">North Creative</a></h1>
 		<nav role="navigation" class="nav-menu-wrapper w-nav-menu">
-			<a class="w-nav-link" href="https://github.com/locomotivemtl/locomotive-scroll" target="_blank">Locomotive</a>
-			<a class="w-nav-link" href="https://brand-finder.webflow.io/" target="_blank">Webflow BF Staging</a>
-			<a class="w-nav-link" href="https://north-creative-372a38e9ef9a7717afe6d177.webflow.io/" target="_blank">Webflow NC Staging</a>
+			<ul>
+				<!--<li><a class="w-nav-link" href="/">Home</a></li>-->
+				<li class="parent">
+					<a class="w-nav-link" href="/prototype">Services</a>
+					<div class="mega-menu">
+					<div class="panels">
+						<div class="menu-panel">
+						<h4>megamenu content...</h4>
+						<p>lorem ipsum</p>  
+						<ul class="sub">
+							<li><a href="#">link</a></li>
+							<li><a href="#">link</a></li>
+							<li><a href="#">link</a></li>
+						</ul>
+						</div>
+						<div class="menu-panel"><h4>panel 2</h4><p>lorem ipsum</p></div>
+						<div class="menu-panel"><h4>panel 3</h4><p>lorem ipsum</p></div>
+						<!-- <div class="menu-panel"><h4>panel 4</h4><p>lorem ipsum</p></div> -->
+					</div>
+					<footer>menu footer</footer>
+					</div>
+				</li>
+				<li class="parent">
+					<a class="w-nav-link" href="/sandbox">Something Else</a>
+					<ul class="sub">
+						<li><a href="#">sub menu link</a></li>
+						<li><a href="#">sub menu link</a></li>
+						<li><a href="#">sub menu link</a></li>
+					</ul>
+				</li>
+				<li><a class="w-nav-link" href="/sandbox2">More Stuff</a></li>
+			</ul>
 		</nav>
+		<div class="user-options">
+			<a href="#" class="cta-link button-primary blue-linear-gradient w-button poppins-regular">Get Started <i class="fa-regular fa-circle-play"></i></a>
+		</div>
 	</header>
 
-	<div id="page-wrapper" class="page-wrapper" data-scroll-container>
+	<main id="page-wrapper" class="page-wrapper" data-scroll-container>
 
-
-
-		<section id="section1" class="section hero full-centered-chunk" data-scroll-section>
-			<div class="div-block chunklet gruppo-regular">
-				<img class="background hero-image" src="assets/photos/dude.png" />
-				<h2><strong>Video</strong> for Small to Mid-Sized Business <i class="fa-solid fa-camera-retro"></i></h2>
-				<h3>Need video? Connect with our <em>nationwide network</em> of expert videographers.</h3>
-				<!-- <p>North Creative is a creative agency that works with businesses to create video.</p> -->
-				<a data-scroll="" data-scroll-direction="vertical" data-scroll-speed="-10" data-scroll-position="top" href="#" class="button-primary blue-linear-gradient w-button poppins-regular">Get Started <i class="fa-regular fa-circle-play"></i></a>
+		<section id="home_hero" class="section hero full-centered-chunk" data-scroll-section>
+			<div class="div-block chunklet">
+				<img class="background hero-image" src="assets/images/dude.png" />
+				<h2><span class="hero-what">Video </span><span class="hero-where">Anywhere </span><span class="hero-who">with North Creative</span></h2>
+				<h4>Reserve Your Videographer Today</h4>
+				<form class="videographer-search">
+					<fieldset>
+						<legend>Search our network of <span class="total-videographer-count">310</span> videographers</legend>
+						<input type="text" name="search_input" class="search-input" placeholder="city & state, or zip" />
+						<button type="submit" class="search-submit">Search <i class="fa-solid fa-magnifying-glass" data-icon="f002"></i></button>
+					</fieldset>
+					<span class="option2">...OR <a href="#" class="user-location"><i class="fa-solid fa-location-dot" data-icon="f3c5"></i> use your location</a></span>
+					<div class="result-block">
+						<p>result...</p>
+						<a href="#" class="cta-button button-primary blue-linear-gradient w-button">Reserve Now <i class="fa-regular fa-circle-play"></i></a>
+					</div>
+				</form>
+				<!-- <a data-scroll="" data-scroll-direction="vertical" data-scroll-speed="-10" data-scroll-position="top" href="#" class="button-primary blue-linear-gradient w-button poppins-regular">Get Started <i class="fa-regular fa-circle-play"></i></a> -->
+				<!-- <a href="#" class="button-primary blue-linear-gradient w-button poppins-regular">Get Started <i class="fa-regular fa-circle-play"></i></a> -->
 			</div>
 		</section>
 
@@ -65,13 +107,47 @@
 				<p data-scroll>👋</p>
 			</div>
 		</section>
-		<section id="section3" class="full-centered-chunk businesses-content" data-scroll-section>
+
+		<section id="portfolio_tickers" class="full-centered-chunk businesses-content" data-scroll-section>
 			<div class="div-block chunklet">
-				<p><strong>businesses</strong> content 1...</p>
-				<div class="" data-scroll="" data-scroll-direction="horizontal" data-scroll-speed="-2" data-scroll-position="top">
+				<h3>Businesses film with North Creative</h3>
+				<div class="logo-ticker-section-logos-grid">
+					<div class="logo-ticker-section-logos-container"></div>
+				</div>
+				<div id="video_scroll_1" class="video-ticker-section-videos-grid">
+					<div class="video-ticker-section-videos-container"></div>
+				</div>
+				<div id="video_scroll_2" class="video-ticker-section-videos-grid">
+					<div class="video-ticker-section-videos-container"></div>
+				</div>
+				<!-- <div class="" data-scroll="" data-scroll-direction="horizontal" data-scroll-speed="-2" data-scroll-position="top">
 	                <h1>asdf</h1>
 	            </div>
-	            <div data-scroll="" data-scroll-direction="vertical" data-scroll-speed="-1" data-scroll-position="top"><p>lol!!!</p></div>
+	            <div data-scroll="" data-scroll-direction="vertical" data-scroll-speed="-1" data-scroll-position="top"><p>lol!!!</p></div> -->
+			</div>
+		</section>
+
+
+
+		<section id="network_search" class="full-centered-chunk businesses-content anim-test-1" data-scroll-section>
+			<div class="div-block chunklet">
+				<h3><!--North Creative has --><span class="total-videographer-count">310</span> Videographers Nationwide</h3>
+				<!-- <h5>Search to find a videographer near you</h5> -->
+				<p>TODO: Make "process"</p>
+				<div class="w-embed">
+					<form class="videographer-search">
+						<fieldset>
+							<legend>Search our network of <span class="total-videographer-count">310</span> videographers</legend>
+							<input type="text" name="search_input" class="search-input" placeholder="city & state, or zip" />
+							<button type="submit" class="search-submit">Search <i class="fa-solid fa-magnifying-glass" data-icon="f002"></i></button>
+						</fieldset>
+						<span class="option2">...OR <a href="#" class="user-location"><i class="fa-solid fa-location-dot" data-icon="f3c5"></i> use your location</a></span>
+						<div class="result-block">
+							<p>result...</p>
+							<a href="#" class="cta-button button-primary blue-linear-gradient w-button">Reserve Now <i class="fa-regular fa-circle-play"></i></a>
+						</div>
+					</form>
+				</div>
 			</div>
 		</section>
 
@@ -79,35 +155,32 @@
 
 		<section id="" class="full-centered-chunk videographers-content" data-scroll-section>
 			<div class="div-block chunklet">
-				<p><strong>videographers</strong> content 2...</p>
-			</div>
-		</section>
-		<section id="" class="full-centered-chunk businesses-content" data-scroll-section>
-			<div class="div-block chunklet">
-				<p><strong>businesses</strong> content 2... <i class="fa-regular fa-circle-question"></i></p>
+				<p><strong>videographers</strong> content...</p>
 			</div>
 		</section>
 
-
-
-		<!-- full/half/third/quarter [-] left/right/centered [-] chunk -->
-		<section class="full-centered-chunk hide-me" data-scroll-section>
-			<!-- 1 to 4 chunklets -->
-			<div class="chunklet">
-				<h2>h2</h2>
-			</div>
-		</section>
-
-
-
-		<section id="" class="videographers-content" data-scroll-section>
-			<div class="div-block chunklet">
-				<p><strong>videographers</strong> content 3...</p>
-			</div>
-		</section>
-		<section id="" class="businesses-content" data-scroll-section>
-			<div class="div-block chunklet">
-				<p><strong>businesses</strong> content 3...</p>
+		<section id="client_types" class="full-centered-chunk businesses-content" data-scroll-section>
+			<div class="div-block chunklet"><!-- TODO: use Image Cards from https://codepen.io/codingtuting/pen/XWrBgQz -->
+				<!-- TODO: text bottom 60/40 split, links TBD -->
+				<h3>For All Shapes and Sizes</h3>
+				<ul class="tile-list">
+					<li class="tile">
+						<h4><i class="fa-solid fa-building"></i> Corporations</h4>
+						<p>Communicate complex messages with engaging video storytelling</p>
+					</li>
+					<li class="tile">
+						<h4><i class="fa-solid fa-comments-dollar"></i> Marketing Agencies</h4>
+						<p>Offer video production services to expand your agency's offerings</p>
+					</li>
+					<li class="tile">
+						<h4><i class="fa-solid fa-person-chalkboard"></i> In-House Marketing Teams</h4>
+						<p>Create consistent video content to support your marketing strategy</p>
+					</li>
+					<li class="tile">
+						<h4><i class="fa-solid fa-shop"></i> Small Business</h4>
+						<p>Boost your online presence with engaging videos</p>
+					</li>
+				</ul>
 			</div>
 		</section>
 
@@ -115,32 +188,111 @@
 
 		<section id="" class="videographers-content" data-scroll-section>
 			<div class="div-block chunklet">
-				<p><strong>videographers</strong> content 4...</p>
+				<p><strong>videographers</strong> content...</p>
 			</div>
 		</section>
-		<section id="" class="businesses-content" data-scroll-section>
+
+		<section id="testimonials" class="businesses-content" data-scroll-section>
 			<div class="div-block chunklet">
-				<p><strong>businesses</strong> content 4...</p>
+				<h3>See Our Testimonials</h3>
+				<div class="testimonials-container">
+					<h4 id="client_one">SPARK Business Works</h4>
+					<h4 id="client_two">Skymint</h4>
+					<h4 id="client_three">Clean Plates</h4>
+					<h4 id="client_four">[ TBD... Shorts? ]</h4>
+					<!-- TODO: lose background video -->
+					<div id="video-container">
+						<video src="assets/video/597877691.mp4" loop muted autoplay class="video client_four"></video>
+						<video src="https://assets.mixkit.co/videos/preview/mixkit-meeting-and-brainstorming-in-the-office-46682-large.mp4" muted loop autoplay class="video client_three"></video>
+						<video src="https://assets.mixkit.co/videos/preview/mixkit-designer-in-his-studio-giving-color-to-his-strokes-in-29983-large.mp4" loop muted autoplay class="video client_two"></video>
+						<video src="https://assets.mixkit.co/videos/preview/mixkit-colorful-design-on-tablet-921-large.mp4" loop muted autoplay class="video client_one"></video>
+					</div>
+					<div id="testimonial-container">
+						<p class="testimonial client_four">Content for [ TBD... Shorts? ]</p>
+						<p class="testimonial client_three">Content for Clean Plates</p>
+						<p class="testimonial client_two">Content for Skymint</p>
+						<p class="testimonial client_one">Content for SPARK Business Works</p>
+					</div>
+				</div>
 			</div>
 		</section>
 
 
 
-		<footer data-scroll-section><h1>footer</h1></footer>
+		<section id="" class="videographers-content" data-scroll-section>
+			<div class="div-block chunklet">
+				<p><strong>videographers</strong> content...</p>
+			</div>
+		</section>
 
-		<!-- <div class="" data-scroll="" data-scroll-direction="horizontal" data-scroll-speed="-2" data-scroll-position="top" data-scroll-target="#section3"> -->
+		<section id="industries_served" class="businesses-content" data-scroll-section>
+			<div class="div-block chunklet">
+				<h3>Industries Served</h3>
+				<div class="card-panel">card</div>
+				<ul class="industry-list">
 
-<!-- 		<div data-scroll-section id="audience_buttons" class="" data-scroll="" data-scroll-direction="vertical" data-scroll-speed="-1" data-scroll-position="top" data-scroll-target="#page-wrapper">
-			<button data-audience="businesses" id="businesses-btn" class="audience-selected">businesses</button>
-			<button data-audience="videographers" id="videographers-btn">videographers</button>
-		</div> -->
+					<li><i class="fa-solid fa-oil-well"></i> Oil & Gas</li>
+					<li><i class="fa-solid fa-tooth"></i> Dental</li>
+					<li><i class="fa-solid fa-person-digging"></i> Construction</li>
+					<li><i class="fa-solid fa-tablet-screen-button"></i> Software</li>
+					<li><i class="fa-solid fa-staff-snake"></i> Healthcare</li>
+					<li><i class="fa-solid fa-sack-dollar"></i> Finance</li>
+					<li><i class="fa-solid fa-scale-unbalanced"></i> Legal</li>
+					<li><i class="fa-solid fa-cannabis"></i> Cannabis</li>
+					<li><i class="fa-solid fa-utensils"></i> Restaurant</li>
+					<li><i class="fa-solid fa-burger"></i> Food & Beverage</li>
+					<li><i class="fa-solid fa-handshake-angle"></i> Community Service</li>
+					<li><i class="fa-solid fa-church"></i> Church</li>
+					<li><i class="fa-solid fa-shirt"></i> Street Apparel</li>
+					<!--
+					<li><i class="fa-solid fa-van-shuttle"></i> Transportation</li>
+					<li><i class="fa-solid fa-truck-plane"></i> Logistics</li>
+					<li>Entertainment</li>
+					<li>Gaming</li>
+					<li>Retail</li>
+					<li>Podcasting</li>
+					<li>Marketing Agencies</li> 
+					<li>Non-Profit</li>
+					<li>General Contracting</li>
+					<li>E-Commerce</li>
+					<li>Breweries</li>
+					-->
+				</ul>
+				<p><br /><br />Also: <a href="https://codepen.io/codingtuting/pen/XWrBgQz" target="_blank">Codepen card examples...</a></p>
+			</div>
+		</section>
+
+
+
+		<!--
+		Where Local Businesses Meet Nationwide Appeal
+		Where Nationwide Businesses Meet Local Appeal
+		-->
+		<section id="cta_section" class="businesses-content" data-scroll-section>
+			<div class="div-block chunklet">
+				<h2>Where <em>Local</em> Businesses Find <em>Nationwide</em> Appeal</h2>
+				<p>You've seen our <a href="#home_hero">nationwide network</a>, (work), (process), (who we serve), (reviews), and (industries). <a href="#contact">Did we miss anything</a>?</p>
+				<p>If not, <a href="#" class="cta-link button-primary blue-linear-gradient w-button poppins-regular">Get Started <i class="fa-regular fa-circle-play"></i></a></p>
+			</div>
+		</section>
+
+
+
+		<footer data-scroll-section>
+			<section class="section full-centered-chunk">
+				<div class="div-block chunklet">
+					<h2>global footer</h2>
+					<p>👣 footer stuff 👣<br>... for those with a footer fetish.</p>
+				</div>
+			</section>
+		</footer>
 			
-
-	</div>
+	</main>
 <!--     <script nomodule src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js" crossorigin="anonymous"></script>
     <script nomodule src="https://polyfill.io/v3/polyfill.min.js?features=Object.assign%2CElement.prototype.append%2CNodeList.prototype.forEach%2CCustomEvent%2Csmoothscroll" crossorigin="anonymous"></script> -->
 	<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
-	<script src="main_static.js"></script>
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
 
 </body>
 </html>

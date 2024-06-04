@@ -1,3 +1,45 @@
+/* 
+Video for Oil & Gas
+OWL Services
+
+Video for Dental
+Maple Dentistry
+
+Video for Construction
+Corby Energy Services
+
+Software
+SPARK Business Works
+
+Video for Healthcare
+Fresh RX
+
+Video for Finance
+Rapid Finance
+
+Video for Legal
+George Law
+
+Video for Cannabis
+Skymint
+
+Video for Restaurant
+Pizza e Vino
+
+Video for Food & Beverage
+Clean Plates
+
+Video for Community Service
+Rotary Club
+
+Video for Church
+New Life Hope
+
+Video for Street Apparel
+Advanced Apathy, Finders Keepers
+*/
+
+
 const clients = [
     {
         "name": "Advanced Apathy",
@@ -7,7 +49,12 @@ const clients = [
             "729848380",
             "821025311",
             "621330630"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["729848380"]
+        }
     },
     {
         "name": "Arcminute Marketing",
@@ -16,7 +63,12 @@ const clients = [
         "vimeo_ids": [
             "821026684",
             "821027195"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": false,
+            "featured_video": ["821026684"]
+        }
     },
     {
         "name": "Barrio",
@@ -25,7 +77,12 @@ const clients = [
         "vimeo_ids": [
             "821028098",
             "596210066"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["821028098"]
+        }
     },
     {
         "name": "Clean Plates",
@@ -48,7 +105,18 @@ const clients = [
             "821032696",
             "821033125",
             "821032485"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "testimonials": true,
+            "featured_video": ["821031409"],
+            "testimonial": {
+                "contact": "Jon Teodoro",
+                "snippet": "Next level...",
+                "full_text": "Had a great experience working with North Creative. They arrived on-time, put out great quality work, and offered many creative insights throughout the process. I highly recommend them to anyone looking to take their social media video/content production to the next level."
+            }
+        }
     },
     {
         "name": "Community Health Focus",
@@ -58,7 +126,12 @@ const clients = [
             "697539896",
             "697542303",
             "729848407"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["697539896"]
+        }
     },
     {
         "name": "Corby Energy Services",
@@ -67,7 +140,12 @@ const clients = [
         "vimeo_ids": [
             "903932770",
             "902105247"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": false,
+            "featured_video": ["903932770"]
+        }
     },
     {
         "name": "CSM Group",
@@ -76,7 +154,12 @@ const clients = [
         "vimeo_ids": [
             "821033999",
             "821034152"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "featured_video": ["821033999"]
+        }
     },
     {
         "name": "Finders Keepers",
@@ -84,7 +167,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530de43b21b29f278262a8_Finders%20Keepers.png",
         "vimeo_ids": [
             "599286695"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["599286695"]
+        }
     },
     {
         "name": "Fresh RX",
@@ -92,7 +180,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530cfd1912a3815cc0afe1_Fresh%20RX.png",
         "vimeo_ids": [
             "599287014"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["599287014"]
+        }
     },
     {
         "name": "George Law",
@@ -101,7 +194,12 @@ const clients = [
         "vimeo_ids": [
             "599287816",
             "729859562"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "featured_video": ["599287816"]
+        }
     },
     {
         "name": "Hemp Pot",
@@ -109,7 +207,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530ced3b21b2caca82570c_Hemp%20Pot.png",
         "vimeo_ids": [
             "740161804"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["740161804"]
+        }
     },
     {
         "name": "Huck Finch",
@@ -124,7 +227,12 @@ const clients = [
             "821055586",
             "821054135",
             "821054999"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "featured_video": ["821054559"]
+        }
     },
     {
         "name": "IMPACT Digital Marketing",
@@ -132,7 +240,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530c7ebf29155baf1fd9c7_IMPACT%20Digital%20Marketing.png",
         "vimeo_ids": [
             "735779950"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["735779950"]
+        }
     },
     {
         "name": "Kiefer Foundation",
@@ -140,7 +253,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530b71974c63484625b787_Kiefer%20Foundation.png",
         "vimeo_ids": [
             "599288369"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["599288369"]
+        }
     },
     {
         "name": "Life Driving Academy",
@@ -148,7 +266,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530d869577a113e142c1a0_Life%20Driving%20Academy.png",
         "vimeo_ids": [
             "704259393"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["704259393"]
+        }
     },
     {
         "name": "Maple Dentistry",
@@ -174,13 +297,23 @@ const clients = [
             "821038670",
             "744072845",
             "767000259"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["821038890"]
+        }
     },
     {
         "name": "Mondo",
         "industry": "Community & Event",
         "logo_url": "",
-        "vimeo_ids": []
+        "vimeo_ids": [],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": false,
+            "featured_video": []
+        }
     },
     {
         "name": "New Life Hope",
@@ -188,7 +321,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530da7676e6a30e08ef0c0_New%20Life%20Hope.png",
         "vimeo_ids": [
             "678810050"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["678810050"]
+        }
     },
     {
         "name": "OWL Services",
@@ -208,7 +346,12 @@ const clients = [
             "821051460",
             "910659163",
             "886198901"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "featured_video": ["821052007"]
+        }
     },
     {
         "name": "PARC",
@@ -216,7 +359,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530c441912a3d188c0a51d_PARC.png",
         "vimeo_ids": [
             "714600217"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["714600217"]
+        }
     },
     {
         "name": "Pizze e Vino",
@@ -224,7 +372,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530d7a8cdea04f950f01d2_Pizza%20e%20Vino.png",
         "vimeo_ids": [
             "707627782"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["707627782"]
+        }
     },
     {
         "name": "Rapid Finance",
@@ -232,7 +385,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530d949c34570bcb0eb1b4_Rapid%20Finance.png",
         "vimeo_ids": [
             "599288439"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "featured_video": ["599288439"]
+        }
     },
     {
         "name": "Reel Health Network",
@@ -269,7 +427,12 @@ const clients = [
             "821047388",
             "821047519",
             "822779510"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "featured_video": ["742362340"]
+        }
     },
     {
         "name": "RENSA",
@@ -280,7 +443,12 @@ const clients = [
             "751919769",
             "738124147",
             "751941627"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["751888268"]
+        }
     },
     {
         "name": "Rotary Club",
@@ -288,7 +456,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530b608cdea076f50ededd_Rotary%20Club.png",
         "vimeo_ids": [
             "823008084"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["823008084"]
+        }
     },
     {
         "name": "Runner's High 5k",
@@ -296,7 +469,12 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530c0eca5bd918bfb6701f_Runner%27s%20High.png",
         "vimeo_ids": [
             "599288626"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["599288626"]
+        }
     },
     {
         "name": "Shades Optical",
@@ -304,23 +482,38 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530dc0676e6a42868ef215_Shades%20Optical.png",
         "vimeo_ids": [
             "690344140"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": true,
+            "featured_video": ["690344140"]
+        }
     },
     {
         "name": "Short's Brewing Company",
         "industry": "Food & Beverage",
-        "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530be540662bba9d89eae8_Short%27s%20Brewing%20Company.png",
+        "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/665ba2dd640aa259b366bd25_Short%27s%20Brewing%20Company.png",
         "vimeo_ids": [
             "597877691"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "featured_video": ["597877691"]
+        }
     },
     {
         "name": "Simon Xpress",
         "industry": "Gas Station",
-        "logo_url": "",
+        "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/665ba25cdfaf844c2b9780e3_Simon%20Xpress.png",
         "vimeo_ids": [
             "919792575"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "featured_video": ["919792575"]
+        }
     },
     {
         "name": "Skymint",
@@ -333,7 +526,18 @@ const clients = [
             "701787047",
             "729869093",
             "729863837"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "testimonials": true,
+            "featured_video": ["729869112"],
+            "testimonial": {
+                "contact": "Connor Jacobs",
+                "snippet": "Incredibly organized...",
+                "full_text": "I’ve worked with North Creative on several projects over the last 2 years. This group is incredibly organized and communicates through the entire project. Not to mention, they provide a top tier product at an affordable price!"
+            }
+        }
     },
     {
         "name": "SPARK Business Works",
@@ -353,7 +557,18 @@ const clients = [
             "672840465",
             "674509709",
             "672840252"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "testimonials": true,
+            "featured_video": ["672973132"],
+            "testimonial": {
+                "contact": "Jillian Hufford",
+                "snippet": "Great to work with!",
+                "full_text": "They were professional, attentive, and great communicators! We were impressed with how well (and quickly) they got to know our brand and translated it into video for us. A few of the videos we use on a regular basis to send to potential new clients and employees."
+            }
+        }
     },
     {
         "name": "Sun and Snow",
@@ -361,16 +576,27 @@ const clients = [
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530d226f990defb3afef4f_Sun%20%26%20Snow.png",
         "vimeo_ids": [
             "659750225"
-        ]
+        ],
+        "web_features": {
+            "logo_marquee": true,
+            "video_marquee": true,
+            "featured_video": ["659750225"]
+        }
     },
     {
         "name": "Verde Media",
         "industry": "",
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/645a3107fc955ec00deadccb_Verde%20Media.png",
-        "vimeo_ids": []
+        "vimeo_ids": [],
+        "web_features": {
+            "logo_marquee": false,
+            "video_marquee": false,
+            "featured_video": []
+        }
     }
 ];
 
+// 310/436
 const points = [
     {
         "lat": 42.462983,

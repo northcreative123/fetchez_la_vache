@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'BDSans';
+    src: url('BDSans-Black.eot');
+    src: local('Beautifully Delicious Sans Black'), local('BDSans-Black'),
+        url('BDSans-Black.eot?#iefix') format('embedded-opentype'),
+        url('BDSans-Black.woff2') format('woff2'),
+        url('BDSans-Black.woff') format('woff'),
+        url('BDSans-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BDScript';
+    src: url('BDScript-Bold.eot');
+    src: local('Beautifully Delicious Script Bold'), local('BDScript-Bold'),
+        url('BDScript-Bold.eot?#iefix') format('embedded-opentype'),
+        url('BDScript-Bold.woff2') format('woff2'),
+        url('BDScript-Bold.woff') format('woff'),
+        url('BDScript-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BDSans';
+    src: url('BDSans-Thin.eot');
+    src: local('Beautifully Delicious Sans Thin'), local('BDSans-Thin'),
+        url('BDSans-Thin.eot?#iefix') format('embedded-opentype'),
+        url('BDSans-Thin.woff2') format('woff2'),
+        url('BDSans-Thin.woff') format('woff'),
+        url('BDSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BDSans';
+    src: url('BDSans-Regular.eot');
+    src: local('Beautifully Delicious Sans Regular'), local('BDSans-Regular'),
+        url('BDSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('BDSans-Regular.woff2') format('woff2'),
+        url('BDSans-Regular.woff') format('woff'),
+        url('BDSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BDSans ExtReg';
+    src: url('BDSans-Bold.eot');
+    src: local('Beautifully Delicious Sans Bold'), local('BDSans-Bold'),
+        url('BDSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('BDSans-Bold.woff2') format('woff2'),
+        url('BDSans-Bold.woff') format('woff'),
+        url('BDSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BDScript';
+    src: url('BDScript-Regular.eot');
+    src: local('Beautifully Delicious Script Regular'), local('BDScript-Regular'),
+        url('BDScript-Regular.eot?#iefix') format('embedded-opentype'),
+        url('BDScript-Regular.woff2') format('woff2'),
+        url('BDScript-Regular.woff') format('woff'),
+        url('BDScript-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
