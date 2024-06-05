@@ -280,8 +280,6 @@ $(function() {
 
 });
 
-
-
 // TODO: integrate better!
 // Stolen from: https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform#maps_places_autocomplete_addressform-javascript
 let autocomplete;
@@ -290,9 +288,9 @@ let address2Field;
 let postalField;
 
 function initAutocomplete() {
-  //address1Field = document.querySelector("#ship-address");
-  //address2Field = document.querySelector("#address2");
-  //postalField = document.querySelector("#postcode");
+  address1Field = document.querySelector("#ship-address");
+  address2Field = document.querySelector("#address2");
+  postalField = document.querySelector("#postcode");
   // Create the autocomplete object, restricting the search predictions to
   // addresses in the US and Canada.
   autocomplete = new google.maps.places.Autocomplete(address1Field, {
