@@ -1271,13 +1271,30 @@ section .chunklet p.standout {
 	border: 5px solid rgba(0, 0, 0, 1);
 }
 
-/* VIDEO Playa: */
+/* VIDEO Playa: https://codepen.io/laricoDev/pen/ExZzMeg */
 #lvideo-wrap {
 	position: fixed;
 	height: 100dvh;
 	z-index: 9991;
 	opacity: 0;
 	visibility: hidden;
+}
+#lvideo-wrap h3 {
+	position: absolute;
+    top: .75rem;
+    left: 0;
+    color: #fff;
+    /* transform: rotate(-90deg); */
+    z-index: 10;
+    font-size: 3rem;
+    white-space: nowrap;
+    background-image: var(--primegradient-off);
+    height: 4rem;
+    line-height: 4rem;
+    width: 100%;
+    padding: 0 8rem;
+    font-style: italic;
+    text-align: right;
 }
 #lvideo-wrap, #lvideo-wrap:after, #lvideo-wrap .lvideo-overlay {
 	left: 0;
@@ -1316,6 +1333,7 @@ section .chunklet p.standout {
 	height: auto;
 	width: 90%;
 	aspect-ratio: 1.7777777778;
+    margin-top: 6rem;
 }
 #lvideo-wrap video {
 	object-fit: cover;

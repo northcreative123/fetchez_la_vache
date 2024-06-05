@@ -237,7 +237,7 @@ $(function() {
         marquee_data.forEach(function(data) {
         	//marquee_markup += '<span title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'"><img src="https://vumbnail.com/'+data.vimeo_ids[0]+'.jpg" /></span>';
 			if ( data.web_features.video_marquee ) {
-				marquee_markup += '<div class="video-ticker-section-image-container"><div class="video-ticker-section-image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div></div>';
+				marquee_markup += '<div class="video-ticker-section-image-container"><div class="video-ticker-section-image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div></div>';
 			}
         });
 		marquee_markup += '</div></div>';
