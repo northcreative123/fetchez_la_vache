@@ -125,10 +125,6 @@
 					<div class="video-ticker-section-videos-container"></div>
 				</div>
 
-				<!-- <div class="" data-scroll="" data-scroll-direction="horizontal" data-scroll-speed="-2" data-scroll-position="top">
-	                <h1>asdf</h1>
-	            </div>
-	            <div data-scroll="" data-scroll-direction="vertical" data-scroll-speed="-1" data-scroll-position="top"><p>lol!!!</p></div> -->
 			</div>
 		</section>
 
@@ -155,6 +151,10 @@
 		<section id="" class="full-centered-chunk videographers-content" data-scroll-section>
 			<div class="div-block chunklet">
 				<p><strong>videographers</strong> content...</p>
+				<div class="" data-scroll="" data-scroll-direction="horizontal" data-scroll-speed="-2" data-scroll-position="top">
+	                <h1>asdf</h1>
+	            </div>
+	            <div data-scroll="" data-scroll-direction="vertical" data-scroll-speed="-1" data-scroll-position="top"><p>lol!!!</p></div>
 			</div>
 		</section>
 
@@ -302,7 +302,23 @@
 			<section class="section full-centered-chunk">
 				<div class="div-block chunklet">
 					<h2>global footer</h2>
+					<form id="address-form" action="" method="get" autocomplete="off">
+						<p class="title">Sample address form for North America</p>
+						<p class="note"><em>* = required field</em></p>
+						<label class="full-field">
+						  <span class="form-label">Deliver to*</span>
+						  <input
+						    style="width: 50%;"
+							id="ship-address"
+							name="ship-address"
+							required
+							autocomplete="off"
+						  />
+						</label>
+					</form>
 					<p>👣 footer stuff 👣<br>... for those with a footer fetish.</p>
+					
+
 				</div>
 			</section>
 		</footer>
@@ -310,6 +326,7 @@
 	</main>
 <!--     <script nomodule src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js" crossorigin="anonymous"></script>
     <script nomodule src="https://polyfill.io/v3/polyfill.min.js?features=Object.assign%2CElement.prototype.append%2CNodeList.prototype.forEach%2CCustomEvent%2Csmoothscroll" crossorigin="anonymous"></script> -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
 	<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
 	<script src="assets/js/data.js"></script>
 	<script src="assets/js/main.js"></script>

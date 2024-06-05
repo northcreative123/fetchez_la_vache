@@ -590,6 +590,7 @@ ul.tile-list {
     list-style: none;
     margin: 0;
     padding: 0;
+	position: relative;
 }
 ul.tile-list li.tile { 
 	flex: 1; 
@@ -600,28 +601,41 @@ ul.tile-list li.tile {
 	margin: 0;
 	transition: all .25s ease-in-out;
 	cursor: default;
+	padding-top: 6rem;
 }
-ul.tile-list li.tile * { 
+ul.tile-list li.tile p,
+ul.tile-list li.tile h4 { 
 	background: rgba(255, 255, 255, .5); 
     padding: 0 1rem 1rem;
 	margin: 0;
+	position: relative;
 }
-ul.tile-list li.tile:nth-child(1) { border-radius: 1rem 0 0 0; }
-ul.tile-list li.tile:nth-child(2) { border-radius: 0 0 0 1rem; }
-ul.tile-list li.tile:nth-child(3) { border-radius: 0 0 1rem 0; }
-ul.tile-list li.tile:nth-child(4) { border-radius: 0 1rem 0 0; }
+ul.tile-list li.tile h4 { 
+	border-top: 1px solid #aaa;
+	line-height: 1rem;
+}
+ul.tile-list li.tile p { }
+ul.tile-list li.tile:nth-child(1) { border-radius: 1rem 0 0 0; background-image: url(https://unsplash.it/300/400); }
+ul.tile-list li.tile:nth-child(2) { border-radius: 0 0 0 1rem; background-image: url(https://unsplash.it/301/400); }
+ul.tile-list li.tile:nth-child(3) { border-radius: 0 0 1rem 0; background-image: url(https://unsplash.it/302/400); }
+ul.tile-list li.tile:nth-child(4) { border-radius: 0 1rem 0 0; background-image: url(https://unsplash.it/303/400); }
 ul.tile-list li i.fa-solid {
     background: none;
-    padding: 0 .5rem;
-    font-size: 1.5rem;
+    font-size: 3rem;
     display: inline-block;
+	position: absolute;
+	display: block;
+	width: 50px;
+	height: 50px;
+	top: 5rem;
+	left: 50%;
+	margin-left: 25px;
 }
 /* https://bennettfeely.com/clippy */
 ul.tile-list li.tile:first-child { 
 	/* clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);  */
 }
 ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none; }
-ul.tile-list li.tile h4 { padding-top: 1rem; }
 
 
 
@@ -1029,7 +1043,7 @@ section .chunklet p.standout {
 .logo-ticker-section-logos-grid,
 .video-ticker-section-videos-grid {
 	position: relative;
-    margin: 4rem -12vw 3rem;
+    margin: 2rem -12vw;
 }
 #video_scroll_1.video-ticker-section-videos-grid {
     margin: 0 -12vw;
@@ -1077,11 +1091,11 @@ section .chunklet p.standout {
 .logo-ticker-section-logos-slide,
 .video-ticker-section-videos-slide {
 	display: inline-block;
-	animation: 16s ticker infinite linear;
+	animation: 24s ticker infinite linear;
 	animation-delay: .2s;
 }
 .video-ticker-section-videos-slide {
-	animation: 26s ticker infinite linear;
+	animation: 36s ticker infinite linear;
 	animation-delay: .2s;
 }
 .logo-ticker-section-image-container,
