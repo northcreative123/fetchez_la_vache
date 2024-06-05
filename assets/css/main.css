@@ -847,6 +847,7 @@ ul.industry-list li i.fa-solid {
 	text-align: center; 
 	background: #ccc;
 	border-radius: var(--base-radius);
+    min-height: 22rem;
 }
 
 
@@ -937,10 +938,28 @@ section .chunklet p.standout {
 
 
 /* section: cta */
+#cta_section {
+	background-image: url(../images/camera-rev.png);
+	/* background-size: contain; */
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+}
+#cta_section .chunklet {
+    padding: 8rem 0 0 50vw;
+}
+#cta_section p { 
+	font-size: 1rem;
+    margin: 0 0 1rem; 
+}
 #cta_section h2 * {
 	vertical-align: bottom;
 	margin: 0;
 	padding: 0;
+}
+#cta_section h2 { 
+	white-space: nowrap;
+    margin: 0 0 1rem; 
 }
 #cta_section .clever em {
 	font-style: normal;
@@ -952,10 +971,10 @@ section .chunklet p.standout {
 	margin: 0 -1px;
 	display: inline-block;
 	overflow: hidden;
-	animation: clever 20s infinite;
+	animation: clever 16s infinite;
 }
 #cta_section .clever .swap-b {
-	-webkit-animation-delay: 10s;
+	-webkit-animation-delay: 8s;
 }
 @keyframes clever {
 	0% {
