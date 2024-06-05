@@ -266,7 +266,7 @@ $(function() {
 		const testimony_data = clients.filter(client => client.web_features.home_testimonials === true);
 		let testimony_markup = '';
         testimony_data.forEach(function(data) { // TODO: randomize order
-        	testimony_markup += '<li class=""><a href="#">'+data.name+'</a><div class="card"><h4>'+data.name+'</h4><p>'+data.web_features.testimonial.snippet+'</p><p>'+data.web_features.testimonial.contact+'</p></div></li>';
+        	testimony_markup += '<li class=""><a href="#">'+data.name+'</a><div class="card"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /><h4>'+data.name+'</h4><q>'+data.web_features.testimonial.snippet+'</q><blockquote>'+data.web_features.testimonial.full_text+'</blockquote><cite>'+data.web_features.testimonial.contact+'</cite></div></li>';
         });
 		parent.html(testimony_markup);
     }
