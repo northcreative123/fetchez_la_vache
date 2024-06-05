@@ -226,8 +226,6 @@ $(function() {
 
 		//const chunk_wrap = '<div class="logo-ticker-section-logos-slide-container"><div class="logo-ticker-section-logos-slide">'+chunk+'</div></div>';
 		//const chunklet = '<div class="logo-ticker-section-image-container"><div class="logo-ticker-section-image-frame"><img alt="" aria-hidden="" src="" /></div></div>';'
-
-
     }
     //populate_logo_marquee($('.marquee.logo-scroll .marquee-row'), 0, 8);
 	populate_logo_marquee($('.logo-ticker-section-logos-container'));
@@ -249,6 +247,31 @@ $(function() {
     populate_video_marquee($('#video_scroll_2 .video-ticker-section-videos-container'), 15, 30);
   
     attach_marquee_events();
+
+    populate_industry_card_panel = function (parent) { 
+		const industry_data = clients.filter(client => client.web_features.home_industry === true);
+		let industry_card_markup = '<div class="card-panel">';
+		let industry_tag_markup = '<ul class="industry-list">';
+        industry_data.forEach(function(data) { // TODO: randomize order
+        	industry_card_markup += '<div class="card" data-industry="'+data.industry+'"><h4>'+data.name+'</h4><p>'+data.industry+'</p></div>';
+			industry_tag_markup += '<li data-industry="'+data.industry+'"><i class="fa-solid fa-person-digging"></i> '+data.industry+'</li>';
+        });
+		industry_card_markup += '</div>';
+		industry_tag_markup += '</ul>';
+		//parent.html(industry_card_markup).append(industry_tag_markup);
+    }
+	populate_industry_card_panel($('.featured-industries'));
+
+    populate_testimonials = function (parent) { 
+		const testimony_data = clients.filter(client => client.web_features.home_testimonials === true);
+		let testimony_markup = '';
+        testimony_data.forEach(function(data) { // TODO: randomize order
+        	testimony_markup += '<li class=""><a href="#">'+data.name+'</a><div class="card"><h4>'+data.name+'</h4><p>'+data.web_features.testimonial.snippet+'</p><p>'+data.web_features.testimonial.contact+'</p></div></li>';
+        });
+		parent.html(testimony_markup);
+    }
+	populate_testimonials($('.featured-testimonials .testimonial-list'));
+
   	attach_search_event();
     $('.total-videographer-count').text(points.length);
 	//$('section.hero div.chunklet').addClass('anim-test-2');

@@ -43,7 +43,7 @@ Advanced Apathy, Finders Keepers
 const clients = [
     {
         "name": "Advanced Apathy",
-        "industry": "Apparel & Fashion",
+        "industry": "Street Apparel",
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530dd16f990d4ab9b010ee_Advanced%20Apathy.png",
         "vimeo_ids": [
             "729848380",
@@ -54,6 +54,7 @@ const clients = [
             "logo_marquee": false,
             "video_marquee": true,
             "home_testimonials": false,
+            "home_industry": true,
             "featured_video": ["729848380"]
         }
     },
@@ -69,6 +70,7 @@ const clients = [
             "logo_marquee": true,
             "video_marquee": false,
             "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["821026684"]
         }
     },
@@ -84,6 +86,7 @@ const clients = [
             "logo_marquee": false,
             "video_marquee": true,
             "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["821028098"]
         }
     },
@@ -113,6 +116,7 @@ const clients = [
             "logo_marquee": true,
             "video_marquee": true,
             "home_testimonials": true,
+            "home_industry": true,
             "featured_video": ["821031409"],
             "testimonial": {
                 "contact": "Jon Teodoro",
@@ -133,6 +137,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["697539896"]
         }
     },
@@ -147,6 +153,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": false,
+            "home_testimonials": false,
+            "home_industry": true,
             "featured_video": ["903932770"]
         }
     },
@@ -161,6 +169,8 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["821033999"]
         }
     },
@@ -174,6 +184,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["599286695"]
         }
     },
@@ -187,12 +199,14 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": true,
             "featured_video": ["599287014"]
         }
     },
     {
         "name": "George Law",
-        "industry": "Service",
+        "industry": "Legal",
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530d68dcff960a43fd528a_George%20Law.png",
         "vimeo_ids": [
             "599287816",
@@ -201,6 +215,8 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": true,
             "featured_video": ["599287816"]
         }
     },
@@ -214,6 +230,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["740161804"]
         }
     },
@@ -234,6 +252,8 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["821054559"]
         }
     },
@@ -247,6 +267,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["735779950"]
         }
     },
@@ -260,6 +282,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["599288369"]
         }
     },
@@ -273,6 +297,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["704259393"]
         }
     },
@@ -304,6 +330,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": true,
             "featured_video": ["821038890"]
         }
     },
@@ -315,12 +343,14 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": false,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": []
         }
     },
     {
         "name": "New Life Hope",
-        "industry": "Community & Event",
+        "industry": "Church",
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530da7676e6a30e08ef0c0_New%20Life%20Hope.png",
         "vimeo_ids": [
             "678810050"
@@ -328,6 +358,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": true,
             "featured_video": ["678810050"]
         }
     },
@@ -353,6 +385,8 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": true,
             "featured_video": ["821052007"]
         }
     },
@@ -366,6 +400,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["714600217"]
         }
     },
@@ -379,12 +415,14 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": true,
             "featured_video": ["707627782"]
         }
     },
     {
         "name": "Rapid Finance",
-        "industry": "Service",
+        "industry": "Finance",
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530d949c34570bcb0eb1b4_Rapid%20Finance.png",
         "vimeo_ids": [
             "599288439"
@@ -392,6 +430,8 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": true,
             "featured_video": ["599288439"]
         }
     },
@@ -434,6 +474,8 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["742362340"]
         }
     },
@@ -450,12 +492,14 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["751888268"]
         }
     },
     {
         "name": "Rotary Club",
-        "industry": "Community and Event",
+        "industry": "Community Service",
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530b608cdea076f50ededd_Rotary%20Club.png",
         "vimeo_ids": [
             "823008084"
@@ -463,6 +507,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": true,
             "featured_video": ["823008084"]
         }
     },
@@ -476,6 +522,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["599288626"]
         }
     },
@@ -489,6 +537,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["690344140"]
         }
     },
@@ -502,6 +552,8 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["597877691"]
         }
     },
@@ -515,6 +567,8 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["919792575"]
         }
     },
@@ -533,7 +587,8 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
-            "testimonials": true,
+            "home_testimonials": true,
+            "home_industry": true,
             "featured_video": ["729869112"],
             "testimonial": {
                 "contact": "Connor Jacobs",
@@ -544,7 +599,7 @@ const clients = [
     },
     {
         "name": "SPARK Business Works",
-        "industry": "Marketing & Digital",
+        "industry": "Software",
         "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530b8188c53a5adff7b37b_SPARK%20Business%20Works.png",
         "vimeo_ids": [
             "672973132",
@@ -564,7 +619,8 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
-            "testimonials": true,
+            "home_testimonials": true,
+            "home_industry": true,
             "featured_video": ["672973132"],
             "testimonial": {
                 "contact": "Jillian Hufford",
@@ -583,6 +639,8 @@ const clients = [
         "web_features": {
             "logo_marquee": true,
             "video_marquee": true,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": ["659750225"]
         }
     },
@@ -594,6 +652,8 @@ const clients = [
         "web_features": {
             "logo_marquee": false,
             "video_marquee": false,
+            "home_testimonials": false,
+            "home_industry": false,
             "featured_video": []
         }
     }
