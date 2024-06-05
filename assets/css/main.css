@@ -1250,3 +1250,120 @@ section .chunklet p.standout {
 }
 
 
+
+.aperture {
+	display: block;
+	margin: auto;
+	cursor: pointer;
+	background: url("http://www.hollywoodreporter.com/sites/default/files/2012/06/kiss_family_guy_crowd_a_l.jpg");
+	background-position: 50% 0%;
+	background-repeat: repeat;
+	background-origin: border-box;
+	width: 200px;
+	height: 200px;
+	border: 50px solid rgba(0, 0, 0, 1);
+	border-radius: 100%;
+	box-sizing: border-box;
+	transition: .5s ease;
+}
+.aperture:hover {
+	background-position: 85% 0%;
+	border: 5px solid rgba(0, 0, 0, 1);
+}
+
+/* VIDEO Playa: */
+#lvideo-wrap {
+	position: fixed;
+	height: 100dvh;
+	z-index: 9991;
+	opacity: 0;
+	visibility: hidden;
+}
+#lvideo-wrap, #lvideo-wrap:after, #lvideo-wrap .lvideo-overlay {
+	left: 0;
+	top: 0;
+	width: 100%;
+	transition: all 0.3s ease-in-out;
+	box-sizing: border-box;
+	background: rgba(0, 0, 0, .5);
+}
+#lvideo-wrap:after, #lvideo-wrap .lvideo-overlay {
+	height: 100%;
+	position: absolute;
+}
+#lvideo-wrap:after {
+	content: "";
+	display: block;
+	background-color: var(--primary-color);
+	opacity: 0;
+	z-index: -1;
+}
+#lvideo-wrap .lvideo-container {
+	height: 100dvh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#lvideo-wrap video, #lvideo-wrap iframe {
+	border-radius: 12px;
+	position: relative;
+	box-sizing: border-box;
+	background-color: #000;
+	z-index: 10;
+	box-shadow: 0 0 19px rgba(0, 0, 0, 0.16);
+	display: block;
+	max-width: 1280px;
+	height: auto;
+	width: 90%;
+	aspect-ratio: 1.7777777778;
+}
+#lvideo-wrap video {
+	object-fit: cover;
+}
+#lvideo-wrap .lvideo-close {
+	background-color: #fff;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	right: 5%;
+	top: 5%;
+	width: 42px;
+	height: 42px;
+	border-radius: 100%;
+	border: solid 2px var(--primary-color);
+	padding: 0;
+	transition: all 0.3s ease-in-out;
+	z-index: 150;
+}
+#lvideo-wrap .lvideo-close:before, #lvideo-wrap .lvideo-close:after {
+	content: "";
+	width: 60%;
+	height: 3px;
+	background-color: var(--primary-color);
+	position: absolute;
+	transition: all 0.3s ease-in-out;
+}
+#lvideo-wrap .lvideo-close:before {
+	transform: rotate(42deg);
+}
+#lvideo-wrap .lvideo-close:after {
+	transform: rotate(-42deg);
+}
+#lvideo-wrap .lvideo-close:focus {
+	outline: none;
+}
+#lvideo-wrap .lvideo-close:hover {
+	background-color: var(--primary-color);
+}
+#lvideo-wrap .lvideo-close:hover:before, #lvideo-wrap .lvideo-close:hover:after {
+	background-color: #fff;
+}
+#lvideo-wrap.active {
+	opacity: 1;
+	visibility: visible;
+}
+#lvideo-wrap.active:after {
+	opacity: 0.5;
+}

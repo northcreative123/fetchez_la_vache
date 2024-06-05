@@ -237,7 +237,7 @@ $(function() {
         marquee_data.forEach(function(data) {
         	//marquee_markup += '<span title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'"><img src="https://vumbnail.com/'+data.vimeo_ids[0]+'.jpg" /></span>';
 			if ( data.web_features.video_marquee ) {
-				marquee_markup += '<div class="video-ticker-section-image-container"><div class="video-ticker-section-image-frame" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div></div>';
+				marquee_markup += '<div class="video-ticker-section-image-container"><div class="video-ticker-section-image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div></div>';
 			}
         });
 		marquee_markup += '</div></div>';
@@ -246,7 +246,7 @@ $(function() {
     populate_video_marquee($('#video_scroll_1 .video-ticker-section-videos-container'), 0, 15);
     populate_video_marquee($('#video_scroll_2 .video-ticker-section-videos-container'), 15, 30);
   
-    attach_marquee_events();
+    //attach_marquee_events();
 
     populate_industry_card_panel = function (parent) { 
 		const industry_data = clients.filter(client => client.web_features.home_industry === true);
@@ -278,6 +278,7 @@ $(function() {
 	$('section.hero div.chunklet h2').addClass('animate');
   
 
+	document.querySelectorAll(".play-inline").forEach((d) => d.addEventListener("click", playVideos));
 });
 
 // TODO: integrate better!
