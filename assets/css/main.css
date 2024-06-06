@@ -576,6 +576,7 @@ section#home_hero form.videographer-search {
 section#home_hero form.videographer-search legend { 
 	/* display: none; */
 	text-align: center;
+    padding: 0 0 .75rem;
 }
 
 section#home_hero div.chunklet form.videographer-search.result .result-block a.cta-button.button-primary {
@@ -960,7 +961,9 @@ ul.industry-list li i.fa-solid {
 	text-align: center; 
 	background: #ccc;
 	border-radius: var(--base-radius);
-    min-height: 22rem;
+    /* min-height: 22rem; */
+    overflow: hidden;
+    max-height: 24rem;
 }
 div.featured-industries .card-panel .card {  }
 div.featured-industries ul.industry-list li[data-industry="street_apparel"]:hover ~ div.featured-industries .card-panel .card[data-industry="street_apparel"] { display: block; }
@@ -1170,6 +1173,12 @@ footer ul.social li a {
     border-radius: 50%;
     border: 2px solid var(--lightest);
     padding: .25rem;
+	opacity: .75;
+}
+footer ul.social li a:hover,
+footer ul.social li a:active,
+footer ul.social li a:focus { 
+	opacity: 1;
 }
 footer ul.social li a span {
 	display: inline-block;
@@ -1442,7 +1451,7 @@ img.logo-map {
 }
 
 
-
+/* https://codepen.io/chatahana/pen/xxNrWdp */
 .aperture {
 	display: block;
 	margin: auto;
