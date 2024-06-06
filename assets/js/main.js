@@ -240,7 +240,7 @@ $(function() {
         industry_data.forEach(function(data) { // TODO: randomize order
 			let connector = data.industry.toLowerCase();
 			connector = connector.replace(/&/g, "and").replace(/\s+/g, "_");
-        	industry_card_markup += '<div class="card" data-industry="'+connector+'"><h4>'+data.name+'</h4><p>'+data.industry+'</p></div>';
+        	industry_card_markup += '<div class="card" data-industry="'+connector+'"><h4>'+data.name+'</h4><p>'+data.industry+'</p><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div></div>';
 			industry_tag_markup += '<li data-industry="'+connector+'"><i class="fa-solid fa-person-digging"></i> '+data.industry+'</li>';
         });
 		industry_card_markup += '</div>';
@@ -254,7 +254,8 @@ $(function() {
 		const testimony_data = clients.filter(client => client.web_features.home_testimonials === true);
 		let testimony_markup = '';
         testimony_data.forEach(function(data) { // TODO: randomize order
-        	testimony_markup += '<li class=""><a href="#">'+data.name+'</a><div class="card"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /><h4>'+data.name+'</h4><q>'+data.web_features.testimonial.snippet+'</q><blockquote>'+data.web_features.testimonial.full_text+'</blockquote><cite>'+data.web_features.testimonial.contact+'</cite></div></li>';
+        	//testimony_markup += '<li class=""><a href="#">'+data.name+'</a><div class="card"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /><h4>'+data.name+'</h4><q>'+data.web_features.testimonial.snippet+'</q><blockquote>'+data.web_features.testimonial.full_text+'</blockquote><cite>'+data.web_features.testimonial.contact+'</cite></div></li>';
+			testimony_markup += '<li class=""><a href="#" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div><q>'+data.web_features.testimonial.snippet+'</q><blockquote>'+data.web_features.testimonial.full_text+'</blockquote><cite>'+data.web_features.testimonial.contact+'</cite></div></li>';
         });
 		parent.append(testimony_markup);
     }
