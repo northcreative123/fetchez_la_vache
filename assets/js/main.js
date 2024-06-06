@@ -247,7 +247,7 @@ $(function() {
         testimony_data.forEach(function(data) { // TODO: randomize order
         	testimony_markup += '<li class=""><a href="#">'+data.name+'</a><div class="card"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /><h4>'+data.name+'</h4><q>'+data.web_features.testimonial.snippet+'</q><blockquote>'+data.web_features.testimonial.full_text+'</blockquote><cite>'+data.web_features.testimonial.contact+'</cite></div></li>';
         });
-		parent.html(testimony_markup);
+		parent.append(testimony_markup);
     }
 	populate_testimonials($('.featured-testimonials .testimonial-list'));
 
@@ -339,7 +339,7 @@ function fillInAddress() {
   // After filling the form with address components from the Autocomplete
   // prediction, set cursor focus on the second address line to encourage
   // entry of subpremise information such as apartment, unit, or floor number.
-  //address2Field.focus();
+  address1Field.focus();
 }
 
 window.initAutocomplete = initAutocomplete;

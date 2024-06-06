@@ -508,13 +508,14 @@ form.videographer-search legend {
 form.videographer-search input.search-input {
 	width: 100%;
     font-size: 1.25rem;
-    padding: .5rem 5rem .5rem 1rem;
+    padding: .5rem 3rem .5rem 1rem;
     border: 2px solid #ccc;
     border-radius: 2rem;
 	text-overflow: ellipsis;
 }
 form.videographer-search input[type=text].search-input:focus {
-    border: 2px solid #bbb;
+    border: 2px solid #aaa;
+	outline: 1px solid #aaa;
 	/* background: #fff; */
 }
 form.videographer-search button.search-submit {
@@ -660,26 +661,27 @@ ul.tile-list li.tile {
 	flex-flow: row wrap;
     border: 1px solid #ccc;
     border-radius: var(--base-radius);
-    min-height: 20vw;
-	max-width: 48%;
+    min-height: 32vh;
 	background-image: url(https://unsplash.it/300/400);
 	margin: 0;
 	transition: all .25s ease-in-out;
 	cursor: default;
-	padding-top: 8rem;
 	position: relative;
 }
-ul.tile-list li.tile p,
-ul.tile-list li.tile h4 { 
-	background: rgba(255, 255, 255, .5); 
+ul.tile-list li.tile span {
+	background: rgba(255, 255, 255, .75);
     padding: 0 1rem 1rem;
-	margin: 0;
-	position: relative;
+    margin: 0;
+    position: relative;
+    border-top: 1px solid var(--lightest);
+    line-height: 1rem;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 7rem;
 }
-ul.tile-list li.tile h4 { 
-	border-top: 1px solid #aaa;
-	line-height: 1rem;
-}
+
+ul.tile-list li.tile h4 { }
 ul.tile-list li.tile p { }
 ul.tile-list li.tile:nth-child(1) { border-radius: 1rem 0 0 0; background-image: url(https://unsplash.it/300/400); }
 ul.tile-list li.tile:nth-child(2) { border-radius: 0 0 0 1rem; background-image: url(https://unsplash.it/301/400); }
@@ -687,15 +689,12 @@ ul.tile-list li.tile:nth-child(3) { border-radius: 0 0 1rem 0; background-image:
 ul.tile-list li.tile:nth-child(4) { border-radius: 0 1rem 0 0; background-image: url(https://unsplash.it/303/400); }
 ul.tile-list li i.fa-solid {
     background: none;
-    font-size: 3rem;
+    font-size: 6rem;
     display: inline-block;
 	position: absolute;
 	display: block;
-	width: 50px;
-	height: 50px;
-    top: -7rem;
-    /* left: 50%; */
-    /* margin-left: 25px; */
+    bottom: 9rem;
+	color: var(--offlight);
 }
 /* https://bennettfeely.com/clippy */
 ul.tile-list li.tile:first-child { 
@@ -717,27 +716,70 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     padding: 1rem 0;
 	position: relative;
 }
+.testimonial-list li:hover {
+    background: var(--offlight);
+    border-radius: 3rem 0 0 3rem;
+    padding: 0 53% 0 2rem;
+    /* text-align: right; */
+    margin-left: -2rem;
+}
 .testimonial-list > li > .card {
 	position: absolute;
     border-radius: var(--base-radius);
-    background: rgba(0, 0, 0, 1);
-    color: #fff;
+    background: var(--offlight);
     top: 0;
     right: 0;
     height: 150%;
     width: 50%;
     font-size: 2rem;
-    padding: 1rem;
+    padding: 2rem;
     opacity: 0;
+	display: none;
+	z-index: 10;
 }
-.testimonial-list > li > .card img { max-height: 5rem; max-width: 80%; }
+.testimonial-list > li > .card.zero {
+	opacity: 1;
+	display: block;
+	/* border: 1px solid var(--darkest); */
+}
+.testimonial-list > li > .card img { max-height: 4rem; max-width: 80%; }
+.testimonial-list > li > .card h4 { display: none; }
+.testimonial-list > li > .card q {
+	padding: 2rem 1.5rem 0;
+    display: block;
+    font-size: 1.5rem;
+}
+.testimonial-list > li > .card blockquote {
+    border-left: 5px solid var(--primedark);
+    margin: 1rem 0 0;
+    padding: 10px 20px;
+    font-size: 18px;
+    line-height: 22px;
+}
+.testimonial-list > li > .card cite {
+    display: block;
+    text-align: right;
+    font-size: 1.5rem;
+    padding: 0 1.5rem;
+	font-style: italic;
+}
 .testimonial-list > li a { color: #000; text-decoration: none; }
 .testimonial-list > li a:hover,
 .testimonial-list > li a:focus,
-.testimonial-list > li a:active { color: var(--primedark); text-decoration: none; outline: none; }
+.testimonial-list > li a:active { 
+	color: var(--primedark); 
+	text-decoration: none; 
+	outline: none; 
+	font-weight: bold;
+}
 .testimonial-list > li a:hover ~ .card,
 .testimonial-list > li a:focus ~ .card,
-.testimonial-list > li a:active ~ .card { opacity: 1; }
+.testimonial-list > li a:active ~ .card { 
+	opacity: 1; 
+	display: block; 
+	/* z-index: 11; */
+}
+.testimonial-list > li a:hover ~ .card { z-index: 11; }
 
 .featured-testimonials h4 { display: block; margin: 0; }
 .featured-testimonials h4 a,
@@ -951,7 +993,7 @@ section .chunklet h3 {
 	background: var(--darkest);
 	/* padding: 2rem 20rem 2rem 14rem;
 	margin: 0 -20rem 2rem -20rem; */
-	padding: 2rem 20rem 2rem 10rem;
+	padding: 2rem 10vw 2rem 10vw;
     margin: -1rem -10vw 2rem -10vw;
 	line-height: 2rem;
 	font-size: 2rem;
