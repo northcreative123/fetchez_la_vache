@@ -740,9 +740,13 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 .testimonial-list > li > .card.zero {
 	opacity: 1;
 	display: block;
+	font-size: 1rem;
 	/* border: 1px solid var(--darkest); */
 }
-.testimonial-list > li > .card img { max-height: 4rem; max-width: 80%; }
+.testimonial-list > li > .card img { 
+	max-height: 4rem; 
+	max-width: 80%; 
+}
 .testimonial-list > li > .card h4 { display: none; }
 .testimonial-list > li > .card q {
 	padding: 2rem 1.5rem 0;
@@ -1117,6 +1121,69 @@ section .chunklet p.standout {
 	}
 }
 	
+
+
+
+/* global footer */
+body > main > footer .chunklet {
+	text-align: center;
+}
+footer ul.social { 
+	list-style: none; 
+	padding: 0;
+	margin: 2rem 1rem;
+	position: relative;
+}
+footer ul.social li { 
+	display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+footer ul.social li a { 
+	display: inline-block;
+    overflow: hidden;
+    height: 3rem;
+    width: 3rem;
+    margin: 0 .5rem;
+    vertical-align: middle;
+    text-align: center;
+    color: var(--lightest);
+    background: var(--darkest);
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+    border-radius: 50%;
+    border: 2px solid var(--lightest);
+    padding: .25rem;
+}
+footer ul.social li a span {
+	display: inline-block;
+	text-indent: -1000px;
+	overflow: hidden;
+	height: 0;
+	width: 0;
+} 
+/*
+footer ul.social:before,
+footer ul.social:after {
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	font-family: "Font Awesome 5 Free"; 
+}
+footer ul.social:before {
+	content: "\f075";
+	transform: scale(-1, 1);
+} 
+footer ul.social:after {	
+	content: "\f075";
+} 
+*/
+img.logo-map { 
+	width: 3rem;
+    margin-top: 3rem; 
+}
+
 
 
 /* audience buttons */
