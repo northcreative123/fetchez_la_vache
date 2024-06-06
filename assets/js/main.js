@@ -138,15 +138,6 @@ $(function() {
 		$('#'+ audience + '-btn').addClass('audience-selected');
 	}
 
-	// Initialize scroll animated elements
-	// console.log(document.querySelector('[data-scroll-container]'))
-	if (document.querySelector('[data-scroll-container]')) {
-		const scroll = new LocomotiveScroll({
-		    el: document.querySelector('[data-scroll-container]'),
-		    smooth: true
-		});
-	}
-
     // http://ip-api.com/json/24.127.12.129
     // ipinfo.io/24.127.12.129?token=d094b46883a2e4
 	async function getUserLocation(ip) {
@@ -268,6 +259,15 @@ $(function() {
 	//attach_marquee_events();
 	// Modal video player
 	document.querySelectorAll(".play-inline").forEach((d) => d.addEventListener("click", playVideos));
+
+	// Initialize scroll animated elements
+	// console.log(document.querySelector('[data-scroll-container]'))
+	if (document.querySelector('[data-scroll-container]')) {
+		const scroll = new LocomotiveScroll({
+		    el: document.querySelector('[data-scroll-container]'),
+		    smooth: true
+		});
+	}
 });
 
 

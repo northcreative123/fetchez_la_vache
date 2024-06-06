@@ -1139,14 +1139,13 @@ section .chunklet h3:before {
 section .chunklet h3:after {
 	content: "";
 	position: absolute;
-	right: 20rem;
-	top: -1.5rem;
+    right: 4rem;
+    top: 0.5rem;
 	height: 6rem;
 	width: 6rem;
 	border-top: 3rem solid var(--lightest);
 	transform: rotate(45deg);
 	border-right: 3rem solid var(--lightest);
-	z-index: -1;
 }
 */
 section .chunklet p.standout {
