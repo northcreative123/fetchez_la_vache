@@ -227,17 +227,26 @@ $(function() {
     populate_video_marquee($('#video_scroll_1 .video-ticker-section-videos-container'), 0, 15);
     populate_video_marquee($('#video_scroll_2 .video-ticker-section-videos-container'), 15, 30);
   
+
+	attach_industry_events = function () { 
+		$( 'ul.industry-list.li' ).on( "click", function( event ) {
+			// $('.card-panel.card')
+		});
+	}
     populate_industry_card_panel = function (parent) { 
 		const industry_data = clients.filter(client => client.web_features.home_industry === true);
 		let industry_card_markup = '<div class="card-panel">';
 		let industry_tag_markup = '<ul class="industry-list">';
         industry_data.forEach(function(data) { // TODO: randomize order
-        	industry_card_markup += '<div class="card" data-industry="'+data.industry+'"><h4>'+data.name+'</h4><p>'+data.industry+'</p></div>';
-			industry_tag_markup += '<li data-industry="'+data.industry+'"><i class="fa-solid fa-person-digging"></i> '+data.industry+'</li>';
+			let connector = data.industry.toLowerCase();
+			connector = connector.replace(/&/g, "and").replace(/\s+/g, "_");
+        	industry_card_markup += '<div class="card" data-industry="'+connector+'"><h4>'+data.name+'</h4><p>'+data.industry+'</p></div>';
+			industry_tag_markup += '<li data-industry="'+connector+'"><i class="fa-solid fa-person-digging"></i> '+data.industry+'</li>';
         });
 		industry_card_markup += '</div>';
 		industry_tag_markup += '</ul>';
-		//parent.html(industry_card_markup).append(industry_tag_markup);
+		parent.html(industry_card_markup).append(industry_tag_markup);
+		attach_industry_events();
     }
 	populate_industry_card_panel($('.featured-industries'));
 

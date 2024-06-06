@@ -962,7 +962,23 @@ ul.industry-list li i.fa-solid {
 	border-radius: var(--base-radius);
     min-height: 22rem;
 }
-
+div.featured-industries .card-panel .card {  }
+div.featured-industries ul.industry-list li[data-industry="street_apparel"]:hover ~ div.featured-industries .card-panel .card[data-industry="street_apparel"] { display: block; }
+/*
+street_apparel
+food_and_beverage
+construction
+healthcare
+legal
+dental
+church
+oil_and_gas
+restaurant
+finance
+community_service
+cannabis
+software
+*/
 
 
 
