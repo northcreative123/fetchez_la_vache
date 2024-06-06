@@ -203,7 +203,7 @@ $(function() {
 	}
   
     populate_logo_marquee = function (parent) { 
-		const marquee_data = clients.filter(client => client.web_features.logo_marquee === true);
+		const marquee_data = clients.filter(client => client.web_features.logo_marquee === true).sort(() => Math.random() - 0.5);
 		let marquee_markup = '<div class="logo-ticker-section-logos-slide-container"><div class="logo-ticker-section-logos-slide">';
         marquee_data.forEach(function(data) { // TODO: randomize order
 			marquee_markup += '<div class="logo-ticker-section-image-container"><div class="logo-ticker-section-image-frame"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></div></div>';
@@ -214,7 +214,7 @@ $(function() {
 	populate_logo_marquee($('.logo-ticker-section-logos-container'));
 
     populate_video_marquee = function (parent, start, count) {
-        const marquee_data = clients.slice(start, count);
+        const marquee_data = clients.slice(start, count).sort(() => Math.random() - 0.5);
 		let marquee_markup = '<div class="video-ticker-section-videos-slide-container"><div class="video-ticker-section-videos-slide">';
         marquee_data.forEach(function(data) {
 			if ( data.web_features.video_marquee ) {
@@ -254,7 +254,6 @@ $(function() {
 		const testimony_data = clients.filter(client => client.web_features.home_testimonials === true);
 		let testimony_markup = '';
         testimony_data.forEach(function(data) { // TODO: randomize order
-        	//testimony_markup += '<li class=""><a href="#">'+data.name+'</a><div class="card"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /><h4>'+data.name+'</h4><q>'+data.web_features.testimonial.snippet+'</q><blockquote>'+data.web_features.testimonial.full_text+'</blockquote><cite>'+data.web_features.testimonial.contact+'</cite></div></li>';
 			testimony_markup += '<li class=""><a href="#" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div><q>'+data.web_features.testimonial.snippet+'</q><blockquote>'+data.web_features.testimonial.full_text+'</blockquote><cite>'+data.web_features.testimonial.contact+'</cite></div></li>';
         });
 		parent.append(testimony_markup);
