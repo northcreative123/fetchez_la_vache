@@ -289,7 +289,7 @@ let address2Field;
 let postalField;
 
 function initAutocomplete() {
-  address1Field = document.querySelector("#ship-address");
+  address1Field = document.querySelector("#hero_search");
   address2Field = document.querySelector("#address2");
   postalField = document.querySelector("#postcode");
   // Create the autocomplete object, restricting the search predictions to
