@@ -1,9 +1,9 @@
-function pointsWithinRadius(points, center, radius) {
+function get_points_in_radius( points, center, radius ) {
 	//const earthRadius = 6371; // in kilometers
 	const earthRadius = 3959; // in miles
 	const radiansToDegrees = Math.PI / 180;
 
-	return points.filter(point => {
+	return points.filter( point => {
 		const lat1 = center.lat * radiansToDegrees;
 		const lon1 = center.lon * radiansToDegrees;
 		const lat2 = point.lat * radiansToDegrees;
@@ -21,7 +21,7 @@ function pointsWithinRadius(points, center, radius) {
 	}).length;
 }  
   
-async function geocode_address(address, parent_el) {
+async function geocode_address( address, parent_el ) {
   	const $parent = $(parent_el);
 	const despaced = address.replace(/\s+/g, "+");
 	const url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+despaced+'&key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA';
@@ -30,14 +30,12 @@ async function geocode_address(address, parent_el) {
     .then((json) => {
         const data = json;
         localStorage.setItem('search_location', JSON.stringify(json));
-        //console.log('response: ' + JSON.stringify(data));
-        //console.log('Lat/Lon: ' + JSON.stringify(data.results[0].geometry.location));
+		
         const formatted_address = data.results[0].formatted_address;
-
 		const ll_result = data.results[0].geometry.location
 		const ll_obj = { "lat": ll_result.lat, "lon":  ll_result.lng };
 
-		let result_count = pointsWithinRadius(points, ll_obj, 50);
+		let result_count = get_points_in_radius(points, ll_obj, 50);
 		//if (result_count === 0) { result_count = '[3]' }
 		let be = result_count === 1 ? 'is' : 'are';
 		let plural = result_count === 1 ? '' : 's';
@@ -70,7 +68,6 @@ attach_search_event = function () {
 			$(e.currentTarget).removeClass('result error').addClass('searching');
 			console.log('searched address: ' + address);
 			const address_ll = geocode_address(address, $(e.currentTarget));
-            
 			//console.log('address lat/lon: ' + JSON.stringify(address_ll));
 		} else {
 			console.log('invalid address: ' + address);
@@ -150,7 +147,6 @@ $(function() {
 		});
 	}
 
-  
     // http://ip-api.com/json/24.127.12.129
     // ipinfo.io/24.127.12.129?token=d094b46883a2e4
 	async function getUserLocation(ip) {
@@ -162,9 +158,9 @@ $(function() {
             console.log('Location data: ' + JSON.stringify(data));
             console.log('Lat/Lon: ' + data.loc);
           	const ll_obj = { "lat": data.loc.split(',')[0], "lon":  data.loc.split(',')[1] };
-          	const results1 = pointsWithinRadius(points, ll_obj, 50);
-          	const results2 = pointsWithinRadius(points, ll_obj, 100);
-			const results3 = pointsWithinRadius(points, ll_obj, 200);
+          	const results1 = get_points_in_radius(points, ll_obj, 50);
+          	const results2 = get_points_in_radius(points, ll_obj, 100);
+			const results3 = get_points_in_radius(points, ll_obj, 200);
           	console.log('Videographers within 50 miles of ' + data.city + ': ' + results1);
           	console.log('... 100 miles: ' + results2);
           	console.log('... 200 miles: ' + results3);
@@ -190,52 +186,37 @@ $(function() {
 		}
 	}
 
-	attach_iplookup_events = function () {
+	attach_iplookup_events = function () { // deprecate?
 		// Button event listeners
 		$( 'a.user-location' ).on( "click", function( event ) {
 			getUserIP();
 		});
 	}
-
-	//getUserIP(); //.then(location => console.log(location));
 	attach_iplookup_events();
 	
-  
-  
-  
 	attach_marquee_events = function () {
-		// Button event listeners
+		// Play Button event listeners (open video in new tab)
 		$( '.video-ticker-section-image-frame' ).on( "click", function(e) {
 			console.log('Clicked: '+$(e.currentTarget).attr('title')+', video?: '+$(e.currentTarget).attr('data-vimeo-id'));
             $(e.currentTarget).attr('data-vimeo-id') && window.open('https://vimeo.com/'+$(e.currentTarget).attr('data-vimeo-id'), '_blank');
 		});
 	}
   
-    populate_logo_marquee = function (parent, start, count) { // 14
+    populate_logo_marquee = function (parent) { 
 		const marquee_data = clients.filter(client => client.web_features.logo_marquee === true);
-        //const marquee_data = clients.slice(start, count);
-        //let marquee_markup = '';
 		let marquee_markup = '<div class="logo-ticker-section-logos-slide-container"><div class="logo-ticker-section-logos-slide">';
         marquee_data.forEach(function(data) { // TODO: randomize order
-        	//marquee_markup += '<span title="'+data.name+'"><img src="'+data.logo_url+'" /></span>';
 			marquee_markup += '<div class="logo-ticker-section-image-container"><div class="logo-ticker-section-image-frame"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></div></div>';
         });
 		marquee_markup += '</div></div>';
-
         parent.html(marquee_markup).append(marquee_markup); // twice is nice!
-
-		//const chunk_wrap = '<div class="logo-ticker-section-logos-slide-container"><div class="logo-ticker-section-logos-slide">'+chunk+'</div></div>';
-		//const chunklet = '<div class="logo-ticker-section-image-container"><div class="logo-ticker-section-image-frame"><img alt="" aria-hidden="" src="" /></div></div>';'
     }
-    //populate_logo_marquee($('.marquee.logo-scroll .marquee-row'), 0, 8);
 	populate_logo_marquee($('.logo-ticker-section-logos-container'));
 
     populate_video_marquee = function (parent, start, count) {
         const marquee_data = clients.slice(start, count);
-        //let marquee_markup = '';
 		let marquee_markup = '<div class="video-ticker-section-videos-slide-container"><div class="video-ticker-section-videos-slide">';
         marquee_data.forEach(function(data) {
-        	//marquee_markup += '<span title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'"><img src="https://vumbnail.com/'+data.vimeo_ids[0]+'.jpg" /></span>';
 			if ( data.web_features.video_marquee ) {
 				marquee_markup += '<div class="video-ticker-section-image-container"><div class="video-ticker-section-image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div></div>';
 			}
@@ -246,8 +227,6 @@ $(function() {
     populate_video_marquee($('#video_scroll_1 .video-ticker-section-videos-container'), 0, 15);
     populate_video_marquee($('#video_scroll_2 .video-ticker-section-videos-container'), 15, 30);
   
-    //attach_marquee_events();
-
     populate_industry_card_panel = function (parent) { 
 		const industry_data = clients.filter(client => client.web_features.home_industry === true);
 		let industry_card_markup = '<div class="card-panel">';
@@ -276,10 +255,13 @@ $(function() {
     $('.total-videographer-count').text(points.length);
 	//$('section.hero div.chunklet').addClass('anim-test-2');
 	$('section.hero div.chunklet h2').addClass('animate');
-  
 
+	//attach_marquee_events();
+	// Modal video player
 	document.querySelectorAll(".play-inline").forEach((d) => d.addEventListener("click", playVideos));
 });
+
+
 
 // TODO: integrate better!
 // Stolen from: https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform#maps_places_autocomplete_addressform-javascript

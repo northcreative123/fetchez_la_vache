@@ -453,12 +453,12 @@ section.hero div.chunklet h4 {
     background: #000;
     color: #fff;
     text-align: center;
-    padding: .75rem 12rem .75rem 11rem;
+    padding: .75rem 12vw .75rem 18vw;
 	overflow: hidden;
     font-size: 1.25rem;
     font-weight: normal;
-	margin-right: -13vw;
-    /* border: 2px solid rgba(0, 0, 0, 1); */
+	margin-right: -10vw;
+    white-space: nowrap;
 }
 /* section.hero .chunklet h4:before { 
 	content: "";
@@ -508,26 +508,28 @@ form.videographer-search legend {
 form.videographer-search input.search-input {
 	width: 100%;
     font-size: 1.25rem;
-    padding: .25rem 4rem .25rem 1rem;
+    padding: .5rem 5rem .5rem 1rem;
     border: 2px solid #ccc;
-    border-radius: var(--base-radius);
+    border-radius: 2rem;
+	text-overflow: ellipsis;
 }
-form.videographer-search input[type=text].search-input:focus,
-form.videographer-search input[type=text].search-input:focus + button {
-    border: 2px solid #000;
+form.videographer-search input[type=text].search-input:focus {
+    border: 2px solid #bbb;
 	/* background: #fff; */
 }
-form.videographer-search button.search-submit,
-form.videographer-search a.user-location { }
 form.videographer-search button.search-submit {
 	position: absolute;
-    right: 0;
+    right: .25rem;
     font-size: 1.25rem;
-    padding: .6rem;
-    border-radius: 0 .5rem .5rem 0;
-    border: 2px solid #ccc;
-	width: 4rem;
-	overflow: hidden;
+    padding: .6rem .4rem .6rem 0;
+    border-radius: 2rem;
+    border: 1px solid #ccc;
+    width: 2.7rem;
+    overflow: hidden;
+
+    background-image: var(--primegradient-off);
+    color: #fff;
+    top: .25rem;
 }
 form.videographer-search button.search-submit > span { 
 	text-indent: -10000px;
@@ -535,7 +537,10 @@ form.videographer-search button.search-submit > span {
     display: inline-block; 
 }
 form.videographer-search button.search-submit:hover,
-form.videographer-search button.search-submit:focus { background-image: var(--primegradient-off); color: #fff; }
+form.videographer-search button.search-submit:focus { 
+	background-image: var(--primegradient-on); 
+	color: #fff; 
+}
 form.videographer-search span.option2 {
     display: block;
     text-align: center;
@@ -563,7 +568,7 @@ section#home_hero form.videographer-search {
     z-index: 11;
 	right: 2rem;
     top: 13.5rem;
-    width: 60%;
+    width: 50vw;
 	padding: 0;
 	/* transform: rotateY(6deg); */
 }
@@ -652,14 +657,17 @@ ul.tile-list {
 }
 ul.tile-list li.tile { 
 	flex: 1; 
+	flex-flow: row wrap;
     border: 1px solid #ccc;
     border-radius: var(--base-radius);
     min-height: 20vw;
+	max-width: 48%;
 	background-image: url(https://unsplash.it/300/400);
 	margin: 0;
 	transition: all .25s ease-in-out;
 	cursor: default;
-	padding-top: 6rem;
+	padding-top: 8rem;
+	position: relative;
 }
 ul.tile-list li.tile p,
 ul.tile-list li.tile h4 { 
@@ -685,9 +693,9 @@ ul.tile-list li i.fa-solid {
 	display: block;
 	width: 50px;
 	height: 50px;
-	top: 5rem;
-	left: 50%;
-	margin-left: 25px;
+    top: -7rem;
+    /* left: 50%; */
+    /* margin-left: 25px; */
 }
 /* https://bennettfeely.com/clippy */
 ul.tile-list li.tile:first-child { 
@@ -933,7 +941,7 @@ section.videographers-content.enabled {
 }
 .chunklet {
 	text-align: left;
-	max-width: 80%;
+	max-width: 80vw;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -944,7 +952,7 @@ section .chunklet h3 {
 	/* padding: 2rem 20rem 2rem 14rem;
 	margin: 0 -20rem 2rem -20rem; */
 	padding: 2rem 20rem 2rem 10rem;
-    margin: -1rem -10rem 2rem -10rem;
+    margin: -1rem -10vw 2rem -10vw;
 	line-height: 2rem;
 	font-size: 2rem;
 	/* transform: rotate(-2deg); */
