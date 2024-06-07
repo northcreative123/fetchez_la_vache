@@ -784,6 +784,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 	max-width: 100%;
     max-height: unset;
 	border-radius: 1rem;
+	cursor: pointer;
 }
 .testimonial-list > li > .card h4 { display: none; }
 .testimonial-list > li > .card q {
@@ -976,7 +977,7 @@ ul.industry-list {
     margin: 0;
     padding: 0;
     text-align: center;
-	flex: 1.5;
+	flex: 1.25;
     padding: 1rem 2rem;
 	display: inline-block;
 }
@@ -984,21 +985,54 @@ ul.industry-list li {
 	display: inline-block;
     border: 1px solid #ccc;
     border-radius: var(--base-radius);
-    padding: .5rem 1rem;
+    padding: .5rem 1rem .5rem 3.5rem;
     margin: .25rem;
 	line-height: 1.5rem;
 	background: var(--lightest);
-	cursor: default;
+	cursor: pointer;
+	position: relative;
+}
+ul.industry-list li:hover { background: var(--offlight); }
+ul.industry-list li.active,
+ul.industry-list li.active:hover { 
+	background-color: var(--primedark);
+	background-image: var(--primegradient-on);
+	color: var(--lightest);
+	font-weight: bold;
 }
 ul.industry-list li:hover { 
 	transform: scale(1.25);
     z-index: 10;
 }
-ul.industry-list li i.fa-solid {
+ul.industry-list li i.fa-solid,
+ul.industry-list li:after {
 	font-size: 1.5rem;
 	padding-right: .5rem;
 	vertical-align: middle;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	font-family: "Font Awesome 5 Free"; 
+	font-weight: 900;
+    position: absolute;
+    left: 1rem;
 }
+
+ul.industry-list li[data-industry="street_apparel"]:after { content: "\f553"; }
+ul.industry-list li[data-industry="food_and_beverage"]:after { content: "\f805"; }
+ul.industry-list li[data-industry="construction"]:after { content: "\f85e"; }
+ul.industry-list li[data-industry="healthcare"]:after { content: "\e579"; }
+ul.industry-list li[data-industry="legal"]:after { content: "\f515"; }
+ul.industry-list li[data-industry="dental"]:after { content: "\f5c9"; }
+ul.industry-list li[data-industry="church"]:after { content: "\f51d"; }
+ul.industry-list li[data-industry="oil_and_gas"]:after { content: "\e532"; }
+ul.industry-list li[data-industry="restaurant"]:after { content: "\f2e7"; }
+ul.industry-list li[data-industry="finance"]:after { content: "\f81d"; }
+ul.industry-list li[data-industry="community_service"]:after { content: "\f4c4"; }
+ul.industry-list li[data-industry="cannabis"]:after { content: "\f55f"; }
+ul.industry-list li[data-industry="software"]:after { content: "\f3fa"; }
+
 .card-panel { 
 	flex: 1; 
 	display: inline-block; 
@@ -1009,24 +1043,10 @@ ul.industry-list li i.fa-solid {
     overflow: hidden;
     max-height: 24rem;
 }
-div.featured-industries .card-panel .card {  }
-div.featured-industries ul.industry-list li[data-industry="street_apparel"]:hover ~ div.featured-industries .card-panel .card[data-industry="street_apparel"] { display: block; }
-/*
-street_apparel
-food_and_beverage
-construction
-healthcare
-legal
-dental
-church
-oil_and_gas
-restaurant
-finance
-community_service
-cannabis
-software
-*/
 
+div.featured-industries .card-panel .card { display: none; }
+div.featured-industries .card-panel .card.active { display: block; }
+div.featured-industries ul.industry-list li[data-industry="street_apparel"]:hover ~ div.featured-industries .card-panel .card[data-industry="street_apparel"] { display: block; }
 
 div.featured-industries .card-panel .image-frame {
 	display: inline-block;
@@ -1060,6 +1080,7 @@ div.featured-industries .card-panel .image-frame:before {
     text-align: center;
 	z-index: 10;
 	opacity: .7;
+	cursor: pointer;
 }
 .testimonial-list > li > .card .image-frame:after,
 div.featured-industries .card-panel .image-frame:after {
@@ -1087,6 +1108,7 @@ div.featured-industries .card-panel .image-frame img {
 	border-radius: 1rem;
 	border: 1px solid transparent;
 	opacity: .9;
+	cursor: pointer;
 }
 .testimonial-list > li > .card .image-frame:hover img,
 div.featured-industries .card-panel .image-frame:hover img {

@@ -220,26 +220,31 @@ $(function() {
   
 
 	attach_industry_events = function () { 
-		$( 'ul.industry-list.li' ).on( "click", function( event ) {
-			// $('.card-panel.card')
+		$( '.featured-industries ul.industry-list li' ).on( "click", function(e) {
+			const tag = $(e.currentTarget);
+			const industry = tag.data('industry');
+			//console.log('industry: ' + industry);
+			$('.featured-industries ul.industry-list li, .featured-industries  div.card-panel .card').removeClass('active');
+			tag.addClass('active');
+			$('.featured-industries  div.card-panel .card[data-industry="'+industry+'"]').addClass('active');
 		});
 	}
     populate_industry_card_panel = function (parent) { 
-		const industry_data = clients.filter(client => client.web_features.home_industry === true);
+		const industry_data = clients.filter(client => client.web_features.home_industry === true).sort(() => Math.random() - 0.5);
 		let industry_card_markup = '<div class="card-panel">';
 		let industry_tag_markup = '<ul class="industry-list">';
         industry_data.forEach(function(data) { // TODO: randomize order
 			let connector = data.industry.toLowerCase();
 			connector = connector.replace(/&/g, "and").replace(/\s+/g, "_");
         	industry_card_markup += '<div class="card" data-industry="'+connector+'"><h4>'+data.name+'</h4><p>'+data.industry+'</p><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div></div>';
-			industry_tag_markup += '<li data-industry="'+connector+'"><i class="fa-solid fa-person-digging"></i> '+data.industry+'</li>';
+			industry_tag_markup += '<li data-industry="'+connector+'">'+data.industry+'</li>';
         });
 		industry_card_markup += '</div>';
 		industry_tag_markup += '</ul>';
 		parent.html(industry_card_markup).append(industry_tag_markup);
-		attach_industry_events();
     }
 	populate_industry_card_panel($('.featured-industries'));
+	attach_industry_events();
 
     populate_testimonials = function (parent) { 
 		const testimony_data = clients.filter(client => client.web_features.home_testimonials === true);
