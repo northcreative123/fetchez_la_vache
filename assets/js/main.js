@@ -242,17 +242,29 @@ $(function() {
 		industry_card_markup += '</div>';
 		industry_tag_markup += '</ul>';
 		parent.html(industry_card_markup).append(industry_tag_markup);
+		attach_industry_events();
     }
 	populate_industry_card_panel($('.featured-industries'));
-	attach_industry_events();
+	
 
+	attach_testimonial_events = function () { 
+		$( 'ul.testimonial-list > li > a' ).on( "click", function(e) {
+			console.log('Click!');
+			const link = $(e.currentTarget);
+			const section = link.closest('.testimonial-list');
+			const item = link.parent();
+			section.find('>li').removeClass('active');
+			item.addClass('active');
+		});
+	}
     populate_testimonials = function (parent) { 
 		const testimony_data = clients.filter(client => client.web_features.home_testimonials === true);
 		let testimony_markup = '';
         testimony_data.forEach(function(data) { // TODO: randomize order
 			testimony_markup += '<li class=""><a href="#" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div><q>'+data.web_features.testimonial.snippet+'</q><blockquote>'+data.web_features.testimonial.full_text+'</blockquote><cite>'+data.web_features.testimonial.contact+'</cite></div></li>';
         });
-		parent.append(testimony_markup);
+		parent.append(testimony_markup).find('li:first-child').addClass('active');
+		attach_testimonial_events();
     }
 	populate_testimonials($('.featured-testimonials .testimonial-list'));
 
