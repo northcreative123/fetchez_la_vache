@@ -274,7 +274,7 @@ header.global-header nav ul {
 }
 header.global-header nav > ul > li { display: inline-block; position: relative; }
 a.w-nav-link { padding: 1rem 2rem; }
-a.w-nav-link:hover { background: #efefef; }
+a.w-nav-link:hover { background: var(--offlight); }
 a.w-nav-link.w--current { color: var(--link-current); font-weight: bold; }
 
 header.global-header nav > ul > li.parent > a:after { 
@@ -1144,18 +1144,18 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     font-size: 1.5rem;
 }
 .testimonial-list > li > .card blockquote {
-    border-left: 8px solid var(--primedark);
+	border-left: 8px solid var(--primedark);
     margin: 1rem 0 0 3rem;
-    padding: 10px 20px;
-    font-size: 16px;
-    line-height: 22px;
-    border-radius: 12px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-radius: 1rem;
 }
 .testimonial-list > li > .card cite {
     display: block;
     text-align: right;
     font-size: 1.5rem;
-    padding: 0 1.5rem;
+    padding: 1rem 5rem 0 0;
 	font-style: italic;
 }
 .testimonial-list > li a { color: var(--darkest); text-decoration: none; }
@@ -1533,6 +1533,7 @@ section .chunklet h3 {
 	0px 8px 13px rgba(255, 255, 255,0.1),
 	0px 18px 23px rgba(255, 255, 255,0.1);*/
 }
+/* section .chunklet h3 i { display: none; } */
 /*
 section .chunklet h3:before {
 	content: "";
