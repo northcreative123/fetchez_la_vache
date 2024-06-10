@@ -11,7 +11,10 @@
 	--base-radius: .5rem;
 }
 
-
+/*
+4/3: 2560, 1440
+16/9: 1920, 1080
+*/
 
 /* colors: black, white, ... & utility */
 .not-quite-white,
@@ -452,12 +455,12 @@ section.hero div.chunklet h4 {
     width: 100%;
     background: #000;
     color: #fff;
-    text-align: center;
-    padding: .75rem 12vw .75rem 18vw;
-	overflow: hidden;
+    text-align: right;
+	padding: .75rem 17vw .75rem 29vw;
+    overflow: hidden;
     font-size: 1.25rem;
     font-weight: normal;
-	margin-right: -10vw;
+    margin-right: -14vw;
     white-space: nowrap;
 }
 /* section.hero .chunklet h4:before { 
@@ -554,7 +557,8 @@ form.videographer-search .result-block { display: none; }
 form.videographer-search.result .result-block { display: block; text-align: center; }
 form.videographer-search.result .result-block p {
     margin: 0;
-    padding: .5rem 1rem;
+	padding: 1rem 5rem;
+    font-size: 1rem;
 }
 form.videographer-search.error .result-block p { 
 	color: var(--error-color); 
@@ -642,12 +646,92 @@ div.process-container, .timeline {
 	position: relative; 
 	background: rgba(255, 255, 255, .9);
 	border-radius: var(--base-radius);
-    max-height: 24rem;
+    min-height: 24rem;
 
 	text-align: center;
 	overflow: auto;
 	padding: 2rem;
 }
+#process .process-tile-list {
+    display: flex;
+	justify-content: center;
+	/* https://codepen.io/enxaneta/pen/adLPwv */
+	/* flex-flow: nowrap; */
+    gap: 2rem;
+	flex-wrap: wrap;
+
+    margin: 0;
+    padding: 0;
+	position: relative;
+	list-style: none;
+}
+#process .process-tile-list li::marker {
+    font-size: 2em;
+}
+/* #process .process-tile-list li:after {
+	content: "";
+    font-size: 2em;
+    background: red;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 1rem;
+} */
+#process .process-tile-list li.tile { 
+	/* flex: 1;  */
+    border: 1px solid #ccc;
+    border-radius: var(--base-radius);
+    height: 32vh;
+	width: 36vw;
+	min-width: 18vw;
+	/* background-image: url(https://unsplash.it/300/400); */
+	margin: 0;
+	transition: all .25s ease-in-out;
+	cursor: default;
+	position: relative;
+
+	background-size: 140%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#process .process-tile-list li.tile h5 { 
+	position: absolute;
+    text-align: center;
+    width: 100%;
+    font-size: 1.5rem;
+    bottom: -.5rem;
+    margin: 0;
+    padding: 0;
+}
+#process .process-tile-list li.tile h5 span { 
+	background: #fff;
+    display: inline;
+    border: 1px solid #ccc;
+    padding: .15rem 1rem;
+	white-space: nowrap;
+}
+#process .process-tile-list span {
+	background: rgba(255, 255, 255, .75);
+    padding: 1rem;
+    margin: 0;
+    position: relative;
+    line-height: 1rem;
+    display: block;
+    border-radius: .5rem;
+    height: 100%;
+}
+#process .process-tile-list .tile:first-child video {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: #dadada20;
+	z-index: -1;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+}
+
+
 div.process-container li span.new { 
 	/* vertical-align: middle;  */
 }
@@ -686,6 +770,7 @@ ol.process-sublist li {
 div.process-container li em { font-weight: bold; }
 ol.process-list > li:nth-child(1) {
     top: 15rem;
+	left: 0;
 }
 ol.process-list > li:nth-child(1):after {
 	content: "";
@@ -954,22 +1039,22 @@ ul.tile-list li.tile span {
 
 ul.tile-list li.tile h4 { }
 ul.tile-list li.tile p { }
-ul.tile-list li.tile:nth-child(1) { 
+#client_types ul.tile-list li.tile:nth-child(1) { 
 	border-radius: 1rem 0 0 0; 
 	/* background-image: url(https://unsplash.it/400/300); */
 	background-image: url(../images/client-type-1.png);
 }
-ul.tile-list li.tile:nth-child(2) { 
+#client_types ul.tile-list li.tile:nth-child(2) { 
 	border-radius: 0 0 0 1rem; 
 	/* background-image: url(https://unsplash.it/401/300);  */
 	background-image: url(../images/client-type-2.jpg);
 }
-ul.tile-list li.tile:nth-child(3) { 
+#client_types ul.tile-list li.tile:nth-child(3) { 
 	border-radius: 0 0 1rem 0; 
 	/* background-image: url(https://unsplash.it/402/300);  */
 	background-image: url(../images/client-type-3.jpg);
 }
-ul.tile-list li.tile:nth-child(4) { 
+#client_types ul.tile-list li.tile:nth-child(4) { 
 	border-radius: 0 1rem 0 0; 
 	/* background-image: url(https://unsplash.it/403/300);  */
 	background-image: url(../images/client-type-4.png);
@@ -1396,7 +1481,7 @@ section.videographers-content {
 	/* background-color: var(--offlight); */
 	/* border-bottom: 1px solid #e4ebf3; */
 	padding: 3rem 2rem;
-	margin: 3rem 0;
+	/* margin: 3rem 0; */
 	position: relative;
 	min-height: 69vh;
 }
@@ -1416,20 +1501,21 @@ section.videographers-content.enabled {
 }
 /* .chunklet * { position: relative; } */
 section .chunklet h3 {
-	color: #fff;
-	background: var(--darkest);
-	/* padding: 2rem 20rem 2rem 14rem;
-	margin: 0 -20rem 2rem -20rem; */
-	padding: 2rem 10vw 2rem 10vw;
-    margin: -1rem -10vw 2rem -10vw;
-	line-height: 2rem;
-	font-size: 2rem;
-	/* transform: rotate(-2deg); */
-	overflow: hidden;
-	font-family: 'BDSans ExtReg', 'Gruppo', sans-serif;
-	font-weight: bold;
-	font-style: normal;
-	text-transform: uppercase;
+	color: #000;
+    /* background: var(--darkest); */
+    padding: 2rem 10vw 2rem 3vw;
+    margin: -1rem -10vw 2rem -3vw;
+    /* line-height: 2rem; */
+    font-size: 3rem;
+	letter-spacing: -3px;
+    /* transform: rotate(-2deg); */
+    overflow: hidden;
+    font-family: 'BDSans ExtReg', 'Gruppo', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    text-transform: uppercase;
+    /* text-shadow: 0px 4px 3px rgba(255, 255, 255, 0.4), 0px 8px 13px rgba(255, 255, 255, 0.1), 0px 18px 23px rgba(255, 255, 255, 0.1); */
+    font-weight: bold;
 	/* font-family: 'BDSans-Thin', 'Gruppo', sans-serif;
 	font-weight: 100; */
 	/*text-shadow: 
@@ -1631,7 +1717,7 @@ img.logo-map {
 	padding: .75rem 2rem;
 	cursor: pointer;
 	text-align: center;
-	background-color: rgba(255, 255, 255, .7);
+	background-color: rgba(255, 255, 255, 1);
 	outline: none;
 	overflow: visible;
 	z-index: 0;
@@ -1647,6 +1733,7 @@ img.logo-map {
 #audience_buttons button:active,
 #audience_buttons button:focus {
 	border: .125rem solid #3184ef;
+	/* font-weight: bold; */
 }
 @media only screen and ( max-width: 400px ) {}
   
