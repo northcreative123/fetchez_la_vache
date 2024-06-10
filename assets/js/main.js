@@ -139,14 +139,14 @@ $(function() {
 		}
 		// apply buttons...
 		//attach_audience_buttons($('.page-wrapper'));
-		//attach_audience_buttons($('#home_hero .chunklet'));
+		attach_audience_buttons($('#home_hero .chunklet'));
 
 		// enable content display
 		toggle_content(audience);
 
 		// highlight current user type
-		//$('#'+ audience + '-btn').addClass('audience-selected');
-		//set_scroll_listener();
+		$('#'+ audience + '-btn').addClass('audience-selected');
+		set_scroll_listener();
 	}
 
     // http://ip-api.com/json/24.127.12.129

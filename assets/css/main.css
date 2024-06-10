@@ -662,11 +662,17 @@ div.process-container, .timeline {
     gap: 2rem;
 	flex-wrap: wrap;
 
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+
     margin: 0;
     padding: 0;
 	position: relative;
 	list-style: none;
 }
+
 #process .process-tile-list li::marker {
     font-size: 2em;
 }
@@ -696,6 +702,10 @@ div.process-container, .timeline {
     background-repeat: no-repeat;
     background-position: center;
 }
+#process .process-tile-list li.tile:nth-child(4), 
+#process .process-tile-list li.tile:nth-child(5) {
+	height: 15vh;
+  }
 #process .process-tile-list li.tile h5 { 
 	position: absolute;
     text-align: center;
@@ -1717,8 +1727,8 @@ img.logo-map {
 	font-size: 3rem;
 }
 #audience_buttons {
-	position: fixed;
-	bottom: 0vh;
+	position: absolute;
+    bottom: -10rem;
 	text-align: center;
 	left: 0;
 	right: 0;
