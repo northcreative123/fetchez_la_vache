@@ -102,6 +102,9 @@ $(function() {
 			</div>`;
 		//const buttons = '<div id="audience_buttons" class=""><button id="businesses-btn" class="">Businesses</button><button id="videographers-btn" class="">Videographers</button></div>';
 		container.append(buttons);
+
+		// attach events...
+		attach_audience_button_events();
 	}
 
 	attach_audience_button_events = function () {
@@ -122,6 +125,12 @@ $(function() {
 		$('.' + audience + '-content').addClass('enabled');
 	}
 
+	set_scroll_listener = function () {
+		window.addEventListener('scroll', () => {
+			document.body.style.setProperty('--scroll', window.pageYOffset / (document.body.offsetHeight - window.innerHeight)); 
+		}, false);
+	}
+
 	// Initialize audience content selection?
 	if ($( audience_elements ).length) {
 		// If still not set, use default
@@ -129,13 +138,15 @@ $(function() {
 			audience = defaultAudience;
 		}
 		// apply buttons...
-		attach_audience_buttons($('.page-wrapper'));
-		// attach events...
-		attach_audience_button_events();
+		//attach_audience_buttons($('.page-wrapper'));
+		//attach_audience_buttons($('#home_hero .chunklet'));
+
 		// enable content display
 		toggle_content(audience);
+
 		// highlight current user type
-		$('#'+ audience + '-btn').addClass('audience-selected');
+		//$('#'+ audience + '-btn').addClass('audience-selected');
+		//set_scroll_listener();
 	}
 
     // http://ip-api.com/json/24.127.12.129
@@ -249,7 +260,7 @@ $(function() {
 
 	attach_testimonial_events = function () { 
 		$( 'ul.testimonial-list > li > a' ).on( "click", function(e) {
-			console.log('Click!');
+			e.preventDefault();
 			const link = $(e.currentTarget);
 			const section = link.closest('.testimonial-list');
 			const item = link.parent();
@@ -261,7 +272,7 @@ $(function() {
 		const testimony_data = clients.filter(client => client.web_features.home_testimonials === true);
 		let testimony_markup = '';
         testimony_data.forEach(function(data) { // TODO: randomize order
-			testimony_markup += '<li class=""><a href="#" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div><q>'+data.web_features.testimonial.snippet+'</q><blockquote>'+data.web_features.testimonial.full_text+'</blockquote><cite>'+data.web_features.testimonial.contact+'</cite></div></li>';
+			testimony_markup += '<li class=""><a href="" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div><q>'+data.web_features.testimonial.snippet+'</q><blockquote>'+data.web_features.testimonial.full_text+'</blockquote><cite>'+data.web_features.testimonial.contact+'</cite></div></li>';
         });
 		parent.append(testimony_markup).find('li:first-child').addClass('active');
 		attach_testimonial_events();
@@ -279,12 +290,12 @@ $(function() {
 
 	// Initialize scroll animated elements
 	// console.log(document.querySelector('[data-scroll-container]'))
-	if (document.querySelector('[data-scroll-container]')) {
-		const scroll = new LocomotiveScroll({
-		    el: document.querySelector('[data-scroll-container]'),
-		    smooth: true
-		});
-	}
+	// if (document.querySelector('[data-scroll-container]')) {
+	// 	const scroll = new LocomotiveScroll({
+	// 	    el: document.querySelector('[data-scroll-container]'),
+	// 	    smooth: true
+	// 	});
+	// }
 });
 
 
