@@ -659,7 +659,7 @@ div.process-container, .timeline {
 	justify-content: center;
 	/* https://codepen.io/enxaneta/pen/adLPwv */
 	/* flex-flow: nowrap; */
-    gap: 2rem;
+    gap: 1rem;
 	flex-wrap: wrap;
 
     margin: 0;
@@ -682,43 +682,58 @@ div.process-container, .timeline {
 } */
 #process .process-tile-list li.tile { 
 	/* flex: 1;  */
-    border: 1px solid var(--offlight);
+    /* border: 1px solid var(--primelight); */
     border-radius: var(--base-radius);
     height: 32vh;
-	width: 36vw;
+	width: 38vw;
 	min-width: 18vw;
-	/* background-image: url(https://unsplash.it/300/400); */
 	margin: 0;
 	transition: all .25s ease-in-out;
 	cursor: default;
 	position: relative;
+	overflow: hidden;
+	/* background: var(--offlight); */
 
+	/* background-image: url(https://unsplash.it/300/400); */
 	background-size: 140%;
     background-repeat: no-repeat;
     background-position: center;
 }
+#process .process-tile-list li.tile:nth-child(3) img {
+	position: absolute;
+    top: -10rem;
+    width: 100%;
+    z-index: -1;
+}
 #process .process-tile-list li.tile:nth-child(4), 
 #process .process-tile-list li.tile:nth-child(5) {
 	height: 15vh;
-  }
+}
+/* temporary positioning */
+#process .process-tile-list li.tile:nth-child(5) {
+    position: absolute;
+    right: 1.5vw;
+    bottom: 0;
+	background-image: url(https://unsplash.it/600/200);
+}
 #process .process-tile-list li.tile h5 { 
 	position: absolute;
     text-align: center;
     width: 100%;
-    font-size: 1.5rem;
-    bottom: -.5rem;
+    font-size: 1.25rem;
+    bottom: 1.5rem;
     margin: 0;
     padding: 0;
 }
 #process .process-tile-list li.tile h5 span { 
-	background: var(--lightest);
+	/* background: var(--lightest); */
     display: inline;
     border: 1px solid var(--offlight);
     padding: .15rem 1rem;
 	white-space: nowrap;
 }
 #process .process-tile-list span {
-	background: rgba(255, 255, 255, .75);
+	background: rgba(255, 255, 255, .85);
     padding: 1rem;
     margin: 0;
     position: relative;
@@ -728,11 +743,10 @@ div.process-container, .timeline {
     height: 100%;
 }
 #process .process-tile-list li.tile:hover h5 span { 
-	background: var(--offlight);
+	background: var(--lightest);
 }
-#process .process-tile-list .tile:first-child video {
+#process .process-tile-list .tile video {
 	width: 100%;
-	height: 100%;
 	position: absolute;
 	background-color: #dadada20;
 	z-index: -1;
@@ -740,10 +754,61 @@ div.process-container, .timeline {
 	top: 0;
 	left: 0;
 }
+#process .process-tile-list li.tile:nth-child(2) {
+	border: 1px solid var(--primelight);
+}
+#process .process-tile-list li.tile:nth-child(2) ol {
+	position: relative;
+	overflow: hidden;
+	overflow-y: scroll;
+	scrollbar-color: transparent transparent;
+	scrollbar-width: thin;
+	scroll-behavior: smooth;
+	/* scroll-padding-top: 100%; */
+}
+  
+#process .process-tile-list li.tile:nth-child(2) ol > li {
+	position: absolute;
+	left: 120%;
+	transition: left 0.5s;
+	scroll-margin-top: 2rem;
+}
+  
+#process .process-tile-list li.tile:nth-child(2):hover ol > li {
+	animation: slideIn 0.5s forwards;
+}
+  
+@keyframes slideIn {
+	to {
+		left: 0;
+		position: relative;
+	}
+}
+#process .process-tile-list li.tile:nth-child(2):hover ol > li:nth-child(2) {
+	animation-delay: 0.5s;
+}
+#process .process-tile-list li.tile:nth-child(2):hover ol > li:nth-child(3) {
+	animation-delay: 1.5s;
+}
+#process .process-tile-list li.tile:nth-child(2):hover ol > li:nth-child(4) {
+	animation-delay: 2.5s;
+}
+#process .process-tile-list li.tile:nth-child(2):hover ol > li:nth-child(5) {
+	animation-delay: 3.5s;
+}
+#process .process-tile-list li.tile:nth-child(2):hover ol > li:nth-child(6) {
+	animation-delay: 4.5s;
+}
+#process .process-tile-list li.tile:nth-child(2):hover ol > li:nth-child(7) {
+	animation-delay: 5.5s;
+}
+  
 
 
+
+/*
 div.process-container li span.new { 
-	/* vertical-align: middle;  */
+	vertical-align: middle;  
 }
 div.process-container li span.old { display: none; }
 ol.process-list,
@@ -809,7 +874,7 @@ ol.process-list > li:nth-child(4) {
     height: 23.5vh;
     margin: 0 0 0 -3vw;
     background: none;
-    /* border-radius: 1rem; */
+    border-radius: 1rem;
     border-top: none;
     border-bottom: none;
     border-left: 10px solid var(--darkest);
@@ -880,7 +945,7 @@ ol.process-sublist li:nth-child(4):after {
     width: 14rem;
     top: 50%;
 }
-
+*/
 
 
 
