@@ -97,10 +97,9 @@ $(function() {
 	attach_audience_buttons = function (to_parent) { // pass in jQuery selector
 		const container = to_parent || $('body');
 		const buttons = `
-			<div data-scroll-section id="audience_buttons" class="" data-scroll="" data-scroll-direction="vertical" data-scroll-speed="-5" data-scroll-position="top" data-scroll-target=".page-wrapper">
+			<div id="audience_buttons" class="scroll-animate" data-animation="">
 				${audiences.map(item => `<button data-audience="${item}" id="${item}-btn">${item}</button>`).join('')}
 			</div>`;
-		//const buttons = '<div id="audience_buttons" class=""><button id="businesses-btn" class="">Businesses</button><button id="videographers-btn" class="">Videographers</button></div>';
 		container.append(buttons);
 
 		// attach events...
@@ -125,9 +124,18 @@ $(function() {
 		$('.' + audience + '-content').addClass('enabled');
 	}
 
+	move_stuff = function (offset, el, direction, speed) {
+		// TODO: Establish/populate element array
+		//console.log( -(offset * 100) + 'vh');
+		let down_value = -(offset * 500) + 'vh';
+		$('#audience_buttons').css('bottom', down_value)
+	}
+
 	set_scroll_listener = function () {
 		window.addEventListener('scroll', () => {
-			document.body.style.setProperty('--scroll', window.pageYOffset / (document.body.offsetHeight - window.innerHeight)); 
+			let offset_calc = window.pageYOffset / (document.body.offsetHeight - window.innerHeight);
+			document.body.style.setProperty('--scroll', offset_calc); 
+			move_stuff(offset_calc);
 		}, false);
 	}
 
@@ -137,9 +145,9 @@ $(function() {
 		if (!audience) {
 			audience = defaultAudience;
 		}
-		// apply buttons...
-		//attach_audience_buttons($('.page-wrapper'));
-		attach_audience_buttons($('#home_hero .chunklet'));
+		// apply buttons?...
+		$('body.audience-select').length && attach_audience_buttons($('.page-wrapper'));
+		//attach_audience_buttons($('#home_hero .chunklet'));
 
 		// enable content display
 		toggle_content(audience);
@@ -296,6 +304,14 @@ $(function() {
 	// 	    smooth: true
 	// 	});
 	// }
+
+/*
+	$('iframe').on('load', function() {
+		setTimeout(
+			console.log($('iframe').contents().find('[data-container="side-panel"]')), 5000);
+		$('iframe').contents().find('[data-container="side-panel"]').css('display', 'none'); //side-panel=side-panel
+	}); 
+*/
 });
 
 
@@ -379,4 +395,45 @@ function fillInAddress() {
   address1Field.focus();
 }
 
-window.initAutocomplete = initAutocomplete;
+if ( $('form.videographer-search') ) {
+	window.initAutocomplete = initAutocomplete;
+}
+
+
+get_local_search = function () {
+	const location_data = JSON.parse(localStorage.getItem('search_location')).results[0].address_components;
+	const location_array = [...location_data];	
+	console.log(location_array);
+	const street_number = location_array.find(item => item.types.includes("street_number"))?.long_name;
+	const street = location_array.find(item => item.types.includes("route"))?.long_name;
+
+	let booking_address = {
+		"input_street_1": street_number + ' ' + street,
+		"input_city": location_array.find(item => item.types.includes("locality"))?.long_name,
+		"input_state": location_array.find(item => item.types.includes("administrative_area_level_1"))?.short_name,
+		"input_zip": location_array.find(item => item.types.includes("postal_code"))?.long_name,
+	}
+	console.log(booking_address);
+	return booking_address;
+
+}
+
+
+prepopulate_form = function () {
+	const getAllFormElements = element => Array.from(element.elements).filter(tag => ["select", "textarea", "input"].includes(tag.tagName.toLowerCase()));
+
+	const local_data = get_local_search();
+	const form_elements = getAllFormElements(document.getElementById("booking"));
+	console.log(form_elements);
+	form_elements.forEach(el => {
+		console.log(el.name);
+		$('form#booking #' + el.name).val(local_data[el.name]);
+	});
+}
+
+if ( $('form#booking') ) {
+	prepopulate_form();
+}
+
+// const formElements = getAllFormElements(document.getElementById("booking"));
+// console.log(formElements);
