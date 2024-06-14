@@ -9,6 +9,8 @@
 
 	--primegradient-off: linear-gradient(to right, #2684ef, #0649cc);
 	--primegradient-on: linear-gradient(to right, #0649cc, #2684ef);
+	--secondarygradient-off: linear-gradient(to right, #ccc, #aaa);
+	--secondarygradient-on: linear-gradient(to right, #aaa, #ccc);
 	--error-color: #800;
 	--link-current: #800;
 
@@ -40,6 +42,21 @@
 	background-color: var(--primedark);
 	background-image: var(--primegradient-on);
 	text-decoration: none;
+}
+.grey-linear-gradient {
+	background-color: var(--secondarylight);
+	background-image: var(--secondarygradient-off);
+	border-radius: 2rem;
+	color: var(--darkest);
+}
+.grey-linear-gradient:hover,
+.grey-linear-gradient:active,
+.grey-linear-gradient:focus {
+	background-color: var(--secondarydark);
+	background-image: var(--secondarygradient-on);
+	text-decoration: none;
+	color: var(--darkest);
+
 }
 .hide-me {
 	display: none !important;
