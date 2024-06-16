@@ -1,0 +1,178 @@
+
+/* FONTS */
+/* <uniquifier>: Use a unique and descriptive class name */
+/* <weight>: Use a value from 300 to 900 */
+/*
+.figtree-<uniquifier> {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+.dm-sans-<uniquifier> {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+*/
+
+.dm-serif-text-regular {
+	font-family: "DM Serif Text", serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.dm-serif-text-regular-italic {
+	font-family: "DM Serif Text", serif;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.poppins-thin {
+	font-family: "Poppins", sans-serif;
+	font-weight: 100;
+	font-style: normal;
+}
+.poppins-extralight {
+	font-family: "Poppins", sans-serif;
+	font-weight: 200;
+	font-style: normal;
+}
+.poppins-light {
+	font-family: "Poppins", sans-serif;
+	font-weight: 300;
+	font-style: normal;
+}
+.poppins-regular {
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+.poppins-medium {
+	font-family: "Poppins", sans-serif;
+	font-weight: 500;
+	font-style: normal;
+}
+.poppins-semibold {
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
+	font-style: normal;
+}
+.poppins-bold {
+	font-family: "Poppins", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+}
+.poppins-extrabold {
+	font-family: "Poppins", sans-serif;
+	font-weight: 800;
+	font-style: normal;
+}
+.poppins-black {
+	font-family: "Poppins", sans-serif;
+	font-weight: 900;
+	font-style: normal;
+}
+.poppins-thin-italic {
+	font-family: "Poppins", sans-serif;
+	font-weight: 100;
+	font-style: italic;
+}
+.poppins-extralight-italic {
+	font-family: "Poppins", sans-serif;
+	font-weight: 200;
+	font-style: italic;
+}
+.poppins-light-italic {
+	font-family: "Poppins", sans-serif;
+	font-weight: 300;
+	font-style: italic;
+}
+.poppins-regular-italic {
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
+	font-style: italic;
+}
+.poppins-medium-italic {
+	font-family: "Poppins", sans-serif;
+	font-weight: 500;
+	font-style: italic;
+}
+.poppins-semibold-italic {
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
+	font-style: italic;
+}
+.poppins-bold-italic {
+	font-family: "Poppins", sans-serif;
+	font-weight: 700;
+	font-style: italic;
+}
+.poppins-extrabold-italic {
+	font-family: "Poppins", sans-serif;
+	font-weight: 800;
+	font-style: italic;
+}
+.poppins-black-italic {
+	font-family: "Poppins", sans-serif;
+	font-weight: 900;
+	font-style: italic;
+}
+
+/* Beautifully Delicious */
+@font-face {
+	font-family: 'BDSans';
+	src: url('../fonts/beautifully_delicious/BDSans-Black.eot');
+	src: local('Beautifully Delicious Sans Black'), local('BDSans-Black'),
+		url('../fonts/beautifully_delicious/BDSans-Black.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/beautifully_delicious/BDSans-Black.woff2') format('woff2'),
+		url('../fonts/beautifully_delicious/BDSans-Black.woff') format('woff'),
+		url('../fonts/beautifully_delicious/BDSans-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'BDSans';
+	src: url('../fonts/beautifully_delicious/BDSans-Thin.eot');
+	src: local('Beautifully Delicious Sans Thin'), local('BDSans-Thin'),
+		url('BDSans-Thin.eot?#iefix') format('embedded-opentype'),
+		url('BDSans-Thin.woff2') format('woff2'),
+		url('BDSans-Thin.woff') format('woff'),
+		url('BDSans-Thin.ttf') format('truetype');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'BDSans';
+	src: url('../fonts/beautifully_delicious/BDSans-Regular.eot');
+	src: local('Beautifully Delicious Sans Regular'), local('BDSans-Regular'),
+		url('../fonts/beautifully_delicious/BDSans-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/beautifully_delicious/BDSans-Regular.woff2') format('woff2'),
+		url('../fonts/beautifully_delicious/BDSans-Regular.woff') format('woff'),
+		url('../fonts/beautifully_delicious/BDSans-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'BDSans ExtReg';
+	src: url('../fonts/beautifully_delicious/BDSans-Bold.eot');
+	src: local('Beautifully Delicious Sans Bold'), local('BDSans-Bold'),
+		url('../fonts/beautifully_delicious/BDSans-Bold.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/beautifully_delicious/BDSans-Bold.woff2') format('woff2'),
+		url('../fonts/beautifully_delicious/BDSans-Bold.woff') format('woff'),
+		url('../fonts/beautifully_delicious/BDSans-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+.gruppo-regular {
+	font-family: "Gruppo", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
