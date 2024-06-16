@@ -1773,6 +1773,14 @@ img.mock { margin-top: 3rem; }
 }
 
 /* forms */
+form#booking legend {
+    border: 0;
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 1rem 0 2rem;
+}
 form#booking label {
 	margin-bottom: 1rem;
     padding: 0 2rem;
@@ -1824,8 +1832,8 @@ form#booking select {
     line-height: 1.5rem;
 }
 
-#booking label:has(input:valid):after, 
-#booking label:has(select:valid):after {
+#booking label:has(input:required:valid):after, 
+#booking label:has(select:required:valid):after {
 	content: "\f058";
     font-style: normal;
     font-variant: normal;

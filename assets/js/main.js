@@ -500,6 +500,7 @@ const get_local_search = () => {
 
 	let booking_address = {
 		"input_street_1": street_number + ' ' + street,
+		"input_street_2": location_array.find(item => item.types.includes("subpremise"))?.long_name,
 		"input_city": location_array.find(item => item.types.includes("locality"))?.long_name,
 		"input_state": location_array.find(item => item.types.includes("administrative_area_level_1"))?.short_name,
 		"input_zip": location_array.find(item => item.types.includes("postal_code"))?.long_name,
