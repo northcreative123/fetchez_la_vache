@@ -63,7 +63,13 @@
 }
 
 
-
+/* Fix WebFlow embed styling */
+div.w-embed, 
+div.w-embed:before, 
+div.w-embed:after { 
+	display: inline !important; 
+	position: unset !important;
+} 
   
 /* core layout & typography */
 body {
@@ -284,7 +290,7 @@ section.hero div.chunklet {
 	/* transform: rotateY(-6deg); */
 	perspective: 1000px; /* for "unskewing" children */
 }
-section.hero div.chunklet > * { position: absolute; }
+/* section.hero div.chunklet > * { position: absolute; } */
 
 section.hero div.chunklet img {
 	position: absolute;

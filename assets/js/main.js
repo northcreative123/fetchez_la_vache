@@ -534,7 +534,7 @@ const prepare_form = () => {
 
 }
 
-if ( $('form#booking') ) {
+if ( $('form#booking').length ) {
 	prepare_form()
 }
 
