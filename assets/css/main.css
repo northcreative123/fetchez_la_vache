@@ -82,7 +82,9 @@ body {
 body > main.page-wrapper {
 	padding-top: 6rem;
 }
-
+body.audience-select > main.page-wrapper {
+    padding-top: 10rem;
+}
 body > main > footer {
 	background-color: var(--offlight);
 	/* border-top: 1px solid var(--darkest);
@@ -295,7 +297,7 @@ section.hero div.chunklet {
 section.hero div.chunklet img {
 	position: absolute;
     top: -5rem;
-    left: -28vw;
+    left: -25vw;
     width: auto;
     height: 35rem;
     z-index: 10;
