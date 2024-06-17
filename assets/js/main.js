@@ -392,7 +392,7 @@ $( function() {
 
   	attach_search_event()
 
-    $('.total-videographer-count').text( points.length )
+    // $('.total-videographer-count').text( points.length )
 
 	//$('section.hero div.chunklet').addClass('anim-test-2')
 	$('section.hero div.chunklet h2').addClass('animate')
@@ -540,34 +540,57 @@ if ( $('form#booking').length ) {
 
 
 
-// AirTable token: 
-// patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75
 
-/*
-const the_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75';
+const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
+let Airtable = require('airtable')
+let V_base = new Airtable({apiKey: AT_token}).base('appebjNDx6Y1gbUCT') // videographers
+let C_base = new Airtable({apiKey: AT_token}).base('appbdi6tmH8jEwTeT') // clients
 
-var Airtable = require('airtable');
-var base = new Airtable({apiKey: the_token}).base('appebjNDx6Y1gbUCT');
-
-base('Imported table').select({
-    // Selecting the first 3 records in Grid view:
-    maxRecords: 10,
+let totalVideographers = 0
+V_base('Imported table').select({
     view: "Grid view"
 }).eachPage(function page(records, fetchNextPage) {
-    // This function (`page`) will get called for each page of records.
 
-    records.forEach(function(record) {
-        console.log('Retrieved', record.get('Task Name'));
-    });
-
-    // To fetch the next page of records, call `fetchNextPage`.
-    // If there are more records, `page` will get called again.
-    // If there are no more records, `done` will get called.
-    fetchNextPage();
+	totalVideographers += records.length
+    fetchNextPage()
 
 }, function done(err) {
-    if (err) { console.error(err); return; }
-});
-*/
+    if (err) { 
+		console.error(err)
+		return
+	} else { 
+		//console.log(`Total number of rows: ${totalVideographers}`) 
+		$('.total-videographer-count').text( totalVideographers )
+	}
+})
+
+let allClients = []
+C_base('Imported table').select({
+    //maxRecords: 10, // or pageSize
+    view: "Grid view"
+}).eachPage(function page(records, fetchNextPage) {
+
+    records.forEach(function(record) {
+		allClients.push({ "name": record.get('Name'), "industry": record.get('Industry')})
+    })
+
+	try { // HERE: https://github.com/Airtable/airtable.js/issues/246
+		fetchNextPage()
+	} catch { 
+		console.log('Client total: ' + allClients.length)
+		console.log('...and also: ' + JSON.stringify(allClients))
+		return 
+	}
+    
+
+}, function done(err) {
+    if (err) { 
+		console.error(err) 
+		return 
+	} else {
+		console.log('Clients object: ' + JSON.parse(allClients))
+	}
+})
+
 
 
