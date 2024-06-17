@@ -295,7 +295,7 @@ section.hero div.chunklet {
 section.hero div.chunklet img {
 	position: absolute;
     top: -5rem;
-    left: -34vw;
+    left: -28vw;
     width: auto;
     height: 35rem;
     z-index: 10;
@@ -367,6 +367,7 @@ section.hero div.chunklet h4 {
 	position: absolute;
     top: 8.9rem;
     right: 0;
+	left: 0;
     width: 100%;
     background: var(--primelight);
     color: var(--lightest);
