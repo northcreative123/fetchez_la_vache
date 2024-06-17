@@ -543,7 +543,7 @@ if ( $('form#booking').length ) {
 // AirTable token: 
 // patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75
 
-
+/*
 const the_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75';
 
 var Airtable = require('airtable');
@@ -568,43 +568,6 @@ base('Imported table').select({
 }, function done(err) {
     if (err) { console.error(err); return; }
 });
+*/
 
 
-
-
-
-const clickup_test = async () => {
-
-	const query = new URLSearchParams({archived: 'false'}).toString()
-	// https://app.clickup.com/14356003/v/gr/dp3h3-11360
-	const folderId = 'dp3h3-11360'
-	const url = `https://api.clickup.com/api/v2/folder/${folderId}/list?${query}`
-	const response = await fetch( url, {
-		method: 'GET',
-		headers: {
-			Authorization: 'XS2T1FZRPFBE7W5S4ZZNN40GXSL1MX1M'
-		}
-	}).then(( response ) => { 
-
-		return response.json() 
-
-	})
-    .then(( json ) => {
-
-        const data = json
-
-    })
-    .catch(( err ) => { 
-
-		const error = `Error: ${err}`
-		console.log(error)
-		return error
-
-	})
-
-
-}
-//clickup_test()
-
-// const formElements = getAllFormElements(document.getElementById("booking"))
-// console.log(formElements)

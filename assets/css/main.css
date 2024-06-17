@@ -295,7 +295,7 @@ section.hero div.chunklet {
 section.hero div.chunklet img {
 	position: absolute;
     top: -5rem;
-    left: -51vh;
+    left: -34vw;
     width: auto;
     height: 35rem;
     z-index: 10;
