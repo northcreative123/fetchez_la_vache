@@ -74,7 +74,7 @@ body {
 }
 
 body > main.page-wrapper {
-	padding-top: 6.8rem;
+	padding-top: 6rem;
 }
 
 body > main > footer {
@@ -181,6 +181,16 @@ header.global-header nav > ul > li > ul {
 header nav a {
 	text-transform: uppercase;
 	white-space: nowrap;
+
+	vertical-align: top;
+    color: var(--darkest);
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
 }
 ul.sub { padding: 1rem 2rem !important }
 div.mega-menu ul.sub { padding: 0 !important }
@@ -1755,6 +1765,14 @@ img.logo-map {
 
 
 
+section#get_started {
+	padding: 0;
+}
+section#get_started .chunklet {
+	text-align: left;
+    min-width: 100%;
+    margin: 0 auto;
+}
 
 img.mock { margin-top: 3rem; }
 .split-panel {
@@ -1762,7 +1780,7 @@ img.mock { margin-top: 3rem; }
 }
 .split-half {
 	flex: 1;
-	padding: 1rem;
+	padding: 2rem 5rem;
 }
 .split-half header {
 	text-align: center;

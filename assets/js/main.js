@@ -526,9 +526,85 @@ const prepopulate_form = () => {
 
 }
 
-if ( $('form#booking') ) {
-	prepopulate_form()
+const prepare_form = () => {
+
+	const pre_search = localStorage.getItem('search_location')
+	pre_search && $('form#booking').addClass('prepopulate')
+	pre_search && prepopulate_form()
+
 }
+
+if ( $('form#booking') ) {
+	prepare_form()
+}
+
+
+
+// AirTable token: 
+// patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75
+
+
+const the_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75';
+
+var Airtable = require('airtable');
+var base = new Airtable({apiKey: the_token}).base('appebjNDx6Y1gbUCT');
+
+base('Imported table').select({
+    // Selecting the first 3 records in Grid view:
+    maxRecords: 10,
+    view: "Grid view"
+}).eachPage(function page(records, fetchNextPage) {
+    // This function (`page`) will get called for each page of records.
+
+    records.forEach(function(record) {
+        console.log('Retrieved', record.get('Task Name'));
+    });
+
+    // To fetch the next page of records, call `fetchNextPage`.
+    // If there are more records, `page` will get called again.
+    // If there are no more records, `done` will get called.
+    fetchNextPage();
+
+}, function done(err) {
+    if (err) { console.error(err); return; }
+});
+
+
+
+
+
+const clickup_test = async () => {
+
+	const query = new URLSearchParams({archived: 'false'}).toString()
+	// https://app.clickup.com/14356003/v/gr/dp3h3-11360
+	const folderId = 'dp3h3-11360'
+	const url = `https://api.clickup.com/api/v2/folder/${folderId}/list?${query}`
+	const response = await fetch( url, {
+		method: 'GET',
+		headers: {
+			Authorization: 'XS2T1FZRPFBE7W5S4ZZNN40GXSL1MX1M'
+		}
+	}).then(( response ) => { 
+
+		return response.json() 
+
+	})
+    .then(( json ) => {
+
+        const data = json
+
+    })
+    .catch(( err ) => { 
+
+		const error = `Error: ${err}`
+		console.log(error)
+		return error
+
+	})
+
+
+}
+//clickup_test()
 
 // const formElements = getAllFormElements(document.getElementById("booking"))
 // console.log(formElements)
