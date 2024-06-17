@@ -35,6 +35,7 @@
 	background-color: var(--primelight);
 	background-image: var(--primegradient-off);
 	border-radius: 2rem;
+    display: inline-block;
 }
 .button-primary:hover,
 .button-primary:active,
