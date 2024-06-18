@@ -136,11 +136,12 @@ section#videographer_cta {}
 body header.global-header {
 	z-index: 100;
 	position: fixed;
-	background: rgba(255, 255, 255, .8);  
+	background: rgba(255, 255, 255, .9);  
 	overflow: visible;
 	top: 0;
 	left: 0;
 	right: 0;
+    padding: 0 15rem 0 0;
 }
 header.global-header h1.logo { /* https://www.pngtosvg.com */
 	display: inline-block;
@@ -150,11 +151,21 @@ header.global-header h1.logo { /* https://www.pngtosvg.com */
 	text-indent: -1000px;
 	overflow: hidden;
 	height: 100%;
-	max-width: 200px;
-	width: 13rem;
-	margin: 1.5rem 2rem;
+
+    max-width: 300px;
+    width: 20rem;
+    margin: 1.5rem 3rem;
+
+
+
 	vertical-align: middle;
 	background-position: center;
+
+	transition: all 0.3s;
+}
+header.global-header.shrink h1.logo {
+	max-width: 200px;
+	width: 13rem;
 }
 header.global-header h1.logo a { display: block; height: 100%; width: 100%; }
 header.global-header nav { display: inline-block; margin: 0; padding: 0; float: none; vertical-align: middle; }
@@ -252,7 +263,7 @@ div.mega-menu footer {
 div.user-options {
 	position: absolute;
 	top: 1.5rem;
-	right: 2rem;
+	right: 3rem;
 }
 
 @keyframes mega-grow {
@@ -1260,12 +1271,12 @@ section .chunklet p.standout {
 
 /* global footer */
 body > main > footer .chunklet {
-	text-align: center;
+	/* text-align: center; */
 }
 footer ul.social { 
 	list-style: none; 
 	padding: 0;
-	margin: 2rem 1rem;
+	margin: 0;
 	position: relative;
 }
 footer ul.social li { 
@@ -1276,19 +1287,19 @@ footer ul.social li {
 footer ul.social li a { 
 	display: inline-block;
     overflow: hidden;
-    height: 3rem;
-    width: 3rem;
-    margin: 0 .5rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin: 0 .5rem 0 0;
     vertical-align: middle;
     text-align: center;
     color: var(--lightest);
     background: var(--darkest);
-    font-size: 1.5rem;
-    line-height: 2.2rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
     border-radius: 50%;
     border: 2px solid var(--lightest);
     padding: .25rem;
-	opacity: .75;
+    /* opacity: .75; */
 }
 footer ul.social li a:hover,
 footer ul.social li a:active,
@@ -1319,6 +1330,38 @@ footer ul.social:after {
 	content: "\f075";
 } 
 */
+
+footer.global-footer h1.logo { /* https://www.pngtosvg.com */
+	display: inline-block;
+    background-image: url(../images/logos/nc_horizontal_black_map.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-indent: -1000px;
+    overflow: hidden;
+    height: 100%;
+    max-width: 240px;
+    width: 15rem;
+    margin: .25rem;
+    vertical-align: middle;
+    background-position: center;
+}
+footer.global-footer h1.logo a { display: block; height: 100%; width: 100%; }
+footer.global-footer nav { 
+	display: block;
+    margin: 2rem 0 0;
+    padding: 2rem;
+    /* float: none; */
+    /* vertical-align: middle; */
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+ }
+
+footer.global-footer nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 img.logo-map { 
 	width: 3rem;
     margin-top: 3rem; 
