@@ -136,16 +136,28 @@ section#videographer_cta {}
 body header.global-header {
 	z-index: 100;
 	position: fixed;
-	background: rgba(255, 255, 255, .9);  
+	background: rgba(255, 255, 255, 0);  
 	overflow: visible;
 	top: 0;
 	left: 0;
 	right: 0;
     padding: 0 15rem 0 0;
 }
+header.global-header.shrink { 
+	background: rgba(255, 255, 255, .9); 
+}
+header.global-header nav > ul > li > a { 
+	color: #fff; 
+	text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8), 0px 1px 3px rgba(0, 0, 0, 0.5), 0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+header.global-header.shrink nav > ul > li > a { 
+	color: #000; 
+	text-shadow: none;
+}
 header.global-header h1.logo { /* https://www.pngtosvg.com */
 	display: inline-block;
-	background-image: url(../images/logos/nc_horizontal_black_map.svg);
+	/* background-image: url(../images/logos/nc_horizontal_black_map.svg); */
+	background-image: url(../images/logos/nc_horiz_white_full.png);
 	background-size: contain;
 	background-repeat: no-repeat;
 	text-indent: -1000px;
@@ -166,6 +178,7 @@ header.global-header h1.logo { /* https://www.pngtosvg.com */
 header.global-header.shrink h1.logo {
 	max-width: 200px;
 	width: 13rem;
+	background-image: url(../images/logos/nc_horiz_black_full.png);
 }
 header.global-header h1.logo a { display: block; height: 100%; width: 100%; }
 header.global-header nav { display: inline-block; margin: 0; padding: 0; float: none; vertical-align: middle; }
@@ -176,7 +189,7 @@ header.global-header nav ul {
 	list-style: none;
 }
 header.global-header nav > ul > li { display: inline-block; position: relative; }
-a.w-nav-link { padding: 1rem 2rem; }
+a.w-nav-link { padding: 1rem 2rem; font-size: 1rem; }
 a.w-nav-link:hover { background: var(--offlight); }
 a.w-nav-link.w--current { color: var(--link-current); font-weight: bold; }
 
@@ -1218,6 +1231,7 @@ section .chunklet p.standout {
 	white-space: nowrap;
     margin: 0 0 1rem; 
 	font-family: var(--section-heading-font);
+	font-weight: 900;
 }
 #cta_section .clever em {
 	font-style: normal;
@@ -1230,6 +1244,7 @@ section .chunklet p.standout {
 	display: inline-block;
 	overflow: hidden;
 	animation: clever 16s infinite;
+    font-weight: 400;
 }
 #cta_section .clever .swap-b {
 	-webkit-animation-delay: 8s;
