@@ -110,7 +110,7 @@ const attach_search_event = () => {
   
 $( function() {
 
-	const audiences = ['businesses', 'videographers']
+	const audiences = ['businesses', 'videographers'] 
 	const audience_elements = audiences.map(item => `.${item}-content`).join(', ')
 	const defaultAudience = 'businesses'
 
@@ -128,6 +128,7 @@ $( function() {
 	const attach_audience_buttons = ( to_parent ) => { // pass in jQuery selector
 
 		const container = to_parent || $('body')
+		// TODO: business, videographer text in buttons
 		const buttons = `
 			<div id="audience_buttons" class="scroll-animate" data-animation="">
 				${audiences.map(item => `<button data-audience="${item}" id="${item}-btn">${item}</button>`).join('')}

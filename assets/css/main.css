@@ -354,8 +354,13 @@ section.hero div.chunklet img {
 */
 section.hero div.chunklet h2,
 section.hero div.chunklet h4 {
-	text-transform: uppercase;
-	font-weight: 100; 
+	top: 45%;
+    left: 15% !important;
+    text-align: center !important;
+    width: 70% !important;
+
+	/* text-transform: uppercase; */
+	font-weight: 500; 
 	font-family: var(--section-heading-font);
 	font-style: normal;
 	position: absolute;
@@ -416,7 +421,7 @@ form.videographer-search fieldset {
     position: relative;
 }
 form.videographer-search legend { 
-    font-weight: bold;
+    font-weight: 400;
     font-size: 1rem;
 }
 form.videographer-search input.search-input {
