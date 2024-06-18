@@ -1167,6 +1167,8 @@ section .chunklet h3 {
     font-weight: 300;
     text-transform: uppercase;
 }
+section .chunklet h3.head-center { text-align: center; }
+section .chunklet h3.head-right { text-align: right; }
 section .chunklet h3 i { display: none; }
 /* section .chunklet > h3:after { 
 	content: "";
