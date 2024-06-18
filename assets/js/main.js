@@ -171,7 +171,7 @@ $( function() {
 		let down_value = -(offset * 500) + 'vh'
 		let scroll_percent = parseInt( Math.abs(offset) * 100 )
 		//console.log( 'hey: ' + scroll_percent )
-		if ( scroll_percent > 2 ) {
+		if ( scroll_percent > 3 ) {
 			$('body > header').addClass('shrink')
 		} else {
 			$('body > header').removeClass('shrink')
