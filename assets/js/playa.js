@@ -2,6 +2,10 @@ const body = document.body;
 
 function playVideos(e) {
 
+    // when in mini mode, check & remove previous wrapper
+    const old_wrapper = document.getElementById("lvideo-wrap");
+    old_wrapper && old_wrapper.parentNode.removeChild(old_wrapper);
+
     lvideo(e.currentTarget.dataset.url);
     body.classList.add("lvideo-active");
 
@@ -10,12 +14,15 @@ function playVideos(e) {
     document.body.appendChild(lvideoWrap);
 
     const wrapper = document.getElementById("lvideo-wrap");
+
+    let mini_mode = localStorage.getItem('mini_mode') === 'true';
+    mini_mode && wrapper.classList.add("mini");
     wrapper.classList.add("active");
 
     const url = this.dataset.url;
     const client = this.dataset.client;
     const startModal = `<span onclick="lvideoClose();" class="lvideo-overlay"></span> <div class="lvideo-container">`;
-    const finishModal = `</div><button onclick="lvideoClose();" class="lvideo-close">x</button><h3>${client}</h3>`;
+    const finishModal = `</div><button onclick="lvideoMode();" class="lvideo-mode"><i class="fa-solid fa-arrow-right" data-icon="f061"></i></button><button onclick="lvideoClose();" class="lvideo-close">x</button><h3>${client}</h3>`;
 
     // if (url.indexOf("youtube") !== -1) {
     if (url.indexOf("youtube") !== -1 || url.indexOf("youtu") !== -1) {
@@ -52,6 +59,19 @@ const lvideoClose = () => {
     body.classList.remove("lvideo-active");
     const wrapper = document.getElementById("lvideo-wrap");
     wrapper.parentNode.removeChild(wrapper);
+};
+// TOGGLE MIDI MODE
+const lvideoMode = () => {
+    const wrapper = document.getElementById("lvideo-wrap");
+    let mini_mode = localStorage.getItem('mini_mode') === 'true';
+    if ( mini_mode ) {
+        localStorage.setItem('mini_mode', false);
+        wrapper.classList.remove("mini");
+    } else {
+        localStorage.setItem('mini_mode', true);
+        wrapper.classList.add("mini");
+    }
+    
 };
 
 // LAUNCH
