@@ -551,8 +551,8 @@ if ( $('form#booking').length ) {
 }
 
 
-
-
+/* AIRTABLE: */
+/*
 const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
 let Airtable = require('airtable')
 let V_base = new Airtable({apiKey: AT_token}).base('appebjNDx6Y1gbUCT') // videographers
@@ -603,6 +603,6 @@ C_base('Imported table').select({
 		console.log('Clients object: ' + JSON.parse(allClients))
 	}
 })
-
+*/
 
 
