@@ -2245,6 +2245,8 @@ body.nav-open .royals-w-cheese .burger-close { display: flex; }
 		right: 10%;
 		width: 84%;
 	}
+	form.videographer-search button.search-submit { width: 2.7rem; }
+	form.videographer-search button.search-submit span { display: none; }
 	#audience_buttons button {
 		padding: .75rem 1rem;
 		min-width: 10rem;
@@ -2326,7 +2328,9 @@ body.nav-open .royals-w-cheese .burger-close { display: flex; }
 		top: .5rem;
 		right: 2rem;
 	}
+	
 	section.hero div.chunklet h2 { white-space: unset; top: 38%; }
+	section#home_hero form.videographer-search { right: 20%; width: 60%; }
 
 	section .chunklet { max-width: unset; }
 	section .chunklet h3 { font-size: 2rem; padding: 1rem 12vw; }
