@@ -42,7 +42,7 @@ function playVideos(e) {
         const match = vimeoURL.match(regExp);
 
         if (match) {
-            document.getElementById("lvideo-wrap").innerHTML = `${startModal}<iframe title="Vimeo" src="https://player.vimeo.com/video/${match[2]}?autoplay=1&loop=1" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>${finishModal}`;
+            document.getElementById("lvideo-wrap").innerHTML = `${startModal}<iframe title="Vimeo" src="https://player.vimeo.com/video/${match[2]}?autoplay=1&loop=0" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>${finishModal}`;
         } else {
             alert("Not a Vimeo!  URL example:\n https://vimeo.com/120206922");
         }

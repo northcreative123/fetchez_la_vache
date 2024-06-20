@@ -410,6 +410,10 @@ $( function() {
 	// Modal video player
 	document.querySelectorAll(".play-inline").forEach((d) => d.addEventListener("click", playVideos))
 
+	$('.royals-w-cheese button').click( function () {
+		$('body').toggleClass('nav-open')
+	})
+
 })
 
 

@@ -127,14 +127,16 @@ section#client_types {}
 section#testimonials {}
 section#industries_served {}
 section#cta_section {}
-section#videographer_cta {}
+section#videographer_cta {
+	min-height: 44vh;
+}
 section#videographer_cta .chunklet {
 	background-color: var(--primelight);
 	background-image: var(--primegradient-off);
     border-radius: 1rem;
     padding: 2rem;
     text-align: center;
-    min-height: 25rem;
+    min-height: 28vh;
 }
 section#videographer_cta .chunklet h3 { color: var(--lightest); z-index: 10; }
 section#videographer_cta .chunklet img.background {
@@ -269,11 +271,10 @@ header.global-header nav > ul div.mega-menu {
 	max-height: 0;
 	opacity: 0;
 }
-header.global-header nav > ul li:hover ul,
-header.global-header nav > ul li:hover div.mega-menu,
-header.global-header nav > ul li:hover > ul { 
+header.global-header nav > ul > li:hover > div.mega-menu,
+header.global-header nav > ul > li:hover > ul { 
 	display: block; 
-	animation: mega-grow 1s forwards;
+	animation: mega-grow .5s forwards ease-in;
 }
 
 div.mega-menu {
@@ -304,7 +305,7 @@ div.user-options {
 @keyframes mega-grow {
 	0% {
 		max-height: 0;
-		opacity: 0;
+		opacity: .5;
 	}
 	100% {
 		max-height: 500px;
@@ -480,7 +481,7 @@ form.videographer-search.result .result-block {
     text-align: center;
     background: rgba(0, 0, 0, .5);
     color: var(--lightest);
-    border-radius: 0 0 1rem 1rem;
+    border-radius: 0 0 .5rem .5rem;
     padding: 1rem 0 2rem;
     margin: -.5rem auto 0;
     width: 96%;
@@ -838,7 +839,8 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     padding: 0;
 	position: relative;
 }
-.testimonial-list li:hover {}
+.testimonial-list li { z-index: 10; }
+.testimonial-list li:hover { z-index: 11; }
 .testimonial-list li.active {
 	/* background: var(--offlight); */
     border-radius: .5rem;
@@ -860,10 +862,12 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 	display: none;
 	z-index: 10;
 }
+.testimonial-list > li:hover > .card,
 .testimonial-list > li > .card.zero {
 	opacity: 1;
 	display: block;
 	font-size: 1rem;
+	z-index: 11;
 	/* border: 1px solid var(--darkest); */
 }
 .testimonial-list > li > .card img { 
@@ -1247,6 +1251,8 @@ section .chunklet p.standout {
 	background-repeat: no-repeat;
 	margin: 0;
 	padding: 0;
+	background-size: 69%;
+    background-position: left center;
 }
 #cta_section .chunklet {
     padding: 8rem 0 0 46vw;
@@ -1466,23 +1472,27 @@ img.logo-map:hover {
 	padding: .75rem 2rem;
 	cursor: pointer;
 	text-align: center;
-	background-color: var(--lightest);
+	background-color: rgba(255, 255, 255, .75);
 	outline: none;
 	overflow: visible;
 	z-index: 0;
-	border: .125rem solid transparent;
+	border: .2rem solid transparent;
 	border-radius: 2rem;
-	margin: 0 .5rem;
-	text-transform: capitalize;
+	margin: 0 1rem;
+    text-transform: capitalize;
+    min-width: 12rem;
+	font-size: 1rem;
 }
 #audience_buttons button.audience-selected {
-	border: .125rem solid var(--primedark);
+	border: .2rem solid var(--primedark);
+	font-weight: bold;
+	background: rgba(255, 255, 255, 1);
 }
 #audience_buttons button:hover,
 #audience_buttons button:active,
 #audience_buttons button:focus {
-	border: .125rem solid var(--primelight);
-	/* font-weight: bold; */
+	border: .2rem solid var(--primelight);
+	font-weight: bold;
 }
 
   
@@ -2130,6 +2140,88 @@ button.form-next {
 
 
 
+.royals-w-cheese {
+	display: none;
+	z-index: 1001;
+}
+.royals-w-cheese .burger {
+    border: 1px solid rgba(0, 0, 0, 1);
+    outline: none;
+    width: 55px;
+    height: 55px;
+    border-radius: .5rem;
+    background: white;
+    box-shadow: rgb(136 165 191 / 48%) 6px 2px 16px 0px, rgb(255 255 255 / 80%) -6px -2px 16px 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 8px;
+    transition: all .5s ease;
+    margin: 1em;
+	position: absolute;
+}
+.royals-w-cheese .burger-close { display: none; }
+body.nav-open .royals-w-cheese .burger-open { display: none; }
+body.nav-open .royals-w-cheese .burger-close { display: flex; }
+
+.royals-w-cheese .burger span {
+  text-indent: -10000px;
+  display: block;
+  width: 0;
+}
+.royals-w-cheese .royals-w-cheese .burger:hover {
+    background: rgb(56 56 56);
+}
+.royals-w-cheese .burger-strip {
+    transition: all .5s ease;
+}
+.royals-w-cheese .strip div {
+    height: 3px;
+    border-radius: 2px;
+    background: rgb(56 56 56);
+    margin: 10px;
+    transition: all .55s cubic-bezier(0.075, 0.82, 0.165, 1);
+    width: 40px;
+}
+.royals-w-cheese .burger:hover .strip div {
+    /* background: white; */
+}
+
+.royals-w-cheese .burger-strip div {
+    transition: all .65s cubic-bezier(0.075, 0.82, 0.165, 1)
+}
+
+/* BURGER CLOSE */
+.burger:hover .burger-strip-close div:first-child {
+    transform: translateY(13px) rotate(0deg) ;
+}
+.burger:hover .burger-strip-close div:nth-child(2) {
+    opacity: 0;
+}
+.burger:hover .burger-strip-close div:last-child {
+    transform: translateY(-13px) rotate(90deg) ;
+}
+.burger:hover .burger-strip-close {
+    transform: scale(.7) rotate(45deg);
+    transition: all .25s ease .05s;
+}
+
+/* BURGER OPEN */
+.burger:hover .burger-strip-open {
+    transform: scale(.85);
+}
+.burger:hover .burger-strip-open div:first-child {
+    width: 20px;
+    transform: translateY(8px) rotate(-30deg);
+}
+.burger:hover .burger-strip-open div:nth-child(2) {
+    width: 38px;
+}
+.burger:hover .burger-strip-open div:last-child {
+    width: 20px;
+    transform: translateY(-8px) rotate(30deg);
+}
 
 
 
@@ -2139,10 +2231,133 @@ button.form-next {
 
 @media only screen and ( max-width: 400px ) {}
 
-@media only screen and (max-width: 480px) {}
+@media only screen and (max-width: 480px) {
 
+	header .user-options .cta-link {
+		position: absolute;
+		width: 35vw;
+		top: 6rem;
+		left: -13rem;
+		text-align: center;
+	}
+	section.hero div.chunklet h2 { font-size: 2.5rem; }
+	section#home_hero form.videographer-search {
+		right: 10%;
+		width: 84%;
+	}
+	#audience_buttons button {
+		padding: .75rem 1rem;
+		min-width: 10rem;
+	}
 
-/* Extra small devices (phones, 600px and down) */
+	#lvideo-wrap.mini, #lvideo-wrap.mini:after, #lvideo-wrap.mini .lvideo-overlay {
+		width: 100% !important;
+	}
+}
+
+/* tablets */
+@media screen and (max-width: 991px) {
+	/* mobile menu */
+	.royals-w-cheese {
+		display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+        vertical-align: middle;
+	}
+    header.global-header .nav-menu-wrapper {
+        background-color: rgba(0, 0, 0, .9);
+        right: 10vw;
+		padding: 1rem 2rem;
+		height: 100vh;
+		top: 0;
+		overflow: auto;
+		position: fixed;
+		display: none;
+		width: 80vw;
+        z-index: 1000;
+    }
+	body.nav-open header.global-header .nav-menu-wrapper { display: block; }
+	header.global-header nav > ul > li > div.mega-menu, 
+	header.global-header nav > ul > li > ul {
+		display: block !important;
+		animation: none !important;
+		color: var(--lightest);
+		position: relative;
+		left: unset;
+		top: unset;
+		min-width: unset;
+		max-height: unset;
+		opacity: unset;
+		max-width: unset;
+		width: unset;
+		padding: 0;
+		border-radius: unset;
+		border: unset;
+		background: unset;
+	}
+	header.global-header nav div.menu-panel {
+		flex: unset;
+		padding: 0 1rem 1rem;
+	}
+	header.global-header nav > ul > li {
+		display: block;
+	}
+
+	header.global-header nav > ul > li > a,
+	header.global-header.shrink nav > ul > li > a { 
+		padding: 1rem 0; 
+        display: block;
+        border-bottom: 1px solid rgba(255, 255, 255, .5);
+		color: var(--lightest);
+	}
+	header.global-header nav > ul > li > a:after { display: none !important; }
+	header.global-header nav div.panels {
+		display: block;
+	}
+	header.global-header nav a {
+		color: var(--lightest);
+	}
+	header.global-header div.mega-menu footer {
+		display: none;
+	}
+
+	header.global-header div.user-options {
+		top: .5rem;
+		right: 2rem;
+	}
+	section.hero div.chunklet h2 { white-space: unset; top: 38%; }
+
+	section .chunklet { max-width: unset; }
+	section .chunklet h3 { font-size: 2rem; padding: 1rem 12vw; }
+
+	/* styles by section */
+	section#home_hero {}
+	section#portfolio_tickers {}
+	section#process {}
+	section#client_types {}
+	section#testimonials {}
+	section#industries_served {}
+	section#cta_section {}
+	section#videographer_cta {}
+
+	section#portfolio_tickers .logo-ticker-section-image-frame img { max-height: 3rem; }
+	section#portfolio_tickers .video-ticker-section-image-frame,
+	section#portfolio_tickers .video-ticker-section-image-frame img { max-width: 40vw; }
+
+	section#industries_served .industry-list li { min-width: unset; }
+
+	section#testimonials .testimonial-list > li > a > img {
+		max-height: 3rem;
+		max-width: 9rem;
+	}
+
+	#lvideo-wrap.mini, #lvideo-wrap.mini:after, #lvideo-wrap.mini .lvideo-overlay {
+		width: 69%;
+	}
+}
+
+/* Extra small devices (phones, 600px and down)
 @media only screen and (max-width: 600px) {
 	header.global-header nav * {
 		margin: 0;
@@ -2150,7 +2365,7 @@ button.form-next {
 		width: auto;
 		display: block;
 	}
-}
+} */
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {}
