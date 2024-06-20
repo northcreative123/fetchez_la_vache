@@ -141,7 +141,7 @@ section#videographer_cta .chunklet {
 section#videographer_cta .chunklet h3 { color: var(--lightest); z-index: 10; }
 section#videographer_cta .chunklet img.background {
     position: absolute;
-    left: -16rem;
+    left: -10rem;
     top: 0;
 	height: 100%
 }
@@ -161,7 +161,7 @@ body header.global-header {
 	top: 0;
 	left: 0;
 	right: 0;
-    padding: 0 15rem 0 0;
+    padding: 0 12rem 0 0;
 }
 header.global-header.shrink { 
 	background: rgba(255, 255, 255, 1); 
@@ -194,7 +194,7 @@ header.global-header h1.logo { /* https://www.pngtosvg.com */
 
     max-width: 300px;
     width: 20rem;
-    margin: 1.5rem 3rem;
+    margin: 1.5rem 1.5rem 1.5rem 3rem;
 
 	transition: all 0.3s;
 }
@@ -212,7 +212,7 @@ header.global-header nav ul {
 	list-style: none;
 }
 header.global-header nav > ul > li { display: inline-block; position: relative; }
-a.w-nav-link { padding: 1rem 2rem; font-size: 1rem; letter-spacing: 2px; }
+a.w-nav-link { padding: 1rem; font-size: 1rem; letter-spacing: 2px; }
 a.w-nav-link:hover { background: var(--darkest); }
 .shrink a.w-nav-link:hover { background: var(--offlight); }
 a.w-nav-link.w--current { color: var(--link-current); font-weight: bold; }
@@ -763,7 +763,7 @@ ul.tile-list li.tile {
     border: 1px solid var(--offlight);
     border-radius: var(--base-radius);
     height: 32vh;
-	width: 32vw;
+	width: 48%;
 	min-width: 18vw;
 	/* background-image: url(https://unsplash.it/300/400); */
 	margin: 0;
@@ -771,7 +771,7 @@ ul.tile-list li.tile {
 	cursor: default;
 	position: relative;
 
-	background-size: 140%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -2236,9 +2236,10 @@ body.nav-open .royals-w-cheese .burger-close { display: flex; }
 
 	header .user-options .cta-link {
 		position: absolute;
-		width: 35vw;
-		top: 6rem;
-		left: -13rem;
+        white-space: nowrap;
+		width: 40vw;
+        top: 6rem;
+        right: 20vw;
 		text-align: center;
 	}
 	section.hero div.chunklet h2 { font-size: 2.5rem; }
