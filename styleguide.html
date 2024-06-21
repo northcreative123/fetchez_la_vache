@@ -147,7 +147,12 @@
         <section id="" class="full-centered-chunk">
 			<div class="div-block chunklet">
 				<h3>Fonts & Text</h3>
-                <p>Font pairing: <a href="https://www.fontpair.co/all" target="_blank">https://www.fontpair.co/all</a>.</p>
+                <p>
+                    Font pairing: <a href="https://www.fontpair.co/all" target="_blank">https://www.fontpair.co/all</a>.<br />
+                    <strong>[ NOTE ]:</strong> Currently <strong>&lt;h1&gt;</strong> elements are reserved for header & footer logos,
+                    <strong>&lt;h2&gt;</strong> elements are reserved for page title/heading, &
+                    <strong>&lt;h3&gt;</strong> elements are reserved for section title/headings.
+                </p>
                 <h1>&lt;h1&gt; Lorem ipsum</h1>
                 <h2>&lt;h2&gt; Lorem ipsum</h2>
                 <h3>&lt;h3&gt; Lorem ipsum</h3>
@@ -196,6 +201,18 @@
         background-color: var(--offlight);
         margin: 0 -2rem;
         }
+</code>
+</pre>
+
+<pre>
+<code class="html">
+&lt;<strong>body</strong>&gt;
+    &lt;<strong>header</strong> id="header" class="global-header"&gt; ... &lt;/<strong>header</strong>&gt;
+    &lt;<strong>main</strong> id="page-wrapper" class="page-wrapper"&gt;
+        ... [ sections ] ...
+        &lt;<strong>footer</strong> id="global_footer" class="global-footer"&gt; ... &lt;/<strong>footer</strong>&gt;
+    &lt;/<strong>main</strong>&gt;
+&lt;/<strong>body</strong>&gt;
 </code>
 </pre>
 			</div>
@@ -353,8 +370,23 @@
 			</div>
 		</section>
 
+        <section id="" class="full-centered-chunk">
+			<div class="div-block chunklet">
+				<h3>Forms</h3>
+			</div>
+		</section>
 
+        <section id="" class="full-centered-chunk">
+			<div class="div-block chunklet">
+				<h3>Borders & shadows</h3>
+			</div>
+		</section>
 
+        <section id="" class="full-centered-chunk">
+			<div class="div-block chunklet">
+				<h3>Video thumbnails & embeds</h3>
+			</div>
+		</section>
 
 
 

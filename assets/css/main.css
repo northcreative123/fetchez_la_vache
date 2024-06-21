@@ -82,6 +82,7 @@ body {
 	font-weight: 400;
 	font-style: normal;
 	overflow-x: hidden;
+	font-size: 1rem;
 }
 
 body > main.page-wrapper {
@@ -119,6 +120,7 @@ pre {
 	position: relative;
     padding: 0 3rem;
     min-width: 50%;
+	overflow: visible;
 }
 code {
 	display: block;
@@ -128,20 +130,34 @@ code {
     border-radius: .5rem;
     border: 1px solid #ccc;
 }
-code.css:before {
+code.css:before,
+code.html:before,
+code.js:before {
 	content: "<CODE: [ CSS ]>";
-    position: absolute;
-    top: 0;
-    left: 1rem;
-    background: #ccc;
-    color: red;
-    padding: .15rem 1rem;
-    /* transform: rotate(-90deg); */
-    font-weight: bold;
-    letter-spacing: 1px;
-    font-size: 1rem;
-    border-radius: .25rem 0 0 0;
-    border: 1px solid;
+	position: absolute;
+	top: -1.25rem;
+	left: 1rem;
+	background: var(--lightest);
+	color: var(--primelight);
+	padding: .5rem 1rem;
+	transform: rotate(2deg);
+	font-weight: bold;
+	letter-spacing: 1px;
+	font-size: 1.5rem;
+	border-radius: .5rem .5rem 0 0;
+	border: 1px solid;
+	display: block;
+	right: 3rem;
+	text-align: center;
+}
+code.html:before {
+	content: "<CODE: [ HTML ]>";
+	color: brown;
+	transform: rotate(-2deg);
+}
+code.js:before {
+	content: "<CODE: [ JS ]>";
+	color: #9ccc00;
 }
 code em { color: green; font-weight: bold; }
 
