@@ -149,13 +149,17 @@
 				<h3>Fonts & Text</h3>
                 <p>
                     Font pairing: <a href="https://www.fontpair.co/all" target="_blank">https://www.fontpair.co/all</a>.<br />
+                    We're currently using "<a href="https://fonts.google.com/specimen/Roboto" target="_blank">Roboto</a>" (with sans-serif as a fallback)
+                    for all fonts on the site.
+                </p>
+                <p class="note">
                     <strong>[ NOTE ]:</strong> Currently <strong>&lt;h1&gt;</strong> elements are reserved for header & footer logos,
                     <strong>&lt;h2&gt;</strong> elements are reserved for page title/heading, &
                     <strong>&lt;h3&gt;</strong> elements are reserved for section title/headings.
                 </p>
-                <h1>&lt;h1&gt; Lorem ipsum</h1>
-                <h2>&lt;h2&gt; Lorem ipsum</h2>
-                <h3>&lt;h3&gt; Lorem ipsum</h3>
+                <h1>&lt;h1&gt; Lorem ipsum ( header/footer logo )</h1>
+                <h2>&lt;h2&gt; Lorem ipsum ( page title )</h2>
+                <h3>&lt;h3&gt; Lorem ipsum ( section title )</h3>
                 <h4>&lt;h4&gt; Lorem ipsum</h4>
                 <h5>&lt;h5&gt; Lorem ipsum</h5>
                 <h6>&lt;h6&gt; Lorem ipsum</h6>
@@ -238,6 +242,18 @@
         }
 </code>
 </pre>
+
+<pre>
+<code class="html">
+&lt;<strong>section</strong> id="unique_section_id" class="full-centered-chunk"&gt;
+    &lt;<strong>div</strong> class="chunklet"&gt;
+        &lt;<strong>h3</strong>&gt;Section header&lt;/<strong>h3</strong>&gt;
+        ... additional section content ...
+    &lt;/<strong>div</strong>&gt;
+&lt;/<strong>section</strong>&gt;
+</code>
+</pre>
+
 			</div>
 		</section>
 
@@ -388,6 +404,20 @@
 			</div>
 		</section>
 
+        <section id="" class="full-centered-chunk">
+			<div class="div-block chunklet">
+				<h3>Other tricks & effects</h3>
+
+<pre>
+<code class="js">
+$('.royals-w-cheese button').click( function () {
+    $('body').toggleClass('nav-open')
+})
+</code>
+</pre>
+
+			</div>
+		</section>
 
 
 
