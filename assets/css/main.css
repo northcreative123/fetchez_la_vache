@@ -192,9 +192,39 @@ main:before, main:after {
 }
 
 
-.options-wrapper { display: flex; }
-.options-wrapper legend { font-size: 1rem; }
+.options-wrapper { 
+	display: flex; 
+    padding: 0 2rem
+}
+.options-wrapper legend { 
+	font-size: 1rem; 
+	text-align: left;
+    margin: 0;
+    padding: 0 0 .5rem;
+}
+.options-wrapper span, 
+.options-wrapper input,
+label.check span,
+label.check input { display: inline-block; }
+.options-wrapper input,
+label.check input { margin-left: .5rem; }
+.options-wrapper label, label.check { padding: 0 1rem; }
+label.check {
+    padding: 0 2rem;
+}
 
+.styleguide .col_4-2-1-1 {
+	display: flex;
+	gap: 1;
+	align-items: center;
+	justify-content: center;
+}
+.styleguide .col_4-2-1-1 > * {
+	flex: 1;
+}
+.styleguide .col_4-2-1-1 > :first-child {
+	flex: 2;
+}
 
 .styleguide section.full-centered-chunk, 
 .styleguide section.businesses-content, 
@@ -1495,11 +1525,13 @@ footer.global-footer nav > ul {
 	list-style: none;
 	display: flex;
 	gap: 1rem;
+    text-align: center;
 }
 footer.global-footer nav > ul ul {
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 	list-style: none;
+	display: inline-block;
 }
 footer.global-footer nav > ul > li {
 	flex: 1;
@@ -2036,7 +2068,7 @@ img.mock { margin-top: 3rem; }
 }
 .split-half {
 	flex: 1;
-	padding: 2rem 5rem;
+    padding: 1rem 2rem;
 }
 .split-half header {
 	text-align: center;
@@ -2070,7 +2102,7 @@ form label > span {
 	display: block;
 }
 form input[type="text"],
-select {
+select, textarea {
 	width: 100%;
     font-size: 1rem;
     padding: .5rem 3rem .5rem 1rem;

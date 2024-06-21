@@ -171,13 +171,15 @@
                 </p>
                 <p style="text-transform: uppercase;">Uppercase paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <p style="text-transform: capitalize;">Capitalized paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <aside>
-                    <q>...quote snippet...</q>
-                    <blockquote>The full quote goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</blockquote>
-                    <cite>Jeff</cite>
-                </aside>
-                <ul><li>UNordered list</li><li>item 2</li><li>item 3</li></ul>
-                <ol><li>ordered list</li><li>item 2</li><li>item 3</li></ol>
+                <div class="col_4-2-1-1">
+                    <aside>
+                        <q>...quote snippet...</q>
+                        <blockquote>The full quote goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</blockquote>
+                        <cite>~ Jeff</cite>
+                    </aside>
+                    <ul><li>UNordered list</li><li>item 2</li><li>item 3</li></ul>
+                    <ol><li>ordered list</li><li>item 2</li><li>item 3</li></ol>
+                </div>
 			</div>
 		</section>
 
@@ -320,65 +322,7 @@
                     </aside>
                     <aside class="split-half">
                         <header><h4>right header</h4></header>
-                        <form id="">
-                            <fieldset>
-                                <legend>Fieldset Legend</legend>
-                                <p class="instruction">Form explanation / instruction paragraph...</p>
-                                <label for="input_text"><span>Text Input (required)</span>
-                                    <input value="" type="text" name="input_text" id="input_text" min="4" placeholder="placeholder text" required />
-                                </label>
-                                <label for="input_text2"><span>Text Input</span>
-                                    <input value="" type="text" name="input_text2" id="input_text2" min="4" placeholder="placeholder text" />
-                                </label>
-                                <label for="input_text3"><span>Text Input (pre-populated)</span>
-                                    <input value="M'naim Jayf!" type="text" name="input_text3" id="input_text3" min="4" placeholder="required" required />
-                                </label>
-                                <label for="input_select"><span>Select</span>
-                                    <select name="input_select" id="input_select" required>
-                                        <option value=""> * Nothing selected *</option>
-                                        <option value="AL">Alabama</option>
-                                        <option value="AK">Alaska</option>
-                                        <option value="AZ">Arizona</option>
-                                        <option value="AR">Arkansas</option>
-                                        <option value="CA">California</option>
-                                        <option value="CO">Colorado</option>
-                                        <option value="CT">...</option>
-                                        <optgroup label="Option Group">
-                                            <option value="1">option 1</option>
-                                            <option value="2">option 2</option>
-                                            <option value="3">option 3</option>
-                                        </optgroup>
-                                    </select>
-                                </label>
-
-                                <fieldset class="options-wrapper">
-                                    <legend>Options Label</legend>
-                                    <label for="opt_1"><span>Option 1</span>
-                                        <input class="radio-option" type="radio" id="opt_1" name="radio_group" checked />
-                                    </label>
-                                    <label for="opt_2"><span>Option 2</span>
-                                        <input class="radio-option" type="radio" id="opt_2" name="radio_group" />
-                                    </label>
-                                    <label for="opt_3"><span>Option 3</span>
-                                        <input class="radio-option" type="radio" id="opt_3" name="radio_group" />
-                                    </label>
-                                </fieldset>
-
-                                <label for="checkbox_1"><span>Checkbox Input</span>
-                                    <input type="checkbox" name="checkbox_1" id="checkbox_1" checked />
-                                </label>
-
-                                <button type="button" class="form-next button-primary secondary-linear-gradient">
-                                    <span>Secondary button </span>
-                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
-                                </button>
-                                <button type="button" class="form-next button-primary"><span>Primary button </span>
-                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
-                                </button>
-
-                            </fieldset>
-                            
-                        </form>
+                        
 
                     </aside>
                 </div>
@@ -389,6 +333,74 @@
         <section id="" class="full-centered-chunk">
 			<div class="div-block chunklet">
 				<h3>Forms</h3>
+                <form id="">
+                    <fieldset>
+                        <legend>Fieldset Legend</legend>
+                        <p class="instruction">Form explanation / instruction paragraph...</p>
+                        <label for="input_text"><span>Text Input (required)</span>
+                            <input value="" type="text" name="input_text" id="input_text" min="4" placeholder="placeholder text" required />
+                        </label>
+                        <label for="input_text2"><span>Text Input</span>
+                            <input value="" type="text" name="input_text2" id="input_text2" min="4" placeholder="placeholder text" />
+                        </label>
+                        <label for="input_text3"><span>Text Input (pre-populated)</span>
+                            <input value="M'naim Jayf!" type="text" name="input_text3" id="input_text3" min="4" placeholder="required" required />
+                        </label>
+                        <label for="input_select"><span>Select</span>
+                            <select name="input_select" id="input_select" required>
+                                <option value=""> * Nothing selected *</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">...</option>
+                                <optgroup label="Option Group">
+                                    <option value="1">option 1</option>
+                                    <option value="2">option 2</option>
+                                    <option value="3">option 3</option>
+                                </optgroup>
+                            </select>
+                        </label>
+                        <label for="text_area"><span>Textarea</span>
+                            <textarea id="text_area" name="text_area" rows="4" cols="50">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+                        </label>
+
+                        <fieldset class="options-wrapper">
+                            <legend>Options Label</legend>
+                            <label for="opt_1"><span>Option 1</span>
+                                <input class="radio-option" type="radio" id="opt_1" name="radio_group" checked />
+                            </label>
+                            <label for="opt_2"><span>Option 2</span>
+                                <input class="radio-option" type="radio" id="opt_2" name="radio_group" />
+                            </label>
+                            <label for="opt_3"><span>Option 3</span>
+                                <input class="radio-option" type="radio" id="opt_3" name="radio_group" />
+                            </label>
+                        </fieldset>
+
+                        <label for="checkbox_1" class="check"><span>Checkbox Input</span>
+                            <input type="checkbox" name="checkbox_1" id="checkbox_1" checked />
+                        </label>
+                        <label for="checkbox_1" class="check"><span>Checkbox Input</span>
+                            <input type="checkbox" name="checkbox_1" id="checkbox_1" />
+                        </label>
+                        <label for="checkbox_1" class="check"><span>Checkbox Input</span>
+                            <input type="checkbox" name="checkbox_1" id="checkbox_1" />
+                        </label>
+
+                        <button type="button" class="form-next button-primary secondary-linear-gradient">
+                            <span>Secondary button </span>
+                            <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
+                        </button>
+                        <button type="button" class="form-next button-primary"><span>Primary button </span>
+                            <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
+                        </button>
+
+                    </fieldset>
+                    
+                </form>
 			</div>
 		</section>
 
