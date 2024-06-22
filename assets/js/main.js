@@ -414,6 +414,16 @@ $( function() {
 		$('body').toggleClass('nav-open')
 	})
 
+	/*
+	$('.copy-btn').click( function () {
+		let text = $('.copy-text').text()
+		window.navigator.clipboard.writeText(text).then( x => {
+			$('.fbm-copied-message').text('Copied to Clipboard')
+			setTimeout( () => { $('.fbm-copied-message').text('') }, 5000 )
+		})
+	})
+	*/
+
 })
 
 

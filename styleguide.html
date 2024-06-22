@@ -534,5 +534,18 @@ $('.royals-w-cheese button').click( function () {
 	<script src="assets/js/airtable.browser.js"></script>
 	<script src="assets/js/main.js"></script>
     -->
+    <script>
+        // Copy to clipboard
+        $('code').click( function ( e ) {
+            let text = $(e.currentTarget).parent().find($('code')).text()
+            console.log('COPIED:\n' + text)
+            //alert('hi')
+            window.navigator.clipboard.writeText(text).then( x => {
+                //$('.fbm-copied-message').text('Copied to Clipboard')
+                $(e.currentTarget).css("opacity", ".5")
+                setTimeout( () => { $(e.currentTarget).css("opacity", "1") }, 500 )
+            })
+        })
+    </script>
 </body>
 </html>

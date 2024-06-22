@@ -129,6 +129,7 @@ pre {
     min-width: 50%;
 	overflow: visible;
     margin: 3rem 1rem 1rem;
+    /* white-space: pre-wrap; */
 }
 code {
 	display: block;
@@ -136,8 +137,10 @@ code {
     padding: 1rem;
     background: #efefef;
     border-radius: .5rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--primelight);
 }
+code.html { border: 1px solid brown; }
+code.js { border: 1px solid #628001}
 code.css:before,
 code.html:before,
 code.js:before {
@@ -145,10 +148,10 @@ code.js:before {
 	position: absolute;
 	top: -1.25rem;
 	left: 1rem;
-	background: var(--lightest);
+	background: rgba(255, 255, 255, .8);
 	color: var(--primelight);
 	padding: .5rem 1rem;
-	transform: rotate(2deg);
+	transform: rotate(1deg);
 	font-weight: bold;
 	letter-spacing: 1px;
 	font-size: 1.5rem;
@@ -157,11 +160,12 @@ code.js:before {
 	display: block;
 	right: 3rem;
 	text-align: center;
+    border-bottom-width: 2px;
 }
 code.html:before {
 	content: "<CODE: [ HTML ]>";
 	color: brown;
-	transform: rotate(-2deg);
+	transform: rotate(-1deg);
 }
 code.js:before {
 	content: "<CODE: [ JS ]>";
@@ -169,6 +173,37 @@ code.js:before {
 	transform: rotate(0deg);
 }
 code em { color: green; font-weight: bold; }
+code:after {
+	content: "\f0c5";
+    display: inline-block;
+    position: absolute;
+    border: 2px solid var(--primelight);
+    padding: .5rem;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    right: 2.5rem;
+    bottom: 1rem;
+    font-size: 1.5rem;
+    border-radius: .5rem 0;
+    background: rgba(255, 255, 255, .8);
+    cursor: pointer;
+    color: var(--primelight);
+    transform: rotate(-10deg);
+}
+code.html:after {
+	color: brown;
+    border: 2px solid brown;
+    transform: rotate(10deg);
+}
+code.js:after {
+	color: #628001;
+    border: 2px solid #628001;
+    transform: rotate(-5deg);
+}
 
 .styleguide .swatch {
     display: inline-block;
