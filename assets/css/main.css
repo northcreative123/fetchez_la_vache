@@ -118,6 +118,63 @@ a.cta-link, a.cta-link:hover {
 }
 
 
+:root {
+	--transition-duration: 0.5s;
+	--expanded-height: 200px;
+	--collapsed-height: 60px;
+	--border-radius: 4px;
+}
+details, summary {
+    display: revert;
+}
+details {
+	border: 1px solid var(--color, #878d99);
+	background: var(--offlight);
+	cursor: pointer;
+	border-radius: var(--border-radius);
+	transition: all calc(var(--transition-duration) / 2) linear;
+	min-height: 48px;
+	max-height: var(--collapsed-height);
+	overflow: hidden;
+	will-change: height;
+	margin: 0 2rem;
+}
+details p {
+	line-height: 1.7;
+	margin: 10px 0 0;
+	padding: 0 20px 15px;
+}
+details[open] {
+	transition: all var(--transition-duration) linear;
+	min-height: 100px;
+	max-height: var(--expanded-height);
+	will-change: height;
+}
+details .open,
+details[open] .close {
+	display: inline;
+}
+details[open] .open,
+details .close {
+	display: none;
+}
+summary {
+	outline: none;
+	font-size: 16px;
+	padding: 13px;
+}
+summary:after {
+	margin-top: 2px;
+	content: "➕";
+	float: left;
+	margin-right: 11px;
+	text-align: center;
+	font-size: 11px;
+}
+[open] summary:after {
+	padding: 0 0 12px 0;
+	content: "➖";
+}
 
 
 
