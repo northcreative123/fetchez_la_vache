@@ -37,7 +37,7 @@
 
 <body class="styleguide">
 	
-	<header id="header" class="global-header shrink">
+	<header id="global_header" class="global-header shrink">
 		<h1 class="logo"><a href="sandbox.html" title="Homepage">North Creative</a></h1>
 		<nav role="navigation" class="nav-menu-wrapper w-nav-menu">
 			<ul>
@@ -108,13 +108,28 @@
 		</div>
 	</header>
 
-	<main id="page-wrapper" class="page-wrapper">
+	<main id="page_wrapper" class="page-wrapper">
         <h2>#north_creative { styleguide: sweet; }</h2>
+        <p><strong>&lt;&lt;[ <a href="https://ux.mailchimp.com/patterns/color" target="_blank">example styleguide</a> ]&gt;&gt;</strong></p>
 
 
         <section id="" class="full-centered-chunk">
 			<div class="div-block chunklet">
-                <h3>Root CSS variables</h3>
+                <h3>Colors (& Root CSS variables)</h3>
+
+                <div class="col_3-1-1-1 col-3-wrap swatches">
+                    <div style="background: rgba(243, 243, 246, 1);">
+                        <span class="color-hex"><strong>hex:</strong> #f3f3f6</span>
+                        <span class="color-rgba"><strong>rgba:</strong> rgba(243, 243, 246, 1)</span>
+                        <span class="color-var"><strong>root:</strong> var(--offlight)</span>
+                    </div>
+                    <div style="background: rgba(250, 250, 250, 1);">offlight2</div>
+                    <div style="background: rgba(255, 255, 255, 1);">lightest</div>
+                    <div style="background: rgba(0, 0, 0, 1); color: #fff;">darkest</div>
+                    <div style="background: rgba(38, 132, 239, 1);">primelight</div>
+                    <div style="background: rgba(6, 73, 204, 1);">primedark</div>
+                </div>
+
 <pre>
 <code class="css">
 <strong>:root</strong> {
@@ -172,6 +187,13 @@
                 <p style="text-transform: uppercase;">Uppercase paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <p style="text-transform: capitalize;">Capitalized paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
+			</div>
+		</section>
+
+
+        <section id="" class="full-centered-chunk">
+			<div class="div-block chunklet">
+				<h3>Other elements</h3>
                 <details>
                     <summary>Summary text. Click to <span class="open">open</span><span class="close">close</span>.</summary>
                     <p>Details: Mauris vulputate orci eget lacus pharetra, vitae interdum diam elementum. Nullam ut nibh quis lectus semper tempus.</p>
@@ -186,8 +208,19 @@
                     <ul><li>UNordered list</li><li>item 2</li><li>item 3</li></ul>
                     <ol><li>ordered list</li><li>item 2</li><li>item 3</li></ol>
                 </div>
-			</div>
-		</section>
+                <div class="col_3-1-1-1">
+                    <dl class="circle-def-list">
+                        <dt>definition list</dt>
+                        <dd>&lt;dl&gt;</dd>
+                        <dt>key</dt>
+                        <dd>value</dd>
+                        <dt>this</dt>
+                        <dd>that</dd>
+                    </dl>
+                    <div>...</div><div>...</div>
+                </div>
+            </div>
+        </section>
 
 
         <section id="" class="full-centered-chunk">
@@ -219,8 +252,8 @@
 <pre>
 <code class="html">
 &lt;<strong>body</strong>&gt;
-    &lt;<strong>header</strong> id="header" class="global-header"&gt; ... &lt;/<strong>header</strong>&gt;
-    &lt;<strong>main</strong> id="page-wrapper" class="page-wrapper"&gt;
+    &lt;<strong>header</strong> id="global_header" class="global-header"&gt; ... &lt;/<strong>header</strong>&gt;
+    &lt;<strong>main</strong> id="page_wrapper" class="page-wrapper"&gt;
         ... [ sections ] ...
         &lt;<strong>footer</strong> id="global_footer" class="global-footer"&gt; ... &lt;/<strong>footer</strong>&gt;
     &lt;/<strong>main</strong>&gt;
@@ -332,13 +365,13 @@
                     </aside>
                 </div>
                 <h4>&lt;h4&gt; Others (1rem gap): ...</h4>
-                <div class="col_3-1-1-1">
+                <div class="col_3-1-1-1 shaded">
                     <div>1</div><div>2</div><div>3</div>
                 </div>
-                <div class="col_2-2-1">
+                <div class="col_2-2-1 shaded">
                     <div>1</div><div>2</div>
                 </div>
-                <div class="col_2-1-2">
+                <div class="col_2-1-2 shaded">
                     <div>1</div><div>2</div>
                 </div>
 
@@ -380,6 +413,10 @@
                         </label>
                         <label for="text_area"><span>Textarea</span>
                             <textarea id="text_area" name="text_area" rows="4" cols="50">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+                        </label>
+                        <label for="upload"><span>Upload File</span>
+                            <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file -->
+                            <input type="file" id="upload" name="upload" placeholder="balls" accept="image/png, image/jpeg" multiple />
                         </label>
 
                         <fieldset class="options-wrapper">
@@ -427,7 +464,19 @@
 
         <section id="" class="full-centered-chunk">
 			<div class="div-block chunklet">
+				<h3>Heros</h3>
+			</div>
+		</section>
+
+        <section id="" class="full-centered-chunk">
+			<div class="div-block chunklet">
 				<h3>Video thumbnails & embeds</h3>
+			</div>
+		</section>
+
+        <section id="" class="full-centered-chunk">
+			<div class="div-block chunklet">
+				<h3>Modals, dialogs & notifications</h3>
 			</div>
 		</section>
 
@@ -446,7 +495,19 @@ $('.royals-w-cheese button').click( function () {
 			</div>
 		</section>
 
+        <section id="" class="full-centered-chunk">
+			<div class="div-block chunklet">
+				<h3>Code conventions</h3>
+                <ul>
+                    <li>IDs: lowercase with underscores, i.e.: my_unique_id</li>
+                    <li>CLASSes: lowercase with dashes, i.e.: my-name-is-classi-with-an-i</li>
+                    <li>Images: ...
 
+                    </li>
+                    <li>Tabs: 1 tab = 4 spaces</li>
+                </ul>
+			</div>
+		</section>
 
 		<footer id="global_footer" class="global-footer">
 			<section class="section full-centered-chunk">
@@ -548,8 +609,8 @@ $('.royals-w-cheese button').click( function () {
             //alert('hi')
             window.navigator.clipboard.writeText(text).then( x => {
                 //$('.fbm-copied-message').text('Copied to Clipboard')
-                $(e.currentTarget).css("opacity", ".5")
-                setTimeout( () => { $(e.currentTarget).css("opacity", "1") }, 500 )
+                $(e.currentTarget).addClass('decock')
+                setTimeout( () => { $(e.currentTarget).removeClass('decock') }, 500 )
             })
         })
     </script>

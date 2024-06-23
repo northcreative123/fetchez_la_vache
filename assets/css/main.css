@@ -84,6 +84,8 @@ body {
 	font-style: normal;
 	overflow-x: hidden;
 	font-size: 1rem;
+	color: var(--darkest);
+	font-size: 1rem;
 }
 
 body > main.page-wrapper {
@@ -118,6 +120,42 @@ a.cta-link, a.cta-link:hover {
 }
 
 
+/*Definition lists*/
+dl, dt, dd { position: relative;font-size: 1rem; }
+dt, dd { line-height: 1rem; }
+dt { color: #000; font-weight: bold; margin-top: 1rem; }
+dd { margin-left: 3rem; }
+
+/* Circle definition list */
+.circle-def-list { 
+	position: relative; 
+    margin: 1rem 2rem !important;
+}
+.circle-def-list:before {
+	border-left: 1px solid #a2c0ca; 
+	bottom: 0;
+	content: "";
+	left: .7rem;
+	position: absolute;
+	top: 4px;
+	width: 1px;
+}
+.circle-def-list dt { padding-left: 2rem; position: relative; }
+.circle-def-list dt:first-child { margin-top: 0; }
+.circle-def-list dt:before {
+	color: #000;
+	content: "\f192";
+	font-family: "FontAwesome";
+	left: 1px;
+	position: absolute;
+	top: -1px;
+	z-index: 2;
+  font-size: 1.5rem;
+}
+.circle-def-list dd { margin-left: .5rem; padding: 0 0 0 2rem; }
+
+
+/* details/summary */
 :root {
 	--transition-duration: 0.5s;
 	--expanded-height: 200px;
@@ -179,6 +217,14 @@ summary:after {
 
 
 /* styleguide */
+/* body.styleguide {
+	background-image: linear-gradient(rgba(0, 0, 0, .1) 0.5px, transparent 0.5px, transparent calc(100% - 0.5px), rgba(0, 0, 0, .1) calc(100% - 0.5px)), linear-gradient(90deg, rgba(0, 0, 0, .1) 0.5px, transparent 0.5px, transparent calc(100% - 0.5px), rgba(0, 0, 0, .1) calc(100% - 0.5px));
+	background-size: 9.9vw 9.9vh;
+
+	background-size: 10vw 10vh;
+	background-image: radial-gradient(circle, #000000 1px, rgba(0, 0, 0, 0) 1px);	
+}  */
+
 pre {
     display: inline-block;
 	position: relative;
@@ -186,7 +232,9 @@ pre {
     min-width: 50%;
 	overflow: visible;
     margin: 3rem 1rem 1rem;
-    /* white-space: pre-wrap; */
+    /* white-space: pre-wrap; */ 
+    font-size: .75rem;
+    line-height: .75rem;
 }
 code {
 	display: block;
@@ -232,7 +280,7 @@ code.js:before {
 code em { color: green; font-weight: bold; }
 code:after {
 	content: "\f0c5";
-    display: inline-block;
+    display: none;
     position: absolute;
     border: 2px solid var(--primelight);
     padding: .5rem;
@@ -251,6 +299,9 @@ code:after {
     color: var(--primelight);
     transform: rotate(-10deg);
 }
+code:hover:after {
+    display: inline-block;
+}
 code.html:after {
 	color: brown;
     border: 2px solid brown;
@@ -260,6 +311,24 @@ code.js:after {
 	color: #628001;
     border: 2px solid #628001;
     transform: rotate(-5deg);
+}
+code.decock { 
+	opacity: .5; 
+	color: var(--lightest); 
+	background: rgba(0, 0, 0, .25); 
+}
+code.decock:before,
+code.decock:after { 
+	transform: rotate(0deg) !important; 
+	font-weight: normal;
+}
+
+.swatches > div {
+	border-radius: 0 1rem 0 1rem;
+	padding: 1rem;
+}
+.swatches > div > span {
+	display: block;
 }
 
 .styleguide .swatch {
@@ -321,8 +390,7 @@ label.check {
 }
 .col_2-2-1 > * {
 	flex: 1;
-    height: 5rem;
-    background: var(--guide-background-color);
+    min-height: 5rem;
 }
 .col_2-2-1 > :first-child {
 	flex: 2;
@@ -335,8 +403,7 @@ label.check {
 }
 .col_2-1-2 > * {
 	flex: 1;
-    height: 5rem;
-    background: var(--guide-background-color);
+    min-height: 5rem;
 }
 .col_2-1-2 > :last-child {
 	flex: 2;
@@ -344,15 +411,17 @@ label.check {
 
 .col_3-1-1-1 {
 	margin: 1rem 0;
-	display: flex;
-	gap: 1rem;
-	align-items: center;
-	justify-content: center;
+    display: flex;
+    gap: 1rem;
+    /* align-items: center; */
+    justify-content: center;
+    text-align: center;
 }
 .col_3-1-1-1 > * {
 	flex: 1;
-    height: 5rem;
-    background: var(--guide-background-color);
+    min-height: 5rem;
+	text-align: left;
+	margin: 0 auto;
 }
 
 .col_4-2-1-1 {
@@ -367,6 +436,20 @@ label.check {
 .col_4-2-1-1 > :first-child {
 	flex: 2;
 }
+
+.col-3-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	gap: unset;
+}
+.col-3-wrap > * {
+	flex: unset;
+	flex-grow: 1;
+	width: 33%;
+	min-height: 5rem;
+}
+
+.styleguide .shaded > * { background: var(--guide-background-color); }
 
 .styleguide section.full-centered-chunk, 
 .styleguide section.businesses-content, 
@@ -2263,6 +2346,27 @@ select {
     appearance: none !important;
     padding-right: 2rem !important;
 	background-color: var(--lightest);
+}
+
+[type="file"] {
+	/* Style the color of the message that says 'No file chosen' */
+	color: var(--darkest);
+	padding-right: 1rem;
+	font-size: 1rem;
+}
+
+[type="file"]::-webkit-file-upload-button {
+	background: var(--primelight);
+	border-radius: .5rem;
+	border: none;
+	outline: none;
+	color: var(--lightest);
+	cursor: pointer;
+	font-size: 1rem;
+	padding: .75rem 1.5rem;
+	text-transform: uppercase;
+	transition: all 1s ease;
+	margin: 1rem;
 }
 
 /* field validation */
