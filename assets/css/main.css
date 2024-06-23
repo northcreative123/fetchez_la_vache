@@ -175,7 +175,7 @@ details {
 	max-height: var(--collapsed-height);
 	overflow: hidden;
 	will-change: height;
-	margin: 0 2rem;
+	margin: 1rem 2rem;
 }
 details p {
 	line-height: 1.7;
