@@ -131,7 +131,7 @@ dd { margin-left: 3rem; }
 	position: relative; 
     margin: 1rem 2rem !important;
 }
-.circle-def-list:before {
+/* .circle-def-list:before {
 	border-left: 1px solid #a2c0ca; 
 	bottom: 0;
 	content: "";
@@ -139,10 +139,10 @@ dd { margin-left: 3rem; }
 	position: absolute;
 	top: 4px;
 	width: 1px;
-}
+} */
 .circle-def-list dt { padding-left: 2rem; position: relative; }
 .circle-def-list dt:first-child { margin-top: 0; }
-.circle-def-list dt:before {
+/* .circle-def-list dt:before {
 	color: #000;
 	content: "\f192";
 	font-family: "FontAwesome";
@@ -151,7 +151,7 @@ dd { margin-left: 3rem; }
 	top: -1px;
 	z-index: 2;
   font-size: 1.5rem;
-}
+} */
 .circle-def-list dd { margin-left: .5rem; padding: 0 0 0 2rem; }
 
 
