@@ -29,63 +29,19 @@
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<script src="https://kit.fontawesome.com/38512c2854.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js" crossorigin="anonymous"></script>
 	
 </head>
 
 
-<body class="">
+<body class="booking">
 	
 	<header id="header" class="global-header shrink">
 		<h1 class="logo"><a href="sandbox.html" title="Homepage">North Creative</a></h1>
-		<!-- <nav role="navigation" class="nav-menu-wrapper w-nav-menu">
-			<ul>
-				<li class="parent">
-					<a class="w-nav-link" href="/prototype">Services</a>
-					<div class="mega-menu">
-					<div class="panels">
-						<div class="menu-panel">
-						<h4>megamenu content...</h4>
-						<p>lorem ipsum</p>  
-						<ul class="sub">
-							<li><a href="styleguide.html">Style Guide</a></li>
-							<li><a href="https://github.com/northcreative123/fetchez_la_vache" target="_blank">github</a></li>
-							<li><a href="https://raw.githack.com/northcreative123/fetchez_la_vache/main/sandbox.html" target="_blank">githack</a></li>
-							<li><a href="https://north-creative-2-0.webflow.io/" target="_blank">WebFlow</a></li>
-						</ul>
-						</div>
-						<div class="menu-panel"><h4>panel 2</h4><p>lorem ipsum</p></div>
-						<div class="menu-panel"><h4>panel 3</h4><p>lorem ipsum</p></div>
-					</div>
-					<footer>menu footer</footer>
-					</div>
-				</li>
-				<li class="parent">
-					<a class="w-nav-link" href="/sandbox">Something Else</a>
-					<ul class="sub">
-						<li><a href="#">sub menu link</a></li>
-						<li><a href="#">sub menu link</a></li>
-						<li><a href="#">sub menu link</a></li>
-					</ul>
-				</li>
-				<li><a class="w-nav-link" href="/sandbox2">More Stuff</a></li>
-			</ul>
-		</nav>
-		<div class="user-options">
-			<a href="book.html" class="cta-link button-primary w-button poppins-regular">Get Started</a>
-		</div> -->
 	</header>
 
 	<main id="page-wrapper" class="page-wrapper" data-scroll-container>
-
-		<!-- <section id="home_hero" class="section hero full-centered-chunk">
-			<div class="div-block chunklet">
-                <h3>hi</h3>
-
-			</div>
-		</section>  -->
-
-
-
 
 		<section id="get_started" class="full-centered-chunk businesses-content">
 			<div class="div-block chunklet">
@@ -93,10 +49,33 @@
                 <div class="split-panel">
                     <aside class="split-half">
                         <header>
-                            <a href="#"><i class="fa-regular fa-user" data-icon="f007"></i> Sign in</a>
-                            <h4>End-to-End Onsite Video Production</h4>
+                            <!-- <a href="#"><i class="fa-regular fa-user" data-icon="f007"></i> Sign in</a> -->
+                            <h2>End-to-End Onsite Video Production</h2>
+                            <div id="map_embed">map goes here</div>
                         </header>
                         <p>paragraph...</p>
+
+                        <!-- progressbar -->
+                        <ul id="progressbar" class="vertical">
+                            <li class="active" id="pb_location">
+                                <strong>Location</strong>
+                                <p class="location-text"></p>
+                            </li>
+                            <li id="pb_video">
+                                <strong>Video</strong>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </li>
+                            <li id="pb_personal">
+                                <strong>Personal</strong>
+                            </li>
+                            <li id="pb_book">
+                                <strong>Book</strong>
+                            </li>
+                            <li id="pb_confirm">
+                                <strong>Finish</strong>
+                            </li>
+                        </ul>
 
                         <ol class="process-list">
                             <li class="">
@@ -119,313 +98,294 @@
                     </aside>
                     <aside class="split-half">
                         <header><h4>right header</h4></header>
-                        <form id="booking">
-                            <fieldset>
-                                <legend>Location of Video</legend>
-                                <p class="instruction">Enter your service address.</p>
-                                <label for="input_street_1"><span>Street Address</span>
-                                    <input value="" type="text" name="input_street_1" id="input_street_1" min="4" placeholder="..." required />
-                                </label>
-                                <label for="input_street_2"><span>Address 2</span>
-                                    <input value="" type="text" name="input_street_2" id="input_street_2" min="1" placeholder="..." />
-                                </label>
-                                <label for="input_city"><span>City</span>
-                                    <input value="" type="text" name="input_city" id="input_city" min="2" placeholder="..." required />
-                                </label>
-                                <label for="input_state"><span>State</span>
-                                    <select name="input_state" id="input_state" required>
-                                        <option value="">Select One...</option>
-                                        <option value="AL">Alabama</option>
-                                        <option value="AK">Alaska</option>
-                                        <option value="AZ">Arizona</option>
-                                        <option value="AR">Arkansas</option>
-                                        <option value="CA">California</option>
-                                        <option value="CO">Colorado</option>
-                                        <option value="CT">Connecticut</option>
-                                        <option value="DE">Delaware</option>
-                                        <option value="DC">District Of Columbia</option>
-                                        <option value="FL">Florida</option>
-                                        <option value="GA">Georgia</option>
-                                        <option value="HI">Hawaii</option>
-                                        <option value="ID">Idaho</option>
-                                        <option value="IL">Illinois</option>
-                                        <option value="IN">Indiana</option>
-                                        <option value="IA">Iowa</option>
-                                        <option value="KS">Kansas</option>
-                                        <option value="KY">Kentucky</option>
-                                        <option value="LA">Louisiana</option>
-                                        <option value="ME">Maine</option>
-                                        <option value="MD">Maryland</option>
-                                        <option value="MA">Massachusetts</option>
-                                        <option value="MI">Michigan</option>
-                                        <option value="MN">Minnesota</option>
-                                        <option value="MS">Mississippi</option>
-                                        <option value="MO">Missouri</option>
-                                        <option value="MT">Montana</option>
-                                        <option value="NE">Nebraska</option>
-                                        <option value="NV">Nevada</option>
-                                        <option value="NH">New Hampshire</option>
-                                        <option value="NJ">New Jersey</option>
-                                        <option value="NM">New Mexico</option>
-                                        <option value="NY">New York</option>
-                                        <option value="NC">North Carolina</option>
-                                        <option value="ND">North Dakota</option>
-                                        <option value="OH">Ohio</option>
-                                        <option value="OK">Oklahoma</option>
-                                        <option value="OR">Oregon</option>
-                                        <option value="PA">Pennsylvania</option>
-                                        <option value="RI">Rhode Island</option>
-                                        <option value="SC">South Carolina</option>
-                                        <option value="SD">South Dakota</option>
-                                        <option value="TN">Tennessee</option>
-                                        <option value="TX">Texas</option>
-                                        <option value="UT">Utah</option>
-                                        <option value="VT">Vermont</option>
-                                        <option value="VA">Virginia</option>
-                                        <option value="WA">Washington</option>
-                                        <option value="WV">West Virginia</option>
-                                        <option value="WI">Wisconsin</option>
-                                        <option value="WY">Wyoming</option>
-                                    </select>
-                                </label>
-                                <label for="input_zip"><span>Zip</span>
-                                    <input value="" type="text" name="input_zip" id="input_zip" min="5" placeholder="..." required />
-                                </label>
-                                <button type="button" class="form-next button-primary secondary-linear-gradient w-button poppins-regular">
-                                    <span>Continue </span>
-                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
-                                </button>
-                            </fieldset>
-                            <fieldset>
-                                <legend>Next thing panel</legend>
-                                <button type="button" class="form-next button-primary secondary-linear-gradient w-button poppins-regular">
-                                    <span>Continue </span>
-                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
-                                </button>
-                                <button type="button" class="form-next button-primary secondary-linear-gradient w-button poppins-regular">
-                                    <i class="fa-solid fa-arrow-left" data-icon="f060"></i>
-                                    <span> Back</span>
-                                </button>
-                            </fieldset>
-                            <fieldset>
-                                <legend>Another thing panel</legend>
-                                <button type="submit" class="form-next button-primary w-button poppins-regular"><span>Do Thing! </span>
-                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
-                                </button>
-                                <button type="button" class="form-next button-primary secondary-linear-gradient w-button poppins-regular">
-                                    <i class="fa-solid fa-arrow-left" data-icon="f060"></i>
-                                    <span> Back</span>
-                                </button>
-                            </fieldset>
-                            
-                        </form>
 
 
-                        <!-- Calendly inline widget begin -->
-                        <div class="calendly-inline-widget" data-url="https://calendly.com/north-creative/intro-call-with-north-creative-clone-1?hide_gdpr_banner=1&primary_color=000000" style="min-width:320px;height:700px;"></div>
-                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-                        <!-- Calendly inline widget end -->
+                        <div class="container-fluid">
+                            <div class="row justify-content-center">
+                                <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+                                    <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                                        
+                                        <form id="booking" class="ms-form">
 
+                                            <!-- progressbar -->
+                                            <ul id="progressbar">
+                                                <li class="active" id="pb_location"><strong>Location</strong></li>
+                                                <li id="pb_video"><strong>Video</strong></li>
+                                                <li id="pb_personal"><strong>Personal</strong></li>
+                                                <li id="pb_book"><strong>Book</strong></li>
+                                                <li id="pb_confirm"><strong>Finish</strong></li>
+                                            </ul> 
+
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+
+                                            <!-- fieldsets -->
+                                            <fieldset class="">
+                                                <div class="form-card">
+                                                    <h4 class="steps">Step 1 - 5</h4>
+                                                    <legend>Location of Filming</legend>
+                                                    <p class="instruction">Enter your service address.</p>
+
+
+                                                    <label for="hero_search"><span>Service Address</span>
+                                                        <input type="text" id="hero_search" name="hero_search" class="search-input" placeholder="Where are we filming?" />
+                                                    </label>
+
+
+                                                    <label for="input_street_1"><span>Street Address</span>
+                                                        <input value="" type="text" name="input_street_1" id="input_street_1" required />
+                                                    </label>
+                                                    <label for="input_street_2"><span>Address 2</span>
+                                                        <input value="" type="text" name="input_street_2" id="input_street_2" />
+                                                    </label>
+                                                    <label for="input_city"><span>City</span>
+                                                        <input value="" type="text" name="input_city" id="input_city" required />
+                                                    </label>
+                                                    <label for="input_state"><span>State</span>
+                                                        <select name="input_state" id="input_state" required>
+                                                            <option value="">Select One...</option>
+                                                            <option value="AL">Alabama</option>
+                                                            <option value="AK">Alaska</option>
+                                                            <option value="AZ">Arizona</option>
+                                                            <option value="AR">Arkansas</option>
+                                                            <option value="CA">California</option>
+                                                            <option value="CO">Colorado</option>
+                                                            <option value="CT">Connecticut</option>
+                                                            <option value="DE">Delaware</option>
+                                                            <option value="DC">District Of Columbia</option>
+                                                            <option value="FL">Florida</option>
+                                                            <option value="GA">Georgia</option>
+                                                            <option value="HI">Hawaii</option>
+                                                            <option value="ID">Idaho</option>
+                                                            <option value="IL">Illinois</option>
+                                                            <option value="IN">Indiana</option>
+                                                            <option value="IA">Iowa</option>
+                                                            <option value="KS">Kansas</option>
+                                                            <option value="KY">Kentucky</option>
+                                                            <option value="LA">Louisiana</option>
+                                                            <option value="ME">Maine</option>
+                                                            <option value="MD">Maryland</option>
+                                                            <option value="MA">Massachusetts</option>
+                                                            <option value="MI">Michigan</option>
+                                                            <option value="MN">Minnesota</option>
+                                                            <option value="MS">Mississippi</option>
+                                                            <option value="MO">Missouri</option>
+                                                            <option value="MT">Montana</option>
+                                                            <option value="NE">Nebraska</option>
+                                                            <option value="NV">Nevada</option>
+                                                            <option value="NH">New Hampshire</option>
+                                                            <option value="NJ">New Jersey</option>
+                                                            <option value="NM">New Mexico</option>
+                                                            <option value="NY">New York</option>
+                                                            <option value="NC">North Carolina</option>
+                                                            <option value="ND">North Dakota</option>
+                                                            <option value="OH">Ohio</option>
+                                                            <option value="OK">Oklahoma</option>
+                                                            <option value="OR">Oregon</option>
+                                                            <option value="PA">Pennsylvania</option>
+                                                            <option value="RI">Rhode Island</option>
+                                                            <option value="SC">South Carolina</option>
+                                                            <option value="SD">South Dakota</option>
+                                                            <option value="TN">Tennessee</option>
+                                                            <option value="TX">Texas</option>
+                                                            <option value="UT">Utah</option>
+                                                            <option value="VT">Vermont</option>
+                                                            <option value="VA">Virginia</option>
+                                                            <option value="WA">Washington</option>
+                                                            <option value="WV">West Virginia</option>
+                                                            <option value="WI">Wisconsin</option>
+                                                            <option value="WY">Wyoming</option>
+                                                        </select>
+                                                    </label>
+                                                    <label for="input_zip"><span>Zip</span>
+                                                        <input value="" type="text" name="input_zip" id="input_zip" minlength="5" required />
+                                                    </label>
+                                                </div> 
+
+                                                <!-- <input type="button" name="next" class="next action-button" value="Next" disabled /> -->
+                                                <button type="button" class="next form-next button-primary secondary-linear-gradient w-button poppins-regular" disabled>
+                                                    <span>Continue </span>
+                                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
+                                                </button>
+
+                                            </fieldset>
+
+                                            <fieldset>
+                                                <div class="form-card">
+                                                    <h4 class="steps">Step 2 - 5</h4>
+                                                    <legend>Video Details</legend>
+                                                    <p class="instruction">...</p>
+
+                                                    <div class="options-wrapper">
+                                                        <h4>Who is this video for?</h4>
+                                                        <label for="1opt_1"><span>My Brand</span>
+                                                            <input class="radio-option" type="radio" id="1opt_1" name="radio_group1" />
+                                                        </label>
+                                                        <label for="1opt_2"><span>Client Brand</span>
+                                                            <input class="radio-option" type="radio" id="1opt_2" name="radio_group1" required />
+                                                        </label>
+                                                    </div>
+                                                    <div class="options-wrapper">
+                                                        <h4>Type of Service</h4>
+                                                        <label for="2opt_1"><span>On-Site Video</span>
+                                                            <input class="radio-option" type="radio" id="2opt_1" name="radio_group2" />
+                                                        </label>
+                                                        <label for="2opt_2"><span>Edit-Only Video</span>
+                                                            <input class="radio-option" type="radio" id="2opt_2" name="radio_group2" required />
+                                                        </label>
+                                                    </div>
+                                                    <label for="text_area"><span>Video Description</span>
+                                                        <textarea id="text_area" name="text_area" rows="3" cols="30" placeholder="Talk about your video’s vision in a couple of sentences" required></textarea>
+                                                    </label>
+                                                    <label class="tag-select" for="input_select"><span>Type of Video <span class="selected"></span></span>
+                                                        <select name="input_select" id="input_select" multiple>
+                                                            <option value="">Product Video</option>
+                                                            <option value="">Testimonial Video</option>
+                                                            <option value="">Services Video</option>
+                                                            <option value="">Commercial Video</option>
+                                                            <option value="">Sales Video</option>
+                                                            <option value="">Company Overview Video</option>
+                                                            <option value="">Our People Video</option>
+                                                            <option value="">About Us Video</option>
+                                                            <option value="">Our Customers Video</option>
+                                                            <option value="">Facility Video</option>
+                                                            <option value="">Other</option>
+                                                        </select>
+                                                    </label>
+                                                    <label class="tag-select" for="input_select"><span>Video Platform Usage <span class="selected"></span></span>
+                                                        <select name="input_select" id="input_select" multiple>
+                                                            <option value="">Website</option>
+                                                            <option value="">Social Media</option>
+                                                            <option value="">Streaming</option>
+                                                            <option value="">Email</option>
+                                                            <option value="">In-Office</option>
+                                                            <option value="">Other</option>
+                                                        </select>
+                                                    </label>
+                                                    <div class="options-wrapper">
+                                                        <h4>Service Timeline</h4>
+                                                        <label for="3opt_1"><span>One-Time Video</span>
+                                                            <input class="radio-option" type="radio" id="3opt_1" name="radio_group3" />
+                                                        </label>
+                                                        <label for="3opt_2"><span>Monthly (recurring) Video</span>
+                                                            <input class="radio-option" type="radio" id="3opt_2" name="radio_group3" />
+                                                        </label>
+                                                    </div>
+                                                    <label for="shoot_day"><span>Select A Shoot Day</span>
+                                                        <!-- <input value="" type="date" name="date_1" id="date_1" /> -->
+                                                        <input class="date-picker" type="date" name="shoot_day" value="2024-06-24" min="2024-06-25" max="2025-06-25" />
+                                                    </label>
+                                                    <label for="delivery_date"><span>Video Delivery Date</span>
+                                                        <!-- <input value="" type="date" name="date_2" id="date_2" /> -->
+                                                        <input class="date-picker" type="date" name="delivery_date" value="2024-06-24" min="2024-06-25" max="2025-06-25" />
+                                                    </label>
+
+                                                </div> 
+
+                                                <!-- <input type="button" name="next" class="next action-button" value="Next" disabled /> 
+                                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> -->
+                                                <button type="button" class="next form-next button-primary secondary-linear-gradient w-button poppins-regular" disabled>
+                                                    <span>Continue </span>
+                                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
+                                                </button>
+                                                <button type="button" class="previous form-previous button-primary secondary-linear-gradient w-button poppins-regular">
+                                                    <i class="fa-solid fa-arrow-left" data-icon="f060"></i>
+                                                    <span> Back</span>
+                                                </button>
+
+                                            </fieldset> 
+
+                                            <fieldset>
+                                                <div class="form-card">
+                                                    <h4 class="steps">Step 3 - 5</h4>
+                                                    <legend>Contact Information</legend>
+                                                    <p class="instruction">...</p>
+                                                    <label for="first_name"><span>First Name</span>
+                                                        <input value="" type="text" name="first_name" id="" required />
+                                                    </label>
+                                                    <label for="last_name"><span>Last Name</span>
+                                                        <input value="" type="text" name="last_name" id="" />
+                                                    </label>
+                                                    <label for="email"><span>Email</span>
+                                                        <input value="" type="email" name="email" id="" required />
+                                                    </label>
+                                                    <label for="phone"><span>Phone</span>
+                                                        <input value="" type="tel" name="phone" id="" />
+                                                    </label>
+                                                    <label for="comp_name"><span>Company Name</span>
+                                                        <input value="" type="text" name="comp_name" id="" required />
+                                                    </label>
+                                                    <label for="website"><span>Website</span>
+                                                        <input value="" type="url" name="website" id="" required />
+                                                    </label>
+                                                </div> 
+                                                <!-- <input type="button" name="next" class="next action-button" value="Next" disabled /> 
+                                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> -->
+                                                <button type="button" class="next form-next button-primary secondary-linear-gradient w-button poppins-regular" disabled>
+                                                    <span>Continue </span>
+                                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
+                                                </button>
+                                                <button type="button" class="previous form-previous button-primary secondary-linear-gradient w-button poppins-regular">
+                                                    <i class="fa-solid fa-arrow-left" data-icon="f060"></i>
+                                                    <span> Back</span>
+                                                </button>
+                                            </fieldset>
+
+                                            <fieldset>
+                                                <div class="form-card">
+                                                    <h4 class="steps">Step 4 - 5</h4>
+                                                    <legend>Book a Call</legend>
+                                                    <p class="instruction">...</p>
+
+                                                    <!-- Calendly inline widget begin -->
+                                                    <div class="calendly-inline-widget" data-url="https://calendly.com/north-creative/intro-call-with-north-creative-clone-1?hide_gdpr_banner=1&primary_color=000000" style="min-width:320px;height:700px;"></div>
+                                                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                                                    <!-- Calendly inline widget end -->
+
+                                                </div> 
+
+                                                <!-- <input type="submit" name="next" class="submit next action-button" value="Submit" disabled /> 
+                                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> -->
+                                                <button type="submit" class="next form-next button-primary w-button poppins-regular"><span>Do Thing! </span>
+                                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
+                                                </button>
+                                                <button type="button" class="previous form-previous button-primary secondary-linear-gradient w-button poppins-regular">
+                                                    <i class="fa-solid fa-arrow-left" data-icon="f060"></i>
+                                                    <span> Back</span>
+
+                                            </fieldset>
+
+                                            <fieldset>
+                                                <div class="form-card">
+                                                    <h4 class="steps">Step 5 - 5</h4>
+                                                    <legend>Finished</legend>
+                                                    <p class="instruction">...</p>
+                                                    <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> 
+                                                    <h5 class="">You Have Successfully Done the Thing</h5>
+                                                </div>
+                                            </fieldset>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </aside>
                 </div>
 
-
-<!--
-
-Contact Information:
-• Contact First Name [ text input, required ]
-• Contact Last Name [ text input, required ]
-• Contact Email  [ text input, required ]
-• Contact Phone Number [ text input, required ]
-• Company Name (optional) [ text input ]
-
-Who is the video for: [ radio buttons? optional? ]
-• Video for my brand
-• Video for my clients brand
-
-Type of Service: [ radio buttons? optional? ]
-• On-Site
-• Edit-Only
-
-Service Timeline: [ radio buttons? optional? ]
-• One-Time
-• Monthly Video (discounted)
-
-Video Deadline: [ date input? optional? ]
-• Select your video delivery date deadline
-• Calendar or date section for when they think they need their video delivered by
-
-Type of Video: [ checkboxes? optional? ]
-• Product Video
-• Testimonial Video
-• Service Video
-• Commercial Video
-• Sales Video
-• Company Overview Video
-• Manufacturing Video
-• Our People Video
-• Our Customers Video
-• Facility Video
-
-Service Address Section:
-How did you hear about us? (optional) [ text input ]
-
-Other Types of Video:
-• Event Video
-
-Select A Shoot Day: [ date input? optional? ]
-• Calendar that lets the client choose which date they’d like to begin filming
-
-Video Characteristics?: [ checkboxes? optional? ]
-• Drone Footage
-• B-Roll
-• Editing needed
-• Source a videographer in a different location?
-
-How do you plan on using your video? [ checkboxes? optional? ]
-• Social Media
-• Website
-• Sales Funnel
-• Email Marketing
-• In-Office
-• TVs
-• Other Screens?
-
-Book A Call:
-• Add a skip button on the entire form for people to go and book a call whenever instead of filling out the form
-
-Invite Your Team:
-• Add multiple email addresses that would like to be informed
-
-
--->
-
-
-
-
-
-
-
-                <!--
-				<form class="videographer-search">
-					<fieldset>
-						<legend>Search our network of <span class="total-videographer-count">310</span> videographers</legend>
-						<input type="text" id="hero_search" name="hero_search" class="search-input" placeholder="Enter service address" />
-						<button type="submit" class="search-submit"><span>Search </span>
-							<i class="fa-solid fa-arrow-right" data-icon="f061"></i>
-						</button>
-					</fieldset>
-					<div class="result-block">
-						<p>result...</p>
-						<a href="book.html" class="cta-button button-primary w-button">Get Started</a>
-					</div>
-				</form>
-                -->
-                <!-- <img class="mock" src="assets/images/CTA-comp.jpg" /> -->
 			</div>
 		</section>
 
-        
-
-		<!-- <section id="get_started" class="full-centered-chunk businesses-content">
-			<div class="div-block chunklet">
-				<h3>Book a Thing!</h3>
-
-                <div class="calendly-inline-widget" data-url="https://calendly.com/north-creative/intro-call-with-north-creative-clone-1?hide_gdpr_banner=1&primary_color=000000" style="min-width:320px;height:700px;"></div>
-                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-            </div>
-		</section> -->
-
-
-
-		<footer id="global_footer" class="global-footer">
-			<section class="section full-centered-chunk">
-				<div class="div-block chunklet">
-
-					<h1 class="logo"><a href="sandbox.html" title="Homepage">North Creative</a></h1>
-
-					<ul class="social">
-						<li><a href="https://www.facebook.com/northcreativeus/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i><span> Facebook</span></a></li>
-						<li><a href="https://twitter.com/NorthCreativeUS" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i><span> X</span></a></li>
-						<li><a href="https://www.linkedin.com/company/northcreativeus/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i><span> LinkedIn</span></a></li>
-						<li><a href="https://www.youtube.com/@northcreativeus" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i><span> YouTube</span></a></li>
-						<li><a href="https://www.instagram.com/northcreativeus" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i><span> Instagram</span></a></li>
-						<!-- <li><a href="#" target="_blank"><i class="fa-brands fa-vimeo-v"></i><span> Vimeo</span></a></li>
-						<li><a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i><span> TikTok</span></a></li> -->
-					</ul>
-
-					<nav role="navigation" class="nav-menu-wrapper">
-						<ul>
-							<li>
-								<a href="#">Pages</a>
-								<ul class="submenu">
-									<li><a href="#">Videos</a></li>
-									<li><a href="#">Hiring</a></li>
-									<li><a href="#">Pricing</a></li>
-									<li><a href="#">Contact</a></li>
-									<li><a href="#">Login</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">Clients (AKA: Pages)</a>
-								<ul class="submenu">
-									<li><a href="#">Corporate and Enterprise</a></li>
-									<li><a href="#">Marketing Agencies</a></li>
-									<li><a href="#">In-House Teams</a></li>
-									<li><a href="#">Small Business</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">Industries (Also: Pages)</a>
-								<ul class="submenu">
-									<li><a href="#">Video for Oil & Gas</a></li>
-									<li><a href="#">Video for Healthcare</a></li>
-									<li><a href="#">Video for Restaurant</a></li>
-									<li><a href="#">Video for Cannabis</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">Services (More: Pages)</a>
-								<ul class="submenu">
-									<li><a href="#">Video for Social Media</a></li>
-									<li><a href="#">Video for Website</a></li>
-									<li><a href="#">Video for Ads and Streaming</a></li>
-									<li><a href="#">Video for Sales Funnel</a></li>
-									<li><a href="#">Custom Video</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">Service Areas (Other: Pages)</a>
-								<ul class="submenu">
-									<li><a href="#">New York City, New York</a></li>
-									<li><a href="#">Chicago, Illinois</a></li>
-									<li><a href="#">Los Angeles, California</a></li>
-									<li><a href="#">Houston, Texas</a></li>
-									<li><a href="#">Miami, Florida</a></li>
-									<li><a href="#">Detroit, Michigan</a></li>
-									<li><a href="#">Grand Rapids, Michigan</a></li>
-									<li><a href="#">Ann Arbor, Michigan</a></li>
-									<li><a href="#">Lansing, Michigan</a></li>
-								</ul>
-							</li>
-						</ul>
-					</nav>
-
-					<img class="logo-map" src="assets/images/logos/nc_map.svg" alt="North Creative" />
-
-				</div>
-			</section>
-		</footer>
-			
 	</main>
 
-	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA&callback=initAutocomplete&libraries=places&v=weekly" defer></script> -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
 	<script src="assets/js/data.js"></script>
 	<script src="assets/js/playa.js"></script>
 	<script src="assets/js/airtable.browser.js"></script>
-	<script src="assets/js/main.js"></script>
+	<!-- <script src="assets/js/main.js"></script> -->
+    <script src="assets/js/booking.js"></script>
 
 </body>
 </html>

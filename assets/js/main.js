@@ -107,6 +107,128 @@ const attach_search_event = () => {
 }
 
 
+const init_multi_step_form = ( multi_form ) => {
+
+	const progress_bar = $("#progressbar")
+	let current_fs, next_fs, previous_fs //fieldsets
+	let opacity
+	let current = 1
+	let steps = multi_form.find("fieldset").length
+
+	setProgressBar(current)
+
+	multi_form.find(".next").click(function () {
+
+		current_fs = $(this).parent()
+		next_fs = $(this).parent().next()
+
+
+		//Add Class Active
+		progress_bar.find("li").eq($("fieldset").index(next_fs)).addClass("active")
+
+		//show the next fieldset
+		next_fs.show()
+		//hide the current fieldset with style
+		current_fs.animate({ opacity: 0 }, {
+			step: function (now) {
+				// for making fielset appear animation
+				opacity = 1 - now
+				current_fs.css({ 'display': 'none', 'position': 'relative' })
+				next_fs.css({ 'opacity': opacity })
+			},
+			duration: 500
+		})
+		setProgressBar(++current)
+		current_fs.removeClass("active")
+		next_fs.addClass("active")
+		console.log('current: ' + current)
+		validateStep()
+	});
+
+	multi_form.find(".previous").click(function () {
+
+		current_fs = $(this).parent()
+		previous_fs = $(this).parent().prev()
+
+
+
+		//Remove class active
+		progress_bar.find("li").eq($("fieldset").index(current_fs)).removeClass("active")
+
+		//show the previous fieldset
+		previous_fs.show()
+
+		//hide the current fieldset with style
+		current_fs.animate({ opacity: 0 }, {
+			step: function (now) {
+				// for making fielset appear animation
+				opacity = 1 - now
+				current_fs.css({ 'display': 'none', 'position': 'relative' })
+				previous_fs.css({ 'opacity': opacity }) 
+			}, 
+			duration: 500 
+		})
+		setProgressBar(--current)
+		current_fs.removeClass("active")
+		previous_fs.addClass("active")
+		validateStep()
+	})
+
+	function setProgressBar(curStep) {
+		var percent = parseFloat(100 / steps) * curStep
+		percent = percent.toFixed()
+		multi_form.find(".progress-bar").css("width", percent + "%")
+	}
+
+	function validateStep() {
+		//let next_button = $('fieldset.active .next')
+		//let is_gtg = $('fieldset.active').find('input,textarea,select').filter('[required]').valid()
+		//console.log('Valid?: ' + is_gtg)
+		//next_button.prop( "disabled", !is_gtg )
+
+		let next_button = $('fieldset .next')
+		next_button.prop( "disabled", false )
+	}
+
+	function adjust_datepickers() {
+
+		const dateInputs = $('.date-picker')
+		const today = new Date(Date.now()) 
+		const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0')
+		const tomorrow = new Date(Date.now() + 86400000) // 86400000 is the number of milliseconds in a day
+		const formattedTomorrow = tomorrow.getFullYear() + '-' + String(tomorrow.getMonth() + 1).padStart(2, '0') + '-' + String(tomorrow.getDate()).padStart(2, '0')
+		const nextyear = new Date(Date.now() + (86400000 * 180))
+		const formattedNextyear = nextyear.getFullYear() + '-' + String(nextyear.getMonth() + 1).padStart(2, '0') + '-' + String(nextyear.getDate()).padStart(2, '0')
+
+		dateInputs.attr('min', formattedTomorrow).attr('max', formattedNextyear).val(formattedTomorrow)
+
+	}
+	adjust_datepickers()
+
+	function init_select_tags() {
+
+		$(".tag-select select").change(function () {
+			const tag_container = $(this).parent().find('.selected')
+			const selected = $(this).find(':selected').map(function(i, el) {
+				return $(el).text();
+			}).get()
+
+			tag_container.text( '[ ' + selected.join(', ') + ' ]')
+		})
+
+	}
+	init_select_tags()
+
+	// multi_form.find(".submit").click(function () {
+	// 	return false
+	// })
+
+	multi_form.find('input,textarea,select').keyup( function() {
+		validateStep()
+	})
+	validateStep()
+
+}
   
 $( function() {
 
@@ -199,7 +321,7 @@ $( function() {
 			audience = defaultAudience
 		}
 		// apply buttons?...
-		$('body.audience-select').length && attach_audience_buttons( $('.page-wrapper') )
+		//$('body.audience-select').length && attach_audience_buttons( $('.page-wrapper') )
 		//attach_audience_buttons($('#home_hero .chunklet'))
 
 		// enable content display
@@ -279,7 +401,7 @@ $( function() {
 	
 
 
-	const attach_marquee_events = () => {
+	const attach_marquee_events = () => { // DEPRECATED by playa.js
 
 		// Play Button event listeners (open video in new tab)
 		$( '.video-ticker-section-image-frame' ).on( "click", function( e ) {
@@ -414,6 +536,8 @@ $( function() {
 		$('body').toggleClass('nav-open')
 	})
 
+	$('#booking').length && init_multi_step_form( $('#booking') )
+
 	/*
 	$('.copy-btn').click( function () {
 		let text = $('.copy-text').text()
@@ -430,13 +554,13 @@ $( function() {
 
 // TODO: integrate better!
 // Stolen from: https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform#maps_places_autocomplete_addressform-javascript
-let autocomplete, address1Field, address2Field, postalField
+let autocomplete, address1Field //, address2Field, postalField
 
 const initAutocomplete = () => {
 
 	address1Field = document.querySelector("#hero_search")
-	address2Field = document.querySelector("#address2")
-	postalField = document.querySelector("#postcode")
+	//address2Field = document.querySelector("#address2")
+	//postalField = document.querySelector("#postcode")
 
 	// Create the autocomplete object, restricting the search predictions to
 	// addresses in the US and Canada.
@@ -507,45 +631,68 @@ const fillInAddress = () => {
 
 }
 
-if ( $('form.videographer-search') ) {
+if ( $('form.videographer-search, form#booking').length ) {
 	window.initAutocomplete = initAutocomplete
 }
 
+const despace = (str) => {
+	return str.replace(/\s+/g, '')
+}
 
 const get_local_search = () => {
 
-	const location_data = JSON.parse(localStorage.getItem('search_location')).results[0].address_components
-	const location_array = [...location_data]
-	console.log(location_array)
-	const street_number = location_array.find(item => item.types.includes("street_number"))?.long_name
-	const street = location_array.find(item => item.types.includes("route"))?.long_name
+	const location_data = JSON.parse(localStorage.getItem('search_location')) || null
 
-	let booking_address = {
-		"input_street_1": street_number + ' ' + street,
-		"input_street_2": location_array.find(item => item.types.includes("subpremise"))?.long_name,
-		"input_city": location_array.find(item => item.types.includes("locality"))?.long_name,
-		"input_state": location_array.find(item => item.types.includes("administrative_area_level_1"))?.short_name,
-		"input_zip": location_array.find(item => item.types.includes("postal_code"))?.long_name,
+	if ( location_data ) {
+		const location_data2 = location_data.results[0].address_components
+		const location_array = [...location_data2]
+		console.log('location array: \n' + location_data2)
+		const required_data = ["street_number", "route", "locality", "administrative_area_level_1", "postal_code"]
+		const street_number = location_array.find(item => item.types.includes("street_number"))?.long_name
+		const street = location_array.find(item => item.types.includes("route"))?.long_name
+		const full_street = (street_number || '') + ' ' + (street || '')
+
+		let booking_address = {
+			"input_street_1": full_street,
+			"input_street_2": location_array.find(item => item.types.includes("subpremise"))?.long_name,
+			"input_city": location_array.find(item => item.types.includes("locality"))?.long_name,
+			"input_state": location_array.find(item => item.types.includes("administrative_area_level_1"))?.short_name,
+			"input_zip": location_array.find(item => item.types.includes("postal_code"))?.long_name,
+		}
+		console.log(booking_address)
+		return booking_address
+
+	} else {
+		return null
 	}
-	console.log(booking_address)
-	return booking_address
 
 }
 
+
+const get_map_embed = (address) => {
+	const formatted_address = address.replace(/\s+/g, "+")
+	const dynamic_embed = '<iframe width="100%" height="100%"  style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA&q='+address+'"></iframe>'
+	const static_embed = '<img src="https://maps.googleapis.com/maps/api/staticmap?center='+formatted_address+'&zoom=12&size=600x200&markers=color:blue%7Clabel:S%7C11211%7C11206%7C11222&key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA" /><h4>'+address+'</h4>'
+	$('#map_embed').html(static_embed)
+}
 
 const prepopulate_form = () => {
 
 	const getAllFormElements = element => Array.from(element.elements).filter(tag => ["select", "textarea", "input"].includes(tag.tagName.toLowerCase()))
 
 	const local_data = get_local_search()
-	const form_elements = getAllFormElements(document.getElementById("booking"))
-	console.log(form_elements)
 
-	form_elements.forEach(el => {
-		console.log(el.name)
-		$('form#booking #' + el.name).val(local_data[el.name])
-	})
+	if ( local_data ) {
+		const form_elements = getAllFormElements(document.getElementById("booking"))
+		//console.log(form_elements)
 
+		form_elements.forEach(el => {
+			//console.log(el.name)
+			$('form#booking #' + el.name).val(local_data[el.name])
+		})
+		const formatted_address = JSON.parse(localStorage.getItem('search_location')).results[0].formatted_address
+		get_map_embed(formatted_address)
+	}
 }
 
 const prepare_form = () => {
