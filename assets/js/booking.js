@@ -228,7 +228,7 @@ const get_map_embed = (address) => {
 	const dynamic_embed = '<iframe width="100%" height="100%"  style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA&q='+address+'"></iframe>'
 	const static_embed = '<img src="https://maps.googleapis.com/maps/api/staticmap?center='+formatted_address+'&zoom=12&size=600x200&markers=color:blue%7Clabel:S%7C11211%7C11206%7C11222&key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA" />'
 	$('#map_embed').html(static_embed)
-    $('.location-text').html('<h4>'+address+'</h4>')
+    $('.location-text').html('<h5>'+address+'</h5>')
 }
 
 const prepopulate_form = () => {
