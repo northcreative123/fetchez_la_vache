@@ -1,4 +1,4 @@
-
+/* NOT YET USED for BOOKING */
 const get_points_in_radius = ( points, center, radius ) => {
 
 	// const earthRadius = 6371 // in kilometers
@@ -24,7 +24,8 @@ const get_points_in_radius = ( points, center, radius ) => {
 	}).length
 
 }  
-  
+
+/* NOT YET USED for BOOKING */
 const geocode_address = async ( address, parent_el ) => {
 
 	const $parent = $(parent_el)
@@ -78,6 +79,7 @@ const geocode_address = async ( address, parent_el ) => {
 
 }
 
+/* NOT YET USED for BOOKING */
 const attach_search_event = () => {
 
 	$('form.videographer-search').on( "submit", function( e ) {
@@ -105,6 +107,11 @@ const attach_search_event = () => {
 	})
 
 }
+
+
+
+
+
 
 // TODO: integrate better!
 // Stolen from: https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform#maps_places_autocomplete_addressform-javascript
@@ -195,26 +202,71 @@ const despace = (str) => {
 
 const get_local_search = () => {
 
-	const location_data = JSON.parse(localStorage.getItem('search_location')) || null
+	//const location_data = JSON.parse(localStorage.getItem('search_location')) || null
+    const location_data = JSON.parse(localStorage.getItem('searched_address')) || null
+	console.log('location array: \n' + JSON.stringify(location_data))
 
 	if ( location_data ) {
-		const location_data2 = location_data.results[0].address_components
-		const location_array = [...location_data2]
-		console.log('location array: \n' + location_data2)
-		const required_data = ["street_number", "route", "locality", "administrative_area_level_1", "postal_code"]
-		const street_number = location_array.find(item => item.types.includes("street_number"))?.long_name
-		const street = location_array.find(item => item.types.includes("route"))?.long_name
-		const full_street = (street_number || '') + ' ' + (street || '')
+		//const location_data2 = location_data.results[0].address_components
+		//const location_array = [...location_data2]
+
+        if ( location_data.street_number && location_data.street_name ) {
+            location_data.address_line1 = location_data.street_number + ' ' + location_data.street_name
+        }
+        if ( location_data.address_line1 && location_data.city && location_data.state && location_data.postal_code ) {
+            location_data.local_formatted_address = location_data.address_line1 + ', ' + location_data.city + ', ' + location_data.state + ', ' + location_data.postal_code
+        }
+
+/*
+
+        location_data = {
+            "street_number": json.results[0].address_components.find(item => item.types.includes("street_number"))?.long_name || null,
+            "street_name": json.results[0].address_components.find(item => item.types.includes("route"))?.long_name || null,
+            "address_line1": null,
+            "address_line2": json.results[0].address_components.find(item => item.types.includes("subpremise"))?.long_name || null,
+            "city": json.results[0].address_components.find(item => item.types.includes("locality"))?.long_name || null,
+            "state": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_1"))?.short_name || null,
+            "county": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_2"))?.long_name || null,
+            "township": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_3"))?.long_name || null,
+            "country": json.results[0].address_components.find(item => item.types.includes("country"))?.short_name || null,
+            "postal_code": json.results[0].address_components.find(item => item.types.includes("postal_code"))?.long_name || null,
+            "local_formatted_address": null,
+            "google_formatted_address": json.results[0].formatted_address || null,
+            "lat_lng": json.results[0].geometry.location || null
+        }
+
+        [
+            { "long_name": "Chicago", "short_name": "Chicago", "types": ["locality", "political"] }, 
+            { "long_name": "Cook County", "short_name": "Cook County", "types": ["administrative_area_level_2", "political"] }, 
+            { "long_name": "Illinois", "short_name": "IL", "types": ["administrative_area_level_1", "political"] }, 
+            { "long_name": "United States", "short_name": "US", "types": ["country", "political"] }
+        ]
+*/
+		//const street_number = location_array.find(item => item.types.includes("street_number"))?.long_name
+		//const street = location_array.find(item => item.types.includes("route"))?.long_name
+		//const full_street = (street_number || '') + ' ' + (street || '')
 
 		let booking_address = {
-			"input_street_1": full_street,
-			"input_street_2": location_array.find(item => item.types.includes("subpremise"))?.long_name,
-			"input_city": location_array.find(item => item.types.includes("locality"))?.long_name,
-			"input_state": location_array.find(item => item.types.includes("administrative_area_level_1"))?.short_name,
-			"input_zip": location_array.find(item => item.types.includes("postal_code"))?.long_name,
+			"input_street_1": location_data.address_line1 && despace(location_data.address_line1) ? location_data.address_line1 : "",
+			"input_street_2": location_data.address_line2,
+			"input_city": location_data.city,
+			"input_state": location_data.state,
+			"input_zip": location_data.postal_code,
+            "hero_search": location_data.google_formatted_address
 		}
-		console.log(booking_address)
-		return booking_address
+		console.log('booking address: \n' + JSON.stringify(booking_address))
+        
+		const required_data = ["street_number", "street_name", "city", "state", "postal_code"]
+
+        if (required_data.every(key => location_data.hasOwnProperty(key) && location_data[key] !== null)) {
+            console.log("Object has all required data")
+            $('.address-detail').removeClass('active')
+        } else {
+            console.log("Object is missing required data")
+            $('.address-detail').addClass('active')
+        }
+        
+        return booking_address
 
 	} else {
 		return null
@@ -245,14 +297,14 @@ const prepopulate_form = () => {
 			//console.log(el.name)
 			$('form#booking #' + el.name).val(local_data[el.name])
 		})
-		const formatted_address = JSON.parse(localStorage.getItem('search_location')).results[0].formatted_address
+		const formatted_address = JSON.parse(localStorage.getItem('searched_address')).google_formatted_address
 		get_map_embed(formatted_address)
 	}
 }
 
 const prepare_form = () => {
 
-	const pre_search = localStorage.getItem('search_location')
+	const pre_search = localStorage.getItem('searched_address')
 	pre_search && $('form#booking').addClass('prepopulate')
 	pre_search && prepopulate_form()
 
@@ -391,3 +443,87 @@ $( function() {
     }
 
 })
+
+
+
+
+/* AIRTABLE: */
+
+const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
+let Airtable = require('airtable')
+let V_base = new Airtable({apiKey: AT_token}).base('viwPes26VIkxAVnmd') // OLD videographers
+let C_base = new Airtable({apiKey: AT_token}).base('appbdi6tmH8jEwTeT') // OLD clients
+let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
+
+let totalVideographers = 0
+let zip_array = []
+
+NC_base('Videographers (Short)').select({
+    view: "Grid view"
+}).eachPage(function page(records, fetchNextPage) {
+
+	records.forEach(function(record) {
+		zip_array.push(record.get('Zip Code'))
+    })
+	totalVideographers += records.length
+    fetchNextPage()
+
+}, function done(err) {
+    if (err) { 
+		console.error(err)
+		return
+	} else { 
+		console.log(`Total number of videographers: ${totalVideographers}`) 
+		//console.log(`zip_array: ${zip_array}`)
+		//$('.total-videographer-count').text( totalVideographers )
+	}
+})
+
+NC_base('form_submit_test').create([
+    {
+        "fields": {
+            "Name": "another record",
+            "Notes": "timestamp: " + Date.now()
+        }
+    }
+], function (err, records) {
+    if (err) {
+        console.error(err)
+        return
+    }
+    records.forEach(function (record) {
+        console.log(record.getId())
+    })
+})
+
+/*
+let allClients = []
+C_base('Imported table').select({
+    //maxRecords: 10, // or pageSize
+    view: "Grid view"
+}).eachPage(function page(records, fetchNextPage) {
+
+    records.forEach(function(record) {
+		allClients.push({ "name": record.get('Name'), "industry": record.get('Industry')})
+    })
+
+	try { // HERE: https://github.com/Airtable/airtable.js/issues/246
+		fetchNextPage()
+	} catch { 
+		console.log('Client total: ' + allClients.length)
+		console.log('...and also: ' + JSON.stringify(allClients))
+		return 
+	}
+    
+
+}, function done(err) {
+    if (err) { 
+		console.error(err) 
+		return 
+	} else {
+		console.log('Clients object: ' + JSON.parse(allClients))
+	}
+})
+*/
+
+

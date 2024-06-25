@@ -39,13 +39,33 @@ const geocode_address = async ( address, parent_el ) => {
 	})
     .then(( json ) => {
 
+        let search_data = {
+            "street_number": json.results[0].address_components.find(item => item.types.includes("street_number"))?.long_name || null,
+            "street_name": json.results[0].address_components.find(item => item.types.includes("route"))?.long_name || null,
+            "address_line1": null,
+            "address_line2": json.results[0].address_components.find(item => item.types.includes("subpremise"))?.long_name || null,
+            "city": json.results[0].address_components.find(item => item.types.includes("locality"))?.long_name || null,
+            "state": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_1"))?.short_name || null,
+            "county": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_2"))?.long_name || null,
+            "township": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_3"))?.long_name || null,
+            "country": json.results[0].address_components.find(item => item.types.includes("country"))?.short_name || null,
+            "postal_code": json.results[0].address_components.find(item => item.types.includes("postal_code"))?.long_name || null,
+            "local_formatted_address": null,
+            "google_formatted_address": json.results[0].formatted_address || null,
+            "lat_lng": json.results[0].geometry.location || null
+        }
+        //console.log("search data: \n" + JSON.stringify(search_data))
+
         const data = json
         localStorage.setItem('search_location', JSON.stringify( json ))
+		localStorage.setItem('searched_address', JSON.stringify( search_data ))
 		
         const formatted_address = data.results[0].formatted_address
 		const ll_result = data.results[0].geometry.location
 		const ll_obj = { "lat": ll_result.lat, "lon":  ll_result.lng }
 
+		// TODO: get points from AirTable vs data.js!
+		// ALSO: https://gist.github.com/erichurst/7882666
 		let result_count = get_points_in_radius(points, ll_obj, 50)
 		//if (result_count === 0) { result_count = '[3]' }
 		let be = result_count === 1 ? 'is' : 'are'
@@ -55,6 +75,14 @@ const geocode_address = async ( address, parent_el ) => {
 		// TODO: if 0 add "Want a videographer? Find a nearby videographer ..."
 		const result_message = 'We have <strong>' + result_count + ' videographer'+plural+'</strong> within 50 miles of ' + formatted_address
 		console.log('result count: ' + result_count)
+
+		let local_result = {
+			"radius": 50,
+			"ll_center": ll_obj,
+			"videographer_count": result_count
+		}
+
+		localStorage.setItem('local_result', JSON.stringify( local_result ))
 
 		$parent.find('.result-block p').html(result_message)
         $parent.removeClass('searching').addClass('result')
@@ -709,17 +737,23 @@ if ( $('form#booking').length ) {
 
 
 /* AIRTABLE: */
-/*
+
 const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
 let Airtable = require('airtable')
-let V_base = new Airtable({apiKey: AT_token}).base('appebjNDx6Y1gbUCT') // videographers
-let C_base = new Airtable({apiKey: AT_token}).base('appbdi6tmH8jEwTeT') // clients
+let V_base = new Airtable({apiKey: AT_token}).base('viwPes26VIkxAVnmd') // OLD videographers
+let C_base = new Airtable({apiKey: AT_token}).base('appbdi6tmH8jEwTeT') // OLD clients
+let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
 let totalVideographers = 0
-V_base('Imported table').select({
+let zip_array = []
+
+NC_base('Videographers (Short)').select({
     view: "Grid view"
 }).eachPage(function page(records, fetchNextPage) {
 
+	records.forEach(function(record) {
+		zip_array.push(record.get('Zip Code'))
+    })
 	totalVideographers += records.length
     fetchNextPage()
 
@@ -728,11 +762,13 @@ V_base('Imported table').select({
 		console.error(err)
 		return
 	} else { 
-		//console.log(`Total number of rows: ${totalVideographers}`) 
-		$('.total-videographer-count').text( totalVideographers )
+		console.log(`Total number of videographers: ${totalVideographers}`) 
+		//console.log(`zip_array: ${zip_array}`)
+		//$('.total-videographer-count').text( totalVideographers )
 	}
 })
 
+/*
 let allClients = []
 C_base('Imported table').select({
     //maxRecords: 10, // or pageSize

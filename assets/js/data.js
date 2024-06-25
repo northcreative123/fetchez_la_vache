@@ -619,6 +619,8 @@ const clients = [
 ];
 
 // 310/436
+// TODO: get points from AirTable vs here!
+// ALSO: https://gist.github.com/erichurst/7882666
 const points = [
     {
         "lat": 42.462983,
