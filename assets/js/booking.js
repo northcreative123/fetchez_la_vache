@@ -1,4 +1,4 @@
-/* NOT YET USED for BOOKING */
+
 const get_points_in_radius = ( points, center, radius ) => {
 
 	// const earthRadius = 6371 // in kilometers
@@ -25,7 +25,6 @@ const get_points_in_radius = ( points, center, radius ) => {
 
 }  
 
-/* NOT YET USED for BOOKING */
 const geocode_address = async ( address, parent_el ) => {
 
 	const $parent = $(parent_el)
@@ -40,13 +39,33 @@ const geocode_address = async ( address, parent_el ) => {
 	})
     .then(( json ) => {
 
+        let search_data = {
+            "street_number": json.results[0].address_components.find(item => item.types.includes("street_number"))?.long_name || null,
+            "street_name": json.results[0].address_components.find(item => item.types.includes("route"))?.long_name || null,
+            "address_line1": null,
+            "address_line2": json.results[0].address_components.find(item => item.types.includes("subpremise"))?.long_name || null,
+            "city": json.results[0].address_components.find(item => item.types.includes("locality"))?.long_name || null,
+            "state": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_1"))?.short_name || null,
+            "county": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_2"))?.long_name || null,
+            "township": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_3"))?.long_name || null,
+            "country": json.results[0].address_components.find(item => item.types.includes("country"))?.short_name || null,
+            "postal_code": json.results[0].address_components.find(item => item.types.includes("postal_code"))?.long_name || null,
+            "local_formatted_address": null,
+            "google_formatted_address": json.results[0].formatted_address || null,
+            "lat_lng": json.results[0].geometry.location || null
+        }
+        //console.log("search data: \n" + JSON.stringify(search_data))
+
         const data = json
         localStorage.setItem('search_location', JSON.stringify( json ))
+		localStorage.setItem('searched_address', JSON.stringify( search_data ))
 		
         const formatted_address = data.results[0].formatted_address
 		const ll_result = data.results[0].geometry.location
 		const ll_obj = { "lat": ll_result.lat, "lon":  ll_result.lng }
 
+		// TODO: get points from AirTable vs data.js!
+		// ALSO: https://gist.github.com/erichurst/7882666
 		let result_count = get_points_in_radius(points, ll_obj, 50)
 		//if (result_count === 0) { result_count = '[3]' }
 		let be = result_count === 1 ? 'is' : 'are'
@@ -54,11 +73,21 @@ const geocode_address = async ( address, parent_el ) => {
 
         //const result_message = 'There '+be+' currently <strong>' + result_count + ' videographer'+plural+'</strong> within 50 miles of ' + formatted_address
 		// TODO: if 0 add "Want a videographer? Find a nearby videographer ..."
-		const result_message = 'We have <strong>' + result_count + ' videographer'+plural+'</strong> within 50 miles of ' + formatted_address
-		console.log('result count: ' + result_count)
+		//const result_message = 'We have <strong>' + result_count + ' videographer'+plural+'</strong> within 50 miles of ' + formatted_address
+		//console.log('result count: ' + result_count)
 
-		$parent.find('.result-block p').html(result_message)
-        $parent.removeClass('searching').addClass('result')
+		let local_result = {
+			"radius": 50,
+			"ll_center": ll_obj,
+			"videographer_count": result_count
+		}
+
+		localStorage.setItem('local_result', JSON.stringify( local_result ))
+
+		//$parent.find('.result-block p').html(result_message)
+        //$parent.removeClass('searching').addClass('result')
+
+        prepopulate_form()
 
         return result_message
 
@@ -70,8 +99,8 @@ const geocode_address = async ( address, parent_el ) => {
 		console.log(error)
 
 		$parent.find('input.search-input').focus()
-		$parent.find('.result-block p').html(result_message)
-		$parent.removeClass('searching').addClass('result error')
+		//$parent.find('.result-block p').html(result_message)
+		//$parent.removeClass('searching').addClass('result error')
 
 		return error
 
@@ -79,28 +108,27 @@ const geocode_address = async ( address, parent_el ) => {
 
 }
 
-/* NOT YET USED for BOOKING */
 const attach_search_event = () => {
 
-	$('form.videographer-search').on( "submit", function( e ) {
+	$('button.geocode-lookup').on( "click", function( e ) {
 
 		e.preventDefault()
-		const input = $(e.currentTarget).find($('.search-input'))
+		const input = $(e.currentTarget).prev() //.find($('.search-input'))
 		const address = input.val()
 
 		if ( address.length >= 2 ) {
 
-			$(e.currentTarget).removeClass('result error').addClass('searching')
+			//$(e.currentTarget).removeClass('result error').addClass('searching')
 			console.log('searched address: ' + address)
-			const address_ll = geocode_address(address, $(e.currentTarget))
+			const address_ll = geocode_address(address, $(e.currentTarget).parent())
 			//console.log('address lat/lon: ' + JSON.stringify(address_ll))
 
 		} else {
 
 			//console.log('invalid address: ' + address)
-			$(e.currentTarget).find('input.search-input').focus()
-			$(e.currentTarget).find('.result-block p').html('Search must contain <strong>more than 2 characters</strong>.')
-			$(e.currentTarget).addClass('result error')
+			//$(e.currentTarget).find('input.search-input').focus()
+			//$(e.currentTarget).find('.result-block p').html('Search must contain <strong>more than 2 characters</strong>.')
+			//$(e.currentTarget).addClass('result error')
 
 		}
 
@@ -200,11 +228,27 @@ const despace = (str) => {
 	return str.replace(/\s+/g, '')
 }
 
+const serialize_object = (form) => {
+    var o = {}
+    var a = form.serializeArray()
+    $.each(a, function() {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]]
+            }
+            o[this.name].push(this.value || '')
+        } else {
+            o[this.name] = this.value || ''
+        }
+    })
+    return o
+}
+
 const get_local_search = () => {
 
 	//const location_data = JSON.parse(localStorage.getItem('search_location')) || null
     const location_data = JSON.parse(localStorage.getItem('searched_address')) || null
-	console.log('location array: \n' + JSON.stringify(location_data))
+	//console.log('location array: \n' + JSON.stringify(location_data))
 
 	if ( location_data ) {
 		//const location_data2 = location_data.results[0].address_components
@@ -254,15 +298,15 @@ const get_local_search = () => {
 			"input_zip": location_data.postal_code,
             "hero_search": location_data.google_formatted_address
 		}
-		console.log('booking address: \n' + JSON.stringify(booking_address))
+		//console.log('booking address: \n' + JSON.stringify(booking_address))
         
 		const required_data = ["street_number", "street_name", "city", "state", "postal_code"]
 
         if (required_data.every(key => location_data.hasOwnProperty(key) && location_data[key] !== null)) {
-            console.log("Object has all required data")
+            console.log("Address has all required data")
             $('.address-detail').removeClass('active')
         } else {
-            console.log("Object is missing required data")
+            console.log("Address is missing required data")
             $('.address-detail').addClass('active')
         }
         
@@ -311,14 +355,14 @@ const prepare_form = () => {
 }
 
 
-const init_multi_step_form = ( multi_form ) => {
+const init_multi_step_form = ( multi_form, start_step ) => {
 
 	const progress_bar = $("#progressbar")
 	let current_fs, next_fs, previous_fs //fieldsets
-	let opacity
-	let current = 1
+	let current = start_step
 	let steps = multi_form.find("fieldset").length
 
+    multi_form.find('fieldset').eq(0).addClass('current active')
 	setProgressBar(current)
 
 	multi_form.find(".next").click(function () {
@@ -326,55 +370,36 @@ const init_multi_step_form = ( multi_form ) => {
 		current_fs = $(this).parent()
 		next_fs = $(this).parent().next()
 
+        save_form_data( $( "form#booking" ), 'booking_form_data' )
 
-		//Add Class Active
+		// update progress bars
 		progress_bar.find("li").eq($("fieldset").index(next_fs)).addClass("active")
-
-		//show the next fieldset
-		next_fs.show()
-		//hide the current fieldset with style
-		current_fs.animate({ opacity: 0 }, {
-			step: function (now) {
-				// for making fielset appear animation
-				opacity = 1 - now
-				current_fs.css({ 'display': 'none', 'position': 'relative' })
-				next_fs.css({ 'opacity': opacity })
-			},
-			duration: 500
-		})
 		setProgressBar(++current)
+
+		next_fs.addClass('current')
+		current_fs.removeClass('current')
 		current_fs.removeClass("active")
 		next_fs.addClass("active")
-		console.log('current: ' + current)
+
+		console.log('current step: ' + current)
 		validateStep()
-	});
+	})
 
 	multi_form.find(".previous").click(function () {
 
 		current_fs = $(this).parent()
 		previous_fs = $(this).parent().prev()
 
-
-
-		//Remove class active
+        // update progress bars
 		progress_bar.find("li").eq($("fieldset").index(current_fs)).removeClass("active")
-
-		//show the previous fieldset
-		previous_fs.show()
-
-		//hide the current fieldset with style
-		current_fs.animate({ opacity: 0 }, {
-			step: function (now) {
-				// for making fielset appear animation
-				opacity = 1 - now
-				current_fs.css({ 'display': 'none', 'position': 'relative' })
-				previous_fs.css({ 'opacity': opacity }) 
-			}, 
-			duration: 500 
-		})
 		setProgressBar(--current)
+
+		previous_fs.addClass('current')
+		current_fs.removeClass('current')
 		current_fs.removeClass("active")
 		previous_fs.addClass("active")
+
+		console.log('current step: ' + current)
 		validateStep()
 	})
 
@@ -384,63 +409,87 @@ const init_multi_step_form = ( multi_form ) => {
 		multi_form.find(".progress-bar").css("width", percent + "%")
 	}
 
-	function validateStep() {
-		//let next_button = $('fieldset.active .next')
-		//let is_gtg = $('fieldset.active').find('input,textarea,select').filter('[required]').valid()
-		//console.log('Valid?: ' + is_gtg)
-		//next_button.prop( "disabled", !is_gtg )
-
-		let next_button = $('fieldset .next')
-		next_button.prop( "disabled", false )
+	function validateStep(field) { // current
+		let next_button = $('.current button.next')
+        let required = $('.current').find('input, textarea, select').filter('[required]')
+        //console.log('req #: ' + required.length)
+        let is_gtg = true
+        required.each( function( index ) {
+            let is_valid = $( this ).valid()
+            if ( !is_valid ) is_gtg = false
+        })
+        next_button.prop( "disabled", !is_gtg )
 	}
 
-	function adjust_datepickers() {
+    $('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
 
-		const dateInputs = $('.date-picker')
-		const today = new Date(Date.now()) 
-		const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0')
-		const tomorrow = new Date(Date.now() + 86400000) // 86400000 is the number of milliseconds in a day
-		const formattedTomorrow = tomorrow.getFullYear() + '-' + String(tomorrow.getMonth() + 1).padStart(2, '0') + '-' + String(tomorrow.getDate()).padStart(2, '0')
-		const nextyear = new Date(Date.now() + (86400000 * 180))
-		const formattedNextyear = nextyear.getFullYear() + '-' + String(nextyear.getMonth() + 1).padStart(2, '0') + '-' + String(nextyear.getDate()).padStart(2, '0')
-
-		dateInputs.attr('min', formattedTomorrow).attr('max', formattedNextyear).val(formattedTomorrow)
-
-	}
-	adjust_datepickers()
-
-	function init_select_tags() {
-
-		$(".tag-select select").change(function () {
-			const tag_container = $(this).parent().find('.selected')
-			const selected = $(this).find(':selected').map(function(i, el) {
-				return $(el).text();
-			}).get()
-
-			tag_container.text( '[ ' + selected.join(', ') + ' ]')
-		})
-
-	}
-	init_select_tags()
-
-	// multi_form.find(".submit").click(function () {
-	// 	return false
-	// })
-
-	multi_form.find('input,textarea,select').keyup( function() {
-		validateStep()
+	multi_form.find('input, textarea, select').on( "change, keyup", function( e ) {
+        if( $(this).is('#hero_search') && e.which == 13 ) {
+            e.preventDefault()
+            console.log('You pressed enter!')
+            // clear address
+            $( "#input_street_1, #input_street_2, #input_city, #input_state, #input_zip" ).val("")
+            save_form_data( $( "form#booking" ), 'booking_form_data' )
+            $(this).next().trigger('click')
+        } else {
+            validateStep($(this))
+        }
+		
 	})
+
 	validateStep()
 
 }
 
 
+
+const save_form_data = ( form, ls_name ) => {
+    let serialized = serialize_object( form )
+    localStorage.setItem(ls_name, JSON.stringify( serialized ))
+    console.log( 'form saved to local storage' )
+}
+
+function adjust_datepickers() {
+
+    const dateInputs = $('.date-picker')
+    const today = new Date(Date.now()) 
+    const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0')
+    const tomorrow = new Date(Date.now() + 86400000) // 86400000 is the number of milliseconds in a day
+    const formattedTomorrow = tomorrow.getFullYear() + '-' + String(tomorrow.getMonth() + 1).padStart(2, '0') + '-' + String(tomorrow.getDate()).padStart(2, '0')
+    const nextyear = new Date(Date.now() + (86400000 * 180)) // 6 mos
+    const formattedNextyear = nextyear.getFullYear() + '-' + String(nextyear.getMonth() + 1).padStart(2, '0') + '-' + String(nextyear.getDate()).padStart(2, '0')
+
+    dateInputs.attr('min', formattedTomorrow).attr('max', formattedNextyear).val(formattedTomorrow)
+
+}
+
+function init_select_tags() {
+
+    $(".tag-select select").change(function () {
+        const tag_container = $(this).parent().find('.selected')
+        const selected = $(this).find(':selected').map(function(i, el) {
+            return $(el).text()
+        }).get()
+
+        tag_container.text( '[ ' + selected.join(', ') + ' ]')
+    })
+
+}
+
 $( function() {
 
     if ( $('form#booking').length ) {
         prepare_form()
-        init_multi_step_form( $('#booking') )
+        adjust_datepickers()
+        init_select_tags()
+        init_multi_step_form( $('#booking'), 1 )
+        attach_search_event()
     }
+
+    $( "form#booking" ).on( "submit", function( event ) {
+        event.preventDefault()
+        save_form_data( $(this), 'booking_form_data' )
+    })
 
 })
 

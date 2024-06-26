@@ -29,6 +29,7 @@
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<script src="https://kit.fontawesome.com/38512c2854.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js" crossorigin="anonymous"></script>
 	
@@ -135,7 +136,7 @@
 
                                                     <label for="hero_search"><span>Service Address</span>
                                                         <input type="text" id="hero_search" name="hero_search" class="search-input" placeholder="Where are we filming?" />
-                                                        <button type="submit" class="search-submit"><span>Search </span>
+                                                        <button type="button" class="search-submit geocode-lookup"><span>Search </span>
                                                             <!-- <i class="fa-solid fa-arrow-right" data-icon="f061"></i> -->
                                                             <i class="fa-solid fa-magnifying-glass" data-icon="f002"></i>
                                                         </button>
@@ -144,7 +145,7 @@
                                                     <div class="address-detail">
                                                         <p class="instruction">Either use the autocomplete input above or the fields below to provide an address.</p>
                                                         <label for="input_street_1"><span>Street Address</span>
-                                                            <input value="" type="text" name="input_street_1" id="input_street_1" required />
+                                                            <input minlength="4" value="" type="text" name="input_street_1" id="input_street_1" required />
                                                         </label>
                                                         <label for="input_street_2"><span>Address 2</span>
                                                             <input value="" type="text" name="input_street_2" id="input_street_2" />
@@ -322,7 +323,7 @@
                                                         <input value="" type="email" name="email" id="" required />
                                                     </label>
                                                     <label for="phone"><span>Phone</span>
-                                                        <input value="" type="tel" name="phone" id="" />
+                                                        <input value="" type="tel" name="phone" id="phone" />
                                                     </label>
                                                     <label for="comp_name"><span>Company Name</span>
                                                         <input value="" type="text" name="comp_name" id="" required />
@@ -359,7 +360,7 @@
 
                                                 <!-- <input type="submit" name="next" class="submit next action-button" value="Submit" disabled /> 
                                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> -->
-                                                <button type="submit" class="next form-next button-primary w-button poppins-regular"><span>Do Thing! </span>
+                                                <button type="button" class="next form-next button-primary w-button poppins-regular"><span>Do Thing! </span>
                                                     <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
                                                 </button>
                                                 <button type="button" class="previous form-previous button-primary secondary-linear-gradient w-button poppins-regular">
