@@ -736,6 +736,9 @@ if ( $('form#booking').length ) {
 }
 
 
+
+
+
 /* AIRTABLE: */
 
 const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
@@ -747,12 +750,13 @@ let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 let totalVideographers = 0
 let zip_array = []
 
-NC_base('Videographers (Short)').select({
+NC_base('Markers').select({
     view: "Grid view"
 }).eachPage(function page(records, fetchNextPage) {
 
 	records.forEach(function(record) {
-		zip_array.push(record.get('Zip Code'))
+        let zip = record.get('Zip Code')
+		zip !== "" && zip_array.push(zip)
     })
 	totalVideographers += records.length
     fetchNextPage()
@@ -767,6 +771,25 @@ NC_base('Videographers (Short)').select({
 		//$('.total-videographer-count').text( totalVideographers )
 	}
 })
+
+NC_base('form_submit_test').create([
+    {
+        "fields": {
+            "Name": "another TEST record",
+            "Notes": "timestamp: " + Date.now(),
+            "URL": window.location.href
+        }
+    }
+], function (err, records) {
+    if (err) {
+        console.error(err)
+        return
+    }
+    records.forEach(function (record) {
+        console.log(record.getId())
+    })
+})
+
 
 /*
 let allClients = []
@@ -797,5 +820,3 @@ C_base('Imported table').select({
 	}
 })
 */
-
-

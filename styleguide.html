@@ -627,9 +627,9 @@ $('.royals-w-cheese button').click( function () {
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA&loading=async&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
 	<script src="assets/js/data.js"></script>
 	<script src="assets/js/playa.js"></script>
-	<script src="assets/js/airtable.browser.js"></script>
 	<script src="assets/js/main.js"></script>
     -->
+	<script src="assets/js/airtable.browser.js"></script>
     <script>
         // Copy to clipboard
         $('code').click( function ( e ) {
@@ -642,6 +642,61 @@ $('.royals-w-cheese button').click( function () {
                 setTimeout( () => { $(e.currentTarget).removeClass('decock') }, 500 )
             })
         })
+
+
+
+        
+    /* AIRTABLE: */
+
+    const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
+    let Airtable = require('airtable')
+    let V_base = new Airtable({apiKey: AT_token}).base('viwPes26VIkxAVnmd') // OLD videographers
+    let C_base = new Airtable({apiKey: AT_token}).base('appbdi6tmH8jEwTeT') // OLD clients
+    let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
+
+    let totalVideographers = 0
+    let zip_array = []
+
+    NC_base('Markers').select({
+        view: "Grid view"
+    }).eachPage(function page(records, fetchNextPage) {
+
+        records.forEach(function(record) {
+            let zip = record.get('Zip Code')
+            zip !== "" && zip_array.push(zip)
+        })
+        totalVideographers += records.length
+        fetchNextPage()
+
+    }, function done(err) {
+        if (err) { 
+            console.error(err)
+            return
+        } else { 
+            console.log(`Total number of videographers: ${totalVideographers}`) 
+            //console.log(`zip_array: ${zip_array}`)
+            //$('.total-videographer-count').text( totalVideographers )
+        }
+    })
+
+    NC_base('form_submit_test').create([
+        {
+            "fields": {
+                "Name": "another TEST record",
+                "Notes": "timestamp: " + Date.now(),
+                "URL": window.location.href
+            }
+        }
+    ], function (err, records) {
+        if (err) {
+            console.error(err)
+            return
+        }
+        records.forEach(function (record) {
+            console.log(record.getId())
+        })
+    })
+
     </script>
 </body>
 </html>
