@@ -656,6 +656,7 @@ $('.royals-w-cheese button').click( function () {
 
     let totalVideographers = 0
     let zip_array = []
+    let loc = localStorage.getItem('location')
 
     NC_base('Markers').select({
         view: "Grid view"
@@ -684,7 +685,8 @@ $('.royals-w-cheese button').click( function () {
             "fields": {
                 "Name": "another TEST record",
                 "Notes": "timestamp: " + Date.now(),
-                "URL": window.location.href
+                "URL": window.location.href,
+			    "Location": loc
             }
         }
     ], function (err, records) {

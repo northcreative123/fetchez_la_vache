@@ -373,8 +373,8 @@ $( function() {
 
             const data = json
             localStorage.setItem('location', JSON.stringify(json))
-            console.log('Location data: ' + JSON.stringify(data))
-            console.log('Lat/Lon: ' + data.loc)
+            //console.log('Location data: ' + JSON.stringify(data))
+            //console.log('Lat/Lon: ' + data.loc)
 
           	const ll_obj = { "lat": data.loc.split(',')[0], "lon":  data.loc.split(',')[1] }
 
@@ -382,9 +382,9 @@ $( function() {
           	const results2 = get_points_in_radius(points, ll_obj, 100)
 			const results3 = get_points_in_radius(points, ll_obj, 200)
 
-          	console.log('Videographers within 50 miles of ' + data.city + ': ' + results1)
-          	console.log('... 100 miles: ' + results2)
-          	console.log('... 200 miles: ' + results3)
+          	//console.log('Videographers within 50 miles of ' + data.city + ': ' + results1)
+          	//console.log('... 100 miles: ' + results2)
+          	//console.log('... 200 miles: ' + results3)
 
             return data.city
 
@@ -575,6 +575,8 @@ $( function() {
 		})
 	})
 	*/
+	// TODO: REMOVE
+	getUserIP()
 
 })
 
@@ -749,6 +751,7 @@ let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
 let totalVideographers = 0
 let zip_array = []
+let loc = localStorage.getItem('location')
 
 NC_base('Markers').select({
     view: "Grid view"
@@ -777,7 +780,8 @@ NC_base('form_submit_test').create([
         "fields": {
             "Name": "another TEST record",
             "Notes": "timestamp: " + Date.now(),
-            "URL": window.location.href
+            "URL": window.location.href,
+			"Location": loc
         }
     }
 ], function (err, records) {

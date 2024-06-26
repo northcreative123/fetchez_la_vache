@@ -475,6 +475,7 @@ let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
 let totalVideographers = 0
 let zip_array = []
+let loc = localStorage.getItem('location')
 
 NC_base('Markers').select({
     view: "Grid view"
@@ -503,7 +504,8 @@ NC_base('form_submit_test').create([
         "fields": {
             "Name": "another TEST record",
             "Notes": "timestamp: " + Date.now(),
-            "URL": window.location.href
+            "URL": window.location.href,
+			"Location": loc
         }
     }
 ], function (err, records) {
