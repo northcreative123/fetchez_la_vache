@@ -2331,6 +2331,9 @@ form label {
     padding: 0 2rem;
 	position: relative;
 }
+form label.half-width {
+	display: inline-block;
+}
 form label.error {
     color: var(--error-color);
     font-weight: normal;
@@ -2340,6 +2343,8 @@ form label.error {
 form .options-wrapper label {
 	position: unset;
     display: inline-block;
+	font-weight: normal;
+	min-width: 44%;
 }
 form label > span {
 	display: block;
@@ -2370,7 +2375,7 @@ select {
 	background-color: var(--lightest);
 }
 select[multiple] {
-    min-height: 6rem;
+    min-height: 5rem;
 	background: unset;
 }
 select[multiple] option { background: var(--lightest); }
@@ -2460,8 +2465,8 @@ input.date-picker[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
     font-weight: 900;
     font-size: 1rem;
     position: absolute;
-    right: 1rem;
-    top: .5rem;
+    left: 0;
+    top: -.25rem;
     width: 1.5rem;
     height: 1.5rem;
     display: block;
@@ -2483,8 +2488,8 @@ input.date-picker[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
     font-weight: 900;
     font-size: 1rem;
     position: absolute;
-    right: 1rem;
-    top: .5rem;
+    left: 0;
+    top: -.25rem;
     width: 1.5rem;
     height: 1.5rem;
     display: block;
@@ -2511,11 +2516,14 @@ body.booking > header {
     text-align: center;
 	padding: 0;
 }
+body.booking > header h1 {
+	margin: 1rem .5rem;
+}
 body.booking > header.global-header.shrink {
 	background: unset;
 }
 body.booking > main { padding-top: 0; }
-body.booking > main aside.split-half { padding-top: 5rem; }
+body.booking > main aside.split-half { padding-top: 4rem; }
 
 p.powered {
     text-align: center;
@@ -2585,8 +2593,9 @@ div.address-detail {
 div.address-detail.active { height: auto; }
 
 #map_embed img {
-    border-radius: 1rem;
-    /* border: 1px solid #666; */
+	border-radius: 1rem;
+    border: 1px solid #666;
+    width: 80%;
 }
 
 form#booking button.search-submit {
@@ -2630,7 +2639,7 @@ form#booking button.search-submit span {
 .form-card {
     text-align: left;
 }
-.form-card legend { padding: 3rem 0 1rem; }
+.form-card legend { padding: 2rem 0 1rem; }
 
 #booking fieldset:not(:first-of-type) {
     /* display: none; */

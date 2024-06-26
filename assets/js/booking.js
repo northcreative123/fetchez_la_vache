@@ -261,35 +261,6 @@ const get_local_search = () => {
             location_data.local_formatted_address = location_data.address_line1 + ', ' + location_data.city + ', ' + location_data.state + ', ' + location_data.postal_code
         }
 
-/*
-
-        location_data = {
-            "street_number": json.results[0].address_components.find(item => item.types.includes("street_number"))?.long_name || null,
-            "street_name": json.results[0].address_components.find(item => item.types.includes("route"))?.long_name || null,
-            "address_line1": null,
-            "address_line2": json.results[0].address_components.find(item => item.types.includes("subpremise"))?.long_name || null,
-            "city": json.results[0].address_components.find(item => item.types.includes("locality"))?.long_name || null,
-            "state": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_1"))?.short_name || null,
-            "county": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_2"))?.long_name || null,
-            "township": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_3"))?.long_name || null,
-            "country": json.results[0].address_components.find(item => item.types.includes("country"))?.short_name || null,
-            "postal_code": json.results[0].address_components.find(item => item.types.includes("postal_code"))?.long_name || null,
-            "local_formatted_address": null,
-            "google_formatted_address": json.results[0].formatted_address || null,
-            "lat_lng": json.results[0].geometry.location || null
-        }
-
-        [
-            { "long_name": "Chicago", "short_name": "Chicago", "types": ["locality", "political"] }, 
-            { "long_name": "Cook County", "short_name": "Cook County", "types": ["administrative_area_level_2", "political"] }, 
-            { "long_name": "Illinois", "short_name": "IL", "types": ["administrative_area_level_1", "political"] }, 
-            { "long_name": "United States", "short_name": "US", "types": ["country", "political"] }
-        ]
-*/
-		//const street_number = location_array.find(item => item.types.includes("street_number"))?.long_name
-		//const street = location_array.find(item => item.types.includes("route"))?.long_name
-		//const full_street = (street_number || '') + ' ' + (street || '')
-
 		let booking_address = {
 			"input_street_1": location_data.address_line1 && despace(location_data.address_line1) ? location_data.address_line1 : "",
 			"input_street_2": location_data.address_line2,
@@ -298,7 +269,6 @@ const get_local_search = () => {
 			"input_zip": location_data.postal_code,
             "hero_search": location_data.google_formatted_address
 		}
-		//console.log('booking address: \n' + JSON.stringify(booking_address))
         
 		const required_data = ["street_number", "street_name", "city", "state", "postal_code"]
 
@@ -424,16 +394,15 @@ const init_multi_step_form = ( multi_form, start_step ) => {
     $('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
 
 	multi_form.find('input, textarea, select').on( "change, keyup", function( e ) {
-        if( $(this).is('#hero_search') && e.which == 13 ) {
+        if ( $(this).is('#hero_search') && e.which == 13 ) {
             e.preventDefault()
             console.log('You pressed enter!')
             // clear address
             $( "#input_street_1, #input_street_2, #input_city, #input_state, #input_zip" ).val("")
             save_form_data( $( "form#booking" ), 'booking_form_data' )
             $(this).next().trigger('click')
-        } else {
-            validateStep($(this))
-        }
+        } 
+        validateStep($(this))
 		
 	})
 
@@ -527,12 +496,12 @@ NC_base('Videographers (Short)').select({
 		//$('.total-videographer-count').text( totalVideographers )
 	}
 })
-/*
+
 NC_base('form_submit_test').create([
     {
         "fields": {
             "Name": "another record",
-            "Notes": "timestamp: " + Date.now()
+            "Notes": "timestamp: "
         }
     }
 ], function (err, records) {
@@ -544,7 +513,7 @@ NC_base('form_submit_test').create([
         console.log(record.getId())
     })
 })
-*/
+
 
 /*
 let allClients = []
