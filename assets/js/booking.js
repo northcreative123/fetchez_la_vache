@@ -476,12 +476,13 @@ let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 let totalVideographers = 0
 let zip_array = []
 
-NC_base('Videographers (Short)').select({
+NC_base('Markers').select({
     view: "Grid view"
 }).eachPage(function page(records, fetchNextPage) {
 
 	records.forEach(function(record) {
-		zip_array.push(record.get('Zip Code'))
+        let zip = record.get('Zip Code')
+		zip !== "" && zip_array.push(zip)
     })
 	totalVideographers += records.length
     fetchNextPage()
@@ -500,8 +501,9 @@ NC_base('Videographers (Short)').select({
 NC_base('form_submit_test').create([
     {
         "fields": {
-            "Name": "another record",
-            "Notes": "timestamp: "
+            "Name": "another TEST record",
+            "Notes": "timestamp: " + Date.now(),
+            "URL": window.location.href
         }
     }
 ], function (err, records) {

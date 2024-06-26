@@ -2507,7 +2507,13 @@ button.form-previous {
 }
 
 
-
+section#get_started {
+    margin: 0 -2rem;
+    height: 100vh;
+}
+section#get_started .split-panel {
+    height: 100vh;
+}
 
 body.booking > header {
     position: absolute;
