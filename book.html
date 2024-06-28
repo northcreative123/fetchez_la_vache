@@ -194,7 +194,7 @@
                                                 <input name="fld_target" type="radio" id="fld_target_self" value="Self" />
                                             </label>
                                             <label for="fld_target_client"><span>Client Brand</span>
-                                                <input name="fld_target" type="radio" id="fld_target_client" value="Client" />
+                                                <input name="fld_target" type="radio" id="fld_target_client" value="Client" required />
                                             </label>
                                         </div>
                                         <div class="options-wrapper">
@@ -211,7 +211,6 @@
                                         </label>
                                         <label class="tag-select" for="fld_video_types"><span>Type of Video <span class="selected"></span></span>
                                             <select name="fld_video_types" id="fld_video_types" multiple>
-                                                <option value=""></option>
                                                 <option value="Product">Product</option>
                                                 <option value="Testimonial">Testimonial</option>
                                                 <option value="Services">Services</option>
@@ -227,7 +226,6 @@
                                         </label>
                                         <label class="tag-select" for="fld_video_platforms"><span>Video Platform Usage <span class="selected"></span></span>
                                             <select name="fld_video_platforms" id="fld_video_platforms" multiple>
-                                                <option value=""></option>
                                                 <option value="Website">Website</option>
                                                 <option value="Social Media">Social Media</option>
                                                 <option value="Streaming">Streaming</option>
@@ -339,7 +337,7 @@
                                     </article>
                                     <article class="step-buttons">
                             
-                                        <button type="button" class="next form-next button-primary">
+                                        <button type="button" id="booking_submit" class="next form-next button-primary">
                                             <span>Do Thing! </span><i class="fa-solid fa-arrow-right" data-icon="f061"></i>
                                         </button>
                                         <button type="button" class="previous form-previous button-primary secondary-linear-gradient">
@@ -369,243 +367,48 @@
                             </fieldset>
 
 
-                        <!--
-                            <fieldset class="">
-                                <div class="form-card">
-                                    <h4 class="steps">Step 1 - 5</h4>
-                                    <legend>Location of Filming</legend>
-                                    <p class="instruction">Enter your filming location</p>
+<!--
+{
+    "fld_target": "",
+    "fld_on_site": "",
+    "fld_recurring_video": "",
+    "fld_preferred_contact_method": "",
 
+    "fld_name_and_contact": "",
 
-                                    <label for="hero_search"><span>Service Address</span>
-                                        <input type="text" id="hero_search" name="hero_search" class="search-input" placeholder="Where are we filming?" />
-                                        <button type="button" class="search-submit geocode-lookup"><span>Search </span>
-                                            <i class="fa-solid fa-magnifying-glass" data-icon="f002"></i>
-                                        </button>
-                                    </label>
-
-                                    <div class="address-detail">
-                                        <p class="instruction">Either use the autocomplete input above or the fields below to provide an address.</p>
-                                        <label for="input_street_1"><span>Street Address</span>
-                                            <input minlength="4" value="" type="text" name="input_street_1" id="input_street_1" required />
-                                        </label>
-                                        <label for="input_street_2"><span>Address 2</span>
-                                            <input value="" type="text" name="input_street_2" id="input_street_2" />
-                                        </label>
-                                        <label for="input_city"><span>City</span>
-                                            <input value="" type="text" name="input_city" id="input_city" required />
-                                        </label>
-                                        <label for="input_state"><span>State</span>
-                                            <select name="input_state" id="input_state" required>
-                                                <option value="">Select One...</option>
-                                                <option value="AL">Alabama</option>
-                                                <option value="AK">Alaska</option>
-                                                <option value="AZ">Arizona</option>
-                                                <option value="AR">Arkansas</option>
-                                                <option value="CA">California</option>
-                                                <option value="CO">Colorado</option>
-                                                <option value="CT">Connecticut</option>
-                                                <option value="DE">Delaware</option>
-                                                <option value="DC">District Of Columbia</option>
-                                                <option value="FL">Florida</option>
-                                                <option value="GA">Georgia</option>
-                                                <option value="HI">Hawaii</option>
-                                                <option value="ID">Idaho</option>
-                                                <option value="IL">Illinois</option>
-                                                <option value="IN">Indiana</option>
-                                                <option value="IA">Iowa</option>
-                                                <option value="KS">Kansas</option>
-                                                <option value="KY">Kentucky</option>
-                                                <option value="LA">Louisiana</option>
-                                                <option value="ME">Maine</option>
-                                                <option value="MD">Maryland</option>
-                                                <option value="MA">Massachusetts</option>
-                                                <option value="MI">Michigan</option>
-                                                <option value="MN">Minnesota</option>
-                                                <option value="MS">Mississippi</option>
-                                                <option value="MO">Missouri</option>
-                                                <option value="MT">Montana</option>
-                                                <option value="NE">Nebraska</option>
-                                                <option value="NV">Nevada</option>
-                                                <option value="NH">New Hampshire</option>
-                                                <option value="NJ">New Jersey</option>
-                                                <option value="NM">New Mexico</option>
-                                                <option value="NY">New York</option>
-                                                <option value="NC">North Carolina</option>
-                                                <option value="ND">North Dakota</option>
-                                                <option value="OH">Ohio</option>
-                                                <option value="OK">Oklahoma</option>
-                                                <option value="OR">Oregon</option>
-                                                <option value="PA">Pennsylvania</option>
-                                                <option value="RI">Rhode Island</option>
-                                                <option value="SC">South Carolina</option>
-                                                <option value="SD">South Dakota</option>
-                                                <option value="TN">Tennessee</option>
-                                                <option value="TX">Texas</option>
-                                                <option value="UT">Utah</option>
-                                                <option value="VT">Vermont</option>
-                                                <option value="VA">Virginia</option>
-                                                <option value="WA">Washington</option>
-                                                <option value="WV">West Virginia</option>
-                                                <option value="WI">Wisconsin</option>
-                                                <option value="WY">Wyoming</option>
-                                            </select>
-                                        </label>
-                                        <label for="input_zip"><span>Zip</span>
-                                            <input value="" type="text" name="input_zip" id="input_zip" minlength="5" required />
-                                        </label>
-                                    </div>
-                                </div> 
-
-                                <button type="button" class="next form-next button-primary secondary-linear-gradient w-button poppins-regular" disabled>
-                                    <span>Continue </span>
-                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
-                                </button>
-
-                            </fieldset>
-
-                            <fieldset>
-                                <div class="form-card">
-                                    <h4 class="steps">Step 2 - 5</h4>
-                                    <legend>Video Details</legend>
-                                    <p class="instruction">Describe your vision</p>
-
-                                    <div class="options-wrapper">
-                                        <h4>Who is this video for?</h4>
-                                        <label for="1opt_1"><span>My Brand</span>
-                                            <input class="radio-option" type="radio" id="1opt_1" name="radio_group1" />
-                                        </label>
-                                        <label for="1opt_2"><span>Client Brand</span>
-                                            <input class="radio-option" type="radio" id="1opt_2" name="radio_group1" required />
-                                        </label>
-                                    </div>
-                                    <div class="options-wrapper">
-                                        <h4>Type of Service</h4>
-                                        <label for="2opt_1"><span>On-Site Video</span>
-                                            <input class="radio-option" type="radio" id="2opt_1" name="radio_group2" />
-                                        </label>
-                                        <label for="2opt_2"><span>Edit-Only Video</span>
-                                            <input class="radio-option" type="radio" id="2opt_2" name="radio_group2" required />
-                                        </label>
-                                    </div>
-                                    <label for="text_area"><span>Video Description</span>
-                                        <textarea id="text_area" name="text_area" rows="2" cols="30" placeholder="Talk about your video's vision in a couple of sentences" required></textarea>
-                                    </label>
-                                    <label class="tag-select" for="input_select"><span>Type of Video <span class="selected"></span></span>
-                                        <select name="input_select" id="input_select" multiple>
-                                            <option value="">Product Video</option>
-                                            <option value="">Testimonial Video</option>
-                                            <option value="">Services Video</option>
-                                            <option value="">Commercial Video</option>
-                                            <option value="">Sales Video</option>
-                                            <option value="">Company Overview Video</option>
-                                            <option value="">Our People Video</option>
-                                            <option value="">About Us Video</option>
-                                            <option value="">Our Customers Video</option>
-                                            <option value="">Facility Video</option>
-                                            <option value="">Other</option>
-                                        </select>
-                                    </label>
-                                    <label class="tag-select" for="input_select"><span>Video Platform Usage <span class="selected"></span></span>
-                                        <select name="input_select" id="input_select" multiple>
-                                            <option value="">Website</option>
-                                            <option value="">Social Media</option>
-                                            <option value="">Streaming</option>
-                                            <option value="">Email</option>
-                                            <option value="">In-Office</option>
-                                            <option value="">Other</option>
-                                        </select>
-                                    </label>
-                                    <div class="options-wrapper">
-                                        <h4>Service Timeline</h4>
-                                        <label for="3opt_1"><span>One-Time Video</span>
-                                            <input class="radio-option" type="radio" id="3opt_1" name="radio_group3" />
-                                        </label>
-                                        <label for="3opt_2"><span>Monthly (recurring) Video</span>
-                                            <input class="radio-option" type="radio" id="3opt_2" name="radio_group3" />
-                                        </label>
-                                    </div>
-                                    <label class="half-width" for="shoot_day"><span>Select A Shoot Day</span>
-                                        <input class="date-picker" type="date" name="shoot_day" value="2024-06-24" min="2024-06-25" max="2025-06-25" />
-                                    </label>
-                                    <label class="half-width" for="delivery_date"><span>Video Delivery Date</span>
-                                        <input class="date-picker" type="date" name="delivery_date" value="2024-06-24" min="2024-06-25" max="2025-06-25" />
-                                    </label>
-                                </div> 
-
-                                <button type="button" class="next form-next button-primary secondary-linear-gradient w-button poppins-regular" disabled>
-                                    <span>Continue </span>
-                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
-                                </button>
-                                <button type="button" class="previous form-previous button-primary secondary-linear-gradient w-button poppins-regular">
-                                    <i class="fa-solid fa-arrow-left" data-icon="f060"></i>
-                                    <span> Back</span>
-                                </button>
-
-                            </fieldset> 
-
-                            <fieldset>
-                                <div class="form-card">
-                                    <h4 class="steps">Step 3 - 5</h4>
-                                    <legend>Contact Information</legend>
-                                    <p class="instruction">Fill in your contact information for updates on the video progress</p>
-                                    <label for="first_name"><span>First Name</span>
-                                        <input value="" type="text" name="first_name" id="" required />
-                                    </label>
-                                    <label for="last_name"><span>Last Name</span>
-                                        <input value="" type="text" name="last_name" id="" />
-                                    </label>
-                                    <label for="email"><span>Email</span>
-                                        <input value="" type="email" name="email" id="" required />
-                                    </label>
-                                    <label for="phone"><span>Phone</span>
-                                        <input value="" type="tel" name="phone" id="phone" />
-                                    </label>
-                                    <label for="comp_name"><span>Company Name</span>
-                                        <input value="" type="text" name="comp_name" id="" required />
-                                    </label>
-                                    <label for="website"><span>Website</span>
-                                        <input value="" type="text" name="website" id="" required />
-                                    </label>
-                                </div> 
-
-                                <button type="button" class="next form-next button-primary secondary-linear-gradient w-button poppins-regular" disabled>
-                                    <span>Continue </span>
-                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
-                                </button>
-                                <button type="button" class="previous form-previous button-primary secondary-linear-gradient w-button poppins-regular">
-                                    <i class="fa-solid fa-arrow-left" data-icon="f060"></i>
-                                    <span> Back</span>
-                                </button>
-                            </fieldset>
-
-                            <fieldset>
-                                <div class="form-card">
-                                    <h4 class="steps">Step 4 - 5</h4>
-                                    <legend>Book a Call</legend>
-                                    <p class="instruction">Select a day & time to schedule a video call with a creative producer to plan your video</p>
-
-                                </div> 
-
-                                <button type="button" class="next form-next button-primary w-button poppins-regular"><span>Do Thing! </span>
-                                    <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
-                                </button>
-                                <button type="button" class="previous form-previous button-primary secondary-linear-gradient w-button poppins-regular">
-                                    <i class="fa-solid fa-arrow-left" data-icon="f060"></i>
-                                    <span> Back</span>
-                                </button>
-                            </fieldset>
-
-                            <fieldset>
-                                <div class="form-card">
-                                    <h4 class="steps">Step 5 - 5</h4>
-                                    <legend>Finished</legend>
-                                    <p class="instruction">...</p>
-                                    <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> 
-                                    <h5 class="">You Have Successfully Done the Thing</h5>
-                                </div>
-                            </fieldset>
-                        -->
+    "fld_county": "Monroe County",
+    "fld_township": "Whiteford Township",
+    "fld_country": "US",
+    "fld_hero_search": "5339 W Erie Rd, Ottawa Lake, MI 49267, USA",
+    "fld_address_line_1": "5339 West Erie Road",
+    "fld_address_line_2": "back alley, ask for Bubba",
+    "fld_city": "Ottawa Lake",
+    "fld_state": "MI",
+    "fld_zip": "49267",
+    "fld_video_description": "Turtles!!!",
+    "fld_video_types": [
+        "Product",
+        "Testimonial",
+        "Services"
+    ],
+    "fld_video_platforms": [
+        "Website",
+        "Social Media",
+        "Streaming",
+        "Email"
+    ],
+    "fld_shoot_date": "2024-07-06",
+    "fld_delivery_date": "2024-07-05",
+    "fld_first_name": "Joe",
+    "fld_last_name": "Biden",
+    "fld_email": "sleepyjoe@aol.com",
+    "fld_phone": "(123) 123-1234",
+    "fld_company_name": "MyPillow",
+    "fld_website": "https://malarky.com",
+    "fld_booking_date": "2024-08-10",
+    "fld_booking_time": "12:38"
+}
+-->
 
                         </form>
 
@@ -621,6 +424,7 @@
 	<script src="assets/js/data.js"></script>
 	<script src="assets/js/playa.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="assets/js/airtable.browser.js"></script>
 	<!-- <script src="assets/js/main.js"></script> -->
     <script src="assets/js/booking.js"></script>

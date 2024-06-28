@@ -57,7 +57,6 @@ const geocode_address = async ( address, parent_el ) => {
 
         localStorage.setItem('raw_search_response', JSON.stringify( json.results[0] ))
 		localStorage.setItem('searched_address', JSON.stringify( search_data ))
-        //localStorage.setItem('booking_data', JSON.stringify( booking_data ))
 
         prepopulate_booking_form()
         //get_map_embed( search_data.google_formatted_address )
@@ -85,26 +84,20 @@ const attach_search_event = () => {
 		const address = input.val()
 
 		if ( address.length >= 5 ) {
-
 			geocode_address(address, $(e.currentTarget).parent())
-
 		}
 	})
-
 }
 
 
 
-// TODO: integrate better!
-// Stolen from: https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform#maps_places_autocomplete_addressform-javascript
-let autocomplete, address1Field //, address2Field, postalField
+let autocomplete, address1Field
 
 const initAutocomplete = () => {
 
 	address1Field = document.querySelector("#hero_search")
 
-	// Create the autocomplete object, restricting the search predictions to
-	// addresses in the US and Canada.
+	// Create the autocomplete object, restricting the search predictions to addresses in the US and Canada.
 	autocomplete = new google.maps.places.Autocomplete(address1Field, {
 		componentRestrictions: { country: ["us", "ca"] },
 		fields: ["address_components", "geometry"],
@@ -115,14 +108,14 @@ const initAutocomplete = () => {
 }
 
 
-if ( $('form.videographer-search, form#booking').length ) {
+if ( $('form#booking').length ) {
 	window.initAutocomplete = initAutocomplete
 }
 
 const despace = (str) => {
 	return str.replace(/\s+/g, '')
 }
-
+/*
 const serialize_object = (form) => {
     var o = {}
     var a = form.serializeArray()
@@ -138,7 +131,33 @@ const serialize_object = (form) => {
     })
     return o
 }
+*/
+const serialize_object = (form) => {
+    var o = {}
+    var a = form.serializeArray()
+    $.each(a, function () {
+        if (this.type === 'radio') {
+            console.log('radio name/value: ' + this.name + '/' + this.value)
+            if (!o[this.name]) {
+                o[this.name] = []
+            }
+            o[this.name].push(this.value || '')
+        } else {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]]
+                }
+                o[this.name].push(this.value || '')
+            } else {
+                o[this.name] = this.value || ''
+            }
+        }
+    })
+    return o
+}
+  
 
+// deprecated
 const prefix_object_keys = (original_object) => {
 
     const prefixedObject = Object.fromEntries(
@@ -290,7 +309,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 		current_fs = $(this).closest("fieldset") //.parent()
 		next_fs = $(this).closest("fieldset").next()
 
-        save_form_data( $( "form#booking" ), 'booking_form_data' )
+        save_form_data( $( "form#booking" ), 'booking_data' )
 
 		// update progress bars
 		progress_bar.find("li").eq($("fieldset").index(next_fs)).addClass("active")
@@ -302,7 +321,11 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 		next_fs.addClass("active")
 
 		console.log('current step: ' + current)
-		validateStep()
+        if ( $(this).attr('id') == 'booking_submit' ) {
+            submit_booking()
+        } else {
+		    validateStep()
+        }
 	})
 
 	multi_form.find(".previous").click(function () {
@@ -329,18 +352,6 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 		multi_form.find(".progress-bar").css("width", percent + "%")
 	}
 
-	// function validateStep(field) { // current
-	// 	let next_button = $('.current button.next')
-    //     let required = $('.current').find('input, textarea, select').filter('[required]')
-    //     //console.log('req #: ' + required.length)
-    //     let is_gtg = true
-    //     required.each( function( index ) {
-    //         let is_valid = $( this ).valid()
-    //         if ( !is_valid ) is_gtg = false
-    //     })
-    //     next_button.prop( "disabled", !is_gtg )
-	// }
-
     $('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
 
 	multi_form.find('input, textarea, select').on( "change, keyup", function( e ) {
@@ -349,7 +360,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
             console.log('You pressed enter!')
             // clear address
             $( "#input_street_1, #input_street_2, #input_city, #input_state, #input_zip" ).val("")
-            save_form_data( $( "form#booking" ), 'booking_form_data' )
+            save_form_data( $( "form#booking" ), 'booking_data' )
             $(this).next().trigger('click')
         } 
         validateStep()
@@ -407,7 +418,7 @@ $( function() {
 
     $( "form#booking" ).on( "submit", function( event ) {
         event.preventDefault()
-        save_form_data( $(this), 'booking_form_data' )
+        save_form_data( $(this), 'booking_data' )
     }) 
 
     $('.send-email').click( function () {
@@ -418,6 +429,55 @@ $( function() {
 
 
 
+const format_object_key = (str) => {
+    //const str = "fld_my_string_to_process";
+    const result = str
+    .replace("fld_", "") // remove "fld_"
+    .replace(/\_/g, " ") // replace underscores with spaces
+    .replace(/\b\w/g, (match) => match.toUpperCase()) // uppercase first letter of each word
+
+    return result
+}
+
+const convert_object_keys = (original_object) => {
+
+    const formatted_keys = Object.fromEntries(
+        Object.entries(original_object).map(([key, value]) => [
+            format_object_key(key), value
+        ])
+    )
+    return formatted_keys
+}
+
+// UTC date and time, e.g. "2014-09-05T07:00:00.000Z"
+
+const prepare_record_data = () => {
+    const booking_data = JSON.parse(localStorage.getItem('booking_data'))
+    const formatted_data = convert_object_keys( booking_data )
+    const BDT = formatted_data["Booking Date"] + ' ' + formatted_data["Booking Time"]
+    const BDT_UTC = moment.parseZone(BDT).utc()
+    const DD = moment.parseZone(formatted_data["Delivery Date"]).utc()
+    const SD = moment.parseZone(formatted_data["Shoot Date"]).utc()
+
+    formatted_data["Booking Date Time"] = BDT_UTC
+    formatted_data["Shoot Date"] = SD
+    formatted_data["Delivery Date"] = DD
+    formatted_data["Name And Contact"] = formatted_data["First Name"] + ', ' + formatted_data["Email"]
+
+    formatted_data["On Site"] = true
+    formatted_data["Recurring Video"] = false
+    formatted_data["Target"] = "Self"
+    formatted_data["Preferred Contact Method"] = "Email"
+
+    delete formatted_data["Video Types"] //= []
+    delete formatted_data["Video Platforms"] //= [] 
+
+    delete formatted_data["Booking Date"]
+    delete formatted_data["Booking Time"]
+    delete formatted_data["Hero Search"]
+
+    return formatted_data
+}
 
 /* AIRTABLE: */
 /*
@@ -426,10 +486,86 @@ MARKDOWN:   https://support.airtable.com/docs/using-markdown-in-airtable
 JSON:       https://community.airtable.com/t5/other-questions/is-it-possible-to-add-json-data-or-an-array-of-objects-into/td-p/121614
             https://community.airtable.com/t5/other-questions/getting-started-with-airtable-importing-json-data-structure/td-p/58619
 */
-/*
+
 const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
 let Airtable = require('airtable')
 let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
+
+/*
+{
+    "Name And Contact":"",
+    "County":"Monroe County",
+    "Township":"Whiteford Township",
+    "Country":"US",
+    "Hero Search":"5339 W Erie Rd, Ottawa Lake, MI 49267, USA",
+    "Address Line 1":"5339 West Erie Road",
+    "Address Line 2":"nothing to see here",
+    "City":"Ottawa Lake",
+    "State":"MI",
+    "Zip":"49267",
+    "Video Description":"turtles",
+    "Video Types":["Testimonial","Services"],
+    "Video Platforms":["Website","Social Media","Streaming","Email","In-Office"],
+    "Shoot Date":"",
+    "Delivery Date":"",
+    "First Name":"asdf",
+    "Last Name":"fdsa",
+    "Email":"aaaaaaaaaaaaaa@ddd.us",
+    "Phone":"(111) 111-1111",
+    "Company Name":"aaa",
+    "Website":"bbb",
+    "Booking Date":"2024-07-05",
+    "Booking Time":"12:58"
+}
+{
+    "Name And Contact":"asdf, aaaaaaaaaaaaaa@ddd.us",
+    "County":"Monroe County",
+    "Township":"Whiteford Township",
+    "Country":"US",
+    "Address Line 1":"5339 West Erie Road",
+    "Address Line 2":"nothing to see here",
+    "City":"Ottawa Lake",
+    "State":"MI",
+    "Zip":"49267",
+    "Target":"",
+    "On Site":"",
+    "Video Description":"turtles",
+    "Video Types":"Testimonial",
+    "Video Platforms":["Streaming","Email"],
+    "Shoot Date":"2024-07-05",
+    "Delivery Date":"2024-06-30",
+    "First Name":"asdf",
+    "Last Name":"fdsa",
+    "Email":"aaaaaaaaaaaaaa@ddd.us",
+    "Phone":"(111) 111-1111",
+    "Preferred Contact Method":"",
+    "Company Name":"aaa",
+    "Website":"bbb",
+    "Booking Date Time":"2024-07-05, 13:58"
+}
+*/
+
+const submit_booking = () => {
+    console.log('SUBMIT')
+    
+    record_data = prepare_record_data()
+    console.log('record data:\n' + JSON.stringify( record_data ))
+
+    NC_base('Web Booking').create([
+        {
+            "fields": record_data
+        }
+    ], function (err, records) {
+        if (err) {
+            console.error(err)
+            return
+        }
+        records.forEach(function (record) {
+            console.log(record.getId())
+        })
+    })
+}
+
 
 let totalVideographers = 0
 let zip_array = []
@@ -475,7 +611,7 @@ NC_base('form_submit_test').create([
         console.log(record.getId())
     })
 })
-*/
+
 
 /*
 Name And Contact
