@@ -1,42 +1,34 @@
 
-const get_points_in_radius = ( points, center, radius ) => {
-
-	// const earthRadius = 6371 // in kilometers
-	const earthRadius = 3959 // in miles
-	const radiansToDegrees = Math.PI / 180
-
-	return points.filter( point => {
-
-		const lat1 = center.lat * radiansToDegrees
-		const lon1 = center.lon * radiansToDegrees
-		const lat2 = point.lat * radiansToDegrees
-		const lon2 = point.lon * radiansToDegrees
-
-		const dLat = lat2 - lat1
-		const dLon = lon2 - lon1
-
-		const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2
-		const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-		const distance = earthRadius * c
-
-		return distance <= radius
-
-	}).length
-
-}  
+const send_email = () => {
+    let senderName = 'El Hefe'
+    //let attName = csvFileName + moment().format() + '.csv'
+    Email.send({
+        Host : "smtp.gmail.com",
+        Username : "mrjeffhill@gmail.com",
+        Password : "bebgbivpimoiruwm",
+        To : "jhill@northcreative.us",
+        From : "jhill@northcreative.us",
+        Subject : "A message from: " + senderName,
+        Body : "<html><h2>What up yo?!</h2><p>From: <strong>" + senderName + "</strong></p><p><em>OMG IT WORKS!!! :)</em></p></html>"
+        /*
+        Attachments: [{
+            name: attName,
+            data: csvPath
+        }] */
+    }).then(
+        message => console.log(message)
+    )
+}
 
 const geocode_address = async ( address, parent_el ) => {
 
+    console.log('searching the google for address: ' + address)
 	const $parent = $(parent_el)
 	const despaced = address.replace(/\s+/g, "+")
-	// TODO: establish domain restriction for all API keys
+	// TODO: establish domain restrictions for all API keys
 	const url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+despaced+'&key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA'
 	const response = await fetch( url )
-    .then(( response ) => { 
-
-		return response.json() 
-
-	})
+    .then(( response ) => { return response.json() })
     .then(( json ) => {
 
         let search_data = {
@@ -49,47 +41,26 @@ const geocode_address = async ( address, parent_el ) => {
             "county": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_2"))?.long_name || null,
             "township": json.results[0].address_components.find(item => item.types.includes("administrative_area_level_3"))?.long_name || null,
             "country": json.results[0].address_components.find(item => item.types.includes("country"))?.short_name || null,
-            "postal_code": json.results[0].address_components.find(item => item.types.includes("postal_code"))?.long_name || null,
+            "zip": json.results[0].address_components.find(item => item.types.includes("postal_code"))?.long_name || null,
             "local_formatted_address": null,
             "google_formatted_address": json.results[0].formatted_address || null,
             "lat_lng": json.results[0].geometry.location || null
         }
         //console.log("search data: \n" + JSON.stringify(search_data))
 
-        const data = json
-        localStorage.setItem('search_location', JSON.stringify( json ))
+        if ( search_data.street_number && search_data.street_name ) {
+            search_data.address_line1 = search_data.street_number + ' ' + search_data.street_name
+        }
+        if ( search_data.address_line1 && search_data.city && search_data.state && search_data.postal_code ) {
+            search_data.local_formatted_address = search_data.address_line1 + ', ' + search_data.city + ', ' + search_data.state + ', ' + search_data.postal_code
+        }
+
+        localStorage.setItem('raw_search_response', JSON.stringify( json.results[0] ))
 		localStorage.setItem('searched_address', JSON.stringify( search_data ))
-		
-        const formatted_address = data.results[0].formatted_address
-		const ll_result = data.results[0].geometry.location
-		const ll_obj = { "lat": ll_result.lat, "lon":  ll_result.lng }
+        //localStorage.setItem('booking_data', JSON.stringify( booking_data ))
 
-		// TODO: get points from AirTable vs data.js!
-		// ALSO: https://gist.github.com/erichurst/7882666
-		let result_count = get_points_in_radius(points, ll_obj, 50)
-		//if (result_count === 0) { result_count = '[3]' }
-		let be = result_count === 1 ? 'is' : 'are'
-		let plural = result_count === 1 ? '' : 's'
-
-        //const result_message = 'There '+be+' currently <strong>' + result_count + ' videographer'+plural+'</strong> within 50 miles of ' + formatted_address
-		// TODO: if 0 add "Want a videographer? Find a nearby videographer ..."
-		//const result_message = 'We have <strong>' + result_count + ' videographer'+plural+'</strong> within 50 miles of ' + formatted_address
-		//console.log('result count: ' + result_count)
-
-		let local_result = {
-			"radius": 50,
-			"ll_center": ll_obj,
-			"videographer_count": result_count
-		}
-
-		localStorage.setItem('local_result', JSON.stringify( local_result ))
-
-		//$parent.find('.result-block p').html(result_message)
-        //$parent.removeClass('searching').addClass('result')
-
-        prepopulate_form()
-
-        return result_message
+        prepopulate_booking_form()
+        //get_map_embed( search_data.google_formatted_address )
 
     })
     .catch(( err ) => { 
@@ -97,10 +68,8 @@ const geocode_address = async ( address, parent_el ) => {
 		const error = `Error getting location data: ${err}`
 		const result_message = '<strong>"'+address+'"</strong> was not recognized as valid.'
 		console.log(error)
-
 		$parent.find('input.search-input').focus()
-		//$parent.find('.result-block p').html(result_message)
-		//$parent.removeClass('searching').addClass('result error')
+		$parent.find('.error').html(result_message)
 
 		return error
 
@@ -111,33 +80,18 @@ const geocode_address = async ( address, parent_el ) => {
 const attach_search_event = () => {
 
 	$('button.geocode-lookup').on( "click", function( e ) {
-
 		e.preventDefault()
-		const input = $(e.currentTarget).prev() //.find($('.search-input'))
+		const input = $(e.currentTarget).prev()
 		const address = input.val()
 
-		if ( address.length >= 2 ) {
+		if ( address.length >= 5 ) {
 
-			//$(e.currentTarget).removeClass('result error').addClass('searching')
-			console.log('searched address: ' + address)
-			const address_ll = geocode_address(address, $(e.currentTarget).parent())
-			//console.log('address lat/lon: ' + JSON.stringify(address_ll))
-
-		} else {
-
-			//console.log('invalid address: ' + address)
-			//$(e.currentTarget).find('input.search-input').focus()
-			//$(e.currentTarget).find('.result-block p').html('Search must contain <strong>more than 2 characters</strong>.')
-			//$(e.currentTarget).addClass('result error')
+			geocode_address(address, $(e.currentTarget).parent())
 
 		}
-
 	})
 
 }
-
-
-
 
 
 
@@ -148,8 +102,6 @@ let autocomplete, address1Field //, address2Field, postalField
 const initAutocomplete = () => {
 
 	address1Field = document.querySelector("#hero_search")
-	//address2Field = document.querySelector("#address2")
-	//postalField = document.querySelector("#postcode")
 
 	// Create the autocomplete object, restricting the search predictions to
 	// addresses in the US and Canada.
@@ -158,67 +110,10 @@ const initAutocomplete = () => {
 		fields: ["address_components", "geometry"],
 		types: ["address"],
 	})
-	//address1Field.focus()
-
-	// When the user selects an address from the drop-down, populate the
-	// address fields in the form.
-	//autocomplete.addListener("place_changed", fillInAddress)
-
-}
-
-const fillInAddress = () => {
-
-	// Get the place details from the autocomplete object.
-	const place = autocomplete.getPlace()
-	let address1 = ""
-	let postcode = ""
-
-	// Get each component of the address from the place details,
-	// and then fill-in the corresponding field on the form.
-	// place.address_components are google.maps.GeocoderAddressComponent objects
-	// which are documented at http://goo.gle/3l5i5Mr
-	for (const component of place.address_components) {
-		// @ts-ignore remove once typings fixed
-		const componentType = component.types[0]
-
-		switch (componentType) {
-			case "street_number": {
-				address1 = `${component.long_name} ${address1}`
-				break
-			}
-			case "route": {
-				address1 += component.short_name
-				break
-			}
-			case "postal_code": {
-				postcode = `${component.long_name}${postcode}`
-				break
-			}
-			case "postal_code_suffix": {
-				postcode = `${postcode}-${component.long_name}`
-				break
-			}
-			case "locality":
-				//document.querySelector("#locality").value = component.long_name
-				break
-			case "administrative_area_level_1": {
-				//document.querySelector("#state").value = component.short_name
-				break
-			}
-			case "country":
-				//document.querySelector("#country").value = component.long_name
-				break
-		}
-	}
-
-	//address1Field.value = address1
-	//postalField.value = postcode
-	// After filling the form with address components from the Autocomplete
-	// prediction, set cursor focus on the second address line to encourage
-	// entry of subpremise information such as apartment, unit, or floor number.
 	address1Field.focus()
 
 }
+
 
 if ( $('form.videographer-search, form#booking').length ) {
 	window.initAutocomplete = initAutocomplete
@@ -244,33 +139,80 @@ const serialize_object = (form) => {
     return o
 }
 
-const get_local_search = () => {
+const prefix_object_keys = (original_object) => {
 
-	//const location_data = JSON.parse(localStorage.getItem('search_location')) || null
+    const prefixedObject = Object.fromEntries(
+        Object.entries(original_object).map(([key, value]) => [
+            `fld_${key}`, // add the prefix to the key
+            value // keep the original value
+        ])
+    )
+
+    return prefixedObject
+}
+
+const get_local_booking = () => {
+
     const location_data = JSON.parse(localStorage.getItem('searched_address')) || null
-	//console.log('location array: \n' + JSON.stringify(location_data))
 
-	if ( location_data ) {
-		//const location_data2 = location_data.results[0].address_components
-		//const location_array = [...location_data2]
+    let booking_data = JSON.parse(localStorage.getItem('booking_data')) || {
+        "fld_name_and_contact": null,
+        "fld_county": null,
+        "fld_township": null,
+        "fld_country": null,
+        "fld_hero_search": null,
+        "fld_address_line_1": null,
+        "fld_address_line_2": null,
+        "fld_city": null,
+        "fld_state": null,
+        "fld_zip": null,
+        "fld_target": null,
+        "fld_on_site": null,
+        "fld_video_description": null,
+        "fld_video_types": null,
+        "fld_video_platforms": null,
+        "fld_recurring_video": null,
+        "fld_shoot_date": null,
+        "fld_delivery_date": null,
+        "fld_first_name": null,
+        "fld_last_name": null,
+        "fld_email": null,
+        "fld_phone": null,
+        "fld_preferred_contact_method": null,
+        "fld_company_name": null,
+        "fld_website": null,
+        "fld_booking_date_time": null
+    }
 
-        if ( location_data.street_number && location_data.street_name ) {
-            location_data.address_line1 = location_data.street_number + ' ' + location_data.street_name
+    if ( location_data ) { 
+       
+        if ( location_data.google_formatted_address !== booking_data.fld_hero_search ) { // different address?
+            // populate w/ last address search
+            booking_data["fld_county"] = location_data.county
+            booking_data["fld_township"] = location_data.township
+            booking_data["fld_country"] = location_data.country
+            booking_data["fld_hero_search"] = location_data.google_formatted_address
+            booking_data["fld_address_line_1"] = location_data.address_line1
+            booking_data["fld_address_line_2"] = location_data.address_line2
+            booking_data["fld_city"] = location_data.city
+            booking_data["fld_state"] = location_data.state
+            booking_data["fld_zip"] = location_data.zip
         }
-        if ( location_data.address_line1 && location_data.city && location_data.state && location_data.postal_code ) {
-            location_data.local_formatted_address = location_data.address_line1 + ', ' + location_data.city + ', ' + location_data.state + ', ' + location_data.postal_code
-        }
 
-		let booking_address = {
-			"input_street_1": location_data.address_line1 && despace(location_data.address_line1) ? location_data.address_line1 : "",
-			"input_street_2": location_data.address_line2,
-			"input_city": location_data.city,
-			"input_state": location_data.state,
-			"input_zip": location_data.postal_code,
-            "hero_search": location_data.google_formatted_address
-		}
-        
-		const required_data = ["street_number", "street_name", "city", "state", "postal_code"]
+    }
+
+    localStorage.setItem('booking_data', JSON.stringify( booking_data ))
+
+    return booking_data
+
+}
+
+const verify_complete_address = () => {
+
+    const location_data = JSON.parse(localStorage.getItem('searched_address')) || null
+
+    if ( location_data ) {
+        const required_data = ["street_number", "street_name", "city", "state", "zip"]
 
         if (required_data.every(key => location_data.hasOwnProperty(key) && location_data[key] !== null)) {
             console.log("Address has all required data")
@@ -279,12 +221,7 @@ const get_local_search = () => {
             console.log("Address is missing required data")
             $('.address-detail').addClass('active')
         }
-        
-        return booking_address
-
-	} else {
-		return null
-	}
+    }
 
 }
 
@@ -297,33 +234,46 @@ const get_map_embed = (address) => {
     $('.location-text').html('<h5>'+address+'</h5>')
 }
 
-const prepopulate_form = () => {
+const prepopulate_booking_form = () => {
 
 	const getAllFormElements = element => Array.from(element.elements).filter(tag => ["select", "textarea", "input"].includes(tag.tagName.toLowerCase()))
 
-	const local_data = get_local_search()
-	
-	if ( local_data ) {
-		const form_elements = getAllFormElements(document.getElementById("booking"))
-		//console.log(form_elements)
+    const booking_data = get_local_booking()
 
-		form_elements.forEach(el => {
-			//console.log(el.name)
-			$('form#booking #' + el.name).val(local_data[el.name])
-		})
-		const formatted_address = JSON.parse(localStorage.getItem('searched_address')).google_formatted_address
-		get_map_embed(formatted_address)
-	}
+    const form_elements = getAllFormElements(document.getElementById("booking"))
+    //console.log(form_elements)
+
+    form_elements.forEach(el => {
+        // console.log(el.name)
+        $('[name="' + el.name + '"]').val(booking_data[el.name])
+    })
+
+    if ( booking_data.fld_hero_search ) {
+        get_map_embed( booking_data.fld_hero_search )
+        verify_complete_address()
+        validateStep()
+    }
 }
 
 const prepare_form = () => {
 
 	const pre_search = localStorage.getItem('searched_address')
 	pre_search && $('form#booking').addClass('prepopulate')
-	pre_search && prepopulate_form()
+	pre_search && prepopulate_booking_form()
 
 }
 
+const validateStep = (field) => {
+    let next_button = $('fieldset.current button.next')
+    let required = $('fieldset.current').find('input, textarea, select').filter('[required]')
+    //console.log('req #: ' + required.length)
+    let is_gtg = true
+    required.each( function( index ) {
+        let is_valid = $( this ).valid()
+        if ( !is_valid ) is_gtg = false
+    })
+    next_button.prop( "disabled", !is_gtg )
+}
 
 const init_multi_step_form = ( multi_form, start_step ) => {
 
@@ -337,8 +287,8 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 
 	multi_form.find(".next").click(function () {
 
-		current_fs = $(this).parent()
-		next_fs = $(this).parent().next()
+		current_fs = $(this).closest("fieldset") //.parent()
+		next_fs = $(this).closest("fieldset").next()
 
         save_form_data( $( "form#booking" ), 'booking_form_data' )
 
@@ -357,8 +307,8 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 
 	multi_form.find(".previous").click(function () {
 
-		current_fs = $(this).parent()
-		previous_fs = $(this).parent().prev()
+		current_fs = $(this).closest("fieldset") //.parent()
+		previous_fs = $(this).closest("fieldset").prev()
 
         // update progress bars
 		progress_bar.find("li").eq($("fieldset").index(current_fs)).removeClass("active")
@@ -379,17 +329,17 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 		multi_form.find(".progress-bar").css("width", percent + "%")
 	}
 
-	function validateStep(field) { // current
-		let next_button = $('.current button.next')
-        let required = $('.current').find('input, textarea, select').filter('[required]')
-        //console.log('req #: ' + required.length)
-        let is_gtg = true
-        required.each( function( index ) {
-            let is_valid = $( this ).valid()
-            if ( !is_valid ) is_gtg = false
-        })
-        next_button.prop( "disabled", !is_gtg )
-	}
+	// function validateStep(field) { // current
+	// 	let next_button = $('.current button.next')
+    //     let required = $('.current').find('input, textarea, select').filter('[required]')
+    //     //console.log('req #: ' + required.length)
+    //     let is_gtg = true
+    //     required.each( function( index ) {
+    //         let is_valid = $( this ).valid()
+    //         if ( !is_valid ) is_gtg = false
+    //     })
+    //     next_button.prop( "disabled", !is_gtg )
+	// }
 
     $('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
 
@@ -402,7 +352,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
             save_form_data( $( "form#booking" ), 'booking_form_data' )
             $(this).next().trigger('click')
         } 
-        validateStep($(this))
+        validateStep()
 		
 	})
 
@@ -428,7 +378,7 @@ function adjust_datepickers() {
     const nextyear = new Date(Date.now() + (86400000 * 180)) // 6 mos
     const formattedNextyear = nextyear.getFullYear() + '-' + String(nextyear.getMonth() + 1).padStart(2, '0') + '-' + String(nextyear.getDate()).padStart(2, '0')
 
-    dateInputs.attr('min', formattedTomorrow).attr('max', formattedNextyear).val(formattedTomorrow)
+    dateInputs.attr('min', formattedTomorrow).attr('max', formattedNextyear).val('')
 
 }
 
@@ -440,7 +390,7 @@ function init_select_tags() {
             return $(el).text()
         }).get()
 
-        tag_container.text( '[ ' + selected.join(', ') + ' ]')
+        tag_container.text( 'Selected: [ ' + selected.join(', ') + ' ]')
     })
 
 }
@@ -458,6 +408,10 @@ $( function() {
     $( "form#booking" ).on( "submit", function( event ) {
         event.preventDefault()
         save_form_data( $(this), 'booking_form_data' )
+    }) 
+
+    $('.send-email').click( function () {
+        send_email()
     })
 
 })
@@ -466,11 +420,15 @@ $( function() {
 
 
 /* AIRTABLE: */
-
+/*
+DATES:      https://support.airtable.com/docs/supported-format-specifiers-for-datetime-format
+MARKDOWN:   https://support.airtable.com/docs/using-markdown-in-airtable
+JSON:       https://community.airtable.com/t5/other-questions/is-it-possible-to-add-json-data-or-an-array-of-objects-into/td-p/121614
+            https://community.airtable.com/t5/other-questions/getting-started-with-airtable-importing-json-data-structure/td-p/58619
+*/
+/*
 const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
 let Airtable = require('airtable')
-let V_base = new Airtable({apiKey: AT_token}).base('viwPes26VIkxAVnmd') // OLD videographers
-let C_base = new Airtable({apiKey: AT_token}).base('appbdi6tmH8jEwTeT') // OLD clients
 let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
 let totalVideographers = 0
@@ -478,12 +436,12 @@ let zip_array = []
 let loc = localStorage.getItem('location')
 
 NC_base('Markers').select({
-    view: "Grid view"
+    view: "Grid view",
+    filterByFormula: "NOT({Zip Code} = '')"
 }).eachPage(function page(records, fetchNextPage) {
 
 	records.forEach(function(record) {
-        let zip = record.get('Zip Code')
-		zip !== "" && zip_array.push(zip)
+        zip_array.push(record.get('Zip Code'))
     })
 	totalVideographers += records.length
     fetchNextPage()
@@ -517,36 +475,84 @@ NC_base('form_submit_test').create([
         console.log(record.getId())
     })
 })
-
+*/
 
 /*
-let allClients = []
-C_base('Imported table').select({
-    //maxRecords: 10, // or pageSize
-    view: "Grid view"
-}).eachPage(function page(records, fetchNextPage) {
+Name And Contact
+string (First Name _ Preferred Contact Method: Phone/Email)
 
-    records.forEach(function(record) {
-		allClients.push({ "name": record.get('Name'), "industry": record.get('Industry')})
-    })
+Address Line 1
+string
 
-	try { // HERE: https://github.com/Airtable/airtable.js/issues/246
-		fetchNextPage()
-	} catch { 
-		console.log('Client total: ' + allClients.length)
-		console.log('...and also: ' + JSON.stringify(allClients))
-		return 
-	}
-    
+Address Line 2
+string
 
-}, function done(err) {
-    if (err) { 
-		console.error(err) 
-		return 
-	} else {
-		console.log('Clients object: ' + JSON.parse(allClients))
-	}
-})
+City
+string
+
+State
+string (2)
+
+Zip
+string
+
+County
+string
+
+Township
+string
+
+Country
+string
+
+Target
+Single select, string e.g. "Self" OR "Client" (currently)
+
+On-Site
+boolean
+
+Video Description
+Long text (with rich text formatting enabled)
+
+Video Types
+Long text (with rich text formatting enabled)/json?
+
+Video Platforms
+Long text (with rich text formatting enabled)/json?
+
+Recurring Video
+boolean
+
+Shoot Date
+Date and time string (ISO 8601 formatted date) UTC date and time, e.g. "2014-09-05T07:00:00.000Z"
+
+Delivery Date
+Date and time string (ISO 8601 formatted date) UTC date and time, e.g. "2014-09-05T07:00:00.000Z"
+
+First Name
+string
+
+Last Name
+string
+
+Email
+string e.g. "support@example.com", "sales@example.com"
+
+Phone
+string e.g. "(415) 555-9876"
+
+Company Name
+string
+
+Website
+string (e.g. airtable.com or https://airtable.com/universe)
+ 
+Booking Date Time
+Date and time string (ISO 8601 formatted date) UTC date and time, e.g. "2014-09-05T07:00:00.000Z"
+
+Preferred Contact Method
+Single select, string e.g. "Phone" OR "Email" (currently)
 */
+
 
 

@@ -23,7 +23,7 @@ function playVideos(e) {
     const vimeo_id = e.currentTarget.dataset.vimeoid;
     const client = this.dataset.client;
     const startModal = `<span onclick="lvideoClose();" class="lvideo-overlay"></span> <div class="lvideo-container"><button onclick="lvideoListToggle();" class="lvideo-list"><i class="fa-regular fa-folder-open" data-icon="f07c"></i></button>`;
-    const finishModal = `</div><button onclick="lvideoMode();" class="lvideo-mode"><i class="fa-solid fa-arrow-right" data-icon="f061"></i></button><button onclick="lvideoClose();" class="lvideo-close"><i class="fa-solid fa-xmark" data-icon="f00d"></i></button><h3>${client}</h3>`;
+    const finishModal = `<button onclick="lvideoMode();" class="lvideo-mode"><i class="fa-solid fa-arrow-right" data-icon="f061"></i></button><button onclick="lvideoClose();" class="lvideo-close"><i class="fa-solid fa-xmark" data-icon="f00d"></i></button></div><h3>${client}</h3>`;
 
     // if (url.indexOf("youtube") !== -1) {
     if (url.indexOf("youtube") !== -1 || url.indexOf("youtu") !== -1) {

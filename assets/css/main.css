@@ -2108,6 +2108,7 @@ img.logo-map:hover {
     font-style: italic; */
     text-align: center;
 	font-weight: 400;
+	display: none;
 }
 #lvideo-wrap, #lvideo-wrap:after, #lvideo-wrap .lvideo-overlay {
 	left: 0;
@@ -2147,6 +2148,7 @@ img.logo-map:hover {
 	width: 90%;
 	aspect-ratio: 1.7777777778;
     margin-top: 6rem;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 #lvideo-wrap video {
 	object-fit: cover;
@@ -2160,8 +2162,8 @@ img.logo-map:hover {
 	align-items: center;
 	justify-content: center;
 	position: absolute;
-	right: 2%;
-	top: 5%;
+	right: 10vw;
+    top: 2rem;
 	width: 42px;
 	height: 42px;
 	border-radius: 100%;
@@ -2169,14 +2171,16 @@ img.logo-map:hover {
 	padding: 0;
 	transition: all 0.3s ease-in-out;
 	z-index: 150;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 #lvideo-wrap .lvideo-mode { 
-	right: 6%; 
+	margin-right: 3rem; 
 	transform: rotate(135deg);
 }
 #lvideo-wrap .lvideo-list {
 	right: auto;
 	left: 2%;
+	display: none;
 }
 #lvideo-wrap #lvideo-list {
     position: absolute;
@@ -2235,6 +2239,7 @@ img.logo-map:hover {
     bottom: 0;
     width: 35%;
 	top: auto;
+    border-radius: 1rem;
 }
 #lvideo-wrap.mini .lvideo-container {
     height: auto;
@@ -2251,13 +2256,16 @@ img.logo-map:hover {
 #lvideo-wrap.mini .lvideo-close,
 #lvideo-wrap.mini .lvideo-mode,
 #lvideo-wrap.mini .lvideo-list {
-    right: 2rem;
-    top: 0;
+    right: 0;
+    top: -.75rem;
     width: 30px;
     height: 30px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 #lvideo-wrap.mini .lvideo-mode {
 	transform: rotate(-45deg);
+	right: 2rem;
+	margin-right: 0;
 }
 #lvideo-wrap.mini .lvideo-close {
     right: 0;
@@ -2270,14 +2278,19 @@ img.logo-map:hover {
 	left: 0;
 	top: 2rem;
 }
+
 #lvideo-wrap video, #lvideo-wrap iframe {
-    border-radius: unset;
-    height: auto;
-    width: 100%;
+	height: auto;
+    width: 80%;
     margin-top: 2rem;
+    border-radius: 1rem;
 } 
-
-
+#lvideo-wrap.mini video, #lvideo-wrap.mini iframe {
+    width: 100%;
+    margin-top: 0rem;
+    border-radius: .5rem;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
 
 section#get_started {
 	padding: 0;
@@ -2339,6 +2352,7 @@ form label.error {
     font-weight: normal;
     text-align: right;
     padding: 0.5rem;
+	display: none !important; /* TODO: revisit */
 }
 form .options-wrapper label {
 	position: unset;
@@ -2354,6 +2368,7 @@ form input[type="tel"],
 form input[type="email"],
 form input[type="url"],
 form input[type="date"],
+form input[type="time"],
 select, textarea {
 	width: 100%;
     font-size: 1rem;
@@ -2382,6 +2397,7 @@ select[multiple] option { background: var(--lightest); }
 .tag-select .selected {
 	font-weight: normal;
 	font-style: italic;
+	font-size: .75rem;
 }
 
 [type="file"] {
@@ -2406,14 +2422,26 @@ select[multiple] option { background: var(--lightest); }
 }
 
 
-input.date-picker[type="date"] {
+input.date-picker[type="date"],
+input.time-picker[type="time"] {
 	display: block;
 	position: relative;
 	background:	white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22' viewBox='0 0 20 22'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23688EBB' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' transform='translate(1 1)'%3E%3Crect width='18' height='18' y='2' rx='2'/%3E%3Cpath d='M13 0L13 4M5 0L5 4M0 8L18 8'/%3E%3C/g%3E%3C/svg%3E") right 1rem center no-repeat;
 	cursor: pointer;
     width: 100%;
 }
-input.date-picker[type="date"]:focus {
+input.time-picker[type="time"] {
+	background:	white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22' viewBox='0 0 512 512'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23688EBB' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' transform='translate(1 1)'%3E%3Crect width='18' height='18' y='2' rx='2'/%3E%3Cpath d='M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z'/%3E%3C/g%3E%3C/svg%3E") right 1rem center no-repeat;
+}
+/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg> 
+M464 
+256A208 208 0 1 1 48 
+256a208 208 0 1 1 416 0zM0 
+256a256 256 0 1 0 512 0A256 256 0 1 0 0 
+256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z
+*/
+input.date-picker[type="date"]:focus,
+input.time-picker[type="time"]:focus {
 	outline: none;
 	border-color: #3acfff;
 	box-shadow: 0 0 0 0.25rem rgba(0, 120, 250, 0.1);
@@ -2444,10 +2472,12 @@ input.date-picker[type="date"]:focus {
 	color: rgba(0, 120, 250, 1);
 	background: rgba(0, 120, 250, 1);
 }
-input.date-picker[type="date"]:hover::-webkit-calendar-picker-indicator {
+input.date-picker[type="date"]:hover::-webkit-calendar-picker-indicator,
+input.time-picker[type="time"]:hover::-webkit-calendar-picker-indicator {
 	opacity: 0.05;
 }
-input.date-picker[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
+input.date-picker[type="date"]:hover::-webkit-calendar-picker-indicator:hover,
+input.time-picker[type="time"]:hover::-webkit-calendar-picker-indicator:hover {
 	opacity: 0.15;
 }
 
@@ -2836,12 +2866,13 @@ form#booking button.search-submit span {
 #progressbar.vertical li strong {
     position: absolute;
     left: 90%;
-    top: 1rem;
+    top: .75rem;
+    white-space: nowrap;
 }
 #progressbar.vertical li p {
     display: none;
     width: 40vw;
-    padding: 0 2rem .5rem 5.5rem;
+    padding: 0 2rem 0 5.5rem;
     margin: 0;
     text-align: left;
     color: var(--darkest);
