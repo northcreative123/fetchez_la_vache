@@ -20,6 +20,24 @@ const send_email = () => {
     )
 }
 
+const tz_from_latlon = async ( ll_obj ) => {
+    // { "lat": 42.3778496, "lng": -83.4688607 }
+    const url = 'https://api.geotimezone.com/public/timezone?latitude=' + ll_obj.lat + '&longitude=' + ll_obj.lng
+    const response = await fetch( url )
+    .then(( response ) => { return response.json() })
+    .then(( json ) => {
+
+        localStorage.setItem('searched_address_tz', JSON.stringify( json ))
+        //return json
+
+    })
+    .catch(( err ) => { 
+		const error = `Error getting timezone data: ${err}`
+		console.log(error)
+		return null
+	})
+}
+
 const geocode_address = async ( address, parent_el ) => {
 
     console.log('searching the google for address: ' + address)
@@ -54,6 +72,8 @@ const geocode_address = async ( address, parent_el ) => {
         if ( search_data.address_line1 && search_data.city && search_data.state && search_data.postal_code ) {
             search_data.local_formatted_address = search_data.address_line1 + ', ' + search_data.city + ', ' + search_data.state + ', ' + search_data.postal_code
         }
+
+        tz_from_latlon( search_data.lat_lng )
 
         localStorage.setItem('raw_search_response', JSON.stringify( json.results[0] ))
 		localStorage.setItem('searched_address', JSON.stringify( search_data ))
@@ -480,6 +500,9 @@ function init_select_tags() {
 
 $( function() {
 
+    const tz = new Date().getTimezoneOffset() / 60 //moment.tz.guess()
+    localStorage.setItem('user_tz_offset', tz)
+
     if ( $('form#booking').length ) {
         prepare_form()
         adjust_datepickers()
@@ -609,6 +632,7 @@ const handle_booking = (response_container) => {
         })
         response_container.find('.step-fields').append(`<h2>Thank you ${record_data['First Name']}!</h2>`)
         response_container.addClass('complete')
+        $('.progress-bar').removeClass(('progress-bar-animated'))
     })
     //.then(( response ) => { return response.json() })
 }
