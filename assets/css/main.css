@@ -2871,6 +2871,7 @@ fieldset.step-success article button {
 	100% { background-position: 0 0; }
 }
 
+
 #progressbar .active {
     color: var(--primelight);
 }

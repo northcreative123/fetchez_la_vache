@@ -565,7 +565,7 @@ const prepare_record_data = () => { // TODO: remove null values
     const pref = formatted_data["Preferred Contact Method"] ? formatted_data[ formatted_data["Preferred Contact Method"] ]  : formatted_data["Email"]
 
     formatted_data["Booking Date Time"] = datetime
-    formatted_data["Name And Contact"] = formatted_data["First Name"] + ': ' + pref
+    formatted_data["Name And Contact"] = formatted_data["First Name"] + ( formatted_data["Last Name"] ? ' ' + formatted_data["Last Name"] : '' ) + ': ' + pref
 
     delete formatted_data["Booking Date"]
     delete formatted_data["Booking Time"]
