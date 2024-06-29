@@ -412,19 +412,43 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 
 
 
-const save_form_data = ( form, ls_name ) => {
-    let serialized = serialize_object( form )
-    const entries = Object.entries(serialized)
-    const excluded = ["County","Township","Country","Address Line 1","City","State","Zip"]
+const format_summary = ( data_obj ) => {
+
+    let summary = {
+        "Service Address": data_obj.fld_hero_search,
+        "Video Subject": data_obj.fld_target,
+        "Service Type": data_obj.fld_on_site ? "On-Site" : "Edit Only",
+        "Brief Description": data_obj.fld_video_description,
+        "Video Type(s)": data_obj.fld_video_types,
+        "Video Platform(s)": data_obj.fld_video_platforms,
+        "Recurring": data_obj.fld_recurring_video ? "Yes" : "No",
+        "Shoot Date": data_obj.fld_shoot_date,
+        "Delivery Date": data_obj.fld_delivery_date,
+        "Name": data_obj.fld_first_name + ( data_obj.fld_last_name ? " " + data_obj.fld_last_name : "" ),
+        "Email": data_obj.fld_email,
+        "Phone": data_obj.fld_phone,
+        "Company": data_obj.fld_company_name,
+        "Website": data_obj.fld_website
+    }
+
+    const entries = Object.entries( summary )
     let html_summary = ""
     entries.forEach(([key, value]) => {
-        if ( value && value.length && !excluded.includes(format_object_key(key)) )  html_summary += `<dl><dt>${format_object_key(key)}</dt><dd>${value}</dd></dl>`
+        if ( value && value.length )  html_summary += `<dl><dt>${key}</dt><dd>${value}</dd></dl>`
     })
 
-    $('span.booking-summary').html( html_summary )
+    return html_summary
+    
+}
 
+const save_form_data = ( form, ls_name ) => {
+
+    let serialized = serialize_object( form )
+    let html_summary = format_summary( serialized )
+    $('span.booking-summary').html( html_summary )
     localStorage.setItem(ls_name, JSON.stringify( serialized ))
     console.log( 'form saved to local storage' )
+
 }
 
 function adjust_datepickers() {

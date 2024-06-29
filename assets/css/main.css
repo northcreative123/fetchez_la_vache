@@ -2370,6 +2370,11 @@ form .options-wrapper label {
 form label > span {
 	display: block;
 }
+form label > span em {
+	font-weight: normal;
+	font-size: .75rem;
+	font-style: normal;
+}
 form input[type="text"],
 form input[type="tel"],
 form input[type="email"],
@@ -2387,6 +2392,7 @@ select, textarea {
     font-weight: normal;
 	background-color: var(--lightest);
 }
+textarea { line-height: 1.25rem; }
 select {
     background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
     background-position: calc(100% - 0.75rem) center !important;
@@ -2669,14 +2675,27 @@ form#booking button.search-submit span {
 }
 
 form#booking span.booking-summary {
-	padding: 0 3rem 1rem;
+	padding: 1rem 1rem;
     display: block;
+    background: var(--offlight);
+    margin: 0 1rem 1rem;
+    border-radius: .5rem;
 }
 form#booking span.booking-summary dl,
 form#booking span.booking-summary dt,
-form#booking span.booking-summary dd { margin: 0; padding: 0 0 0 .5rem; vertical-align: top; }
+form#booking span.booking-summary dd { 
+	margin: 0 0 .25rem; 
+	padding: 0 0 0 .5rem; 
+	vertical-align: top; 
+}
+form#booking span.booking-summary dl {
+    border-bottom: 1px solid #ddd;
+}
 form#booking span.booking-summary dt,
-form#booking span.booking-summary dd { display: inline-block; font-weight: normal; }
+form#booking span.booking-summary dd { 
+	display: inline-block; 
+	font-weight: normal; 
+}
 form#booking span.booking-summary dt {
     min-width: 40%;
 }

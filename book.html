@@ -243,10 +243,10 @@
                                                 <input name="fld_recurring_video" type="radio" id="fld_recurring_video_true" value="true" />
                                             </label>
                                         </div>
-                                        <label class="half-width" for="fld_shoot_date"><span>Select A Shoot Day</span>
+                                        <label class="half-width" for="fld_shoot_date"><span>Select A Shoot Day <em>( M-F )</em></span>
                                             <input class="date-picker" name="fld_shoot_date" type="date" id="fld_shoot_date" min="" max="" value="" />
                                         </label>
-                                        <label class="half-width" for="fld_delivery_date"><span>Video Delivery Date</span>
+                                        <label class="half-width" for="fld_delivery_date"><span>Video Delivery Date <em>( M-F )</em></span>
                                             <input class="date-picker" name="fld_delivery_date" type="date" id="fld_delivery_date" min="" max="" value="" />
                                         </label>
                             
@@ -321,16 +321,16 @@
                             
                                     <h4 class="steps">Step 4 - 5</h4>
                                     <legend>Book a Call</legend>
-                                    <p class="instruction">Booking Summary [ TBD/WIP ]:</p>
+                                    <h4>Booking Summary</h4>
                                     <span class="booking-summary"></span>
                                     <p class="instruction">Select a day & time to schedule a video call with a creative producer to plan your video</p>
                             
                                     <article class="step-fields">
                             
-                                        <label class="half-width" for="fld_booking_date"><span>Date (M-F)</span>
+                                        <label class="half-width" for="fld_booking_date"><span>Date <em>( M-F )</em></span>
                                             <input class="date-picker" name="fld_booking_date" type="date" id="fld_booking_date" min="" max="" value="" required />
                                         </label>
-                                        <label class="half-width" for="fld_booking_time"><span>Time (9a-6p EST)</span>
+                                        <label class="half-width" for="fld_booking_time"><span>Time <em>( 9a-6p EST )</em></span>
                                             <input class="time-picker" name="fld_booking_time" type="time" id="fld_booking_time" min="09:00" max="18:00" required />
                                         </label>
                                         <!--
@@ -432,6 +432,9 @@
 		</section>
 
 	</main>
+
+    <!-- <script type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+    <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='clr7rkrbx00j5a5d5mvkjhimk' height='600px' width='400px'></zapier-interfaces-chatbot-embed> -->
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA&loading=async&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
 	<script src="assets/js/data.js"></script>
