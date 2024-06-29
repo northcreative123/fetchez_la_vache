@@ -197,8 +197,8 @@ const get_local_booking = () => {
         "fld_target": null,
         "fld_on_site": null,
         "fld_video_description": null,
-        "fld_video_types": null,
-        "fld_video_platforms": null,
+        "fld_video_types": [],
+        "fld_video_platforms": [],
         "fld_recurring_video": null,
         "fld_shoot_date": null,
         "fld_delivery_date": null,
@@ -211,6 +211,7 @@ const get_local_booking = () => {
         "fld_website": null,
         "fld_booking_date_time": null
     }
+    // TODO: GET booking datetimes from DB?
 
     if ( location_data ) { 
        
@@ -360,7 +361,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 
 		console.log('current step: ' + current)
         if ( $(this).attr('id') == 'booking_submit' ) {
-            submit_booking()
+            handle_booking( $('fieldset.step-success') )
         } else {
 		    validateStep()
         }
@@ -392,7 +393,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 
     $('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
 
-	multi_form.find('input, textarea, select').on( "change, keyup, blur", function( e ) {
+	multi_form.find('input, textarea, select').on( "change keyup blur", function( e ) {
         if ( $(this).is('#hero_search') && e.which == 13 ) {
             e.preventDefault()
             console.log('You pressed enter!')
@@ -413,7 +414,14 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 
 const save_form_data = ( form, ls_name ) => {
     let serialized = serialize_object( form )
-    //console.log(serialized)
+    const entries = Object.entries(serialized)
+    const excluded = ["County","Township","Country","Address Line 1","City","State","Zip"]
+    let html_summary = ""
+    entries.forEach(([key, value]) => {
+        if ( value && value.length && !excluded.includes(format_object_key(key)) )  html_summary += `<dl><dt>${format_object_key(key)}</dt><dd>${value}</dd></dl>`
+    })
+
+    $('span.booking-summary').html( html_summary )
 
     localStorage.setItem(ls_name, JSON.stringify( serialized ))
     console.log( 'form saved to local storage' )
@@ -441,7 +449,7 @@ function init_select_tags() {
             return $(el).text()
         }).get()
 
-        tag_container.text( 'Selected: [ ' + selected.join(', ') + ' ]')
+        tag_container.text( '[ ' + selected.length + ' Selected ]')
     }).trigger('change')
 
 }
@@ -460,6 +468,18 @@ $( function() {
         event.preventDefault()
         save_form_data( $(this), 'booking_data' )
     }) 
+
+    $( "form#booking button.reload-dirty" ).on( "click", function( event ) {
+        event.preventDefault()
+        location.reload()
+    })
+
+    $( "form#booking button.reload-clean" ).on( "click", function( event ) {
+        event.preventDefault()
+        localStorage.removeItem("booking_data")
+        //localStorage.removeItem("searched_address")
+        location.reload()
+    })
 
     $('.send-email').click( function () {
         send_email()
@@ -537,41 +557,11 @@ const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e
 let Airtable = require('airtable')
 let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
-/*
 
-{
-    "Name And Contact":"El Hefe, jhill@northcreative.us",
-    "County":"Monroe County",
-    "Township":"Whiteford Township",
-    "Country":"US",
-    "Address Line 1":"5339 West Erie Road",
-    "Address Line 2":"",
-    "City":"Ottawa Lake",
-    "State":"MI",
-    "Zip":"49267",
-    "Target":"Self",
-    "On Site":true,
-    "Video Description":"Make it really pretty!",
-    "Recurring Video":false,
-    "Shoot Date":"2024-07-06T00:00:00.000Z",
-    "Delivery Date":"2024-06-30T00:00:00.000Z",
-    "First Name":"El Hefe",
-    "Last Name":"Jones",
-    "Email":"jhill@northcreative.us",
-    "Phone":"(248) 880-3437",
-    "Preferred Contact Method":"Email",
-    "Company Name":"North Creative",
-    "Website":"https://northcreative.us",
-    "Booking Date Time":"2024-08-28T15:50:00.000Z"
-}
-
-*/
-
-const submit_booking = () => {
-    console.log('SUBMIT')
-    
+const handle_booking = (response_container) => {
+    //console.log('SUBMIT')
     record_data = prepare_record_data()
-    console.log('record data:\n' + JSON.stringify( record_data ))
+    //console.log('record data:\n' + JSON.stringify( record_data ))
 
     NC_base('Web Booking').create([
         {
@@ -580,19 +570,43 @@ const submit_booking = () => {
     ], function (err, records) {
         if (err) {
             console.error(err)
+            response_container.find('.step-fields').append(`<dl><dt>error:</dt><dd>${err}</dd></dl>`)
+            response_container.addClass('error')
             return
         }
         records.forEach(function (record) {
             console.log(record.getId())
         })
+        response_container.find('.step-fields').append(`<h2>Thank you ${record_data['First Name']}!</h2>`)
+        response_container.addClass('complete')
     })
+    //.then(( response ) => { return response.json() })
 }
 
 
+let loc = localStorage.getItem('location')
+NC_base('form_submit_test').create([
+    {
+        "fields": {
+            "Name": "another TEST record",
+            "Notes": "timestamp: " + Date.now(),
+            "URL": window.location.href,
+			"Location": loc
+        }
+    }
+], function (err, records) {
+    if (err) {
+        console.error(err)
+        return
+    }
+    records.forEach(function (record) {
+        console.log(record.getId())
+    })
+})
+
+/*
 let totalVideographers = 0
 let zip_array = []
-let loc = localStorage.getItem('location')
-
 NC_base('Markers').select({
     view: "Grid view",
     filterByFormula: "NOT({Zip Code} = '')"
@@ -614,103 +628,4 @@ NC_base('Markers').select({
 		//$('.total-videographer-count').text( totalVideographers )
 	}
 })
-
-NC_base('form_submit_test').create([
-    {
-        "fields": {
-            "Name": "another TEST record",
-            "Notes": "timestamp: " + Date.now(),
-            "URL": window.location.href,
-			"Location": loc
-        }
-    }
-], function (err, records) {
-    if (err) {
-        console.error(err)
-        return
-    }
-    records.forEach(function (record) {
-        console.log(record.getId())
-    })
-})
-
-
-/*
-Name And Contact
-string (First Name _ Preferred Contact Method: Phone/Email)
-
-Address Line 1
-string
-
-Address Line 2
-string
-
-City
-string
-
-State
-string (2)
-
-Zip
-string
-
-County
-string
-
-Township
-string
-
-Country
-string
-
-Target
-Single select, string e.g. "Self" OR "Client" (currently)
-
-On-Site
-boolean
-
-Video Description
-Long text (with rich text formatting enabled)
-
-Video Types
-Long text (with rich text formatting enabled)/json?
-
-Video Platforms
-Long text (with rich text formatting enabled)/json?
-
-Recurring Video
-boolean
-
-Shoot Date
-Date and time string (ISO 8601 formatted date) UTC date and time, e.g. "2014-09-05T07:00:00.000Z"
-
-Delivery Date
-Date and time string (ISO 8601 formatted date) UTC date and time, e.g. "2014-09-05T07:00:00.000Z"
-
-First Name
-string
-
-Last Name
-string
-
-Email
-string e.g. "support@example.com", "sales@example.com"
-
-Phone
-string e.g. "(415) 555-9876"
-
-Company Name
-string
-
-Website
-string (e.g. airtable.com or https://airtable.com/universe)
- 
-Booking Date Time
-Date and time string (ISO 8601 formatted date) UTC date and time, e.g. "2014-09-05T07:00:00.000Z"
-
-Preferred Contact Method
-Single select, string e.g. "Phone" OR "Email" (currently)
 */
-
-
-

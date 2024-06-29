@@ -361,7 +361,7 @@ main:before, main:after {
 	font-size: 1rem; 
 	text-align: left;
     margin: 0;
-    padding: 0 0 .5rem;
+    padding: 0;
 }
 .options-wrapper span, 
 .options-wrapper input,
@@ -369,8 +369,8 @@ label.check span,
 label.check input { display: inline-block; }
 .options-wrapper input,
 label.check input { 
-	height: 1.5rem;
-    width: 1.5rem;
+	height: 1.25rem;
+    width: 1.25rem;
 }
 .options-wrapper span{
     line-height: 2rem;
@@ -2397,10 +2397,20 @@ select {
 	background-color: var(--lightest);
 }
 select[multiple] {
-    min-height: 5rem;
+    height: 4rem;
 	background: unset;
 }
+select[multiple]:focus {
+    min-height: 8rem;
+}
 select[multiple] option { background: var(--lightest); }
+select[multiple] option:checked {
+	font-style: italic;
+    padding-left: .5rem;
+    /* text-decoration: underline; */
+}
+select[multiple] option:checked:before,
+select[multiple] option:checked:after { content: "*"; }
 .tag-select .selected {
 	font-weight: normal;
 	font-style: italic;
@@ -2549,7 +2559,7 @@ section#get_started {
     height: 100vh;
 }
 section#get_started .split-panel {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 body.booking > header {
@@ -2658,6 +2668,22 @@ form#booking button.search-submit span {
 	text-indent: -10000px;
 }
 
+form#booking span.booking-summary {
+	padding: 0 3rem 1rem;
+    display: block;
+}
+form#booking span.booking-summary dl,
+form#booking span.booking-summary dt,
+form#booking span.booking-summary dd { margin: 0; padding: 0 0 0 .5rem; vertical-align: top; }
+form#booking span.booking-summary dt,
+form#booking span.booking-summary dd { display: inline-block; font-weight: normal; }
+form#booking span.booking-summary dt {
+    min-width: 40%;
+}
+form#booking span.booking-summary dd {
+    max-width: 60%;
+}
+
 /* multi-step booking form: https://codepen.io/monbrielle/pen/dyYRgPm */
 
 #booking {
@@ -2676,6 +2702,37 @@ form#booking button.search-submit span {
     position: relative;
 	height: 0;
 	overflow: hidden;
+}
+fieldset.step-success { /* complete error */
+	text-align: unset;
+	opacity: .5;
+}
+fieldset.step-success:after {
+	content: "waiting...";
+	position: absolute;
+    top: 40%;
+    font-size: 5rem;
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+fieldset.step-success.complete,
+fieldset.step-success.error {
+	text-align: unset;
+	opacity: 1;
+}
+fieldset.step-success.error {
+	color: var(--error-color);
+}
+fieldset.step-success.complete:after,
+fieldset.step-success.error:after { 
+	content: "";
+	display: none;
+}
+fieldset.step-success article button { 
+	display: block;
+	float: none;
+	margin: .25rem .5rem;
 }
 /* #booking fieldset article > label:after,
 #booking fieldset article .options-wrapper > h4 {

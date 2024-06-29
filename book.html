@@ -76,7 +76,7 @@
                                     </li>
                                     <li id="pb_book">
                                         <strong>Book Consult</strong>
-                                        <p>Summary goes here...</p>
+                                        <p>...</p>
                                     </li>
                                     <li id="pb_confirm">
                                         <strong>Finish</strong>
@@ -321,14 +321,16 @@
                             
                                     <h4 class="steps">Step 4 - 5</h4>
                                     <legend>Book a Call</legend>
+                                    <p class="instruction">Booking Summary [ TBD ]:</p>
+                                    <span class="booking-summary"></span>
                                     <p class="instruction">Select a day & time to schedule a video call with a creative producer to plan your video</p>
                             
                                     <article class="step-fields">
                             
-                                        <label class="half-width" for="fld_booking_date"><span>Date</span>
+                                        <label class="half-width" for="fld_booking_date"><span>Date (M-F)</span>
                                             <input class="date-picker" name="fld_booking_date" type="date" id="fld_booking_date" min="" max="" value="" required />
                                         </label>
-                                        <label class="half-width" for="fld_booking_time"><span>Time</span>
+                                        <label class="half-width" for="fld_booking_time"><span>Time (9a-6p EST)</span>
                                             <input class="time-picker" name="fld_booking_time" type="time" id="fld_booking_time" min="09:00" max="18:00" required />
                                         </label>
                                         <!--
@@ -337,7 +339,7 @@
                                     </article>
                                     <article class="step-buttons">
                             
-                                        <button type="button" id="booking_submit" class="next form-next button-primary">
+                                        <button type="button" id="booking_submit" class="next form-next button-primary" disabled>
                                             <span>Do Thing! </span><i class="fa-solid fa-arrow-right" data-icon="f061"></i>
                                         </button>
                                         <button type="button" class="previous form-previous button-primary secondary-linear-gradient">
@@ -349,19 +351,30 @@
                                 </div>
                             </fieldset>
                             
-                            <fieldset>
+                            <fieldset class="step-success">
                                 <div class="form-card">
                             
                                     <h4 class="steps">Step 5 - 5</h4>
                                     <legend>SUCCESS!</legend>
-                                    <p class="instruction">SUCCESS!</p>
+                                    <!-- <p class="instruction">SUCCESS!</p> -->
                             
                                     <article class="step-fields">
                             
-                                        <p>...success?</p>
+                                        <!-- <p>...success?</p> -->
                             
                                     </article>
-                                    <article class="step-buttons">button or link here?</article>
+                                    <article class="step-buttons">
+                                        <p class="instruction">Temporary reset (for testing)</p>
+                                        <button type="button" class="previous form-previous button-primary secondary-linear-gradient">
+                                            <i class="fa-solid fa-arrow-left" data-icon="f060"></i><span> Back 1 step</span>
+                                        </button>
+                                        <button type="button" class="reload-dirty button-primary secondary-linear-gradient">
+                                            <i class="fa-solid fa-arrow-rotate-right" data-icon="f01e"></i><span> Reload</span>
+                                        </button>
+                                        <button type="button" class="reload-clean button-primary secondary-linear-gradient">
+                                            <i class="fa-regular fa-trash-can" data-icon="f2ed"></i><span> Reload clean</span>
+                                        </button>
+                                    </article>
                             
                                 </div>
                             </fieldset>
