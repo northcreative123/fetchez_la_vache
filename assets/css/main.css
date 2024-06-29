@@ -2343,8 +2343,26 @@ form legend {
     padding: 1rem 0;
 }
 p.instruction {
-	padding: 0 2rem;
+	padding: .5rem 1rem .5rem 3rem;
     text-align: left;
+    position: relative;
+    border-radius: .5rem;
+    background: var(--offlight);
+    margin: 0 0 1rem;
+}
+p.instruction:before {
+	content: "\f05a";
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+
+    color: var(--primedark);
+    display: inline-block;
+    font-weight: bold;
+    position: absolute;
+    left: 1rem;
 }
 form label {
 	margin-bottom: 1rem;
@@ -2361,11 +2379,17 @@ form label.error {
     padding: 0.5rem;
 	display: none !important; /* TODO: revisit */
 }
+/* TODO: use flex */
 form .options-wrapper label {
 	position: unset;
     display: inline-block;
 	font-weight: normal;
 	min-width: 44%;
+}
+form label.half-width {
+    display: inline-block;
+    max-width: 48%;
+    padding: 0 0 0 2rem;
 }
 form label > span {
 	display: block;
@@ -2518,16 +2542,16 @@ input.time-picker[type="time"]:hover::-webkit-calendar-picker-indicator:hover {
     font-weight: 900;
     font-size: 1rem;
     position: absolute;
-    left: 0;
-    top: -.25rem;
-    width: 1.5rem;
-    height: 1.5rem;
+	left: .5rem;
+    top: 0;
+    width: 1.25rem;
+    height: 1.25rem;
     display: block;
-    color: #800;
+    color: var(--error-color);
     background-color: rgba(255, 0, 0, .1);
     border-radius: 50%;
     text-align: center;
-    line-height: 1.5rem;
+    line-height: 1.25rem;
 }
  label:has(input:required:valid):after, 
  label:has(select:required:valid):after,
@@ -2541,8 +2565,8 @@ input.time-picker[type="time"]:hover::-webkit-calendar-picker-indicator:hover {
     font-weight: 900;
     font-size: 1rem;
     position: absolute;
-    left: 0;
-    top: -.25rem;
+	left: .5rem;
+    top: 0;
     width: 1.5rem;
     height: 1.5rem;
     display: block;
@@ -2609,13 +2633,13 @@ p.powered {
 }
 .ol-fancy > li.active > h4 { 
 	display: inline-block;
-    margin: 0 0 .25rem;
+    margin: 0 0 .25rem -1rem;
     padding: .25rem 1rem;
-    background: var(--lightest);
+    /* background: var(--lightest); */
     line-height: unset;
-    border: 2px solid var(--primelight);
+    /* border: 2px solid var(--primelight); */
     border-radius: .25rem;
-	font-weight: bold;
+    font-weight: bold;
 }
 .ol-fancy > li:hover {
 	transform: translateX(5px);
@@ -2626,8 +2650,15 @@ p.powered {
 	border-radius: 4px;
 }
 .ol-fancy > li:before {
-	counter-increment: ordered-list;
-    content: counter(ordered-list);
+	/* counter-increment: ordered-list;
+    content: counter(ordered-list); */
+	content: "\f141";
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+
     margin: 0 .5rem 0 -2rem;
     background-color: var(--darkest);
     color: var(--lightest);
@@ -2638,6 +2669,9 @@ p.powered {
     line-height: 2rem;
     display: inline-block;
     font-weight: bold;
+}
+.ol-fancy > li:first-child:before {
+	content: "\f590";
 }
 
 iframe#calendly {
@@ -2952,6 +2986,10 @@ fieldset.step-success article button {
     height: 136%;
     left: 50%;
     top: -.25rem;
+}
+#progressbar.vertical li:first-child:after {
+    height: 80%;
+    top: 50%;
 }
 #progressbar.vertical li:last-child:after {
     height: 50%;

@@ -22,6 +22,7 @@ const send_email = () => {
 
 const tz_from_latlon = async ( ll_obj ) => {
     // { "lat": 42.3778496, "lng": -83.4688607 }
+    // https://www.geotimezone.com/
     const url = 'https://api.geotimezone.com/public/timezone?latitude=' + ll_obj.lat + '&longitude=' + ll_obj.lng
     const response = await fetch( url )
     .then(( response ) => { return response.json() })

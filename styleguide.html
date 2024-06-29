@@ -428,12 +428,42 @@
                                 </optgroup>
                             </select>
                         </label>
+                        <label class="tag-select" for="fld_multi_select"><span>Multiple Select <span class="selected"></span></span>
+                            <select name="fld_multi_select" id="fld_multi_select" multiple>
+                                <option value="Product">Product</option>
+                                <option value="Testimonial">Testimonial</option>
+                                <option value="Services">Services</option>
+                                <option value="Commercial">Commercial</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Company Overview">Company Overview</option>
+                                <option value="Our People">Our People</option>
+                                <option value="About Us">About Us</option>
+                                <option value="Our Customers">Our Customers</option>
+                                <option value="Facility">Facility</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </label>
+
                         <label for="text_area"><span>Textarea</span>
                             <textarea id="text_area" name="text_area" rows="4" cols="50">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
                         </label>
                         <label for="upload"><span>Upload File</span>
                             <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file -->
                             <input type="file" id="upload" name="upload" placeholder="balls" accept="image/png, image/jpeg" multiple />
+                        </label>
+
+                        <label class="half-width" for="fld_booking_date"><span>Date <em>( M-F )</em></span>
+                            <input class="date-picker" name="fld_booking_date" type="date" id="fld_booking_date" min="" max="" value="" />
+                        </label>
+                        <label class="half-width" for="fld_booking_time"><span>Time <em>( 9a-6p EST )</em></span>
+                            <input class="time-picker" name="fld_booking_time" type="time" id="fld_booking_time" min="09:00" max="18:00" />
+                        </label>
+
+                        <label for="fld_email"><span>Email</span>
+                            <input name="fld_email" type="email" id="fld_email" placeholder="" value="" />
+                        </label>
+                        <label for="fld_phone"><span>Phone</span>
+                            <input name="fld_phone" type="tel" id="fld_phone" placeholder="" value="" />
                         </label>
 
                         <div class="options-wrapper">
@@ -643,59 +673,52 @@ $('.royals-w-cheese button').click( function () {
             })
         })
 
+        function init_select_tags() {
 
+            $(".tag-select select").change(function () {
+                const tag_container = $(this).parent().find('.selected')
+                const selected = $(this).find(':selected').map(function(i, el) {
+                    return $(el).text()
+                }).get()
 
+                tag_container.text( '[ ' + selected.length + ' Selected ]')
+            }).trigger('change')
+
+        }
+
+        $( function() {
+
+            init_select_tags()
+
+        })
         
-    /* AIRTABLE: */
 
-    const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
-    let Airtable = require('airtable')
-    let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
-    let totalVideographers = 0
-    let zip_array = []
-    let loc = localStorage.getItem('location')
+        /* AIRTABLE: */
 
-    NC_base('Markers').select({
-        view: "Grid view"
-    }).eachPage(function page(records, fetchNextPage) {
+        const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
+        let Airtable = require('airtable')
+        let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
-        records.forEach(function(record) {
-            let zip = record.get('Zip Code')
-            zip !== "" && zip_array.push(zip)
-        })
-        totalVideographers += records.length
-        fetchNextPage()
-
-    }, function done(err) {
-        if (err) { 
-            console.error(err)
-            return
-        } else { 
-            console.log(`Total number of videographers: ${totalVideographers}`) 
-            //console.log(`zip_array: ${zip_array}`)
-            //$('.total-videographer-count').text( totalVideographers )
-        }
-    })
-
-    NC_base('form_submit_test').create([
-        {
-            "fields": {
-                "Name": "another TEST record",
-                "Notes": "timestamp: " + Date.now(),
-                "URL": window.location.href,
-			    "Location": loc
+        let loc = localStorage.getItem('location')
+        NC_base('form_submit_test').create([
+            {
+                "fields": {
+                    "Name": "another TEST record",
+                    "Notes": "timestamp: " + Date.now(),
+                    "URL": window.location.href,
+                    "Location": loc
+                }
             }
-        }
-    ], function (err, records) {
-        if (err) {
-            console.error(err)
-            return
-        }
-        records.forEach(function (record) {
-            console.log(record.getId())
+        ], function (err, records) {
+            if (err) {
+                console.error(err)
+                return
+            }
+            records.forEach(function (record) {
+                console.log(record.getId())
+            })
         })
-    })
 
     </script>
 </body>
