@@ -469,6 +469,12 @@ $( function() {
         save_form_data( $(this), 'booking_data' )
     }) 
 
+    $('input[name="fld_preferred_contact_method"]').on( "change", function( event ) {
+        let phone_req = $(this).val() === "Phone"
+        $("input#fld_phone").prop('required', phone_req)
+        validateStep()
+    })
+
     $( "form#booking button.reload-dirty" ).on( "click", function( event ) {
         event.preventDefault()
         location.reload()

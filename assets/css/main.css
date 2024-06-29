@@ -2401,7 +2401,7 @@ select[multiple] {
 	background: unset;
 }
 select[multiple]:focus {
-    min-height: 8rem;
+    /* min-height: 8rem; */
 }
 select[multiple] option { background: var(--lightest); }
 select[multiple] option:checked {
