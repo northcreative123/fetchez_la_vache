@@ -368,7 +368,14 @@ main:before, main:after {
 label.check span,
 label.check input { display: inline-block; }
 .options-wrapper input,
-label.check input { margin-left: .5rem; }
+label.check input { 
+	height: 1.5rem;
+    width: 1.5rem;
+}
+.options-wrapper span{
+    line-height: 2rem;
+    vertical-align: bottom;
+}
 .options-wrapper label, label.check { padding: 0 1rem; }
 label.check {
     padding: 0 0 0 1rem;
@@ -2670,6 +2677,10 @@ form#booking button.search-submit span {
 	height: 0;
 	overflow: hidden;
 }
+/* #booking fieldset article > label:after,
+#booking fieldset article .options-wrapper > h4 {
+    content: ":";
+} */
 #booking fieldset.current { height: auto; overflow: unset; }
 
 .form-card {

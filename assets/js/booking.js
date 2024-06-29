@@ -115,41 +115,50 @@ if ( $('form#booking').length ) {
 const despace = (str) => {
 	return str.replace(/\s+/g, '')
 }
-/*
-const serialize_object = (form) => {
+
+
+const serialize_object = () => {
+
+    const form_elements = getAllFormElements(document.getElementById("booking"))
     var o = {}
-    var a = form.serializeArray()
-    $.each(a, function() {
-        if (o[this.name]) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]]
+    form_elements.forEach(el => {
+        if (el.type === 'radio') {
+            if (!o[el.name]) {
+                o[el.name] = [o[el.name]]
+                o[el.name] = null
             }
-            o[this.name].push(this.value || '')
-        } else {
-            o[this.name] = this.value || ''
-        }
-    })
-    return o
-}
-*/
-const serialize_object = (form) => {
-    var o = {}
-    var a = form.serializeArray()
-    $.each(a, function () {
-        if (this.type === 'radio') {
-            console.log('radio name/value: ' + this.name + '/' + this.value)
-            if (!o[this.name]) {
-                o[this.name] = []
-            }
-            o[this.name].push(this.value || '')
-        } else {
-            if (o[this.name]) {
-                if (!o[this.name].push) {
-                    o[this.name] = [o[this.name]]
+            if (el.checked) {
+                if ( (el.value === "true") || (el.value === "false") ) {
+                    o[el.name] = (el.value === "true")
+                } else {
+                    o[el.name] = el.value
                 }
-                o[this.name].push(this.value || '')
+            }
+        } else if (el.type === 'select-multiple') {
+            let selected = Array.from(el.options).filter(function (option) {
+                return option.selected
+            }).map(function (option) {
+                return option.value
+            })
+            o[el.name] = selected  || null
+        } else if ( el.type === 'date' ) {
+            let to_utc = el.value ? moment(el.value).utc() : null
+            if (o[el.name]) {
+                if (!o[el.name].push) {
+                    o[el.name] = [o[el.name]]
+                }
+                o[el.name].push(to_utc)
             } else {
-                o[this.name] = this.value || ''
+                o[el.name] = to_utc
+            }
+        } else {
+            if (o[el.name]) {
+                if (!o[el.name].push) {
+                    o[el.name] = [o[el.name]]
+                }
+                o[el.name].push(el.value || null)
+            } else {
+                o[el.name] = el.value || null
             }
         }
     })
@@ -253,18 +262,47 @@ const get_map_embed = (address) => {
     $('.location-text').html('<h5>'+address+'</h5>')
 }
 
+const getAllFormElements = element => Array.from(element.elements).filter(tag => ["select", "textarea", "input"].includes(tag.tagName.toLowerCase()))
+
 const prepopulate_booking_form = () => {
 
-	const getAllFormElements = element => Array.from(element.elements).filter(tag => ["select", "textarea", "input"].includes(tag.tagName.toLowerCase()))
 
     const booking_data = get_local_booking()
 
     const form_elements = getAllFormElements(document.getElementById("booking"))
     //console.log(form_elements)
 
-    form_elements.forEach(el => {
-        // console.log(el.name)
-        $('[name="' + el.name + '"]').val(booking_data[el.name])
+    form_elements.forEach(el => { // TODO: update for radio & multi
+        //console.log('name: ' + el.name + ' type: ' + el.type + ' value: ' + el.value)
+
+        if ( el.type == "radio" ) {
+            let tmp_val = booking_data[el.name]
+            if (typeof tmp_val == "boolean") {
+                tmp_val = tmp_val.toString()
+            }
+            if ( el.value === tmp_val ) {
+                el.checked = true
+            }
+
+        } else if ( el.type == "select-multiple" ) {
+
+            //let options = Array.from(el.options)
+            let selected = booking_data[el.name]
+
+            Array.from(el.options).forEach(function (option) {
+                option.selected = selected.includes(option.value)
+            })
+
+        } else if ( el.type == "date" ) {
+
+            let time = booking_data[el.name] ? moment(booking_data[el.name]).format('YYYY-MM-DD') : ''
+            $('[name="' + el.name + '"]').val(time)
+
+        } else {
+
+            $('[name="' + el.name + '"]').val(booking_data[el.name])
+
+        }
     })
 
     if ( booking_data.fld_hero_search ) {
@@ -354,7 +392,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 
     $('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
 
-	multi_form.find('input, textarea, select').on( "change, keyup", function( e ) {
+	multi_form.find('input, textarea, select').on( "change, keyup, blur", function( e ) {
         if ( $(this).is('#hero_search') && e.which == 13 ) {
             e.preventDefault()
             console.log('You pressed enter!')
@@ -375,6 +413,8 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 
 const save_form_data = ( form, ls_name ) => {
     let serialized = serialize_object( form )
+    //console.log(serialized)
+
     localStorage.setItem(ls_name, JSON.stringify( serialized ))
     console.log( 'form saved to local storage' )
 }
@@ -389,7 +429,7 @@ function adjust_datepickers() {
     const nextyear = new Date(Date.now() + (86400000 * 180)) // 6 mos
     const formattedNextyear = nextyear.getFullYear() + '-' + String(nextyear.getMonth() + 1).padStart(2, '0') + '-' + String(nextyear.getDate()).padStart(2, '0')
 
-    dateInputs.attr('min', formattedTomorrow).attr('max', formattedNextyear).val('')
+    dateInputs.attr('min', formattedTomorrow).attr('max', formattedNextyear) //.val('')
 
 }
 
@@ -402,7 +442,7 @@ function init_select_tags() {
         }).get()
 
         tag_container.text( 'Selected: [ ' + selected.join(', ') + ' ]')
-    })
+    }).trigger('change')
 
 }
 
@@ -449,37 +489,43 @@ const convert_object_keys = (original_object) => {
     return formatted_keys
 }
 
+const remove_object_nulls = (original_object) => {
+    const filteredObj = Object.fromEntries(
+        Object.entries(original_object).filter(([key, value]) => value !== null)
+    )
+    return filteredObj
+}
+  
 // UTC date and time, e.g. "2014-09-05T07:00:00.000Z"
 
-const prepare_record_data = () => {
+const prepare_record_data = () => { // TODO: remove null values
     const booking_data = JSON.parse(localStorage.getItem('booking_data'))
     const formatted_data = convert_object_keys( booking_data )
-    const BDT = formatted_data["Booking Date"] + ' ' + formatted_data["Booking Time"]
-    const BDT_UTC = moment.parseZone(BDT).utc()
-    const DD = moment.parseZone(formatted_data["Delivery Date"]).utc()
-    const SD = moment.parseZone(formatted_data["Shoot Date"]).utc()
 
-    formatted_data["Booking Date Time"] = BDT_UTC
-    formatted_data["Shoot Date"] = SD
-    formatted_data["Delivery Date"] = DD
-    formatted_data["Name And Contact"] = formatted_data["First Name"] + ', ' + formatted_data["Email"]
+    const date = moment(formatted_data["Booking Date"], "YYYY-MM-DD") // date parts, be careful about timezone
+    const time = moment(formatted_data["Booking Time"], "HH-mm") // time parts, may be extended with seconds, milliseconds
+    date?.hour(time ? time.hours() : date.hours()).minute(time ? time.minutes() : date.minutes())
+    const datetime = date?.format()
+    console.log(datetime) // time of date is set
+    //console.log(date?.toDate()) // Javascript DateTime object
 
-    formatted_data["On Site"] = true
-    formatted_data["Recurring Video"] = false
-    formatted_data["Target"] = "Self"
-    formatted_data["Preferred Contact Method"] = "Email"
 
-    delete formatted_data["Video Types"] //= []
-    delete formatted_data["Video Platforms"] //= [] 
+    //const BDT = formatted_data["Booking Date"] + ' ' + formatted_data["Booking Time"]
+    //const BDT_UTC = moment(BDT).utc()
+    const pref = formatted_data["Preferred Contact Method"] ? formatted_data[ formatted_data["Preferred Contact Method"] ]  : formatted_data["Email"]
+
+    formatted_data["Booking Date Time"] = datetime
+    formatted_data["Name And Contact"] = formatted_data["First Name"] + ': ' + pref
 
     delete formatted_data["Booking Date"]
     delete formatted_data["Booking Time"]
     delete formatted_data["Hero Search"]
 
-    return formatted_data
+    return remove_object_nulls(formatted_data)
 }
 
 /* AIRTABLE: */
+
 /*
 DATES:      https://support.airtable.com/docs/supported-format-specifiers-for-datetime-format
 MARKDOWN:   https://support.airtable.com/docs/using-markdown-in-airtable
@@ -492,57 +538,33 @@ let Airtable = require('airtable')
 let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
 /*
+
 {
-    "Name And Contact":"",
-    "County":"Monroe County",
-    "Township":"Whiteford Township",
-    "Country":"US",
-    "Hero Search":"5339 W Erie Rd, Ottawa Lake, MI 49267, USA",
-    "Address Line 1":"5339 West Erie Road",
-    "Address Line 2":"nothing to see here",
-    "City":"Ottawa Lake",
-    "State":"MI",
-    "Zip":"49267",
-    "Video Description":"turtles",
-    "Video Types":["Testimonial","Services"],
-    "Video Platforms":["Website","Social Media","Streaming","Email","In-Office"],
-    "Shoot Date":"",
-    "Delivery Date":"",
-    "First Name":"asdf",
-    "Last Name":"fdsa",
-    "Email":"aaaaaaaaaaaaaa@ddd.us",
-    "Phone":"(111) 111-1111",
-    "Company Name":"aaa",
-    "Website":"bbb",
-    "Booking Date":"2024-07-05",
-    "Booking Time":"12:58"
-}
-{
-    "Name And Contact":"asdf, aaaaaaaaaaaaaa@ddd.us",
+    "Name And Contact":"El Hefe, jhill@northcreative.us",
     "County":"Monroe County",
     "Township":"Whiteford Township",
     "Country":"US",
     "Address Line 1":"5339 West Erie Road",
-    "Address Line 2":"nothing to see here",
+    "Address Line 2":"",
     "City":"Ottawa Lake",
     "State":"MI",
     "Zip":"49267",
-    "Target":"",
-    "On Site":"",
-    "Video Description":"turtles",
-    "Video Types":"Testimonial",
-    "Video Platforms":["Streaming","Email"],
-    "Shoot Date":"2024-07-05",
-    "Delivery Date":"2024-06-30",
-    "First Name":"asdf",
-    "Last Name":"fdsa",
-    "Email":"aaaaaaaaaaaaaa@ddd.us",
-    "Phone":"(111) 111-1111",
-    "Preferred Contact Method":"",
-    "Company Name":"aaa",
-    "Website":"bbb",
-    "Booking Date Time":"2024-07-05, 13:58"
+    "Target":"Self",
+    "On Site":true,
+    "Video Description":"Make it really pretty!",
+    "Recurring Video":false,
+    "Shoot Date":"2024-07-06T00:00:00.000Z",
+    "Delivery Date":"2024-06-30T00:00:00.000Z",
+    "First Name":"El Hefe",
+    "Last Name":"Jones",
+    "Email":"jhill@northcreative.us",
+    "Phone":"(248) 880-3437",
+    "Preferred Contact Method":"Email",
+    "Company Name":"North Creative",
+    "Website":"https://northcreative.us",
+    "Booking Date Time":"2024-08-28T15:50:00.000Z"
 }
+
 */
 
 const submit_booking = () => {
