@@ -633,6 +633,9 @@ const handle_booking = (response_container) => {
         })
         response_container.find('.step-fields').append(`<h2>Thank you ${record_data['First Name']}!</h2>`)
         response_container.addClass('complete')
+        // TODO: Clear local booking data &/or searched address?
+        // localStorage.removeItem("booking_data")
+        // localStorage.removeItem("searched_address")
         $('.progress-bar').removeClass(('progress-bar-animated'))
     })
     //.then(( response ) => { return response.json() })

@@ -1,4 +1,11 @@
 
+/* AIRTABLE: */
+const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
+let Airtable = require('airtable')
+let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
+
+
+
 const get_points_in_radius = ( points, center, radius ) => {
 
 	// const earthRadius = 6371 // in kilometers
@@ -305,40 +312,33 @@ $( function() {
 	
 
 
-	const populate_logo_marquee = ( parent ) => {
+	const populate_logo_marquee = ( parent, feature_data ) => {
 
-		const marquee_data = clients.filter(client => client.web_features.logo_marquee === true).sort(() => Math.random() - 0.5)
-		let marquee_markup = '<div class="logo-ticker-section-logos-slide-container"><div class="logo-ticker-section-logos-slide">'
-
-        marquee_data.forEach(function(data) { // TODO: randomize order
+		let marquee_markup = '<div class="logo-ticker-section-logos-slide-container"><div class="logo-ticker-section-logos-slide">' // AKA marquee_wahlberg?
+        feature_data.forEach(function(data) { // TODO: randomize order
 			marquee_markup += '<div class="logo-ticker-section-image-container"><div class="logo-ticker-section-image-frame"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></div></div>'
         })
-		
 		marquee_markup += '</div></div>'
+
         parent.html( marquee_markup ).append( marquee_markup ) // twice is nice!
 
     }
-	populate_logo_marquee($('.logo-ticker-section-logos-container'))
 
 
 
-	const populate_video_marquee = ( parent, start, count ) => {
+	const populate_video_marquee = ( parent, feature_data, start, count ) => {
 
-		const marquee_data = clients.slice( start, count ).sort(() => Math.random() - 0.5)
+		const marquee_data = feature_data.slice( start, count )
 		let marquee_markup = '<div class="video-ticker-section-videos-slide-container"><div class="video-ticker-section-videos-slide">'
 
         marquee_data.forEach(function( data ) {
-			if ( data.web_features.video_marquee ) {
-				marquee_markup += '<div class="video-ticker-section-image-container"><div class="video-ticker-section-image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div></div>'
-			}
+			marquee_markup += '<div class="video-ticker-section-image-container"><div class="video-ticker-section-image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div></div>'
         })
 
 		marquee_markup += '</div></div>'
         parent.html( marquee_markup ).append( marquee_markup )
 
     }
-    populate_video_marquee($('#video_scroll_1 .video-ticker-section-videos-container'), 0, 15)
-    populate_video_marquee($('#video_scroll_2 .video-ticker-section-videos-container'), 15, 30)
   
 
 
@@ -357,17 +357,16 @@ $( function() {
 		})
 
 	}
-	const populate_industry_card_panel = ( parent ) => {
+	const populate_industry_card_panel = ( parent, feature_data ) => {
 
-		const industry_data = clients.filter(client => client.web_features.home_industry === true).sort(() => Math.random() - 0.5)
 		let industry_card_markup = '<div class="card-panel">'
 		let industry_tag_markup = '<ul class="industry-list">'
 
-        industry_data.forEach(function(data) { 
+        feature_data.forEach(function(data) { 
 
 			let connector = data.industry.toLowerCase()
 			connector = connector.replace(/&/g, "and").replace(/\s+/g, "_")
-        	industry_card_markup += '<div class="card" data-industry="'+connector+'"><h4>'+data.name+'</h4><p>'+data.industry+'</p><div class="image-frame play-inline" title="'+data.name+'" data-vimeoid="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img data-vimeoid="'+data.vimeo_ids[0]+'" alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div></div>'
+        	industry_card_markup += '<div class="card" data-industry="'+connector+'"><h4>'+data.name+'</h4><p>'+data.industry+'</p><div class="image-frame play-inline" title="'+data.name+'" data-vimeoid="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img data-vimeoid="'+data.featured_video+'" alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div></div>'
 			industry_tag_markup += '<li data-industry="'+connector+'">'+data.industry+'</li>'
 
         })
@@ -376,10 +375,8 @@ $( function() {
 		industry_tag_markup += '</ul>'
 
 		parent.html( industry_card_markup ).append( industry_tag_markup )
-		attach_industry_events()
 
     }
-	populate_industry_card_panel($('.featured-industries'))
 	
 
 
@@ -397,29 +394,93 @@ $( function() {
 		})
 
 	}
-	const populate_testimonials = ( parent ) => {
+	const populate_testimonials = ( parent, feature_data ) => {
 
-		const testimony_data = clients.filter(client => client.web_features.home_testimonials === true)
 		let testimony_markup = ''
 
-        testimony_data.forEach(function( data ) { 
-			testimony_markup += '<li class=""><a href="" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.vimeo_ids[0]+'" data-url="https://vimeo.com/'+data.vimeo_ids[0]+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.web_features.featured_video[0]+'.jpg" /></div><q>'+data.web_features.testimonial.snippet+'</q><blockquote>'+data.web_features.testimonial.full_text+'</blockquote><cite>'+data.web_features.testimonial.contact+'</cite></div></li>'
+        feature_data.forEach(function( data ) { 
+			testimony_markup += '<li class=""><a href="" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><q>""</q><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
         })
 
 		parent.append(testimony_markup).find('li:first-child').addClass('active')
 		attach_testimonial_events()
 
     }
-	populate_testimonials($('.featured-testimonials .testimonial-list'))
+
+
+
+	const prepare_web_features = ( web_features ) => {
+
+		//console.log('web_features', web_features)
+		
+		const logo_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Logo Showcase") ).sort(() => Math.random() - 0.5)
+		//console.log("logo_data: ", logo_data)
+		const videos_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Video Showcase") && obj.featured_video ).sort(() => Math.random() - 0.5)
+		//console.log("video_data: ", videos_data)
+		const testimonial_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Testimony Showcase") ).sort(() => Math.random() - 0.5)
+		//console.log("testimonial_data: ", testimonial_data)
+		const industry_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Industry Showcase") ).sort(() => Math.random() - 0.5)
+		//console.log("industry_data: ", industry_data)
+
+		populate_logo_marquee( $('.logo-ticker-section-logos-container'), logo_data )
+		populate_video_marquee($('#video_scroll_1 .video-ticker-section-videos-container'), videos_data, 0, 14) // Row 1
+		populate_video_marquee($('#video_scroll_2 .video-ticker-section-videos-container'), videos_data, 14, 28) // Row 2
+		populate_testimonials($('.featured-testimonials .testimonial-list'), testimonial_data)
+		populate_industry_card_panel($('.featured-industries'), industry_data)
+
+		// Modal video player
+		document.querySelectorAll(".play-inline").forEach((d) => d.addEventListener("click", playVideos))
+		attach_industry_events()
+
+	}
+	
+	const get_web_features = async () => {
+
+		let web_featured = []
+
+		const records = await NC_base('Clients').select({
+			view: "Grid view"
+		}).eachPage(function page(records, fetchNextPage) {
+		
+			records.forEach( function( record ) {
+				let client = record.get('Name')
+				let logo_url = record.get('Logo Optimized')
+				let features = record.get('Web Features') // []
+				let industry = record.get('Industry') // []
+				let featured_video = record.get('Featured Video')
+				let contact = record.get('Testimonial - Reviewer Name')
+				let testimonial = record.get('Testimonial')
+				///if (features.length > 0) {
+					web_featured.push({ 
+						"name": client, 
+						"logo_url": logo_url ? logo_url[0].url : "nope",
+						"web_features": features,
+						"industry": industry,
+						"featured_video": featured_video,
+						"testimonial": testimonial,
+						"contact": contact
+					})
+				//}
+			})
+			fetchNextPage()
+		
+		}, function done(err) {
+			if (err) { 
+				console.error(err)
+				return
+			} else { 
+				//console.log('Features: ', web_featured) 
+				prepare_web_features( web_featured )
+				//return web_featured
+			}
+		})
+		
+	}
+	get_web_features()
 
 
 
   	attach_search_event()
-
-	// $('section.hero div.chunklet h2').addClass('animate')
-
-	// Modal video player
-	document.querySelectorAll(".play-inline").forEach((d) => d.addEventListener("click", playVideos))
 
 	// mobile menu
 	$('.royals-w-cheese button').click( function () {
@@ -454,18 +515,9 @@ if ( $('form.videographer-search').length ) {
 }
 
 
-
-
-/* AIRTABLE: */
-
-const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
-let Airtable = require('airtable')
-let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
-
+/*
 let totalVideographers = 0
 let zip_array = []
-let loc = localStorage.getItem('location')
-
 NC_base('Markers').select({
     view: "Grid view"
 }).eachPage(function page(records, fetchNextPage) {
@@ -487,7 +539,9 @@ NC_base('Markers').select({
 		//$('.total-videographer-count').text( totalVideographers )
 	}
 })
+*/
 
+let loc = localStorage.getItem('location')
 NC_base('form_submit_test').create([
     {
         "fields": {
@@ -503,37 +557,6 @@ NC_base('form_submit_test').create([
         return
     }
     records.forEach(function (record) {
-        console.log(record.getId())
+        //console.log(record.getId())
     })
 })
-
-
-/*
-let allClients = []
-C_base('Imported table').select({
-    //maxRecords: 10, // or pageSize
-    view: "Grid view"
-}).eachPage(function page(records, fetchNextPage) {
-
-    records.forEach(function(record) {
-		allClients.push({ "name": record.get('Name'), "industry": record.get('Industry')})
-    })
-
-	try { // HERE: https://github.com/Airtable/airtable.js/issues/246
-		fetchNextPage()
-	} catch { 
-		console.log('Client total: ' + allClients.length)
-		console.log('...and also: ' + JSON.stringify(allClients))
-		return 
-	}
-    
-
-}, function done(err) {
-    if (err) { 
-		console.error(err) 
-		return 
-	} else {
-		console.log('Clients object: ' + JSON.parse(allClients))
-	}
-})
-*/

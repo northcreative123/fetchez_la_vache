@@ -2611,6 +2611,7 @@ body.booking > main aside.split-half { padding-top: 4rem; }
 p.powered {
     text-align: center;
     font-size: .75rem;
+    padding: 0;
 }
 
 .ol-fancy {

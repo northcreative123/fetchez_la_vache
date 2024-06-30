@@ -1,4 +1,4 @@
-
+// DEPRECATED
 const clients = [
     {
         "name": "Advanced Apathy",
