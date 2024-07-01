@@ -454,7 +454,6 @@ $( function() {
 	const prepare_web_features = ( web_features ) => {
 
 		//!is_prod && console.log('web_features', web_features)
-		
 		const logo_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Logo Showcase") ).sort(() => Math.random() - 0.5)
 		//!is_prod && console.log("logo_data: ", logo_data)
 		const videos_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Video Showcase") && obj.featured_video ).sort(() => Math.random() - 0.5)
@@ -494,17 +493,15 @@ $( function() {
 				let featured_video = record.get('Featured Video')
 				let contact = record.get('Testimonial - Reviewer Name')
 				let testimonial = record.get('Testimonial')
-				///if (features.length > 0) {
-					web_featured.push({ 
-						"name": client, 
-						"logo_url": logo_url ? logo_url[0].url : "nope",
-						"web_features": features,
-						"industry": industry,
-						"featured_video": featured_video,
-						"testimonial": testimonial,
-						"contact": contact
-					})
-				//}
+				web_featured.push({ 
+					"name": client, 
+					"logo_url": logo_url ? logo_url[0].url : "nope",
+					"web_features": features,
+					"industry": industry,
+					"featured_video": featured_video,
+					"testimonial": testimonial,
+					"contact": contact
+				})
 			})
 			fetchNextPage()
 		
@@ -515,7 +512,6 @@ $( function() {
 			} else { 
 				//!is_prod && console.log('Features: ', web_featured) 
 				prepare_web_features( web_featured )
-				//return web_featured
 			}
 		})
 		
@@ -539,7 +535,6 @@ $( function() {
 
 
 let autocomplete, address1Field
-
 const initAutocomplete = () => {
 
 	address1Field = document.querySelector("#hero_search")
@@ -559,31 +554,6 @@ if ( $('form.videographer-search').length ) {
 }
 
 
-/*
-let totalVideographers = 0
-let zip_array = []
-NC_base('Markers').select({
-    view: "Grid view"
-}).eachPage(function page(records, fetchNextPage) {
-
-	records.forEach(function(record) {
-        let zip = record.get('Zip Code')
-		zip !== "" && zip_array.push(zip)
-    })
-	totalVideographers += records.length
-    fetchNextPage()
-
-}, function done(err) {
-    if (err) { 
-		console.error(err)
-		return
-	} else { 
-		!is_prod && console.log(`Total number of videographers: ${totalVideographers}`) 
-		//!is_prod && console.log(`zip_array: ${zip_array}`)
-		//$('.total-videographer-count').text( totalVideographers )
-	}
-})
-*/
 
 let loc = localStorage.getItem('location')
 NC_base('form_submit_test').create([

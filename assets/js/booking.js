@@ -534,7 +534,7 @@ $( function() {
     $( "form#booking button.reload-clean" ).on( "click", function( event ) {
         event.preventDefault()
         localStorage.removeItem("booking_data")
-        //localStorage.removeItem("searched_address")
+        localStorage.removeItem("searched_address")
         location.reload()
     })
 
@@ -574,7 +574,6 @@ const remove_object_nulls = (original_object) => {
 }
   
 // UTC date and time, e.g. "2014-09-05T07:00:00.000Z"
-
 const prepare_record_data = () => { // TODO: remove null values
     const booking_data = JSON.parse(localStorage.getItem('booking_data'))
     const formatted_data = convert_object_keys( booking_data )
@@ -583,12 +582,9 @@ const prepare_record_data = () => { // TODO: remove null values
     const time = moment(formatted_data["Booking Time"], "HH-mm") // time parts, may be extended with seconds, milliseconds
     date?.hour(time ? time.hours() : date.hours()).minute(time ? time.minutes() : date.minutes())
     const datetime = date?.format()
-    !is_prod && console.log(datetime) // time of date is set
+    //!is_prod && console.log(datetime) // time of date is set
     //!is_prod && console.log(date?.toDate()) // Javascript DateTime object
 
-
-    //const BDT = formatted_data["Booking Date"] + ' ' + formatted_data["Booking Time"]
-    //const BDT_UTC = moment(BDT).utc()
     const pref = formatted_data["Preferred Contact Method"] ? formatted_data[ formatted_data["Preferred Contact Method"] ]  : formatted_data["Email"]
 
     formatted_data["Booking Date Time"] = datetime
@@ -640,7 +636,7 @@ const handle_booking = (response_container) => {
         localStorage.removeItem("searched_address")
         $('.progress-bar').removeClass(('progress-bar-animated'))
     })
-    //.then(( response ) => { return response.json() })
+
 }
 
 
@@ -663,29 +659,3 @@ NC_base('form_submit_test').create([
         !is_prod && console.log(record.getId())
     })
 })
-
-/*
-let totalVideographers = 0
-let zip_array = []
-NC_base('Markers').select({
-    view: "Grid view",
-    filterByFormula: "NOT({Zip Code} = '')"
-}).eachPage(function page(records, fetchNextPage) {
-
-	records.forEach(function(record) {
-        zip_array.push(record.get('Zip Code'))
-    })
-	totalVideographers += records.length
-    fetchNextPage()
-
-}, function done(err) {
-    if (err) { 
-		console.error(err)
-		return
-	} else { 
-		!is_prod && console.log(`Total number of videographers: ${totalVideographers}`) 
-		//!is_prod && console.log(`zip_array: ${zip_array}`)
-		//$('.total-videographer-count').text( totalVideographers )
-	}
-})
-*/
