@@ -48,9 +48,16 @@
 }
 .button-primary {
 	background-color: var(--primelight);
-	background-image: var(--primegradient-off);
-	border-radius: 2rem;
+    background-image: var(--primegradient-off);
+    border-radius: 2rem;
     display: inline-block;
+    color: var(--lightest);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    line-height: 100%;
+    transition: all .2s;
 }
 .button-primary:hover,
 .button-primary:active,
@@ -673,10 +680,10 @@ header.global-header nav ul {
 	list-style: none;
 }
 header.global-header nav > ul > li { display: inline-block; position: relative; }
-a.w-nav-link { padding: 1rem; font-size: 1rem; letter-spacing: 2px; }
-a.w-nav-link:hover { background: var(--darkest); }
-.shrink a.w-nav-link:hover { background: var(--offlight); }
-a.w-nav-link.w--current { color: var(--link-current); font-weight: bold; }
+header.global-header nav > ul > li > a { padding: 1rem; font-size: 1rem; letter-spacing: 2px; }
+header.global-header nav > ul > li > a:hover { background: var(--darkest); }
+header.global-header.shrink nav > ul > li > a:hover { background: var(--offlight); }
+header.global-header nav > ul > li > a.w--current { color: var(--link-current); font-weight: bold; }
 
 header.global-header nav > ul > li.parent > a:after { 
 	display: inline-block;
