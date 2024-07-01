@@ -1063,6 +1063,14 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
 #process .chunklet .scrolljacker {
     height: 50vh;
     overflow: auto;
+	margin: 0 -10vw;
+    padding: 0 10vw;
+
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+#process .chunklet .scrolljacker::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 
 
