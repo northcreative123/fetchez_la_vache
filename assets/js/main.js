@@ -1,10 +1,19 @@
 
+const is_prod = window.location.hostname === 'northcreative'
+localStorage.setItem( 'env_prod', is_prod )
+const get_random = ( x ) => { return Math.floor( Math.random() * ( x ? x : 10000000 ) ) }
+
+
+
+
+
+
 /* AIRTABLE: */
 const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
 let Airtable = require('airtable')
 let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
-
+$('.web-feature').addClass('loading')
 
 const get_points_in_radius = ( points, center, radius ) => {
 
@@ -63,7 +72,7 @@ const geocode_address = async ( address, parent_el ) => {
             "google_formatted_address": json.results[0].formatted_address || null,
             "lat_lng": json.results[0].geometry.location || null
         }
-        //console.log("search data: \n" + JSON.stringify(search_data))
+        !is_prod && console.log("search data: \n" + JSON.stringify(search_data))
 
         if ( search_data.street_number && search_data.street_name ) {
             search_data.address_line1 = search_data.street_number + ' ' + search_data.street_name
@@ -86,7 +95,7 @@ const geocode_address = async ( address, parent_el ) => {
 		let plural = result_count === 1 ? '' : 's'
 
 		const result_message = 'We have <strong>' + result_count + ' videographer'+plural+'</strong> within 50 miles of ' + formatted_address
-		console.log('result count: ' + result_count)
+		!is_prod && console.log('result count: ' + result_count)
 
 		let local_result = {
 			"radius": 50,
@@ -106,7 +115,7 @@ const geocode_address = async ( address, parent_el ) => {
 
 		const error = `Error getting location data: ${err}`
 		const result_message = '<strong>"'+address+'"</strong> was not recognized as valid.'
-		console.log(error)
+		!is_prod && console.log(error)
 
 		$parent.find('input.search-input').focus()
 		$parent.find('.result-block p').html(result_message)
@@ -131,13 +140,13 @@ const attach_search_event = () => {
 		if ( address.length >= 4 ) {
 
 			$(e.currentTarget).removeClass('result error').addClass('searching')
-			console.log('searched address: ' + address)
+			!is_prod && console.log('searched address: ' + address)
 			const address_ll = geocode_address(address, $(e.currentTarget))
-			//console.log('address lat/lon: ' + JSON.stringify(address_ll))
+			//!is_prod && console.log('address lat/lon: ' + JSON.stringify(address_ll))
 
 		} else {
 
-			//console.log('invalid address: ' + address)
+			//!is_prod && console.log('invalid address: ' + address)
 			$(e.currentTarget).find('input.search-input').focus()
 			$(e.currentTarget).find('.result-block p').html('Search must contain <strong>more than 3 characters</strong>.')
 			$(e.currentTarget).addClass('result error')
@@ -147,8 +156,31 @@ const attach_search_event = () => {
 }
 
 
+
+// https://learn.jquery.com/plugins/basic-plugin-creation/
+// https://jsfiddle.net/hrishikeshk/7ks5ztj8/
+$.fn.jack_the_scroll = function() {
+ 
+    return this.each( function( options ) {
+        let window_offset = $(document).scrollTop()
+		let element_offset = Math.floor( $(this).offset().top )
+		let jack_on = ( element_offset - 200 ) < window_offset && ( element_offset + 500 ) > window_offset
+		console.log('OFFSETS - window: : ' + window_offset +  ', element: ' + element_offset)
+		jack_on && console.log('JACK ON!!')
+    })
+ 
+}
+
+
   
 $( function() {
+
+	$('video#hero_video').on("loadeddata", function() {
+		//!is_prod && console.log('Video loaded!')
+		$(this).parent().removeClass('loading')
+	})
+
+
 
 	const audiences = ['businesses', 'videographers'] 
 	const audience_elements = audiences.map(item => `.${item}-content`).join(', ')
@@ -195,9 +227,9 @@ $( function() {
 	const toggle_content = ( audience ) => {
 
 		// Show/hide content based on user type
-		// console.log('All audience elements: ' + JSON.stringify(audience_elements))
+		// !is_prod && console.log('All audience elements: ' + JSON.stringify(audience_elements))
 		$( audience_elements ).not( '.' + audience + '-content' ).remove()
-		console.log('Audience update: ' + audience)
+		!is_prod && console.log('Audience update: ' + audience)
 		$('.' + audience + '-content').addClass('enabled')
 
 	}
@@ -209,7 +241,7 @@ $( function() {
 			audience = defaultAudience
 		}
 		// apply buttons?...
-		//$('body.audience-select').length && attach_audience_buttons( $('.page-wrapper') )
+		$('body.audience-select').length && attach_audience_buttons( $('.page-wrapper') )
 		//attach_audience_buttons($('#home_hero .chunklet'))
 
 		// enable content display
@@ -222,27 +254,36 @@ $( function() {
 
 
 
+
+
 	const move_stuff = ( offset, el, direction, speed ) => {
 
 		// TODO: Establish/populate element array
-		//console.log( -(offset * 100) + 'vh')
+		//!is_prod && console.log( -(offset * 100) + 'vh')
 		let down_value = -(offset * 500) + 'vh'
 		let scroll_percent = parseInt( Math.abs(offset) * 100 )
-		//console.log( 'hey: ' + scroll_percent )
+		//!is_prod && console.log( 'hey: ' + scroll_percent )
 		if ( scroll_percent > 3 ) {
 			$('body > header').addClass('shrink')
 		} else {
 			$('body > header').removeClass('shrink')
 		}
-		//$('#audience_buttons').css('bottom', down_value)
+		$('body.audience-select').length && $('#audience_buttons').css('bottom', down_value)
 
 	}
 	const set_scroll_listener = () => {
 
 		window.addEventListener('scroll', () => {
+
 			let offset_calc = window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
 			document.body.style.setProperty('--scroll', offset_calc)
-			move_stuff(offset_calc)
+			if ( $('body.home').length > 0 ) {
+				move_stuff(offset_calc)
+			} else {
+				$('body > header').addClass('shrink')
+			}
+			//$('.scrolljacker').length && $('.scrolljacker').jack_the_scroll({ color: "orange" })
+
 		}, false)
 
 	}
@@ -260,8 +301,8 @@ $( function() {
 
             const data = json
             localStorage.setItem('location', JSON.stringify(json))
-            //console.log('Location data: ' + JSON.stringify(data))
-            //console.log('Lat/Lon: ' + data.loc)
+            //!is_prod && console.log('Location data: ' + JSON.stringify(data))
+            //!is_prod && console.log('Lat/Lon: ' + data.loc)
 
           	const ll_obj = { "lat": data.loc.split(',')[0], "lon":  data.loc.split(',')[1] }
 
@@ -269,9 +310,9 @@ $( function() {
           	const results2 = get_points_in_radius(points, ll_obj, 100)
 			const results3 = get_points_in_radius(points, ll_obj, 200)
 
-          	//console.log('Videographers within 50 miles of ' + data.city + ': ' + results1)
-          	//console.log('... 100 miles: ' + results2)
-          	//console.log('... 200 miles: ' + results3)
+          	//!is_prod && console.log('Videographers within 50 miles of ' + data.city + ': ' + results1)
+          	//!is_prod && console.log('... 100 miles: ' + results2)
+          	//!is_prod && console.log('... 200 miles: ' + results3)
 
             return data.city
 
@@ -287,7 +328,7 @@ $( function() {
             .then(( json ) => {
 
                 const ip = json.ip
-                console.log( 'IP Address: ' + ip )
+                !is_prod && console.log( 'IP Address: ' + ip )
                 const city = getUserLocation( ip )
 
                 return city
@@ -320,7 +361,7 @@ $( function() {
         })
 		marquee_markup += '</div></div>'
 
-        parent.html( marquee_markup ).append( marquee_markup ) // twice is nice!
+        parent.html( marquee_markup ).append( marquee_markup ).removeClass('loading') // twice is nice!
 
     }
 
@@ -336,7 +377,7 @@ $( function() {
         })
 
 		marquee_markup += '</div></div>'
-        parent.html( marquee_markup ).append( marquee_markup )
+        parent.html( marquee_markup ).append( marquee_markup ).removeClass('loading')
 
     }
   
@@ -348,7 +389,7 @@ $( function() {
 
 			const tag = $(e.currentTarget)
 			const industry = tag.data('industry')
-			//console.log('industry: ' + industry)
+			//!is_prod && console.log('industry: ' + industry)
 
 			$('.featured-industries ul.industry-list li, .featured-industries  div.card-panel .card').removeClass('active')
 			tag.addClass('active')
@@ -374,7 +415,7 @@ $( function() {
 		industry_card_markup += '</div>'
 		industry_tag_markup += '</ul>'
 
-		parent.html( industry_card_markup ).append( industry_tag_markup )
+		parent.html( industry_card_markup ).append( industry_tag_markup ).removeClass('loading')
 
     }
 	
@@ -402,8 +443,7 @@ $( function() {
 			testimony_markup += '<li class=""><a href="" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><q>""</q><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
         })
 
-		parent.append(testimony_markup).find('li:first-child').addClass('active')
-		attach_testimonial_events()
+		parent.append(testimony_markup).find('li:first-child').addClass('active').removeClass('loading')
 
     }
 
@@ -411,16 +451,16 @@ $( function() {
 
 	const prepare_web_features = ( web_features ) => {
 
-		//console.log('web_features', web_features)
+		//!is_prod && console.log('web_features', web_features)
 		
 		const logo_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Logo Showcase") ).sort(() => Math.random() - 0.5)
-		//console.log("logo_data: ", logo_data)
+		//!is_prod && console.log("logo_data: ", logo_data)
 		const videos_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Video Showcase") && obj.featured_video ).sort(() => Math.random() - 0.5)
-		//console.log("video_data: ", videos_data)
+		//!is_prod && console.log("video_data: ", videos_data)
 		const testimonial_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Testimony Showcase") ).sort(() => Math.random() - 0.5)
-		//console.log("testimonial_data: ", testimonial_data)
+		//!is_prod && console.log("testimonial_data: ", testimonial_data)
 		const industry_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Industry Showcase") ).sort(() => Math.random() - 0.5)
-		//console.log("industry_data: ", industry_data)
+		//!is_prod && console.log("industry_data: ", industry_data)
 
 		populate_logo_marquee( $('.logo-ticker-section-logos-container'), logo_data )
 		populate_video_marquee($('#video_scroll_1 .video-ticker-section-videos-container'), videos_data, 0, 14) // Row 1
@@ -428,10 +468,12 @@ $( function() {
 		populate_testimonials($('.featured-testimonials .testimonial-list'), testimonial_data)
 		populate_industry_card_panel($('.featured-industries'), industry_data)
 
+		attach_industry_events()
+		attach_testimonial_events()
+
 		// Modal video player
 		document.querySelectorAll(".play-inline").forEach((d) => d.addEventListener("click", playVideos))
-		attach_industry_events()
-
+		
 	}
 	
 	const get_web_features = async () => {
@@ -469,7 +511,7 @@ $( function() {
 				console.error(err)
 				return
 			} else { 
-				//console.log('Features: ', web_featured) 
+				//!is_prod && console.log('Features: ', web_featured) 
 				prepare_web_features( web_featured )
 				//return web_featured
 			}
@@ -534,8 +576,8 @@ NC_base('Markers').select({
 		console.error(err)
 		return
 	} else { 
-		console.log(`Total number of videographers: ${totalVideographers}`) 
-		//console.log(`zip_array: ${zip_array}`)
+		!is_prod && console.log(`Total number of videographers: ${totalVideographers}`) 
+		//!is_prod && console.log(`zip_array: ${zip_array}`)
 		//$('.total-videographer-count').text( totalVideographers )
 	}
 })
@@ -557,6 +599,6 @@ NC_base('form_submit_test').create([
         return
     }
     records.forEach(function (record) {
-        //console.log(record.getId())
+        //!is_prod && console.log(record.getId())
     })
 })

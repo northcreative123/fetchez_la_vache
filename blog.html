@@ -242,7 +242,7 @@
 
             const populate_blog = ( blog_data ) => {
 
-                //console.log("BLOG blog_data: ", blog_data)
+                //!is_prod && console.log("BLOG blog_data: ", blog_data)
                 if ( blog_data ) {
                     $('#blog_hero .chunklet').append( '<img src="'+blog_data.hero_image+'" />' )
                     $('#blog_content h3').text( blog_data.title )
@@ -253,7 +253,7 @@
             
             const prepare_blog_links = ( blog_data ) => {
 
-                //console.log("LINKS blog_data: ", blog_data)
+                //!is_prod && console.log("LINKS blog_data: ", blog_data)
                 let blog_links = ''
 
                 blog_data.forEach(function(data) { // TODO: randomize order
@@ -268,7 +268,7 @@
 
                 const queryString = new URLSearchParams( window.location.search )
 		        slug = queryString.get('post')
-                //console.log( 'slug: ', slug )
+                //!is_prod && console.log( 'slug: ', slug )
 
                 let blog_data
                 let blog_links = []
@@ -284,21 +284,24 @@
                         let hero_image = record.get('Main Image')
                         let thumbnail = record.get('Thumbnail')
                         let body = record.get('Post Body')
-                        if ( slug && slug === url_slug ) {
-                            blog_data = { 
-                                "title": title, 
-                                "url_slug": url_slug,
-                                "updated": updated,
-                                "hero_image": hero_image,
-                                "body": body
+                        let is_published = record.get('Published')
+                        if ( is_published ) {
+                            if ( slug && slug === url_slug ) {
+                                blog_data = { 
+                                    "title": title, 
+                                    "url_slug": url_slug,
+                                    "updated": updated,
+                                    "hero_image": hero_image,
+                                    "body": body
+                                }
+                            } else {
+                                blog_links.push({ 
+                                    "title": title, 
+                                    "url_slug": url_slug,
+                                    "updated": updated,
+                                    "thumbnail": thumbnail
+                                })
                             }
-                        } else {
-                            blog_links.push({ 
-                                "title": title, 
-                                "url_slug": url_slug,
-                                "updated": updated,
-                                "thumbnail": thumbnail
-                            })
                         }
                     })
                     fetchNextPage()
@@ -308,7 +311,7 @@
                         console.error(err)
                         return
                     } else { 
-                        //console.log('Features: ', blog_data) 
+                        //!is_prod && console.log('Features: ', blog_data) 
                         populate_blog( blog_data )
                         prepare_blog_links( blog_links )
                     }
@@ -339,7 +342,7 @@
                 return
             }
             records.forEach(function (record) {
-                //console.log(record.getId())
+                //!is_prod && console.log(record.getId())
             })
         })
 

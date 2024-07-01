@@ -19,11 +19,12 @@
 
 	--base-radius: .5rem;
 
-	/* --section-heading-font: 'poppins', sans-serif;
-	--section-heading-font: "DM Serif Text", serif; */
-	--section-heading-font: "Roboto", sans-serif;
+	--section-heading-font: 'poppins', sans-serif;
+	/* --section-heading-font: "DM Serif Text", serif; */
+	/* --section-heading-font: "Roboto", sans-serif; */
 	/* --section-default-font: "DM Sans", "Figtree", sans-serif; */
-	--section-default-font: "Roboto", sans-serif;
+	/* --section-default-font: "Roboto", sans-serif; */
+	--section-default-font: "poppins", sans-serif;
 }
 
 /*
@@ -97,7 +98,7 @@ body > main > h2 {
     margin: 3rem 1rem;
 	font-size: 2.5rem;
 }
-body.audience-select > main.page-wrapper {
+body.home > main.page-wrapper {
     padding-top: 0;
     overflow: hidden;
 }
@@ -572,6 +573,34 @@ section#blog_hero div.chunklet h2 {
 #blog_hero nav ul a { color: var(--lightest); padding: .25rem 0; }
 
 
+/* loading animation */
+.loading {
+	margin: 0 auto;
+    min-height: 100px;
+    width: 100%;
+    background: var(--offlight);
+	position: relative;
+}
+
+.loading:after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -25px;
+	margin-left: -25px;
+	width: 40px;
+	height: 40px;
+	border-radius: 40px;
+	border: 5px solid var(--primelight);
+	border-top-color: var(--primedark);
+	animation: loading 2s linear infinite;
+}
+@keyframes loading {
+	0% { transform: rotate(0deg) scale(1); }
+	50% { transform: rotate(180deg) scale(1.2); }
+	100% { transform: rotate(360deg) scale(1); }
+}
 
 
 /* global header & nav */
@@ -1000,6 +1029,43 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
 
 
 /* section: process */
+
+#process .process-tile-list-stepped {
+    display: flex;
+	justify-content: center;
+    gap: 1rem;
+	flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+	position: relative;
+	list-style: none;
+}
+#process .process-tile-list-stepped li.tile {
+    /* border: 1px solid var(--offlight);
+    border-radius: var(--base-radius); */
+    height: 50vh !important;
+    min-width: 18vw;
+    margin: 0;
+    transition: all .25s ease-in-out;
+    cursor: default;
+    position: relative;
+    background-size: 140%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 1rem 0;
+}
+#process .process-tile-list-stepped li.tile img.process-preview { 
+	position: absolute; 
+	top: 0;
+	left: 100%;
+    margin: 0 0 0 8rem;
+}
+#process .chunklet .scrolljacker {
+    height: 50vh;
+    overflow: auto;
+}
+
+
 div.process-container, .timeline {
 	position: relative; 
 	background: rgba(255, 255, 255, .9);
@@ -1600,8 +1666,8 @@ section .chunklet h3 {
     font-family: var(--section-heading-font);
     font-style: normal;
     position: relative;
-    font-weight: 300;
-    text-transform: uppercase;
+    font-weight: 500;
+    /* text-transform: uppercase; */
 }
 section .chunklet h3.head-center { text-align: center; }
 section .chunklet h3.head-right { text-align: right; }

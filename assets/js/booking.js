@@ -1,4 +1,7 @@
 
+const is_prod = window.location.hostname === 'northcreative'
+localStorage.setItem( 'env_prod', is_prod )
+
 const send_email = () => {
     let senderName = 'El Hefe'
     //let attName = csvFileName + moment().format() + '.csv'
@@ -16,7 +19,7 @@ const send_email = () => {
             data: csvPath
         }] */
     }).then(
-        message => console.log(message)
+        message => !is_prod && console.log(message)
     )
 }
 
@@ -34,14 +37,14 @@ const tz_from_latlon = async ( ll_obj ) => {
     })
     .catch(( err ) => { 
 		const error = `Error getting timezone data: ${err}`
-		console.log(error)
+		!is_prod && console.log(error)
 		return null
 	})
 }
 
 const geocode_address = async ( address, parent_el ) => {
 
-    console.log('searching the google for address: ' + address)
+    !is_prod && console.log('searching the google for address: ' + address)
 	const $parent = $(parent_el)
 	const despaced = address.replace(/\s+/g, "+")
 	// TODO: establish domain restrictions for all API keys
@@ -65,7 +68,7 @@ const geocode_address = async ( address, parent_el ) => {
             "google_formatted_address": json.results[0].formatted_address || null,
             "lat_lng": json.results[0].geometry.location || null
         }
-        //console.log("search data: \n" + JSON.stringify(search_data))
+        //!is_prod && console.log("search data: \n" + JSON.stringify(search_data))
 
         if ( search_data.street_number && search_data.street_name ) {
             search_data.address_line1 = search_data.street_number + ' ' + search_data.street_name
@@ -87,7 +90,7 @@ const geocode_address = async ( address, parent_el ) => {
 
 		const error = `Error getting location data: ${err}`
 		const result_message = '<strong>"'+address+'"</strong> was not recognized as valid.'
-		console.log(error)
+		!is_prod && console.log(error)
 		$parent.find('input.search-input').focus()
 		$parent.find('.error').html(result_message)
 
@@ -265,10 +268,10 @@ const verify_complete_address = () => {
         const required_data = ["street_number", "street_name", "city", "state", "zip"]
 
         if (required_data.every(key => location_data.hasOwnProperty(key) && location_data[key] !== null)) {
-            console.log("Address has all required data")
+            !is_prod && console.log("Address has all required data")
             $('.address-detail').removeClass('active')
         } else {
-            console.log("Address is missing required data")
+            !is_prod && console.log("Address is missing required data")
             $('.address-detail').addClass('active')
         }
     }
@@ -292,10 +295,10 @@ const prepopulate_booking_form = () => {
     const booking_data = get_local_booking()
 
     const form_elements = getAllFormElements(document.getElementById("booking"))
-    //console.log(form_elements)
+    //!is_prod && console.log(form_elements)
 
     form_elements.forEach(el => { // TODO: update for radio & multi
-        //console.log('name: ' + el.name + ' type: ' + el.type + ' value: ' + el.value)
+        //!is_prod && console.log('name: ' + el.name + ' type: ' + el.type + ' value: ' + el.value)
 
         if ( el.type == "radio" ) {
             let tmp_val = booking_data[el.name]
@@ -345,7 +348,7 @@ const prepare_form = () => {
 const validateStep = (field) => {
     let next_button = $('fieldset.current button.next')
     let required = $('fieldset.current').find('input, textarea, select').filter('[required]')
-    //console.log('req #: ' + required.length)
+    //!is_prod && console.log('req #: ' + required.length)
     let is_gtg = true
     required.each( function( index ) {
         let is_valid = $( this ).valid()
@@ -380,7 +383,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 		current_fs.removeClass("active")
 		next_fs.addClass("active")
 
-		console.log('current step: ' + current)
+		!is_prod && console.log('current step: ' + current)
         if ( $(this).attr('id') == 'booking_submit' ) {
             handle_booking( $('fieldset.step-success') )
         } else {
@@ -402,7 +405,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 		current_fs.removeClass("active")
 		previous_fs.addClass("active")
 
-		console.log('current step: ' + current)
+		!is_prod && console.log('current step: ' + current)
 		validateStep()
 	})
 
@@ -417,13 +420,13 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 	multi_form.find('input, textarea, select').on( "change keyup blur", function( e ) {
         if ( $(this).is('#hero_search') && e.which == 13 ) {
             e.preventDefault()
-            console.log('You pressed enter!')
+            //!is_prod && console.log('You pressed enter!')
             // clear address
             $( "#input_street_1, #input_street_2, #input_city, #input_state, #input_zip" ).val("")
             save_form_data( $( "form#booking" ), 'booking_data' )
             $(this).next().trigger('click')
-        } 
-        validateStep()
+        }
+        $(this).not('#hero_search') && validateStep()
 		
 	})
 
@@ -468,7 +471,7 @@ const save_form_data = ( form, ls_name ) => {
     let html_summary = format_summary( serialized )
     $('span.booking-summary').html( html_summary )
     localStorage.setItem(ls_name, JSON.stringify( serialized ))
-    console.log( 'form saved to local storage' )
+    !is_prod && console.log( 'form saved to local storage' )
 
 }
 
@@ -580,8 +583,8 @@ const prepare_record_data = () => { // TODO: remove null values
     const time = moment(formatted_data["Booking Time"], "HH-mm") // time parts, may be extended with seconds, milliseconds
     date?.hour(time ? time.hours() : date.hours()).minute(time ? time.minutes() : date.minutes())
     const datetime = date?.format()
-    console.log(datetime) // time of date is set
-    //console.log(date?.toDate()) // Javascript DateTime object
+    !is_prod && console.log(datetime) // time of date is set
+    //!is_prod && console.log(date?.toDate()) // Javascript DateTime object
 
 
     //const BDT = formatted_data["Booking Date"] + ' ' + formatted_data["Booking Time"]
@@ -613,9 +616,9 @@ let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
 
 const handle_booking = (response_container) => {
-    //console.log('SUBMIT')
+    //!is_prod && console.log('SUBMIT')
     record_data = prepare_record_data()
-    //console.log('record data:\n' + JSON.stringify( record_data ))
+    //!is_prod && console.log('record data:\n' + JSON.stringify( record_data ))
 
     NC_base('Web Booking').create([
         {
@@ -629,13 +632,12 @@ const handle_booking = (response_container) => {
             return
         }
         records.forEach(function (record) {
-            console.log(record.getId())
+            !is_prod && console.log(record.getId())
         })
         response_container.find('.step-fields').append(`<h2>Thank you ${record_data['First Name']}!</h2>`)
         response_container.addClass('complete')
-        // TODO: Clear local booking data &/or searched address?
-        // localStorage.removeItem("booking_data")
-        // localStorage.removeItem("searched_address")
+        localStorage.removeItem("booking_data")
+        localStorage.removeItem("searched_address")
         $('.progress-bar').removeClass(('progress-bar-animated'))
     })
     //.then(( response ) => { return response.json() })
@@ -658,7 +660,7 @@ NC_base('form_submit_test').create([
         return
     }
     records.forEach(function (record) {
-        console.log(record.getId())
+        !is_prod && console.log(record.getId())
     })
 })
 
@@ -681,8 +683,8 @@ NC_base('Markers').select({
 		console.error(err)
 		return
 	} else { 
-		console.log(`Total number of videographers: ${totalVideographers}`) 
-		//console.log(`zip_array: ${zip_array}`)
+		!is_prod && console.log(`Total number of videographers: ${totalVideographers}`) 
+		//!is_prod && console.log(`zip_array: ${zip_array}`)
 		//$('.total-videographer-count').text( totalVideographers )
 	}
 })

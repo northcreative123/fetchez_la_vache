@@ -170,7 +170,7 @@
 				<h3>Fonts & Text</h3>
                 <p>
                     Font pairing: <a href="https://www.fontpair.co/all" target="_blank">https://www.fontpair.co/all</a>.<br />
-                    We're currently using "<a href="https://fonts.google.com/specimen/Roboto" target="_blank">Roboto</a>" (with sans-serif as a fallback)
+                    We're currently using "<a href="https://fonts.google.com/specimen/Roboto" target="_blank"><s>Roboto</s></a>" Poppins (with sans-serif as a fallback)
                     for all fonts on the site.
                 </p>
                 <p class="note">
@@ -662,10 +662,14 @@ $('.royals-w-cheese button').click( function () {
     -->
 	<script src="assets/js/airtable.browser.js"></script>
     <script>
+        
+        const is_prod = window.location.hostname === 'northcreative'
+        localStorage.setItem( 'env_prod', is_prod )
+
         // Copy to clipboard
         $('code').click( function ( e ) {
             let text = $(e.currentTarget).parent().find($('code')).text()
-            console.log('COPIED:\n' + text)
+            !is_prod && console.log('COPIED:\n' + text)
             //alert('hi')
             window.navigator.clipboard.writeText(text).then( x => {
                 //$('.fbm-copied-message').text('Copied to Clipboard')
@@ -717,7 +721,7 @@ $('.royals-w-cheese button').click( function () {
                 return
             }
             records.forEach(function (record) {
-                //console.log(record.getId())
+                //!is_prod && console.log(record.getId())
             })
         })
 

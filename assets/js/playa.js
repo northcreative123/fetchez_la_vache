@@ -27,7 +27,7 @@ function playVideos(e) {
 
     // if (url.indexOf("youtube") !== -1) {
     if (url.indexOf("youtube") !== -1 || url.indexOf("youtu") !== -1) {
-        //console.log("is youtube")
+        //!is_prod && console.log("is youtube")
         const ytUrl = [this.dataset.url];
         let i, r, regExp = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
 
@@ -36,7 +36,7 @@ function playVideos(e) {
             document.getElementById("lvideo-wrap").innerHTML = `${startModal}<iframe width="560" height="315" title="YouTube Video" src='https://www.youtube.com/embed/${r[1]}?rel=0&autoplay=1&mute=1&loop=1&playlist=${r[1]}' frameborder="0" allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>${finishModal}`;
         }
     } else if (url.indexOf("vimeo") !== -1) {
-        // console.log("is Vimeo")
+        // !is_prod && console.log("is Vimeo")
         const vimeoURL = this.dataset.url;
         const regExp = /https:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         const match = vimeoURL.match(regExp);
@@ -80,7 +80,7 @@ const lvideoMode = () => {
 // GET ALL VIDEOS LIST
 const lvideoList = ( id ) => {
     const wrapper = document.getElementById("lvideo-wrap");
-    //console.log( 'current ID: ' + id );
+    //!is_prod && console.log( 'current ID: ' + id );
     let videoSelect = document.createElement("select");
     videoSelect.classList.add("video-select");
     videoSelect.setAttribute("id", "lvideo-list");

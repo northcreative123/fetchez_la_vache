@@ -35,7 +35,8 @@
 </head>
 
 
-<body class="audience-select">
+<!-- <body class="audience-select"> -->
+<body class="home">
 	
 	<header id="global_header" class="global-header">
 		<h1 class="logo"><a href="sandbox.html" title="Homepage">North Creative</a></h1>
@@ -61,6 +62,12 @@
 							<h4>Who We're For</h4>
 							<p>lorem ipsum</p>
 							<ul class="sub">
+
+								<!-- <a href="/client-types/corporate-and-enterprise">Corporate & Enterprise</a>
+								<a href="/client-types/marketing-agencies">Marketing Agencies</a>
+								<a href="/client-types/marketing-teams">In-House Teams</a>
+								<a href="/client-types/small-business">Small Business</a> -->
+
 								<li><a href="#">Corporate & Enterprise</a></li>
 								<li><a href="#">Marketing Agencies</a></li>
 								<li><a href="#">In-House Teams</a></li>
@@ -71,6 +78,12 @@
 							<h4>What We Do</h4>
 							<p>lorem ipsum</p>
 							<ul class="sub">
+
+								<!-- <a href="/service-types/video-for-social-media">Video for <br>Social Media</a>
+								<a href="/service-types/video-for-website">Video for Website</a>
+								<a href="/service-types/video-ads-and-streaming">Video Ads and Streaming</a>
+								<a href="/service-types/custom-video">Custom Video</a> -->
+
 								<li><a href="#">Video for Social Media</a></li>
 								<li><a href="#">Video for Website</a></li>
 								<li><a href="#">Video Ads and Streaming</a></li>
@@ -85,9 +98,14 @@
 				<li class="parent">
 					<a class="w-nav-link" href="/sandbox">Resources</a>
 					<ul class="sub">
-						<li><a href="#">sub menu link</a></li>
-						<li><a href="#">sub menu link</a></li>
-						<li><a href="#">sub menu link</a></li>
+
+						<!-- <a href="/hiring">Hiring Nationwide</a>
+						<a href="/blog">Blog Posts</a>
+						<a href="/login">Login</a> -->
+
+						<li><a href="#">Hiring Nationwide</a></li>
+						<li><a href="blog.html">Blog Posts</a></li>
+						<li><a href="#">Login</a></li>
 					</ul>
 				</li>
 				<li><a class="w-nav-link" href="/sandbox2">Contact</a></li>
@@ -112,19 +130,16 @@
 
 	<main id="page_wrapper" class="page-wrapper">
 
+
+
 		<section id="home_hero" class="section hero full-centered-chunk">
 			<div class="div-block chunklet">
-				<!-- <div class="slideshow">
-					<div></div><div></div><div></div><div></div>
-					<div></div><div></div><div></div><div></div>
-				</div> -->
-				<div class="hero-flick">
+				<!-- <div class="slideshow"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> -->
+				<div class="hero-flick web-feature">
 					<!-- https://www.veed.io/tools/video-compressor -->
 					<!-- <video src="assets/video/hero_bg.mp4" loop muted autoplay></video> -->
-					<video src="assets/video/hero-24f-br5.mp4" loop muted autoplay></video>
-					<!-- <iframe src="https://player.vimeo.com/video/966255889?background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
+					<video id="hero_video" class="" src="assets/video/hero-24f-br5.mp4" poster="assets/images/hero_bg_1.jpg" loop muted autoplay></video>
 				</div>
-				<!-- <h2><span class="hero-what">Video </span><span class="hero-where">Anywhere</span></h2> -->
 				<h2>Order custom video near you.</h2>
 				<h4><span class="hero-what">Videographers </span><span class="hero-where">Nationwide.</span></h4>
 				<form class="videographer-search">
@@ -133,17 +148,13 @@
 						<input type="text" id="hero_search" name="hero_search" class="search-input" placeholder="Where are we filming?" />
 						<button type="submit" class="search-submit"><span>Search </span>
 							<i class="fa-solid fa-arrow-right" data-icon="f061"></i>
-							<!-- <i class="fa-solid fa-magnifying-glass" data-icon="f002"></i> -->
 						</button>
 					</fieldset>
-					<!-- <span class="option2">...OR <a href="#" class="user-location"><i class="fa-solid fa-location-dot" data-icon="f3c5"></i> use your location</a></span> -->
 					<div class="result-block">
 						<p>result...</p>
 						<a href="book.html" class="cta-button button-primary w-button">Get Started</a>
 					</div>
 				</form>
-				<!-- <a data-scroll="" data-scroll-direction="vertical" data-scroll-speed="-10" data-scroll-position="top" href="#" class="button-primary w-button poppins-regular">Get Started <i class="fa-regular fa-circle-play"></i></a> -->
-				<!-- <a href="#" class="button-primary w-button poppins-regular">Get Started <i class="fa-regular fa-circle-play"></i></a> -->
 			</div>
 		</section>
 
@@ -153,16 +164,16 @@
 			<div class="div-block chunklet">
 				<h3 class="head-center"><i class="fa-solid fa-clapperboard"></i> Businesses film with North Creative</h3>
 
-				<div class="logo-ticker-section-logos-grid web-feature">
-					<div class="logo-ticker-section-logos-container"></div>
+				<div class="logo-ticker-section-logos-grid">
+					<div class="logo-ticker-section-logos-container web-feature"></div>
 				</div>
 
-				<div id="video_scroll_1" class="video-ticker-section-videos-grid web-feature">
-					<div class="video-ticker-section-videos-container"></div>
+				<div id="video_scroll_1" class="video-ticker-section-videos-grid">
+					<div class="video-ticker-section-videos-container web-feature"></div>
 				</div>
 
-				<div id="video_scroll_2" class="video-ticker-section-videos-grid web-feature">
-					<div class="video-ticker-section-videos-container"></div>
+				<div id="video_scroll_2" class="video-ticker-section-videos-grid">
+					<div class="video-ticker-section-videos-container web-feature"></div>
 				</div>
 
 			</div>
@@ -170,6 +181,63 @@
 
 
 
+
+		<section id="process" class="full-centered-chunk businesses-content">
+			<div class="div-block chunklet">
+				<h3>Our End-to-End Solution for Video</h3>
+				<div class="split-panel scrolljacker">
+					<aside class="split-half">
+						<ol class="process-tile-list-stepped">
+							<li class="tile">
+								<h4 class="process-pre-header">Get Started</h4>
+								<h2 class="process-header">Search for Videographers Near You</h2>
+								<p>Input your relative shooting address in the search bar to find videographers near you. Then, fill out a simple form characterizing your video
+									and book a call.</p>
+								<img src="assets/images/dummy.png" class="process-preview" />
+								<a href="book.html" class="cta-button button-primary">Get Started</a>
+							</li>
+							<li class="tile">
+								<h4 class="process-pre-header">Pre-Production</h4>
+								<h2 class="process-header">We Deliver Your Video Plan</h2>
+								<p>Your video plan may include a shot list, shooting schedule, scriptwriting, and other insights related to shooting that contribute to creating a
+									great video. We ensure all pre-production documents are communicated to you for your approval.</p>
+								<img src="assets/images/dummy.png" class="process-preview" />
+								<a href="book.html" class="cta-button button-primary">Get Started</a>
+							</li>
+							<li class="tile">
+								<h4 class="process-pre-header">Production</h4>
+								<h2 class="process-header">Videographer Films at Your Location</h2>
+								<p>Upon confirming your video strategy, a skilled North Creative videographer will arrive at your designated location. Rest assured, they are
+									thoroughly trained and veted to deliver high-quality footage at your business premises.</p>
+								<img src="assets/images/dummy.png" class="process-preview" />
+								<a href="book.html" class="cta-button button-primary">Get Started</a>
+							</li>
+							<li class="tile">
+								<h4 class="process-pre-header">Post-Production</h4>
+								<h2 class="process-header">Editing Your Video</h2>
+								<p>We choose the most electrifying music to complement your video. If your package requires graphics, we enlist top-tier motion graphics artists to
+									infuse your video with captivating effects that will dazzle viewers.</p>
+								<img src="assets/images/dummy.png" class="process-preview" />
+								<a href="book.html" class="cta-button button-primary">Get Started</a>
+							</li>
+							<li class="tile">
+								<h4 class="process-pre-header">Delivery</h4>
+								<h2 class="process-header">Video Uploaded to You</h2>
+								<p>We deliver your video in standard file formats, optimized for your preferred platform—be it social media, your website, or a streaming service.
+									Our configurations matter. You have the opportunity to request revisions at any stage prior to the final
+									delivery.</p>
+								<img src="assets/images/dummy.png" class="process-preview" />
+								<a href="book.html" class="cta-button button-primary">Get Started</a>
+							</li>
+						</ol>
+					</aside>
+					<aside class="split-half"></aside>
+				</div>
+			</div>
+		</section>
+
+
+<!--
 		<section id="process" class="full-centered-chunk businesses-content">
 			<div class="div-block chunklet">
 				<h3><i class="fa-solid fa-clapperboard"></i> Our End-to-End Solution for Video</h3>
@@ -250,7 +318,7 @@
 
 			</div>
 		</section>
-
+	-->
 
 
 		<section id="industries_served" class="full-centered-chunk businesses-content">
@@ -343,8 +411,8 @@
 		<section id="testimonials" class="businesses-content">
 			<div class="div-block chunklet">
 				<h3><i class="fa-solid fa-clapperboard"></i> See Our Testimonials</h3>
-				<div class="featured-testimonials web-feature">
-					<ul class="testimonial-list">
+				<div class="featured-testimonials">
+					<ul class="testimonial-list web-feature">
 						<!-- <li class="zero intro">
 							<div class="card zero">
 								<h5>Intro for this section</h5>
@@ -371,8 +439,6 @@
 
 			</div>
 		</section>
-
-
 
 
 
