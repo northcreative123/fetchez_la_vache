@@ -507,7 +507,7 @@ section#portfolio_tickers {}
 section#process {}
 section#client_types {}
 section#testimonials {}
-section#industries_served {}
+section#industries_served { min-height: auto !important; }
 section#cta_section {}
 section#videographer_cta,
 section#blog_cta {
@@ -805,34 +805,25 @@ section.hero div.chunklet img {
 */
 section.hero div.chunklet h2,
 section.hero div.chunklet h4 {
-	top: 45%;
-    left: 15% !important;
     text-align: center !important;
-    width: 70% !important;
-
-	/* text-transform: uppercase; */
-	font-weight: 500; 
-	font-family: var(--section-heading-font);
-	font-style: normal;
-	position: absolute;
+    font-weight: 500;
+    font-family: var(--section-heading-font);
+    font-style: normal;
     text-align: left;
-    padding-right: 2vw;
     font-size: 4rem;
     margin: 0;
-    padding: 0;
-	color: var(--lightest);
+    padding: 0 2rem;
+    color: var(--lightest);
     white-space: nowrap;
-	line-height: 3rem;
-	/* https://codepen.io/suprabhasupi/pen/mdVPywz */
+    line-height: 80%;
 	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
 		0px 8px 13px rgba(0,0,0,0.1),
 		0px 18px 23px rgba(0,0,0,0.1);
 }
 section.hero div.chunklet h2 {
-	top: 45%;
-    left: 25%;
+	top: 42%;
     text-align: center;
-    width: 50%;
+    position: relative;
 }
 section.hero div.chunklet h4 {
 	display: none;
@@ -963,7 +954,7 @@ section#home_hero form.videographer-search {
 section#home_hero form.videographer-search legend { 
 	/* display: none; */
 	text-align: center;
-    padding: 1rem 0;
+    padding: 0 0 1rem;
     color: var(--lightest);
     font-size: 1.5rem;
     text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
@@ -1283,7 +1274,7 @@ ul.tile-list li.tile span {
     width: 100%;
 }
 
-ul.tile-list li.tile h4 { }
+ul.tile-list li.tile h4 { font-size: 2rem; }
 ul.tile-list li.tile p { }
 #client_types ul.tile-list li.tile:nth-child(1) { 
 	border-radius: 1rem 0 0 0; 
@@ -1314,6 +1305,7 @@ ul.tile-list li i.fa-solid {
     bottom: 6rem;
     color: var(--primedark);
     right: 1rem;
+	display: none;
 }
 /* https://bennettfeely.com/clippy */
 ul.tile-list li.tile:first-child { 
@@ -1491,7 +1483,7 @@ ul.industry-list {
     padding: 0;
     text-align: left;
     flex: 1.5;
-    padding: 0;
+    padding: 1rem;
     display: inline-block;
 }
 ul.industry-list li { 
@@ -1505,10 +1497,11 @@ ul.industry-list li {
 	cursor: pointer;
 	position: relative;
     min-width: 12.5rem;
+	font-size: .9rem;
 }
 ul.industry-list li:hover { 
 	/* background: var(--offlight); */
-    border: 1px solid var(--darkest);
+    /* border: 1px solid var(--darkest); */
 }
 ul.industry-list li.active,
 ul.industry-list li.active:hover { 
@@ -1518,7 +1511,7 @@ ul.industry-list li.active:hover {
 	font-weight: bold;
 }
 ul.industry-list li:hover { 
-	transform: scale(1.25);
+	transform: scale(1.1);
     z-index: 10;
 }
 ul.industry-list li i.fa-solid,
@@ -1562,7 +1555,7 @@ ul.industry-list li[data-industry="software"]:after { content: "\f3fa"; }
 div.featured-industries .card-panel .card { 
 	display: none; 
     padding: 1rem 1rem 2rem;
-	background: var(--offlight);
+	/* background: var(--offlight); */
 	border-radius: var(--base-radius);
 }
 div.featured-industries .card-panel .card.active { display: block; }
@@ -1570,7 +1563,7 @@ div.featured-industries ul.industry-list li[data-industry="street_apparel"]:hove
 
 div.featured-industries .card-panel .image-frame {
 	display: inline-block;
-	max-width: 80%;
+	/* max-width: 80%; */
 	position: relative;
 	cursor: pointer;
 }
@@ -1722,7 +1715,7 @@ section .chunklet p.standout {
 	white-space: nowrap;
     margin: 0 0 1rem; 
 	font-family: var(--section-heading-font);
-	font-weight: 900;
+	font-weight: 600;
 }
 #cta_section .clever em {
 	font-style: normal;

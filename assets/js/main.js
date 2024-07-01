@@ -407,7 +407,8 @@ $( function() {
 
 			let connector = data.industry.toLowerCase()
 			connector = connector.replace(/&/g, "and").replace(/\s+/g, "_")
-        	industry_card_markup += '<div class="card" data-industry="'+connector+'"><h4>'+data.name+'</h4><p>'+data.industry+'</p><div class="image-frame play-inline" title="'+data.name+'" data-vimeoid="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img data-vimeoid="'+data.featured_video+'" alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div></div>'
+        	//industry_card_markup += '<div class="card" data-industry="'+connector+'"><h4>'+data.name+'</h4><p>'+data.industry+'</p><div class="image-frame play-inline" title="'+data.name+'" data-vimeoid="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img data-vimeoid="'+data.featured_video+'" alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div></div>'
+			industry_card_markup += '<div class="card" data-industry="'+connector+'"><div class="image-frame play-inline" title="'+data.name+'" data-vimeoid="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img data-vimeoid="'+data.featured_video+'" alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div></div>'
 			industry_tag_markup += '<li data-industry="'+connector+'">'+data.industry+'</li>'
 
         })
@@ -443,7 +444,8 @@ $( function() {
 			testimony_markup += '<li class=""><a href="" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><q>""</q><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
         })
 
-		parent.append(testimony_markup).find('li:first-child').addClass('active').removeClass('loading')
+		parent.append(testimony_markup).find('li:first-child').addClass('active')
+		parent.removeClass('loading')
 
     }
 
