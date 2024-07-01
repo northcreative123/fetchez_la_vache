@@ -476,7 +476,7 @@ $( function() {
 		})
 		
 	}
-	get_web_features()
+	$('.web-feature').length && get_web_features()
 
 
 
