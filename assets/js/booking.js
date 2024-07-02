@@ -118,7 +118,7 @@ let autocomplete, address1Field
 
 const initAutocomplete = () => {
 
-	address1Field = document.querySelector("#hero_search")
+	address1Field = document.querySelector("#fld_hero_search")
 
 	// Create the autocomplete object, restricting the search predictions to addresses in the US and Canada.
 	autocomplete = new google.maps.places.Autocomplete(address1Field, {
@@ -417,7 +417,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
     $('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
 
 	multi_form.find('input, textarea, select').on( "change keyup blur", function( e ) {
-        if ( $(this).is('#hero_search') && e.which == 13 ) {
+        if ( $(this).is('#fld_hero_search') && e.which == 13 ) {
             e.preventDefault()
             //!is_prod && console.log('You pressed enter!')
             // clear address
@@ -425,7 +425,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
             save_form_data( $( "form#booking" ), 'booking_data' )
             $(this).next().trigger('click')
         }
-        $(this).not('#hero_search') && validateStep()
+        $(this).not('#fld_hero_search') && validateStep()
 		
 	})
 

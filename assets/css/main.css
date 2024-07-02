@@ -81,7 +81,8 @@
 	color: var(--darkest);
 
 }
-.hide-me {
+.hide-me,
+.semantic-hidden-heading {
 	display: none !important;
 }
 
@@ -2577,6 +2578,7 @@ form label > span em {
 }
 form input[type="text"],
 form input[type="tel"],
+form input[type="search"],
 form input[type="email"],
 form input[type="url"],
 form input[type="date"],
@@ -2932,6 +2934,7 @@ form#booking span.booking-summary dd {
     position: relative;
 	height: 0;
 	overflow: hidden;
+	text-align: left;
 }
 fieldset.step-success { /* complete error */
 	text-align: unset;
@@ -2970,10 +2973,8 @@ fieldset.step-success article button {
 } */
 #booking fieldset.current { height: auto; overflow: unset; }
 
-.form-card {
-    text-align: left;
-}
-.form-card legend { padding: 2rem 0 1rem; }
+
+#booking fieldset legend { padding: 2rem 0 1rem; }
 
 #booking fieldset:not(:first-of-type) {
     /* display: none; */
