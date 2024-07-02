@@ -827,7 +827,7 @@ div.menu-panel {
 	flex: 1;
 	padding: 1.5rem 2rem;
 	}
-div.mega-menu footer {
+div.mega-menu .footer {
 	background: var(--darkest);
 	color: var(--lightest);
 	margin: .5rem 0 0;
@@ -1346,7 +1346,7 @@ ul.tile-list li.tile {
     background-repeat: no-repeat;
     background-position: center;
 }
-ul.tile-list li.tile span {
+ul.tile-list li.tile div {
 	background: rgba(255, 255, 255, .75);
     padding: 0 1rem 1rem;
     margin: 0;
@@ -3523,7 +3523,7 @@ body.nav-open .royals-w-cheese .burger-close { display: flex; }
 		padding: .1rem 0 0 1rem;
     	border-left: 1px solid;
 	}
-	header.global-header div.mega-menu footer {
+	header.global-header div.mega-menu .footer {
 		display: none;
 	}
 

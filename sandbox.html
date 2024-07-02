@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>🤖 Webflow Sandbox</title>
 
@@ -19,12 +19,12 @@
 
 	<!-- CSS
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<link href="https://cdn.prod.website-files.com/666f3a94e0196881b621e417/css/north-creative-2-0.webflow.73ef0d455.css" rel="stylesheet" />
+	<link href="https://cdn.prod.website-files.com/666f3a94e0196881b621e417/css/north-creative-2-0.webflow.73ef0d455.css" rel="stylesheet">
 
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" /> <!-- https://animate.style/ -->
-	<!-- <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet" /> -->
-	<link href="assets/css/fonts.css" rel="stylesheet" />
-	<link href="assets/css/main.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"> <!-- https://animate.style/ -->
+	<!-- <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet"> -->
+	<link href="assets/css/fonts.css" rel="stylesheet">
+	<link href="assets/css/main.css" rel="stylesheet">
 
 	<!-- Scripts
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -39,7 +39,7 @@
 	
 	<header id="global_header" class="global-header">
 		<h1 class="logo"><a href="sandbox.html" title="Homepage">North Creative</a></h1>
-		<nav role="navigation" class="nav-menu-wrapper">
+		<nav class="nav-menu-wrapper">
 			<ul>
 				<li class="parent">
 					<a href="/prototype">Services</a>
@@ -91,7 +91,7 @@
 						</div>
 						<!-- <div class="menu-panel"><h4>panel 4</h4><p>lorem ipsum</p></div> -->
 					</div>
-					<footer>menu footer</footer>
+					<div class="footer">menu footer</div>
 					</div>
 				</li>
 				<li class="parent">
@@ -114,6 +114,7 @@
 			<a href="book.html" class="cta-link button-primary">Get Started</a>
 			
 			<div class="royals-w-cheese">
+				<!-- TODO: div can't be child of button -->
 				<button class="burger burger-open" title="Open Menu">
 				  <span>Open menu</span>
 				  <div class="strip burger-strip-open"><div></div><div></div><div></div></div>
@@ -145,7 +146,7 @@
 				<form class="videographer-search">
 					<fieldset>
 						<legend>Search our nationwide network of <span class="total-videographer-count">___</span> videographers.</legend>
-						<input type="text" id="hero_search" name="hero_search" class="search-input" placeholder="Where are we filming?" />
+						<input type="text" id="hero_search" name="hero_search" class="search-input" placeholder="Where are we filming?">
 						<button type="submit" class="search-submit"><span>Search </span>
 							<i class="fa-solid fa-arrow-right" data-icon="f061"></i>
 						</button>
@@ -194,7 +195,7 @@
 								<h2 class="process-header">Search for Videographers Near You</h2>
 								<p>Input your relative shooting address in the search bar to find videographers near you. Then, fill out a simple form characterizing your video
 									and book a call.</p>
-								<img src="assets/images/dummy.png" class="process-preview" />
+								<img src="assets/images/dummy.png" class="process-preview" alt="temp">
 								<a href="book.html" class="cta-button button-primary">Get Started</a>
 							</li>
 							<li class="tile">
@@ -202,7 +203,7 @@
 								<h2 class="process-header">We Deliver Your Video Plan</h2>
 								<p>Your video plan may include a shot list, shooting schedule, scriptwriting, and other insights related to shooting that contribute to creating a
 									great video. We ensure all pre-production documents are communicated to you for your approval.</p>
-								<img src="assets/images/dummy.png" class="process-preview" />
+								<img src="assets/images/dummy.png" class="process-preview" alt="temp">
 								<a href="book.html" class="cta-button button-primary">Get Started</a>
 							</li>
 							<li class="tile">
@@ -210,7 +211,7 @@
 								<h2 class="process-header">Videographer Films at Your Location</h2>
 								<p>Upon confirming your video strategy, a skilled North Creative videographer will arrive at your designated location. Rest assured, they are
 									thoroughly trained and veted to deliver high-quality footage at your business premises.</p>
-								<img src="assets/images/dummy.png" class="process-preview" />
+								<img src="assets/images/dummy.png" class="process-preview" alt="temp">
 								<a href="book.html" class="cta-button button-primary">Get Started</a>
 							</li>
 							<li class="tile">
@@ -218,7 +219,7 @@
 								<h2 class="process-header">Editing Your Video</h2>
 								<p>We choose the most electrifying music to complement your video. If your package requires graphics, we enlist top-tier motion graphics artists to
 									infuse your video with captivating effects that will dazzle viewers.</p>
-								<img src="assets/images/dummy.png" class="process-preview" />
+								<img src="assets/images/dummy.png" class="process-preview" alt="temp">
 								<a href="book.html" class="cta-button button-primary">Get Started</a>
 							</li>
 							<li class="tile">
@@ -227,7 +228,7 @@
 								<p>We deliver your video in standard file formats, optimized for your preferred platform—be it social media, your website, or a streaming service.
 									Our configurations matter. You have the opportunity to request revisions at any stage prior to the final
 									delivery.</p>
-								<img src="assets/images/dummy.png" class="process-preview" />
+								<img src="assets/images/dummy.png" class="process-preview" alt="temp">
 								<a href="book.html" class="cta-button button-primary">Get Started</a>
 							</li>
 						</ol>
@@ -306,7 +307,7 @@
 					</li>
 					<li class="tile">
 						<h5><span>Videographer films at your location</span></h5>
-						<img alt="filming" src="assets/images/filming.jpg" />
+						<img alt="filming" src="assets/images/filming.jpg">
 					</li>
 					<li class="tile">
 						<h5><span>Post-Production Editing</span></h5>
@@ -344,7 +345,7 @@
 						<li data-industry="Street Apparel"><i class="fa-solid fa-shirt"></i> Street Apparel</li>
 					</ul>
 				</div>
-				<!-- <p><br /><br />Also: <a href="https://codepen.io/codingtuting/pen/XWrBgQz" target="_blank">Codepen card examples...</a></p> -->
+				<!-- <p><br><br>Also: <a href="https://codepen.io/codingtuting/pen/XWrBgQz" target="_blank">Codepen card examples...</a></p> -->
 			</div>
 		</section>
 
@@ -353,7 +354,7 @@
 		<section id="cta_section" class="full-centered-chunk businesses-content">
 			<div class="div-block chunklet">
 				<div id="cta_wrap">
-					<h2 class="clever">Where <em><span class="swap-a">Local</span><span class="swap-b">Nationwide</span></em> <br />Businesses <br />Find <em><span class="swap-a">Nationwide</span><span class="swap-b">Local</span></em> <br />Appeal</h2>
+					<h2 class="clever">Where <em><span class="swap-a">Local</span><span class="swap-b">Nationwide</span></em> <br>Businesses <br>Find <em><span class="swap-a">Nationwide</span><span class="swap-b">Local</span></em> <br>Appeal</h2>
 					<p>You've seen our <a href="#home_hero">nationwide network</a>, (work), (process), (who we serve), (reviews), and (industries). <a href="">Did we miss anything</a>?</p>
 					<p>If not, let's <a href="book.html" class="cta-link button-primary">Get Started</a></p>
 				</div>
@@ -362,52 +363,40 @@
 
 
 
-		<section id="" class="full-centered-chunk videographers-content">
-			<div class="div-block chunklet">
-				<p><strong>videographers</strong> content...</p>
-			</div>
-		</section>
-
 		<section id="client_types" class="full-centered-chunk businesses-content">
 			<div class="div-block chunklet"><!-- TODO: use Image Cards from https://codepen.io/codingtuting/pen/XWrBgQz -->
 				<!-- TODO: text bottom 60/40 split, links TBD -->
 				<h3 class="head-center"><i class="fa-solid fa-clapperboard"></i> For All Shapes and Sizes</h3>
 				<ul class="tile-list">
 					<li class="tile">
-						<span>
+						<div>
 							<h4><i class="fa-solid fa-building"></i> Corporations</h4>
 							<p>Communicate complex messages with engaging video storytelling</p>
-						</span>
+						</div>
 					</li>
 					<li class="tile">
-						<span>
+						<div>
 							<h4><i class="fa-solid fa-comments-dollar"></i> Marketing Agencies</h4>
 							<p>Offer video production services to expand your agency's offerings</p>
-						</span>
+						</div>
 					</li>
 					<li class="tile">
-						<span>
+						<div>
 							<h4><i class="fa-solid fa-person-chalkboard"></i> In-House Teams</h4>
 							<p>Create consistent video content to support your marketing strategy</p>
-						</span>
+						</div>
 					</li>
 					<li class="tile">
-						<span>
+						<div>
 							<h4><i class="fa-solid fa-shop"></i> Small Business</h4>
 							<p>Boost your online presence with engaging videos</p>
-						</span>
+						</div>
 					</li>
 				</ul>
 			</div>
 		</section>
 
 
-
-		<section id="" class="videographers-content">
-			<div class="div-block chunklet">
-				<p><strong>videographers</strong> content...</p>
-			</div>
-		</section>
 
 		<section id="testimonials" class="businesses-content">
 			<div class="div-block chunklet">
@@ -427,16 +416,10 @@
 
 
 
-		<section id="" class="videographers-content">
-			<div class="div-block chunklet">
-				<p><strong>videographers</strong> content...</p>
-			</div>
-		</section>
-
 		<section id="videographer_cta" class="full-centered-chunk businesses-content">
 			<div class="div-block chunklet">
 				<h3><i class="fa-solid fa-clapperboard"></i> Videographer CTA [TBD...]</h3>
-				<img class="background" src="assets/images/dude.png" />
+				<img class="background" src="assets/images/dude.png">
 
 			</div>
 		</section>
@@ -458,7 +441,7 @@
 						<li><a href="https://vimeo.com/northcreativefilms" target="_blank"><i class="fa-brands fa-vimeo-v"></i><span> Vimeo</span></a></li>
 					</ul>
 
-					<nav role="navigation" class="nav-menu-wrapper">
+					<nav class="nav-menu-wrapper">
 						<ul>
 							<li>
 								<a href="#">Pages</a>
@@ -518,7 +501,7 @@
 						</ul>
 					</nav>
 
-					<img class="logo-map" src="assets/images/logos/nc_map.svg" alt="North Creative" />
+					<img class="logo-map" src="assets/images/logos/nc_map.svg" alt="North Creative">
 
 				</div>
 			</section>
