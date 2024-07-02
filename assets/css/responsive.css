@@ -1,0 +1,171 @@
+
+@media only screen and ( max-width: 400px ) {}
+
+@media only screen and (max-width: 480px) {
+
+	header .user-options .cta-link {
+		position: absolute;
+        white-space: nowrap;
+		width: 40vw;
+        top: 6rem;
+        right: 20vw;
+		text-align: center;
+	}
+	section.hero div.chunklet h2 { font-size: 2.5rem; }
+	section#home_hero form.videographer-search {
+		right: 10%;
+		width: 84%;
+	}
+	form.videographer-search button.search-submit { width: 2.7rem; }
+	form.videographer-search button.search-submit span { display: none; }
+	#audience_buttons button {
+		padding: .75rem 1rem;
+		min-width: 10rem;
+	}
+
+	#lvideo-wrap.mini, #lvideo-wrap.mini:after, #lvideo-wrap.mini .lvideo-overlay {
+		width: 100% !important;
+	}
+}
+
+/* tablets */
+@media screen and (max-width: 991px) {
+	/* mobile menu */
+	.royals-w-cheese {
+		display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+        vertical-align: middle;
+	}
+    header.global-header .nav-menu-wrapper {
+        background-color: rgba(0, 0, 0, .9);
+        right: 100vw;
+		padding: 1rem 2rem;
+		height: 100vh;
+		top: 0;
+		overflow: auto;
+		position: fixed;
+		width: 80vw;
+        z-index: 1000;
+		transition: right .5s ease-in-out;
+    }
+	body.nav-open header.global-header .nav-menu-wrapper { right: 10vw; }
+	header.global-header nav > ul > li > div.mega-menu, 
+	header.global-header nav > ul > li > ul {
+		display: block !important;
+		animation: none !important;
+		color: var(--lightest);
+		position: relative;
+		left: unset;
+		top: unset;
+		min-width: unset;
+		max-height: unset;
+		opacity: unset;
+		max-width: unset;
+		width: unset;
+		padding: 0;
+		border-radius: unset;
+		border: unset;
+		background: unset;
+	}
+	header.global-header nav div.menu-panel {
+		flex: unset;
+		padding: 0 1rem 1rem;
+	}
+	header.global-header nav > ul > li {
+		display: block;
+	}
+
+	header.global-header nav > ul > li > a,
+	header.global-header.shrink nav > ul > li > a { 
+		padding: 1rem 0; 
+        display: block;
+        /* border-bottom: 1px solid rgba(255, 255, 255, .5); */
+		color: var(--lightest);
+        font-size: 1.5rem;
+	}
+	header.global-header nav > ul > li > a:after { display: none !important; }
+	header.global-header nav div.panels {
+		display: block;
+	}
+	header.global-header nav a {
+		color: var(--lightest);
+	}
+	a.w-nav-link:hover,
+	.shrink a.w-nav-link:hover {
+		background: unset;
+	}
+	ul.sub a:hover {
+		color: unset;
+		text-decoration: underline;
+	}
+	div.mega-menu ul.sub {
+		padding: 0 1rem !important;
+	}	
+	header.global-header nav ul.sub a {
+		padding: .1rem 0 0 1rem;
+    	border-left: 1px solid;
+	}
+	header.global-header div.mega-menu .footer {
+		display: none;
+	}
+
+	header.global-header div.user-options {
+		top: .5rem;
+		right: 2rem;
+	}
+
+	section.hero div.chunklet h2 { white-space: unset; top: 38%; }
+	section#home_hero form.videographer-search { right: 20%; width: 60%; }
+
+	section .chunklet { max-width: unset; }
+	section .chunklet h3 { font-size: 2rem; padding: 1rem 12vw; }
+
+	/* styles by section */
+	section#home_hero {}
+	section#portfolio_tickers {}
+	section#process {}
+	section#client_types {}
+	section#testimonials {}
+	section#industries_served {}
+	section#cta_section {}
+	section#videographer_cta {}
+
+	section#portfolio_tickers .logo-ticker-section-image-frame img { max-height: 3rem; }
+	section#portfolio_tickers .video-ticker-section-image-frame,
+	section#portfolio_tickers .video-ticker-section-image-frame img { max-width: 40vw; }
+
+	section#industries_served .industry-list li { min-width: unset; }
+
+	section#testimonials .testimonial-list > li > a > img {
+		max-height: 3rem;
+		max-width: 9rem;
+	}
+
+	#lvideo-wrap.mini, #lvideo-wrap.mini:after, #lvideo-wrap.mini .lvideo-overlay {
+		width: 69%;
+	}
+}
+
+/* Extra small devices (phones, 600px and down)
+@media only screen and (max-width: 600px) {
+	header.global-header nav * {
+		margin: 0;
+		padding: 0;
+		width: auto;
+		display: block;
+	}
+} */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}

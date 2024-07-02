@@ -19,12 +19,13 @@
 
 	<!-- CSS
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<link href="https://cdn.prod.website-files.com/666f3a94e0196881b621e417/css/north-creative-2-0.webflow.73ef0d455.css" rel="stylesheet">
+	<!-- <link href="https://cdn.prod.website-files.com/666f3a94e0196881b621e417/css/north-creative-2-0.webflow.73ef0d455.css" rel="stylesheet"> -->
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"> <!-- https://animate.style/ -->
-	<!-- <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet"> -->
+	<link href="assets/css/wf-reset.css" rel="stylesheet">
 	<link href="assets/css/fonts.css" rel="stylesheet">
 	<link href="assets/css/main.css" rel="stylesheet">
+	<link href="assets/css/responsive.css" rel="stylesheet">
 
 	<!-- Scripts
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -33,7 +34,6 @@
 	
 </head>
 
-
 <body class="styleguide">
 	
 	<header id="global_header" class="global-header shrink">
@@ -41,39 +41,38 @@
 		<nav class="nav-menu-wrapper">
 			<ul>
 				<li class="parent">
-					<a href="/prototype">Mega menu</a>
+					<a href="/prototype">Services</a>
 					<div class="mega-menu">
 					<div class="panels">
 						<div class="menu-panel">
-							<h4>Some Title</h4>
-							<p>Some text...</p>
-                            <ul class="sub">
-                                <li><a href="styleguide.html">Style Guide</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="https://github.com/northcreative123/fetchez_la_vache" target="_blank">github</a></li>
-                                <li><a href="https://raw.githack.com/northcreative123/fetchez_la_vache/main/sandbox.html" target="_blank">githack</a></li>
-                                <li><a href="https://north-creative-2-0.webflow.io/" target="_blank">WebFlow</a></li>
-                                <li><a href="#" onclick="clear_local_storage()">Clear local storage</a></li>
-                            </ul>
+						<h4>megamenu content...</h4>
+						<p>lorem ipsum</p>  
+						<ul class="sub">
+							<li><a href="styleguide.html">Style Guide</a></li>
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="https://github.com/northcreative123/fetchez_la_vache" target="_blank">github</a></li>
+							<li><a href="https://raw.githack.com/northcreative123/fetchez_la_vache/main/sandbox.html" target="_blank">githack</a></li>
+							<li><a href="https://north-creative-2-0.webflow.io/" target="_blank">WebFlow</a></li>
+						</ul>
 						</div>
 						<div class="menu-panel">
-							<h4>Some Title</h4>
-							<p>Some text...</p>
+							<h4>Who We're For</h4>
+							<p>lorem ipsum</p>
 							<ul class="sub">
-								<li><a href="#">Link to a page</a></li>
-								<li><a href="#">Link to a page</a></li>
-								<li><a href="#">Link to a page</a></li>
-								<li><a href="#">Link to a page</a></li>
+								<li><a href="#" data-wf-loc="/client-types/corporate-and-enterprise">Corporate & Enterprise</a></li>
+								<li><a href="#" data-wf-loc="/client-types/marketing-agencies">Marketing Agencies</a></li>
+								<li><a href="#" data-wf-loc="/client-types/marketing-teams">In-House Teams</a></li>
+								<li><a href="#" data-wf-loc="/client-types/small-business">Small Business</a></li>
 							</ul>
 						</div>
 						<div class="menu-panel">
-							<h4>Some Title</h4>
-							<p>Some text...</p>
+							<h4>What We Do</h4>
+							<p>lorem ipsum</p>
 							<ul class="sub">
-								<li><a href="#">Link to a page</a></li>
-								<li><a href="#">Link to a page</a></li>
-								<li><a href="#">Link to a page</a></li>
-								<li><a href="#">Link to a page</a></li>
+								<li><a href="#" data-wf-loc="/service-types/video-for-social-media">Video for Social Media</a></li>
+								<li><a href="#" data-wf-loc="/service-types/video-for-website">Video for Website</a></li>
+								<li><a href="#" data-wf-loc="/service-types/video-ads-and-streaming">Video Ads and Streaming</a></li>
+								<li><a href="#" data-wf-loc="/service-types/custom-video">Custom Video</a></li>
 							</ul>
 						</div>
 						<!-- <div class="menu-panel"><h4>panel 4</h4><p>lorem ipsum</p></div> -->
@@ -82,14 +81,14 @@
 					</div>
 				</li>
 				<li class="parent">
-					<a href="/sandbox">Simple menu</a>
+					<a href="/sandbox">Resources</a>
 					<ul class="sub">
-						<li><a href="#">Link to a page</a></li>
-						<li><a href="#">Link to a page</a></li>
-						<li><a href="#">Link to a page</a></li>
+						<li><a href="#" data-wf-loc="/hiring">Hiring Nationwide</a></li>
+						<li><a href="blog.html" data-wf-loc="/blog">Blog Posts</a></li>
+						<li><a href="#" data-wf-loc="/login">Login</a></li>
 					</ul>
 				</li>
-				<li><a href="/sandbox2">Direct link</a></li>
+				<li><a href="/sandbox2" data-wf-loc="/contact">Contact</a></li>
 			</ul>
 		</nav>
 		<div class="user-options">

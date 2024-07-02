@@ -5,6 +5,7 @@ const get_random = ( x ) => { return Math.floor( Math.random() * ( x ? x : 10000
 const get_fn_name = () => { return getFuncName.caller.name }
 const log_fn_name = () => { return getFuncName.caller.name }
 
+// https://www.telerik.com/blogs/how-to-style-console-log-contents-in-chrome-devtools
 // ✨ 🤓 ☠️ ❣️ 🤪 🙊
 const console_key_style = "color: yellow; font-size: 12px;"
 const console_data_style = "color: orange; font-size: 12px;"
