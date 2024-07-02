@@ -2,18 +2,41 @@
 const is_prod = window.location.hostname === 'northcreative'
 localStorage.setItem( 'env_prod', is_prod )
 const get_random = ( x ) => { return Math.floor( Math.random() * ( x ? x : 10000000 ) ) }
+const get_fn_name = () => { return getFuncName.caller.name }
+const log_fn_name = () => { return getFuncName.caller.name }
+
+// ✨ 🤓 ☠️ ❣️ 🤪 🙊
+const console_key_style = "color: yellow; font-size: 12px;"
+const console_data_style = "color: orange; font-size: 12px;"
+const console_success_style = "color: green; font-size: 20px;"
+const console_revisit_style = "color: darkred; font-size: 12px; font-weight: bold;"
+const console_error_style = "color: red; font-size: 20px; font-weight: bold;"
+const console_pride_style = "padding: 10px 0 20px; font-weight: bold; font-size: 30px;color: white; text-shadow: 3px 3px 0 rgb(217,31,38) , 6px 6px 0 rgb(226,91,14) , 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)"
+
+!is_prod && console.log('%c 🐄 Fetchez la Vache !', console_pride_style)
+
+/*
+!is_prod && console.log( '%c 🤓 console.log: ', console_key_style, 'message/data' )
+!is_prod && console.info( '%c 🤓 console.info: ', console_key_style, 'message/data' )
+!is_prod && console.warn( '%c 🤓 console.warn: ', console_key_style, 'message/data' )
+!is_prod && console.error( '%c 🤓 console.error: ', console_key_style, 'message/data' )
+*/
 
 
 
-
-
+$('.web-feature').addClass('loading')
 
 /* AIRTABLE: */
 const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
 let Airtable = require('airtable')
 let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
-$('.web-feature').addClass('loading')
+
+
+/* ****************************************
+ * [ GOOGLE ADDRESS SEARCH ]
+ *
+ * ***************************************/
 
 const get_points_in_radius = ( points, center, radius ) => {
 
@@ -40,8 +63,6 @@ const get_points_in_radius = ( points, center, radius ) => {
 	}).length
 
 }  
-  
-
 
 const geocode_address = async ( address, parent_el ) => {
 
@@ -72,7 +93,7 @@ const geocode_address = async ( address, parent_el ) => {
             "google_formatted_address": json.results[0].formatted_address || null,
             "lat_lng": json.results[0].geometry.location || null
         }
-        !is_prod && console.log("search data: \n" + JSON.stringify(search_data))
+        !is_prod && console.log("search data: \n", search_data)
 
         if ( search_data.street_number && search_data.street_name ) {
             search_data.address_line1 = search_data.street_number + ' ' + search_data.street_name
@@ -127,8 +148,6 @@ const geocode_address = async ( address, parent_el ) => {
 
 }
 
-
-
 const attach_search_event = () => {
 
 	$('form.videographer-search').on( "submit", function( e ) {
@@ -142,7 +161,7 @@ const attach_search_event = () => {
 			$(e.currentTarget).removeClass('result error').addClass('searching')
 			!is_prod && console.log('searched address: ' + address)
 			const address_ll = geocode_address(address, $(e.currentTarget))
-			//!is_prod && console.log('address lat/lon: ' + JSON.stringify(address_ll))
+			//!is_prod && console.log('address lat/lon: ', address_ll)
 
 		} else {
 
@@ -157,10 +176,16 @@ const attach_search_event = () => {
 
 
 
-// https://learn.jquery.com/plugins/basic-plugin-creation/
-// https://jsfiddle.net/hrishikeshk/7ks5ztj8/
-$.fn.jack_the_scroll = function() {
- 
+/* ****************************************
+ * [ SCROLL JACKING ]
+ *
+ * ***************************************/
+
+$.fn.jack_the_scroll = function() { // TODO: complete or deprecate
+
+	// https://learn.jquery.com/plugins/basic-plugin-creation/
+	// https://jsfiddle.net/hrishikeshk/7ks5ztj8/
+
     return this.each( function( options ) {
         let window_offset = $(document).scrollTop()
 		let element_offset = Math.floor( $(this).offset().top )
@@ -175,12 +200,10 @@ $.fn.jack_the_scroll = function() {
   
 $( function() {
 
-	$('video#hero_video').on("loadeddata", function() {
-		//!is_prod && console.log('Video loaded!')
-		$(this).parent().removeClass('loading')
-	})
-
-
+	/* ****************************************
+	 * [ AUDIENCE CONTENT TOGGLE ]
+	 *
+	 * ***************************************/
 
 	const audiences = ['businesses', 'videographers'] 
 	const audience_elements = audiences.map(item => `.${item}-content`).join(', ')
@@ -226,10 +249,11 @@ $( function() {
 	}
 	const toggle_content = ( audience ) => {
 
-		// Show/hide content based on user type
-		// !is_prod && console.log('All audience elements: ' + JSON.stringify(audience_elements))
+		// Show/hide content (section.businesses-content, section.videographers-content) based on (see audiences array var) user type
+		// !is_prod && console.log('All audience elements: ', audience_elements)
+
 		$( audience_elements ).not( '.' + audience + '-content' ).remove()
-		!is_prod && console.log('Audience update: ' + audience)
+		!is_prod && console.log(`%c Audience: ${audience}`, console_success_style)
 		$('.' + audience + '-content').addClass('enabled')
 
 	}
@@ -254,7 +278,10 @@ $( function() {
 
 
 
-
+	/* ****************************************
+	 * [ SCROLL ANIMATIONS ]
+	 *
+	 * ***************************************/
 
 	const move_stuff = ( offset, el, direction, speed ) => {
 
@@ -291,9 +318,15 @@ $( function() {
 
 
 
-    // http://ip-api.com/json/24.127.12.129
-    // ipinfo.io/24.127.12.129?token=d094b46883a2e4
+	/* ****************************************
+	 * [ USER IP SNIFF ]
+	 *
+	 * ***************************************/
+
 	const getUserLocation = async ( ip ) => {
+
+		// http://ip-api.com/json/24.127.12.129
+		// ipinfo.io/24.127.12.129?token=d094b46883a2e4
 
     	const response = await fetch('https://ipinfo.io/' + ip + '?token=d9e7dd4ebf804b')
         .then(( response ) => { return response.json() })
@@ -301,7 +334,7 @@ $( function() {
 
             const data = json
             localStorage.setItem('location', JSON.stringify(json))
-            //!is_prod && console.log('Location data: ' + JSON.stringify(data))
+            //!is_prod && console.log('Location data: ', data)
             //!is_prod && console.log('Lat/Lon: ' + data.loc)
 
           	const ll_obj = { "lat": data.loc.split(',')[0], "lon":  data.loc.split(',')[1] }
@@ -328,7 +361,7 @@ $( function() {
             .then(( json ) => {
 
                 const ip = json.ip
-                !is_prod && console.log( 'IP Address: ' + ip )
+				!is_prod && console.warn( '%c 🙊 IP Address: ', console_revisit_style, ip )
                 const city = getUserLocation( ip )
 
                 return city
@@ -337,7 +370,8 @@ $( function() {
             .catch((err) => { return `Error getting IP Address: ${err}` })
 
 		} catch (error) {
-			console.error('Error getting user location:', error)
+			//console.error('Error getting user location:', error)
+			console.error( '%c ☠️ Error getting user location:\n ', console_error_style, error )
 		}
 
 	}
@@ -353,6 +387,11 @@ $( function() {
 	
 
 
+	/* ****************************************
+	 * [ DATA-DRIVEN SHOWCASES ]
+	 *
+	 * ***************************************/
+
 	const populate_logo_marquee = ( parent, feature_data ) => {
 
 		let marquee_markup = '<div class="logo-ticker-section-logos-slide-container"><div class="logo-ticker-section-logos-slide">' // AKA marquee_wahlberg?
@@ -364,8 +403,6 @@ $( function() {
         parent.html( marquee_markup ).append( marquee_markup ).removeClass('loading') // twice is nice!
 
     }
-
-
 
 	const populate_video_marquee = ( parent, feature_data, start, count ) => {
 
@@ -381,8 +418,6 @@ $( function() {
 
     }
   
-
-
 	const attach_industry_events = () => {
 
 		$( '.featured-industries ul.industry-list li' ).on( "click", function( e ) {
@@ -420,8 +455,6 @@ $( function() {
 
     }
 	
-
-
 	const attach_testimonial_events = () => {
 
 		$( 'ul.testimonial-list > li > a' ).on( "click", function( e ) {
@@ -449,19 +482,17 @@ $( function() {
 
     }
 
-
-
 	const prepare_web_features = ( web_features ) => {
 
-		//!is_prod && console.log('web_features', web_features)
+		!is_prod && console.log(`%c 🤓 All Web Features:`, console_data_style, web_features)
 		const logo_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Logo Showcase") ).sort(() => Math.random() - 0.5)
-		//!is_prod && console.log("logo_data: ", logo_data)
+		!is_prod && console.log(`%c 🤓 Logo Data:`, console_data_style, logo_data)
 		const videos_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Video Showcase") && obj.featured_video ).sort(() => Math.random() - 0.5)
-		//!is_prod && console.log("video_data: ", videos_data)
+		!is_prod && console.log(`%c 🤓 Video Data:`, console_data_style, videos_data)
 		const testimonial_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Testimony Showcase") ).sort(() => Math.random() - 0.5)
-		//!is_prod && console.log("testimonial_data: ", testimonial_data)
+		!is_prod && console.log(`%c 🤓 Testimonial Data:`, console_data_style, testimonial_data)
 		const industry_data = web_features.filter( obj => obj.web_features && obj.web_features.includes("Industry Showcase") ).sort(() => Math.random() - 0.5)
-		//!is_prod && console.log("industry_data: ", industry_data)
+		!is_prod && console.log(`%c 🤓 Industry Data:`, console_data_style, industry_data)
 
 		populate_logo_marquee( $('.logo-ticker-section-logos-container'), logo_data )
 		populate_video_marquee($('#video_scroll_1 .video-ticker-section-videos-container'), videos_data, 0, 14) // Row 1
@@ -520,14 +551,26 @@ $( function() {
 
 
 
+	/* ****************************************
+	 * [ ADDITIONAL INITS ]
+	 *
+	 * ***************************************/
+
+	// hero video loaded listener
+	$('video#hero_video').on("loadeddata", function() {
+		!is_prod && console.log('%c Hero Video loaded!', console_success_style)
+		$(this).parent().removeClass('loading')
+	})
+
+	// videographer search
   	attach_search_event()
 
-	// mobile menu
-	$('.royals-w-cheese button').click( function () {
+	// mobile menu trigger - TODO: refactor
+	$('.royals-w-cheese .burger').click( function () {
 		$('body').toggleClass('nav-open')
 	})
 
-	// TODO: REMOVE
+	// user IP sniff - TODO: REMOVE (or detail in privacy/terms)
 	getUserIP()
 
 })

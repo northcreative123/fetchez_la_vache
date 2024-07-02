@@ -96,14 +96,14 @@
 			<a href="book.html" class="cta-link button-primary">Get Started</a>
 			
 			<div class="royals-w-cheese">
-				<button class="burger burger-open" title="Open Menu">
+				<div class="burger burger-open" title="Open Menu">
 				  <span>Open menu</span>
 				  <div class="strip burger-strip-open"><div></div><div></div><div></div></div>
-				</button>   
-				<button class="burger burger-close" title="Close Menu">
+                </div>   
+				<div class="burger burger-close" title="Close Menu">
 				  <span>Close menu</span>
 				  <div class="strip burger-strip-close"><div></div><div></div><div></div></div>
-				</button>
+                </div>
 			  </div>
 
 		</div>
@@ -327,6 +327,11 @@
                 
             }
             get_blog_data()
+
+            // mobile menu trigger - TODO: refactor
+            $('.royals-w-cheese .burger').click( function () {
+                $('body').toggleClass('nav-open')
+            })
 
         })
         

@@ -32,7 +32,6 @@ const tz_from_latlon = async ( ll_obj ) => {
     .then(( json ) => {
 
         localStorage.setItem('searched_address_tz', JSON.stringify( json ))
-        //return json
 
     })
     .catch(( err ) => { 
@@ -68,7 +67,7 @@ const geocode_address = async ( address, parent_el ) => {
             "google_formatted_address": json.results[0].formatted_address || null,
             "lat_lng": json.results[0].geometry.location || null
         }
-        //!is_prod && console.log("search data: \n" + JSON.stringify(search_data))
+        //!is_prod && console.log("search data: \n", search_data)
 
         if ( search_data.street_number && search_data.street_name ) {
             search_data.address_line1 = search_data.street_number + ' ' + search_data.street_name
@@ -614,7 +613,7 @@ let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 const handle_booking = (response_container) => {
     //!is_prod && console.log('SUBMIT')
     record_data = prepare_record_data()
-    //!is_prod && console.log('record data:\n' + JSON.stringify( record_data ))
+    //!is_prod && console.log('record data:\n', record_data )
 
     NC_base('Web Booking').create([
         {
