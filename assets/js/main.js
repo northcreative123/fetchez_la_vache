@@ -10,9 +10,9 @@ const log_fn_name = () => { return getFuncName.caller.name }
 // https://www.telerik.com/blogs/how-to-style-console-log-contents-in-chrome-devtools
 // ✨ 🤓 ☠️ ❣️ 🤪 🙊
 const console_key_style = "color: yellow; font-size: 12px;"
-const console_data_style = "color: orange; font-size: 12px;"
+const console_data_style = "color: orange; font-size: 12px; padding: 5px 10px;"
 const console_success_style = "color: green; font-size: 20px;"
-const console_revisit_style = "color: darkred; font-size: 12px; font-weight: bold;"
+const console_revisit_style = "color: darkred; font-size: 18px; font-weight: bold;"
 const console_error_style = "color: red; font-size: 20px; font-weight: bold;"
 const console_pride_style = "padding: 10px 0 20px; font-weight: bold; font-size: 30px;color: white; text-shadow: 3px 3px 0 rgb(217,31,38) , 6px 6px 0 rgb(226,91,14) , 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)"
 
@@ -257,7 +257,7 @@ $( function() {
 		// !is_prod && console.log('All audience elements: ', audience_elements)
 
 		$( audience_elements ).not( '.' + audience + '-content' ).remove()
-		!is_prod && console.log(`%c Audience: ${audience}`, console_success_style)
+		!is_prod && console.log(`%c ❣️ Audience: ${audience}`, console_success_style)
 		$('.' + audience + '-content').addClass('enabled')
 
 	}
@@ -318,7 +318,6 @@ $( function() {
 		}, false)
 
 	}
-	set_scroll_listener()
 
 
 
@@ -555,6 +554,11 @@ $( function() {
 
 
 
+	/* ****************************************
+	 * [ OTHER TRICKS ]
+	 *
+	 * ***************************************/
+
 	const attach_shady_events = ( shady_things ) => {
 
 		shady_things.on( "mouseenter", function( e ) {
@@ -567,8 +571,10 @@ $( function() {
 
 	}
 	const do_the_shady = ( shady_things ) => {
+
 		$('body main').prepend('<div id="shady_shade"></div>')
 		attach_shady_events( shady_things )
+
 	}
 
 
@@ -578,9 +584,12 @@ $( function() {
 	 *
 	 * ***************************************/
 
+	// for scrolly tricks
+	set_scroll_listener()
+
 	// hero video loaded listener
 	$('video#hero_video').on("loadeddata", function() {
-		!is_prod && console.log('%c Hero Video loaded!', console_success_style)
+		!is_prod && console.log('%c ❣️ Hero Video loaded', console_success_style)
 		$(this).parent().removeClass('loading')
 	})
 
