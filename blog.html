@@ -34,7 +34,7 @@
 </head>
 
 
-<body>
+<body class="blog">
 	
 	<header id="global_header" class="global-header shrink">
 		<h1 class="logo"><a href="sandbox.html" title="Homepage">North Creative</a></h1>
@@ -123,6 +123,7 @@
 		<section id="blog_content" class="full-centered-chunk">
 			<div class="div-block chunklet">
 				<h3 class="blog-title">Blog Title</h3>
+                
                 
 			</div>
 		</section>
@@ -228,6 +229,10 @@
 	<script src="assets/js/airtable.browser.js"></script>
     <script>
 
+        const is_prod = window.location.hostname === 'northcreative'
+        localStorage.setItem( 'env_prod', is_prod )
+        const get_random = ( x ) => { return Math.floor( Math.random() * ( x ? x : 10000000 ) ) }
+
         /* AIRTABLE: */
 
         const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
@@ -241,22 +246,26 @@
 
             const populate_blog = ( blog_data ) => {
 
-                //!is_prod && console.log("BLOG blog_data: ", blog_data)
+                !is_prod && console.log("BLOG blog_data: ", blog_data)
                 if ( blog_data ) {
                     $('#blog_hero .chunklet').append( '<img src="'+blog_data.hero_image+'" />' )
                     $('#blog_content h3').text( blog_data.title )
+                    $('#blog_content .chunklet').append('<time datetime="'+blog_data.updated+'">'+blog_data.updated+'</time>')
                     $('#blog_content .chunklet').append( blog_data.body )
+                } else {
+                    $('#blog_content .chunklet').append( '<p>Some text about the blog...</p>' )
                 }
 
             }
             
             const prepare_blog_links = ( blog_data ) => {
 
-                //!is_prod && console.log("LINKS blog_data: ", blog_data)
+                !is_prod && console.log("LINKS blog_data: ", blog_data)
                 let blog_links = ''
 
                 blog_data.forEach(function(data) { // TODO: randomize order
-                    blog_links += '<li><a href="blog.html?post='+data.url_slug+'">'+data.title+'</a></li>'
+                    //blog_links += '<li><a href="blog.html?post='+data.url_slug+'">'+data.title+'</a></li>'
+                    blog_links += '<li><a href="blog.html?post='+data.url_slug+'">'+data.title+'</a><time datetime="'+data.updated+'">'+data.updated+'</time><img src="'+data.hero_image+'" alt="'+data.title+'" /></li>'
                 })
 
                 $('#blog_hero .chunklet .blog-links ul').append( blog_links )
@@ -298,7 +307,7 @@
                                     "title": title, 
                                     "url_slug": url_slug,
                                     "updated": updated,
-                                    "thumbnail": thumbnail
+                                    "hero_image": hero_image
                                 })
                             }
                         }
