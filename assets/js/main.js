@@ -25,9 +25,10 @@ const console_pride_style = "padding: 10px 0 20px; font-weight: bold; font-size:
 
 
 
-$('.web-feature').addClass('loading')
+$('.web-feature').addClass('loading') // TODO: only add class to parent container?
 
 /* AIRTABLE: */
+// TODO: Hide & establish domain restrictions for all API keys ( Zapier )
 const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
 let Airtable = require('airtable')
 let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
@@ -69,7 +70,7 @@ const geocode_address = async ( address, parent_el ) => {
 
 	const $parent = $(parent_el)
 	const despaced = address.replace(/\s+/g, "+")
-	// TODO: establish domain restriction for all API keys
+	// TODO: Hide & establish domain restrictions for all API keys ( Zapier )
 	const url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+despaced+'&key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA'
 	const response = await fetch( url )
     .then(( response ) => { 

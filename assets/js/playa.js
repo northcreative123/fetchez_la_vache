@@ -1,3 +1,5 @@
+// TODO: REFACTOR!!!
+
 const body = document.body;
 
 function playVideos(e) {
@@ -22,7 +24,8 @@ function playVideos(e) {
     const url = this.dataset.url;
     const vimeo_id = e.currentTarget.dataset.vimeoid;
     const client = this.dataset.client;
-    const startModal = `<span onclick="lvideoClose();" class="lvideo-overlay"></span> <div class="lvideo-container"><button onclick="lvideoListToggle();" class="lvideo-list"><i class="fa-regular fa-folder-open" data-icon="f07c"></i></button>`;
+    //const startModal = `<span onclick="lvideoClose();" class="lvideo-overlay"></span> <div class="lvideo-container"><button onclick="lvideoListToggle();" class="lvideo-list"><i class="fa-regular fa-folder-open" data-icon="f07c"></i></button>`;
+    const startModal = `<span onclick="lvideoClose();" class="lvideo-overlay"></span> <div class="lvideo-container">`;
     const finishModal = `<button onclick="lvideoMode();" class="lvideo-mode"><i class="fa-solid fa-arrow-right" data-icon="f061"></i></button><button onclick="lvideoClose();" class="lvideo-close"><i class="fa-solid fa-xmark" data-icon="f00d"></i></button></div><h3>${client}</h3>`;
 
     // if (url.indexOf("youtube") !== -1) {
@@ -52,7 +55,7 @@ function playVideos(e) {
     } else {
         alert("No video link found.");
     }
-    lvideoList();
+    //lvideoList();
 }
 //document.querySelectorAll(".play-inline").forEach((d) => d.addEventListener("click", playVideos));
 
@@ -107,32 +110,6 @@ const lvideoListToggle = () => {
     video_list.classList.toggle("active");
 }
 
-/*
-const clients = [
-    {
-        "name": "Advanced Apathy",
-        "industry": "Street Apparel",
-        "logo_url": "https://uploads-ssl.webflow.com/63fbf496c1ef8e81a06600fe/64530dd16f990d4ab9b010ee_Advanced%20Apathy.png",
-        "vimeo_ids": [
-            "729848380",
-            "821025311",
-            "621330630"
-        ]
-    }
-]
-
-<label for="cars">Choose a car:</label>
-<select name="cars" id="cars">
-  <optgroup label="Swedish Cars">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-  </optgroup>
-  <optgroup label="German Cars">
-    <option value="mercedes">Mercedes</option>
-    <option value="audi">Audi</option>
-  </optgroup>
-</select>
-*/
 
 // LAUNCH
 function lvideo() { }
