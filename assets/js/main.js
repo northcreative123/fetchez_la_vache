@@ -1,6 +1,8 @@
 
 const is_prod = window.location.hostname === 'northcreative'
 localStorage.setItem( 'env_prod', is_prod )
+window.location.href.includes('file://') ? $('a.w3c').parent().remove() : $('a.w3c').attr('href', 'https://validator.w3.org/nu/?doc='+window.location.href)
+
 const get_random = ( x ) => { return Math.floor( Math.random() * ( x ? x : 10000000 ) ) }
 const get_fn_name = () => { return getFuncName.caller.name }
 const log_fn_name = () => { return getFuncName.caller.name }
@@ -553,6 +555,24 @@ $( function() {
 
 
 
+	const attach_shady_events = ( shady_things ) => {
+
+		shady_things.on( "mouseenter", function( e ) {
+			e.preventDefault()
+			$('body').addClass('shade-active')
+		}).on( "mouseleave", function( e ) {
+			e.preventDefault()
+			$('body').removeClass('shade-active')
+		})
+
+	}
+	const do_the_shady = ( shady_things ) => {
+		$('body main').prepend('<div id="shady_shade"></div>')
+		attach_shady_events( shady_things )
+	}
+
+
+
 	/* ****************************************
 	 * [ ADDITIONAL INITS ]
 	 *
@@ -566,6 +586,8 @@ $( function() {
 
 	// videographer search
   	attach_search_event()
+
+	$('.do-the-shady-thing').length && do_the_shady( $('.do-the-shady-thing') )
 
 	// mobile menu trigger - TODO: refactor
 	$('.royals-w-cheese .burger').click( function () {

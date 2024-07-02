@@ -49,6 +49,7 @@
 						<p>lorem ipsum</p>  
 						<ul class="sub">
 							<li><a href="styleguide.html">Style Guide</a></li>
+							<li><a href="#" class="w3c" target="_blank">W3C Validation</a></li>
 							<li><a href="blog.html">Blog</a></li>
 							<li><a href="https://github.com/northcreative123/fetchez_la_vache" target="_blank">github</a></li>
 							<li><a href="https://raw.githack.com/northcreative123/fetchez_la_vache/main/sandbox.html" target="_blank">githack</a></li>
@@ -662,6 +663,7 @@ $('.royals-w-cheese .burger').click( function () {
         
         const is_prod = window.location.hostname === 'northcreative'
         localStorage.setItem( 'env_prod', is_prod )
+        window.location.href.includes('file://') ? $('a.w3c').parent().remove() : $('a.w3c').attr('href', 'https://validator.w3.org/nu/?doc='+window.location.href)
 
         // Copy to clipboard
         $('code').click( function ( e ) {
