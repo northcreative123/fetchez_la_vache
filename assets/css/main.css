@@ -1922,22 +1922,21 @@ footer ul.social:after {
 } 
 */
 
-footer.global-footer h1.logo { /* https://www.pngtosvg.com */
+footer.global-footer .logo { /* https://www.pngtosvg.com */
 	display: block;
     background-image: url(../images/logos/nc_horizontal_black_map.svg);
     background-size: contain;
     background-repeat: no-repeat;
     text-indent: -1000px;
     overflow: hidden;
-    height: 100%;
-    max-width: 240px;
-    width: 15rem;
+    height: 4rem;
+    max-width: 300px;
+    width: 20rem;
     margin: .25rem;
-    vertical-align: middle;
     background-position: center;
 }
-footer.global-footer h1.logo:hover { transform: scale(1.1); }
-footer.global-footer h1.logo a { display: block; height: 100%; width: 100%; }
+footer.global-footer .logo:hover { transform: scale(1.1); }
+footer.global-footer .logo a { display: block; height: 100%; width: 100%; }
 footer.global-footer nav { 
 	display: block;
     margin: 3rem 0 1rem;
