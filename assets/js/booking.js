@@ -1,7 +1,4 @@
 
-const is_prod = window.location.hostname === 'northcreative'
-localStorage.setItem( 'env_prod', is_prod )
-
 const send_email = () => {
     let senderName = 'El Hefe'
     //let attName = csvFileName + moment().format() + '.csv'
@@ -76,7 +73,7 @@ const geocode_address = async ( address, parent_el ) => {
             search_data.local_formatted_address = search_data.address_line1 + ', ' + search_data.city + ', ' + search_data.state + ', ' + search_data.postal_code
         }
 
-        tz_from_latlon( search_data.lat_lng )
+        !current_url.includes('file://') && tz_from_latlon( search_data.lat_lng )
 
         localStorage.setItem('raw_search_response', JSON.stringify( json.results[0] ))
 		localStorage.setItem('searched_address', JSON.stringify( search_data ))
@@ -112,32 +109,6 @@ const attach_search_event = () => {
 	})
 }
 
-
-
-let autocomplete, address1Field
-
-const initAutocomplete = () => {
-
-	address1Field = document.querySelector("#fld_hero_search")
-
-	// Create the autocomplete object, restricting the search predictions to addresses in the US and Canada.
-	autocomplete = new google.maps.places.Autocomplete(address1Field, {
-		componentRestrictions: { country: ["us", "ca"] },
-		fields: ["address_components", "geometry"],
-		types: ["address"],
-	})
-	address1Field.focus()
-
-}
-
-
-if ( $('form#booking').length ) {
-	window.initAutocomplete = initAutocomplete
-}
-
-const despace = (str) => {
-	return str.replace(/\s+/g, '')
-}
 
 
 const serialize_object = () => {
@@ -503,9 +474,6 @@ function init_select_tags() {
 
 $( function() {
 
-    const tz = new Date().getTimezoneOffset() / 60 //moment.tz.guess()
-    localStorage.setItem('user_tz_offset', tz)
-
     if ( $('form#booking').length ) {
         prepare_form()
         adjust_datepickers()
@@ -537,9 +505,9 @@ $( function() {
         location.reload()
     })
 
-    $('.send-email').click( function () {
-        send_email()
-    })
+    // $('.send-email').click( function () {
+    //     send_email()
+    // })
 
 })
 
@@ -605,11 +573,6 @@ JSON:       https://community.airtable.com/t5/other-questions/is-it-possible-to-
             https://community.airtable.com/t5/other-questions/getting-started-with-airtable-importing-json-data-structure/td-p/58619
 */
 
-const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
-let Airtable = require('airtable')
-let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
-
-
 const handle_booking = (response_container) => {
     //!is_prod && console.log('SUBMIT')
     record_data = prepare_record_data()
@@ -639,22 +602,23 @@ const handle_booking = (response_container) => {
 }
 
 
-let loc = localStorage.getItem('location')
-NC_base('form_submit_test').create([
-    {
-        "fields": {
-            "Name": "another TEST record",
-            "Notes": "timestamp: " + Date.now(),
-            "URL": window.location.href,
-			"Location": loc
-        }
-    }
-], function (err, records) {
-    if (err) {
-        console.error(err)
-        return
-    }
-    records.forEach(function (record) {
-        !is_prod && console.log(record.getId())
-    })
-})
+
+
+
+let autocomplete, address1Field
+const initAutocomplete = () => {
+
+	address1Field = document.querySelector("#fld_hero_search")
+
+	// Create the autocomplete object, restricting the search predictions to addresses in the US and Canada.
+	autocomplete = new google.maps.places.Autocomplete(address1Field, {
+		componentRestrictions: { country: ["us", "ca"] },
+		fields: ["address_components", "geometry"],
+		types: ["address"],
+	})
+	address1Field.focus()
+
+}
+if ( $('form#booking').length ) {
+	window.initAutocomplete = initAutocomplete
+}

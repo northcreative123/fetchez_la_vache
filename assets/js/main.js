@@ -1,42 +1,4 @@
 
-const is_prod = window.location.hostname === 'northcreative'
-localStorage.setItem( 'env_prod', is_prod )
-window.location.href.includes('file://') ? $('a.w3c').parent().remove() : $('a.w3c').attr('href', 'https://validator.w3.org/nu/?doc='+window.location.href)
-
-const get_random = ( x ) => { return Math.floor( Math.random() * ( x ? x : 10000000 ) ) }
-const get_fn_name = () => { return getFuncName.caller.name }
-const log_fn_name = () => { return getFuncName.caller.name }
-
-// https://www.telerik.com/blogs/how-to-style-console-log-contents-in-chrome-devtools
-// ✨ 🤓 ☠️ ❣️ 🤪 🙊
-const console_key_style = "color: yellow; font-size: 12px;"
-const console_data_style = "color: orange; font-size: 12px; padding: 5px 10px;"
-const console_success_style = "color: green; font-size: 20px;"
-const console_revisit_style = "color: darkred; font-size: 18px; font-weight: bold;"
-const console_error_style = "color: red; font-size: 20px; font-weight: bold;"
-const console_pride_style = "padding: 10px 0 20px; font-weight: bold; font-size: 30px;color: white; text-shadow: 3px 3px 0 rgb(217,31,38) , 6px 6px 0 rgb(226,91,14) , 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)"
-
-!is_prod && console.log('%c 🐄 Fetchez la Vache !', console_pride_style)
-
-/*
-!is_prod && console.log( '%c 🤓 console.log: ', console_key_style, 'message/data' )
-!is_prod && console.info( '%c 🤓 console.info: ', console_key_style, 'message/data' )
-!is_prod && console.warn( '%c 🤓 console.warn: ', console_key_style, 'message/data' )
-!is_prod && console.error( '%c 🤓 console.error: ', console_key_style, 'message/data' )
-*/
-
-
-
-$('.web-feature').addClass('loading') // TODO: only add class to parent container?
-
-/* AIRTABLE: */
-// TODO: Hide & establish domain restrictions for all API keys ( Zapier )
-const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
-let Airtable = require('airtable')
-let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
-
-
-
 /* ****************************************
  * [ GOOGLE ADDRESS SEARCH ]
  *
@@ -189,7 +151,7 @@ $.fn.jack_the_scroll = function() { // TODO: complete or deprecate
 
 	// https://learn.jquery.com/plugins/basic-plugin-creation/
 	// https://jsfiddle.net/hrishikeshk/7ks5ztj8/
-
+	/*
     return this.each( function( options ) {
         let window_offset = $(document).scrollTop()
 		let element_offset = Math.floor( $(this).offset().top )
@@ -197,11 +159,22 @@ $.fn.jack_the_scroll = function() { // TODO: complete or deprecate
 		console.log('OFFSETS - window: : ' + window_offset +  ', element: ' + element_offset)
 		jack_on && console.log('JACK ON!!')
     })
+	*/
+	// https://jsfiddle.net/hrishikeshk/7ks5ztj8/
+	/*
+	return this.each( function( options ) {
+		var target = $('.scroll').get(0)
+		$('body').on('wheel', function (e) {
+			var o = e.originalEvent
+			target.scrollTop += o.deltaY
+		})
+	})
+	*/
  
 }
 
 
-  
+
 $( function() {
 
 	/* ****************************************
@@ -287,107 +260,100 @@ $( function() {
 	 *
 	 * ***************************************/
 
+	let hovered_element
+	let mouse_X = 0, mouse_Y = 0
+
+	const in_viewport = ( element ) => {
+
+		// Get the elements position relative to the viewport
+		let bb = element.getBoundingClientRect()
+		let padding = 200
+		// Check if the element is outside the viewport, Then invert the returned value because you want to know the opposite
+		return !( (bb.top + padding) > innerHeight || (bb.bottom - padding) < 0)
+
+	}
+
+	//let myElement = document.querySelector('div')
+
+	const set_scroll_hover = ( element ) => {
+
+		// If the target and stored element are the same, return early because setting it again is unnecessary.
+		if ( hovered_element === element ) { return }
+		// On first run, `hovered_element` is undefined.
+		if ( hovered_element ) { hovered_element.classList.remove( 'scroll-hover' ) }
+	  
+		hovered_element = element
+		hovered_element && hovered_element.classList.add( 'scroll-hover' )
+
+	}
+
 	const move_stuff = ( offset, el, direction, speed ) => {
 
 		// TODO: Establish/populate element array
-		//!is_prod && console.log( -(offset * 100) + 'vh')
 		let down_value = -(offset * 500) + 'vh'
 		let scroll_percent = parseInt( Math.abs(offset) * 100 )
-		//!is_prod && console.log( 'hey: ' + scroll_percent )
+
+		// header animation
 		if ( scroll_percent > 3 ) {
 			$('body > header').addClass('shrink')
 		} else {
 			$('body > header').removeClass('shrink')
 		}
+
+		// audience buttons animation
 		$('body.audience-select').length && $('#audience_buttons').css('bottom', down_value)
 
 	}
 	const set_scroll_listener = () => {
 
-		window.addEventListener('scroll', () => {
+		document.addEventListener( 'mousemove', ( event ) => {
+
+			mouse_X = event.clientX
+			mouse_Y = event.clientY
+			let hover_parent = event.target.closest('section.full-centered-chunk') || null
+			set_scroll_hover( hover_parent )
+
+		})
+
+		window.addEventListener( 'scroll', ( event ) => {
 
 			let offset_calc = window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
 			document.body.style.setProperty('--scroll', offset_calc)
+
+			// together w/ mousemove listener (above): evaluates mouse position while scrolling & adds/removes "scroll-hover" class to elements
+			let hover_target = document.elementFromPoint( mouse_X, mouse_Y )
+			let hover_parent = document.elementFromPoint( mouse_X, mouse_Y ).closest('section.full-centered-chunk') || false
+			if ( hover_target && hover_parent ) { set_scroll_hover( hover_parent ) }
+			
 			if ( $('body.home').length > 0 ) {
-				move_stuff(offset_calc)
+				move_stuff( offset_calc )
 			} else {
 				$('body > header').addClass('shrink')
 			}
-			//$('.scrolljacker').length && $('.scrolljacker').jack_the_scroll({ color: "orange" })
-
-		}, false)
-
-	}
 
 
+			// Check the viewport status
+			let shady_element = document.querySelector('.do-the-shady-thing')
+			in_viewport( shady_element ) ? document.body.classList.add( 'shade-active' ) : document.body.classList.remove( 'shade-active' )
 
-	/* ****************************************
-	 * [ USER IP SNIFF ]
-	 *
-	 * ***************************************/
+			/*
+			let process_element = document.querySelector('section#process')
+			let scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop()
+			console.log(scrollTop)
+			if ( in_viewport( process_element ) ) {
+				document.body.classList.add( 'scrolljack' )
+				$('html').not('.noscroll').addClass('noscroll').css('top',-scrollTop)
+			} else {
+				scrollTop = parseInt($('html').css('top'))
+				$('html').removeClass('noscroll')
+				$('html,body').scrollTop(-scrollTop)
+			}
+			*/
 
-	const getUserLocation = async ( ip ) => {
-
-		// http://ip-api.com/json/24.127.12.129
-		// ipinfo.io/24.127.12.129?token=d094b46883a2e4
-
-    	const response = await fetch('https://ipinfo.io/' + ip + '?token=d9e7dd4ebf804b')
-        .then(( response ) => { return response.json() })
-        .then(( json ) => {
-
-            const data = json
-            localStorage.setItem('location', JSON.stringify(json))
-            //!is_prod && console.log('Location data: ', data)
-            //!is_prod && console.log('Lat/Lon: ' + data.loc)
-
-          	const ll_obj = { "lat": data.loc.split(',')[0], "lon":  data.loc.split(',')[1] }
-
-          	const results1 = get_points_in_radius(points, ll_obj, 50)
-          	const results2 = get_points_in_radius(points, ll_obj, 100)
-			const results3 = get_points_in_radius(points, ll_obj, 200)
-
-          	//!is_prod && console.log('Videographers within 50 miles of ' + data.city + ': ' + results1)
-          	//!is_prod && console.log('... 100 miles: ' + results2)
-          	//!is_prod && console.log('... 200 miles: ' + results3)
-
-            return data.city
-
-        })
-        .catch((err) => { return `Error getting location data: ${err}` })
-
-    }
-	const getUserIP = async () => {
-
-		try {
-			const response = await fetch( 'https://api.ipify.org?format=json' )
-            .then(( response ) => { return response.json() })
-            .then(( json ) => {
-
-                const ip = json.ip
-				!is_prod && console.warn( '%c 🙊 IP Address: ', console_revisit_style, ip )
-                const city = getUserLocation( ip )
-
-                return city
-
-            })
-            .catch((err) => { return `Error getting IP Address: ${err}` })
-
-		} catch (error) {
-			//console.error('Error getting user location:', error)
-			console.error( '%c ☠️ Error getting user location:\n ', console_error_style, error )
-		}
-
-	}
-	const attach_iplookup_events = () => { // deprecate?
-
-		// Button event listeners
-		$( 'a.user-location' ).on( "click", function( event ) {
-			getUserIP()
 		})
 
 	}
-	attach_iplookup_events()
-	
+
 
 
 	/* ****************************************
@@ -559,6 +525,7 @@ $( function() {
 	 *
 	 * ***************************************/
 
+	// TODO: fully integrate w/ scroll listener & deprecate
 	const attach_shady_events = ( shady_things ) => {
 
 		shady_things.on( "mouseenter", function( e ) {
@@ -573,9 +540,10 @@ $( function() {
 	const do_the_shady = ( shady_things ) => {
 
 		$('body main').prepend('<div id="shady_shade"></div>')
-		attach_shady_events( shady_things )
+		//attach_shady_events( shady_things )
 
 	}
+	$('.do-the-shady-thing').length && do_the_shady( $('.do-the-shady-thing') )
 
 
 
@@ -596,16 +564,6 @@ $( function() {
 	// videographer search
   	attach_search_event()
 
-	$('.do-the-shady-thing').length && do_the_shady( $('.do-the-shady-thing') )
-
-	// mobile menu trigger - TODO: refactor
-	$('.royals-w-cheese .burger').click( function () {
-		$('body').toggleClass('nav-open')
-	})
-
-	// user IP sniff - TODO: REMOVE (or detail in privacy/terms)
-	getUserIP()
-
 })
 
 
@@ -624,29 +582,6 @@ const initAutocomplete = () => {
 	address1Field.focus()
 
 }
-
 if ( $('form.videographer-search').length ) {
 	window.initAutocomplete = initAutocomplete
 }
-
-
-
-let loc = localStorage.getItem('location')
-NC_base('form_submit_test').create([
-    {
-        "fields": {
-            "Name": "another TEST record",
-            "Notes": "timestamp: " + Date.now(),
-            "URL": window.location.href,
-			"Location": loc
-        }
-    }
-], function (err, records) {
-    if (err) {
-        console.error(err)
-        return
-    }
-    records.forEach(function (record) {
-        //!is_prod && console.log(record.getId())
-    })
-})

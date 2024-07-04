@@ -105,6 +105,11 @@ body {
 	color: var(--darkest);
 	font-size: 1rem;
 }
+html.noscroll {
+    position: fixed; 
+    overflow-y: scroll;
+    width: 100%;
+}
 
 body > main.page-wrapper {
 	padding: 6rem 2rem 0;
@@ -2810,7 +2815,8 @@ body.booking > header.global-header.shrink {
 	background: unset;
 }
 body.booking > main { padding-top: 0; }
-body.booking > main aside.split-half { padding-top: 4rem; }
+body.booking > main aside.split-half { padding: 4rem 10vw 1rem 2rem; }
+body.booking > main aside.split-half:first-child { padding: 4rem 2rem 1rem 10vw; }
 
 p.powered {
     text-align: center;

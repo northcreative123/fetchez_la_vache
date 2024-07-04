@@ -226,19 +226,21 @@
 	<script src="assets/js/playa.js"></script>
 	<script src="assets/js/main.js"></script>
     -->
-	<script src="assets/js/airtable.browser.js"></script>
+    <script src="assets/js/location.js"></script> <!-- ??? -->	
+    <script src="assets/js/airtable.browser.js"></script>
+	<script src="assets/js/la_vache.js"></script>
     <script>
 
-        const is_prod = window.location.hostname === 'northcreative'
-        localStorage.setItem( 'env_prod', is_prod )
-        window.location.href.includes('file://') ? $('a.w3c').parent().remove() : $('a.w3c').attr('href', 'https://validator.w3.org/nu/?doc='+window.location.href)
-        const get_random = ( x ) => { return Math.floor( Math.random() * ( x ? x : 10000000 ) ) }
+        // const is_prod = window.location.hostname === 'northcreative'
+        // localStorage.setItem( 'env_prod', is_prod )
+        // window.location.href.includes('file://') ? $('a.w3c').parent().remove() : $('a.w3c').attr('href', 'https://validator.w3.org/nu/?doc='+window.location.href)
+        // const get_random = ( x ) => { return Math.floor( Math.random() * ( x ? x : 10000000 ) ) }
 
         /* AIRTABLE: */
 
-        const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
-        let Airtable = require('airtable')
-        let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
+        // const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
+        // let Airtable = require('airtable')
+        // let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
 
 
@@ -277,7 +279,7 @@
 
                 const queryString = new URLSearchParams( window.location.search )
 		        slug = queryString.get('post')
-                //!is_prod && console.log( 'slug: ', slug )
+                !is_prod && console.log( 'slug: ', slug )
 
                 let blog_data
                 let blog_links = []
@@ -327,37 +329,9 @@
                 })
                 
             }
+
             get_blog_data()
 
-            // mobile menu trigger - TODO: refactor
-            $('.royals-w-cheese .burger').click( function () {
-                $('body').toggleClass('nav-open')
-            })
-
-        })
-        
-
-
-
-
-        let loc = localStorage.getItem('location')
-        NC_base('form_submit_test').create([
-            {
-                "fields": {
-                    "Name": "another TEST record",
-                    "Notes": "timestamp: " + Date.now(),
-                    "URL": window.location.href,
-                    "Location": loc
-                }
-            }
-        ], function (err, records) {
-            if (err) {
-                console.error(err)
-                return
-            }
-            records.forEach(function (record) {
-                //!is_prod && console.log(record.getId())
-            })
         })
 
     </script>
