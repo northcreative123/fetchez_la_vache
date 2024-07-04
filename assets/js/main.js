@@ -370,9 +370,12 @@ $( function() {
 		marquee_markup += '</div></div>'
 
         parent.html( marquee_markup ).append( marquee_markup ).removeClass('loading') // twice is nice!
+		speed_log.push({ "event" : "Logos Loaded", "time" : to_seconds() })
+		//console.log('Logos Loaded: ', to_seconds())
 
     }
 
+	let marquee_count = 1
 	const populate_video_marquee = ( parent, feature_data, start, count ) => {
 
 		const marquee_data = feature_data.slice( start, count )
@@ -384,6 +387,9 @@ $( function() {
 
 		marquee_markup += '</div></div>'
         parent.html( marquee_markup ).append( marquee_markup ).removeClass('loading')
+		speed_log.push({ "event" : "Marquee "+marquee_count+" Loaded", "time" : to_seconds() })
+		//console.log('Marquee '+marquee_count+' Loaded: ', to_seconds())
+		marquee_count++
 
     }
   
@@ -421,6 +427,8 @@ $( function() {
 		industry_tag_markup += '</ul>'
 
 		parent.html( industry_card_markup ).append( industry_tag_markup ).removeClass('loading')
+		speed_log.push({ "event" : "Industry Tags Loaded", "time" : to_seconds() })
+		//console.log('Industry Tags Loaded: ', to_seconds())
 
     }
 	
@@ -448,6 +456,8 @@ $( function() {
 
 		parent.append(testimony_markup).find('li:first-child').addClass('active')
 		parent.removeClass('loading')
+		speed_log.push({ "event" : "Testimonials Loaded", "time" : to_seconds() })
+		//console.log('Testimonials Loaded: ', to_seconds())
 
     }
 

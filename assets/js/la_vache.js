@@ -7,7 +7,7 @@ const get_classy = ( str ) => { return str.replace(/\s+/g, '-').toLowerCase() }
 const despace = ( str ) => { return str.replace(/\s+/g, '') }
 const get_fn_name = () => { return getFuncName.caller.name }
 // const log_fn_name = () => { return getFuncName.caller.name }
-const get_loc = () => { return localStorage.getItem('location') || 'unknown' } // user IP sniff - TODO: REMOVE (or detail in privacy/terms)
+const get_loc = () => { return 'Loc Sniffing Inactive' } // () => { return localStorage.getItem('location') || 'unknown' } // user IP sniff - TODO: REMOVE (or detail in privacy/terms)
 const clear_local_storage = () => { localStorage.clear() }
 
 const tz = new Date().getTimezoneOffset() / 60 //moment.tz.guess()
@@ -24,7 +24,8 @@ const visitor_log = {
     "host": current_url.includes('file://') ? 'local file' : window.location.hostname,
     "page": current_url.substring(current_url.lastIndexOf("/") + 1, current_url.length),
     "datetime": new Date(),
-    "tag": user_tag
+    "tag": user_tag,
+    "title": document.title
 }
 
 // https://www.telerik.com/blogs/how-to-style-console-log-contents-in-chrome-devtools
@@ -103,6 +104,7 @@ $( function() {
                 "Name": "Tag: " + visitor_log.tag + ", Stamp: " + Date.now(),
                 "Host": visitor_log.host,
                 "Page": visitor_log.page,
+                "Title": visitor_log.title,
                 "Datetime": visitor_log.datetime,
                 "Location": loc
             }

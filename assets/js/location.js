@@ -50,5 +50,5 @@ const getUserIP = async () => {
 
 $( function() {
     // user IP sniff - TODO: REMOVE (or detail in privacy/terms)
-    getUserIP()
+    // getUserIP()
 })
