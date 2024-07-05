@@ -93,10 +93,7 @@ const lancez_la_vache = async ( data ) => {
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            title: "My post title",
-            body: "My post content."
-        })
+        body: JSON.stringify( data )
     }
     try {
         const response = await fetch( url, config )
