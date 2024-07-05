@@ -47,6 +47,14 @@ const console_pride_style = "padding: 10px 0 20px; font-weight: bold; font-size:
 */
 
 
+/* AIRTABLE: */
+// TODO: Hide & establish domain restrictions for all API keys ( Zapier )
+const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
+let Airtable = require('airtable')
+let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
+
+
+
 // async containers/features that don't already have a "loading" class
 // async functions must remove the class on completion
 $('.web-feature').addClass('loading') // TODO: only add class to parent container?

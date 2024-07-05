@@ -100,8 +100,9 @@ const attach_search_event = () => {
 
 	$('button.geocode-lookup').on( "click", function( e ) {
 		e.preventDefault()
-		const input = $(e.currentTarget).prev()
+		const input = $('#fld_hero_search')
 		const address = input.val()
+        //console.log('CLICK!: ', input.val())
 
 		if ( address.length >= 5 ) {
 			geocode_address(address, $(e.currentTarget).parent())
@@ -396,7 +397,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
             save_form_data( $( "form#booking" ), 'booking_data' )
             $(this).next().trigger('click')
         }
-        $(this).not('#fld_hero_search') && validateStep()
+        validateStep()
 		
 	})
 
@@ -629,7 +630,7 @@ const handle_booking = ( response_container ) => {
         records.forEach(function (record) {
             !is_prod && console.log(record.getId())
         })
-        response_container.find('.step-fields').append(`<h2>Thank you ${record_data['First Name']}!</h2>`)
+        response_container.find('.step-fields').remove('.thx').append(`<h2 class="thx">Thank you ${record_data['First Name']}!</h2>`)
         response_container.addClass('complete')
         localStorage.removeItem("booking_data")
         localStorage.removeItem("searched_address")
