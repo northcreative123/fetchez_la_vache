@@ -57,6 +57,7 @@ let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 // https://api-proxy-five-omega.vercel.app/wfapi/list/0
 // wfapi/db/create-booking
 // method: get/post, data: func/obj
+/*
 const fetchez_la_vache = async ( method, data ) => { 
     
 	const url = 'https://api-proxy-five-omega.vercel.app/wfapi/list/0'
@@ -83,7 +84,7 @@ const fetchez_la_vache = async ( method, data ) => {
 	})
 
 }
-
+*/
 const lancez_la_vache = async ( data ) => { 
     
 	const url = 'https://api-proxy-five-omega.vercel.app/wfapi/db/create-booking'
@@ -95,6 +96,7 @@ const lancez_la_vache = async ( data ) => {
         },
         body: JSON.stringify( data )
     }
+
     try {
         const response = await fetch( url, config )
         const resdata = await response.json()
@@ -117,36 +119,12 @@ const lancez_la_vache = async ( data ) => {
     
         })
         
-        //return data
     } catch ( e ) {
         //!is_prod && console.log( 'lancez_la_vache error: ', e )
         return e
     }    
 
 }
-/*
-fetch('https://jsonplaceholder.typicode.com/posts', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-   body: JSON.stringify({
-     // your expected POST request payload goes here
-      title: "My post title",
-      body: "My post content."
-      })
-})
-  .then(res => res.json())
-  .then(data => {
-   // enter you logic when the fetch is successful
-    console.log(data)
-  })
-  .catch(error => {
-  // enter your logic for when there is an error (ex. error toast)
-   console.log(error)
-  })  
-*/
-
 
 
 // async containers/features that don't already have a "loading" class
@@ -189,7 +167,7 @@ $( function() {
         "Website": "qwer",
         "Booking Date Time": "2024-07-17T12:37:00-04:00"
     }
-    !current_url.includes('file://') && lancez_la_vache( test_data )
+    //!current_url.includes('file://') && lancez_la_vache( test_data )
 
     let loc = get_loc()
     NC_base('User Sniff').create([

@@ -487,6 +487,34 @@ $( function() {
 		
 	}
 	
+
+	// https://api-proxy-five-omega.vercel.app/wfapi/db/web-features
+	const fetchez_la_vache = async () => { 
+    
+		const url = 'https://api-proxy-five-omega.vercel.app/wfapi/db/web-features'
+		const response = await fetch( url )
+		.then(( response ) => { 
+	
+			return response.json() 
+	
+		})
+		.then(( json ) => {
+	
+			!is_prod && console.log(`%c 🤓 Proxy test:`, console_data_style, json)
+			prepare_web_features( json )
+	
+		})
+		.catch(( err ) => { 
+	
+			//const error = `Error getting data: ${err}`
+			!is_prod && console.log( err )
+			//return error
+	
+		})
+	
+	}
+	//$('.web-feature').length && fetchez_la_vache()
+
 	const get_web_features = async () => {
 
 		let web_featured = []
