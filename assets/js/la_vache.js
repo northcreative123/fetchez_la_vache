@@ -47,86 +47,6 @@ const console_pride_style = "padding: 10px 0 20px; font-weight: bold; font-size:
 */
 
 
-/* AIRTABLE: */
-// TODO: Hide & establish domain restrictions for all API keys ( Zapier )
-const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
-let Airtable = require('airtable')
-let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
-
-
-// https://api-proxy-five-omega.vercel.app/wfapi/list/0
-// wfapi/db/create-booking
-// method: get/post, data: func/obj
-/*
-const fetchez_la_vache = async ( method, data ) => { 
-    
-	const url = 'https://api-proxy-five-omega.vercel.app/wfapi/list/0'
-	const response = await fetch( url )
-    .then(( response ) => { 
-
-		return response.json() 
-
-	})
-    .then(( json ) => {
-
-		!is_prod && console.log(`%c 🤓 Proxy test:`, console_data_style, json)
-
-        // return json
-
-    })
-    .catch(( err ) => { 
-
-		const error = `Error getting data: ${err}`
-		!is_prod && console.log(error)
-
-		return error
-
-	})
-
-}
-*/
-const lancez_la_vache = async ( data ) => { 
-    
-	const url = 'https://api-proxy-five-omega.vercel.app/wfapi/db/create-booking'
-    const config = {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify( data )
-    }
-
-    try {
-        const resdata = await fetch( url, config )
-        //const resdata = await response.json()
-        .then(( response ) => { 
-            
-            !is_prod && console.log( 'lancez_la_vache response: ', response )
-            return response.json() 
-    
-        })
-        .then(( json ) => {
-    
-            !is_prod && console.log('%c 🤓 Proxy test:', console_data_style, json)
-        
-        })
-        .catch(( err ) => { 
-    
-            const error = 'Error posting data: ' + JSON.stringify( err )
-            !is_prod && console.log( error )
-            return error
-    
-        })
-        
-    } catch ( e ) {
-        //!is_prod && console.log( 'lancez_la_vache error: ', e )
-        return e
-    }    
-
-}
-
-
 // async containers/features that don't already have a "loading" class
 // async functions must remove the class on completion
 $('.web-feature').addClass('loading') // TODO: only add class to parent container?
@@ -138,36 +58,7 @@ $( function() {
         $('body').toggleClass('nav-open')
     })
 
-    //!current_url.includes('file://') && fetchez_la_vache()
-    const test_data = {
-        "Name And Contact": "Alma Durn-Holzhert: rofl@gmail.com",
-        "County": "Wayne County",
-        "Country": "US",
-        "Address Line 1": "543 Adams Street",
-        "City": "Plymouth",
-        "State": "MI",
-        "Zip": "48170",
-        "Target": "Self",
-        "On Site": true,
-        "Video Description": "PROXY TEST!",
-        "Video Types": [
-            "Testimonial"
-        ],
-        "Video Platforms": [
-            "In-Office",
-            "Other"
-        ],
-        "Recurring Video": true,
-        "Shoot Date": "2024-07-31T04:00:00.000Z",
-        "Delivery Date": "2024-07-09T04:00:00.000Z",
-        "First Name": "Alma",
-        "Last Name": "Holzhert",
-        "Email": "rofl@gmail.com",
-        "Company Name": "qwer",
-        "Website": "qwer",
-        "Booking Date Time": "2024-07-17T12:37:00-04:00"
-    }
-    //!current_url.includes('file://') && lancez_la_vache( test_data )
+
 
     let loc = get_loc()
     NC_base('User Sniff').create([

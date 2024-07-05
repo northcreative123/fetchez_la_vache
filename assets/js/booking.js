@@ -564,19 +564,56 @@ const prepare_record_data = () => { // TODO: remove null values
     return remove_object_nulls(formatted_data)
 }
 
-/* AIRTABLE: */
-// TODO: Hide & establish domain restrictions for all API keys ( Zapier )
-/*
-DATES:      https://support.airtable.com/docs/supported-format-specifiers-for-datetime-format
-MARKDOWN:   https://support.airtable.com/docs/using-markdown-in-airtable
-JSON:       https://community.airtable.com/t5/other-questions/is-it-possible-to-add-json-data-or-an-array-of-objects-into/td-p/121614
-            https://community.airtable.com/t5/other-questions/getting-started-with-airtable-importing-json-data-structure/td-p/58619
-*/
+
+
+
+const lancez_la_vache = async ( data ) => { 
+    
+	const url = 'https://api-proxy-five-omega.vercel.app/wfapi/db/create-booking'
+    const config = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify( data )
+    }
+
+    try {
+        const resdata = await fetch( url, config )
+        //const resdata = await response.json()
+        .then(( response ) => { 
+            
+            !is_prod && console.log( 'lancez_la_vache response: ', response )
+            return response.json() 
+    
+        })
+        .then(( json ) => {
+    
+            !is_prod && console.log('%c 🤓 Proxy test:', console_data_style, json)
+        
+        })
+        .catch(( err ) => { 
+    
+            const error = 'Error posting data: ' + JSON.stringify( err )
+            !is_prod && console.log( error )
+            return error
+    
+        })
+        
+    } catch ( e ) {
+        //!is_prod && console.log( 'lancez_la_vache error: ', e )
+        return e
+    }    
+
+}
 
 const handle_booking = ( response_container ) => {
     //!is_prod && console.log('SUBMIT')
     record_data = prepare_record_data()
     console.log('record data:\n', record_data )
+
+    //!current_url.includes('file://') && lancez_la_vache( record_data )
 
     NC_base('Web Booking').create([
         {
@@ -599,9 +636,9 @@ const handle_booking = ( response_container ) => {
         $('.progress-bar').removeClass(('progress-bar-animated'))
     })
 
+
+
 }
-
-
 
 
 
