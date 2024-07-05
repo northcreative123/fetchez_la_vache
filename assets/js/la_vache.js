@@ -142,7 +142,7 @@ $( function() {
         $('body').toggleClass('nav-open')
     })
 
-    !current_url.includes('file://') && fetchez_la_vache()
+    //!current_url.includes('file://') && fetchez_la_vache()
     const test_data = {
         "Name And Contact": "Alma Holzhert: rofl@gmail.com",
         "County": "Wayne County",
