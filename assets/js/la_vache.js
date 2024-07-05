@@ -98,10 +98,28 @@ const lancez_la_vache = async ( data ) => {
     try {
         const response = await fetch( url, config )
         const resdata = await response.json()
+        .then(( response ) => { 
+    
+            return response.json() 
+    
+        })
+        .then(( json ) => {
+    
+            !is_prod && console.log(`%c 🤓 Proxy test:`, console_data_style, json)
+        
+        })
+        .catch(( err ) => { 
+    
+            const error = `Error posting data: ${err}`
+            !is_prod && console.log(error)
+    
+            return error
+    
+        })
         !is_prod && console.log( 'lancez_la_vache response: ', resdata )
         //return data
-    } catch (e) {
-        !is_prod && console.log( 'lancez_la_vache error: ', e )
+    } catch ( e ) {
+        //!is_prod && console.log( 'lancez_la_vache error: ', e )
         return e
     }    
 
@@ -144,7 +162,7 @@ $( function() {
 
     //!current_url.includes('file://') && fetchez_la_vache()
     const test_data = {
-        "Name And Contact": "Alma Holzhert: rofl@gmail.com",
+        "Name And Contact": "Alma Durn-Holzhert: rofl@gmail.com",
         "County": "Wayne County",
         "Country": "US",
         "Address Line 1": "543 Adams Street",
