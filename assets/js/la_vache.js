@@ -99,24 +99,24 @@ const lancez_la_vache = async ( data ) => {
         const response = await fetch( url, config )
         const resdata = await response.json()
         .then(( response ) => { 
-    
+            
+            !is_prod && console.log( 'lancez_la_vache response: ', response )
             return response.json() 
     
         })
         .then(( json ) => {
     
-            !is_prod && console.log(`%c 🤓 Proxy test:`, console_data_style, json)
+            !is_prod && console.log('%c 🤓 Proxy test:', console_data_style, json)
         
         })
         .catch(( err ) => { 
     
-            const error = `Error posting data: ${JSON.stringify(err)}`
-            !is_prod && console.log(error)
-    
+            const error = 'Error posting data: ' + JSON.stringify( err )
+            !is_prod && console.log( error )
             return error
     
         })
-        !is_prod && console.log( 'lancez_la_vache response: ', JSON.stringify(resdata) )
+        
         //return data
     } catch ( e ) {
         //!is_prod && console.log( 'lancez_la_vache error: ', e )
