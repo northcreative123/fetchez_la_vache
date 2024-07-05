@@ -573,10 +573,10 @@ JSON:       https://community.airtable.com/t5/other-questions/is-it-possible-to-
             https://community.airtable.com/t5/other-questions/getting-started-with-airtable-importing-json-data-structure/td-p/58619
 */
 
-const handle_booking = (response_container) => {
+const handle_booking = ( response_container ) => {
     //!is_prod && console.log('SUBMIT')
     record_data = prepare_record_data()
-    //!is_prod && console.log('record data:\n', record_data )
+    console.log('record data:\n', record_data )
 
     NC_base('Web Booking').create([
         {

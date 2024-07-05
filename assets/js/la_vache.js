@@ -87,25 +87,50 @@ const fetchez_la_vache = async ( method, data ) => {
 const lancez_la_vache = async ( data ) => { 
     
 	const url = 'https://api-proxy-five-omega.vercel.app/wfapi/db/create-booking'
-    const settings = {
+    const config = {
         method: 'POST',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+            title: "My post title",
+            body: "My post content."
+        })
     }
     try {
-        const response = await fetch( url, settings )
+        const response = await fetch( url, config )
         const resdata = await response.json()
         !is_prod && console.log( 'lancez_la_vache response: ', resdata )
-        return data
+        //return data
     } catch (e) {
         !is_prod && console.log( 'lancez_la_vache error: ', e )
         return e
     }    
 
 }
+/*
+fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+   body: JSON.stringify({
+     // your expected POST request payload goes here
+      title: "My post title",
+      body: "My post content."
+      })
+})
+  .then(res => res.json())
+  .then(data => {
+   // enter you logic when the fetch is successful
+    console.log(data)
+  })
+  .catch(error => {
+  // enter your logic for when there is an error (ex. error toast)
+   console.log(error)
+  })  
+*/
 
 
 
@@ -121,7 +146,34 @@ $( function() {
     })
 
     !current_url.includes('file://') && fetchez_la_vache()
-    const test_data = { "test": "pass/fail?!" }
+    const test_data = {
+        "Name And Contact": "Alma Holzhert: rofl@gmail.com",
+        "County": "Wayne County",
+        "Country": "US",
+        "Address Line 1": "543 Adams Street",
+        "City": "Plymouth",
+        "State": "MI",
+        "Zip": "48170",
+        "Target": "Self",
+        "On Site": true,
+        "Video Description": "PROXY TEST!",
+        "Video Types": [
+            "Testimonial"
+        ],
+        "Video Platforms": [
+            "In-Office",
+            "Other"
+        ],
+        "Recurring Video": true,
+        "Shoot Date": "2024-07-31T04:00:00.000Z",
+        "Delivery Date": "2024-07-09T04:00:00.000Z",
+        "First Name": "Alma",
+        "Last Name": "Holzhert",
+        "Email": "rofl@gmail.com",
+        "Company Name": "qwer",
+        "Website": "qwer",
+        "Booking Date Time": "2024-07-17T12:37:00-04:00"
+    }
     !current_url.includes('file://') && lancez_la_vache( test_data )
 
     let loc = get_loc()
