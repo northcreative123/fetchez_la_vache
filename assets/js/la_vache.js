@@ -110,13 +110,13 @@ const lancez_la_vache = async ( data ) => {
         })
         .catch(( err ) => { 
     
-            const error = `Error posting data: ${err}`
+            const error = `Error posting data: ${JSON.stringify(err)}`
             !is_prod && console.log(error)
     
             return error
     
         })
-        !is_prod && console.log( 'lancez_la_vache response: ', resdata )
+        !is_prod && console.log( 'lancez_la_vache response: ', JSON.stringify(resdata) )
         //return data
     } catch ( e ) {
         //!is_prod && console.log( 'lancez_la_vache error: ', e )
