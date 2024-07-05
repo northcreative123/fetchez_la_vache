@@ -55,6 +55,7 @@ let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 
 
 // https://api-proxy-five-omega.vercel.app/wfapi/list/0
+// wfapi/db/create-booking
 // method: get/post, data: func/obj
 const fetchez_la_vache = async ( method, data ) => { 
     
@@ -83,6 +84,30 @@ const fetchez_la_vache = async ( method, data ) => {
 
 }
 
+const lancez_la_vache = async ( data ) => { 
+    
+	const url = 'https://api-proxy-five-omega.vercel.app/wfapi/db/create-booking'
+    const settings = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    }
+    try {
+        const response = await fetch( url, settings )
+        const resdata = await response.json()
+        !is_prod && console.log( 'lancez_la_vache response: ', resdata )
+        return data
+    } catch (e) {
+        !is_prod && console.log( 'lancez_la_vache error: ', e )
+        return e
+    }    
+
+}
+
+
 
 // async containers/features that don't already have a "loading" class
 // async functions must remove the class on completion
@@ -96,6 +121,8 @@ $( function() {
     })
 
     !current_url.includes('file://') && fetchez_la_vache()
+    const test_data = { "test": "pass/fail?!" }
+    !current_url.includes('file://') && lancez_la_vache( test_data )
 
     let loc = get_loc()
     NC_base('User Sniff').create([
