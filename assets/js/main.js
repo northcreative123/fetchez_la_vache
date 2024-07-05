@@ -492,29 +492,36 @@ $( function() {
 	const fetchez_la_vache = async () => { 
     
 		const url = 'https://api-proxy-five-omega.vercel.app/wfapi/db/web-features'
-		const response = await fetch( url )
-		.then(( response ) => { 
-	
-			return response.json() 
-	
-		})
-		.then(( json ) => {
-	
-			!is_prod && console.log(`%c 🤓 Proxy test:`, console_data_style, json)
-			prepare_web_features( json )
-	
-		})
-		.catch(( err ) => { 
-	
-			//const error = `Error getting data: ${err}`
-			!is_prod && console.log( err )
-			//return error
-	
-		})
-	
-	}
-	//$('.web-feature').length && fetchez_la_vache()
 
+		try {
+			const resdata = await fetch( url )
+			.then(( response ) => { 
+		
+				return response.json() 
+		
+			})
+			.then(( json ) => {
+		
+				!is_prod && console.log(`%c 🤓 Proxy test:`, console_data_style, json)
+				prepare_web_features( json )
+		
+			})
+			.catch(( err ) => { 
+		
+				const error = 'Error posting data: ' + JSON.stringify( err )
+				!is_prod && console.log( error )
+				return error
+		
+			})
+		} catch ( e ) {
+			//!is_prod && console.log( 'lancez_la_vache error: ', e )
+			return e
+		}
+
+	}
+	$('.web-feature').length && fetchez_la_vache()
+
+	/* TODO: Deprecate
 	const get_web_features = async () => {
 
 		let web_featured = []
@@ -555,6 +562,7 @@ $( function() {
 		
 	}
 	$('.web-feature').length && get_web_features()
+	*/
 
 
 

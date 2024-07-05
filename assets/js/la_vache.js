@@ -98,8 +98,8 @@ const lancez_la_vache = async ( data ) => {
     }
 
     try {
-        const response = await fetch( url, config )
-        const resdata = await response.json()
+        const resdata = await fetch( url, config )
+        //const resdata = await response.json()
         .then(( response ) => { 
             
             !is_prod && console.log( 'lancez_la_vache response: ', response )
