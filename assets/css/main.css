@@ -1989,6 +1989,10 @@ footer.global-footer nav > ul > li > a {
 	padding-bottom: 1rem;
 	display: block;
 }
+footer.global-footer nav ul ul.submenu li a {
+    padding: .5rem 1rem;
+    display: block;
+}
 
 img.logo-map { 
 	width: 3rem;
