@@ -1352,7 +1352,7 @@ ul.tile-list {
 	justify-content: center;
 	/* https://codepen.io/enxaneta/pen/adLPwv */
 	/* flex-flow: nowrap; */
-    gap: 1rem;
+    gap: 2rem;
 	flex-wrap: wrap;
 
     list-style: none;
@@ -1363,7 +1363,8 @@ ul.tile-list {
 ul.tile-list li.tile { 
 	/* flex: 1;  */
     border: 1px solid var(--offlight);
-    border-radius: var(--base-radius);
+    border-radius: 2rem;
+	cursor: pointer;
     height: 32vh;
 	width: 48%;
 	min-width: 18vw;
@@ -1394,22 +1395,22 @@ ul.tile-list li.tile div {
 ul.tile-list li.tile h4 { font-size: 2rem; }
 ul.tile-list li.tile p { }
 #client_types ul.tile-list li.tile:nth-child(1) { 
-	border-radius: 1rem 0 0 0; 
+	/* border-radius: 1rem 0 0 0;  */
 	/* background-image: url(https://unsplash.it/400/300); */
 	background-image: url(../images/client-type-1.png);
 }
 #client_types ul.tile-list li.tile:nth-child(2) { 
-	border-radius: 0 0 0 1rem; 
+	/* border-radius: 0 0 0 1rem;  */
 	/* background-image: url(https://unsplash.it/401/300);  */
 	background-image: url(../images/client-type-2.jpg);
 }
 #client_types ul.tile-list li.tile:nth-child(3) { 
-	border-radius: 0 0 1rem 0; 
+	/* border-radius: 0 0 1rem 0;  */
 	/* background-image: url(https://unsplash.it/402/300);  */
 	background-image: url(../images/client-type-3.jpg);
 }
 #client_types ul.tile-list li.tile:nth-child(4) { 
-	border-radius: 0 1rem 0 0; 
+	/* border-radius: 0 1rem 0 0;  */
 	/* background-image: url(https://unsplash.it/403/300);  */
 	background-image: url(../images/client-type-4.png);
 }
@@ -1978,6 +1979,9 @@ footer.global-footer nav > ul > li {
 	flex: 1;
     padding: 2rem 1rem;
 }
+footer.global-footer nav > ul > li.non-linky {
+	flex: 2;
+}
 footer.global-footer nav > ul > li:hover { background: var(--offlight2); }
 footer.global-footer nav a { color: var(--darkest); }
 footer.global-footer nav > ul > li > a {
@@ -1992,9 +1996,7 @@ img.logo-map {
 	transition: .5s ease-in-out;
 	transform: rotate(0deg);
 }
-img.logo-map:hover { 
-	transform: rotate(180deg);
-}
+/* img.logo-map:hover { transform: rotate(180deg); } */
 
 
 /* audience buttons */
