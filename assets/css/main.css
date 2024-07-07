@@ -563,7 +563,7 @@ section#blog_cta {
 section#videographer_cta .chunklet,
 section#blog_cta .chunklet {
 	background-color: var(--primelight);
-	background-image: var(--primegradient-off);
+	/* background-image: var(--secondarygradient-off); */
     border-radius: 1rem;
     padding: 2rem;
     text-align: center;
@@ -573,10 +573,15 @@ section#videographer_cta .chunklet h3,
 section#blog_cta .chunklet h3 { color: var(--lightest); z-index: 10; }
 section#videographer_cta .chunklet img.background,
 section#blog_cta .chunklet img.background {
-    position: absolute;
+    /* position: absolute;
     left: -10rem;
     top: 0;
-	height: 100%
+	height: 100%; */
+
+	position: absolute;
+    right: 4rem;
+    top: -3rem;
+    height: 80%;
 }
 
 section#blog_hero {
@@ -1392,7 +1397,7 @@ ul.tile-list li.tile div {
     width: 100%;
 }
 
-ul.tile-list li.tile h4 { font-size: 2rem; }
+ul.tile-list li.tile h4 { font-size: 2rem; font-weight: 600; }
 ul.tile-list li.tile p { }
 #client_types ul.tile-list li.tile:nth-child(1) { 
 	/* border-radius: 1rem 0 0 0;  */
