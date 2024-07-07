@@ -333,8 +333,8 @@ $( function() {
 
 
 			// Check the viewport status
-			let shady_element = document.querySelector('.do-the-shady-thing')
-			in_viewport( shady_element ) ? document.body.classList.add( 'shade-active' ) : document.body.classList.remove( 'shade-active' )
+			// let shady_element = document.querySelector('.do-the-shady-thing')
+			// in_viewport( shady_element ) ? document.body.classList.add( 'shade-active' ) : document.body.classList.remove( 'shade-active' )
 
 			/*
 			let process_element = document.querySelector('section#process')
@@ -412,14 +412,14 @@ $( function() {
 
 		let industry_card_markup = '<div class="card-panel">'
 		let industry_tag_markup = '<ul class="industry-list">'
+		let random_select = get_random( (feature_data.length -1 ) )
 
-        feature_data.forEach(function(data) { 
-
+        feature_data.forEach(function( data, i ) { 
 			let connector = data.industry.toLowerCase()
 			connector = connector.replace(/&/g, "and").replace(/\s+/g, "_")
         	//industry_card_markup += '<div class="card" data-industry="'+connector+'"><h4>'+data.name+'</h4><p>'+data.industry+'</p><div class="image-frame play-inline" title="'+data.name+'" data-vimeoid="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img data-vimeoid="'+data.featured_video+'" alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div></div>'
 			industry_card_markup += '<div class="card" data-industry="'+connector+'"><div class="image-frame play-inline" title="'+data.name+'" data-vimeoid="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img data-vimeoid="'+data.featured_video+'" alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div></div>'
-			industry_tag_markup += '<li data-industry="'+connector+'">'+data.industry+'</li>'
+			industry_tag_markup += '<li data-industry="'+connector+'" class="'+ ( i === random_select ? "active" : "" ) +'">'+data.industry+'</li>'
 
         })
 
@@ -480,6 +480,7 @@ $( function() {
 		populate_industry_card_panel($('.featured-industries'), industry_data)
 
 		attach_industry_events()
+		$('.featured-industries .industry-list .active').trigger('click')
 		attach_testimonial_events()
 
 		// Modal video player

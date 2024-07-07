@@ -610,12 +610,13 @@ const lancez_la_vache = async ( data ) => {
 }
 
 const handle_booking = ( response_container ) => {
-    //!is_prod && console.log('SUBMIT')
+    !is_prod && console.log('SUBMIT')
     record_data = prepare_record_data()
     console.log('record data:\n', record_data )
 
-    //!current_url.includes('file://') && lancez_la_vache( record_data )
+    !is_local && lancez_la_vache( record_data )
 
+    /*
     NC_base('Web Booking').create([
         {
             "fields": record_data
@@ -636,7 +637,7 @@ const handle_booking = ( response_container ) => {
         localStorage.removeItem("searched_address")
         $('.progress-bar').removeClass(('progress-bar-animated'))
     })
-
+    */
 
 
 }
