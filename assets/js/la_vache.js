@@ -1,5 +1,7 @@
 
+const current_url = window.location.href
 const is_prod = window.location.hostname === 'northcreative'
+const is_local = current_url.includes('file://')
 localStorage.setItem( 'env_prod', is_prod )
 
 const get_random = ( x ) => { return Math.floor( Math.random() * ( x ? x : 10000000 ) ) }
@@ -13,13 +15,12 @@ const clear_local_storage = () => { localStorage.clear() }
 const tz = new Date().getTimezoneOffset() / 60 //moment.tz.guess()
 localStorage.setItem('user_tz_offset', tz)
 
-const current_url = window.location.href
 !localStorage.getItem( 'user_tag' ) && localStorage.setItem( 'user_tag', get_random() )
 const user_tag = localStorage.getItem( 'user_tag' )
 console.log('user tag: ', user_tag)
 
 // remove W3C link if local file
-current_url.includes('file://') ? $('a.w3c').parent().remove() : $('a.w3c').attr('href', 'https://validator.w3.org/nu/?doc='+current_url)
+is_local ? $('a.w3c').parent().remove() : $('a.w3c').attr('href', 'https://validator.w3.org/nu/?doc='+current_url)
 const visitor_log = { 
     "host": current_url.includes('file://') ? 'local file' : window.location.hostname,
     "page": current_url.substring(current_url.lastIndexOf("/") + 1, current_url.length),
@@ -59,6 +60,71 @@ let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 // async functions must remove the class on completion
 $('.web-feature').addClass('loading') // TODO: only add class to parent container?
 
+
+
+
+const post_sniff_data = async ( data ) => { 
+    
+	const url = 'https://api-proxy-five-omega.vercel.app/wfapi/db/create-visit'
+    const config = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify( data )
+    }
+
+    try {
+        const resdata = await fetch( url, config )
+        //const resdata = await response.json()
+        .then(( response ) => { 
+            
+            !is_prod && console.log( 'post_sniff_data response: ', response )
+            return response.json() 
+    
+        })
+        .then(( json ) => {
+    
+            !is_prod && console.log('%c 🤓 Proxy test:', console_data_style, json)
+        
+        })
+        .catch(( err ) => { 
+    
+            const error = 'Error posting data: ' + JSON.stringify( err )
+            !is_prod && console.log( error )
+            return error
+    
+        })
+        
+    } catch ( e ) {
+        //!is_prod && console.log( 'lancez_la_vache error: ', e )
+        return e
+    }    
+
+}
+
+const handle_sniff = () => {
+
+    const loc = get_loc()
+    const log_data = {
+        "Name": "Tag: " + visitor_log.tag + ", Stamp: " + Date.now(),
+        "Host": visitor_log.host,
+        "Page": visitor_log.page,
+        "Title": visitor_log.title,
+        "Datetime": visitor_log.datetime,
+        "Location": loc
+    }
+
+    console.log('log data:\n', log_data )
+
+    post_sniff_data( log_data )
+
+}
+!is_local && handle_sniff()
+
+
+
 $( function() {
 
     // mobile menu trigger - TODO: refactor
@@ -67,7 +133,8 @@ $( function() {
     })
 
 
-
+    // DEPRECATE...
+    /*
     let loc = get_loc()
     NC_base('User Sniff').create([
         {
@@ -89,5 +156,6 @@ $( function() {
             !is_prod && console.log( '%c 🙊 View logged: ', console_revisit_style, record.getId() )
         })
     })
+    */
 
 })
