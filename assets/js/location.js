@@ -48,7 +48,10 @@ const getUserIP = async () => {
 
 }
 
+
+// user IP sniff - TODO: REMOVE (or detail in privacy/terms)
+getUserIP()
+
 $( function() {
-    // user IP sniff - TODO: REMOVE (or detail in privacy/terms)
-    // getUserIP()
+    
 })

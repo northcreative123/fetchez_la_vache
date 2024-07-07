@@ -611,6 +611,9 @@ $( function() {
 	// videographer search
   	attach_search_event()
 
+	let sniff_city = JSON.parse( localStorage.getItem('location') ).city
+	// $('#home_hero h2').append('<span class="city-sniff"><br>'+sniff_city+'</span>')
+
 })
 
 
