@@ -231,10 +231,12 @@
 	<script src="assets/js/la_vache.js"></script>
     <script>
 
+        const queryString = new URLSearchParams( window.location.search )
+        const slug = queryString.get('post')
+
         $( function() {
 
-
-            const populate_blog = ( blog_data ) => {
+            const populate_blog = ( blog_data, blog_links ) => {
 
                 !is_prod && console.log("BLOG blog_data: ", blog_data)
                 if ( blog_data ) {
@@ -262,10 +264,9 @@
 
             }
 
+            /*
             const get_blog_data = async () => {
 
-                const queryString = new URLSearchParams( window.location.search )
-		        slug = queryString.get('post')
                 !is_prod && console.log( 'slug: ', slug )
 
                 let blog_data
@@ -316,8 +317,45 @@
                 })
                 
             }
+            */
+            //get_blog_data()
 
-            get_blog_data()
+
+            // https://api-proxy-five-omega.vercel.app/wfapi/db/blog-data
+            const fetchez_la_blog = async () => { 
+
+                const url = 'https://api-proxy-five-omega.vercel.app/wfapi/db/blog-data/'+slug
+
+                try {
+                    const resdata = await fetch( url )
+                    .then(( response ) => { 
+                
+                        return response.json() 
+                
+                    })
+                    .then(( json ) => {
+                
+                        !is_prod && console.log(`%c 🤓 Proxy test:`, console_data_style, json)
+                        
+                        populate_blog( json.blog_data )
+                        prepare_blog_links( json.blog_links )
+                        //prepare_web_features( json )
+                
+                    })
+                    .catch(( err ) => { 
+                
+                        const error = 'Error posting data: ' + JSON.stringify( err )
+                        !is_prod && console.log( error )
+                        return error
+                
+                    })
+                } catch ( e ) {
+                    //!is_prod && console.log( 'lancez_la_vache error: ', e )
+                    return e
+                }
+
+            }
+            fetchez_la_blog()
 
         })
 

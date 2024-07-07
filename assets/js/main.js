@@ -502,7 +502,7 @@ $( function() {
 			})
 			.then(( json ) => {
 		
-				!is_prod && console.log(`%c 🤓 Proxy test:`, console_data_style, json)
+				// !is_prod && console.log(`%c 🤓 Proxy test:`, console_data_style, json)
 				prepare_web_features( json )
 		
 			})
