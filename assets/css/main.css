@@ -570,7 +570,11 @@ section#blog_cta .chunklet {
     min-height: 28vh;
 }
 section#videographer_cta .chunklet h3,
-section#blog_cta .chunklet h3 { color: var(--lightest); z-index: 10; }
+section#blog_cta .chunklet h3 { 
+	color: var(--lightest); 
+	z-index: 10; 
+    text-align: left; 
+}
 section#videographer_cta .chunklet img.background,
 section#blog_cta .chunklet img.background {
     /* position: absolute;
