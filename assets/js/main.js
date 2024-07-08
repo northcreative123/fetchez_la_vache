@@ -140,10 +140,9 @@ const attach_search_event = () => {
 	})
 }
 
-// $('#cta_section .cta-link')
 const attach_fake_search_event = () => {
 
-	$('#cta_section .cta-link').on( "click", function( e ) {
+	$('#cta_section a.cta-link').on( "click", function( e ) {
 
 		e.preventDefault()
 		const input = $(e.currentTarget).parent().find($('.search-input'))
