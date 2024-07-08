@@ -472,13 +472,32 @@ $( function() {
 		})
 
 	}
+	const attach_testimonial_redux_events = () => {
+
+		const container = $('.testimonial-list-redux').parent()
+		const prev = container.append('<button class="show-btn show-prev">PREV</button>')
+		const next = container.append('<button class="show-btn show-next">NEXT</button>')
+
+		$( 'ul.testimonial-list-redux > li > a' ).on( "click", function( e ) {
+
+			e.preventDefault()
+			const link = $(e.currentTarget)
+			const section = link.closest('.testimonial-list-redux')
+			const item = link.parent()
+			section.find('>li').removeClass('active')
+			item.addClass('active')
+
+		})
+
+	}
 	const populate_testimonials = ( parent, feature_data ) => {
 
 		let testimony_markup = ''
 
         feature_data.forEach(function( data ) { 
-			testimony_markup += '<li class=""><a href="" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><q>""</q><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
-        })
+			//testimony_markup += '<li class=""><a href="" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><q>""</q><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
+			testimony_markup += '<li class=""><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><div class="card"><a href="" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
+		})
 
 		parent.append(testimony_markup).find('li:first-child').addClass('active')
 		parent.removeClass('loading')
@@ -502,12 +521,14 @@ $( function() {
 		populate_logo_marquee( $('.logo-ticker-section-logos-container'), logo_data )
 		populate_video_marquee($('#video_scroll_1 .video-ticker-section-videos-container'), videos_data, 0, 14) // Row 1
 		populate_video_marquee($('#video_scroll_2 .video-ticker-section-videos-container'), videos_data, 14, 28) // Row 2
-		populate_testimonials($('.featured-testimonials .testimonial-list'), testimonial_data)
+		//populate_testimonials($('.featured-testimonials .testimonial-list'), testimonial_data)
+		populate_testimonials($('.featured-testimonials .testimonial-list-redux'), testimonial_data)
 		populate_industry_card_panel($('.featured-industries'), industry_data)
 
 		attach_industry_events()
 		$('.featured-industries .industry-list .active').trigger('click')
-		attach_testimonial_events()
+		//attach_testimonial_events()
+		attach_testimonial_redux_events()
 
 		// Modal video player
 		document.querySelectorAll(".play-inline").forEach((d) => d.addEventListener("click", playVideos))
