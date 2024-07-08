@@ -1188,6 +1188,7 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
     border-radius: var(--base2-radius);
     width: 37vw;
     max-width: unset;
+	box-shadow: 17px 88px 60px -100px rgba(79, 94, 120, .5), 11px 0 20px -9px rgba(79, 94, 120, .5);
 }
 #process .chunklet .scrolljacker {
     height: 50vh;
@@ -1450,6 +1451,7 @@ ul.tile-list li.tile p { padding: 0; }
     background-position: center;
 	background-image: url(../images/client-types-min.jpg);
 	border-radius: var(--base2-radius);
+	box-shadow: 17px 88px 60px -100px rgba(79, 94, 120, .5), 11px 0 20px -9px rgba(79, 94, 120, .5);
 }
 ul.tile-list li h4 i.fa-solid {
 	background: none;
@@ -1485,6 +1487,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 	width: 50px;
 	border-radius: 50%;
     margin-top: -25px;
+	background: var(--primelight);
 }
 .featured-testimonials .show-btn.show-prev { left: 0; }
 .featured-testimonials .show-btn.show-next { right: 0; }
@@ -1494,8 +1497,9 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     margin: 0 25px;
     padding: 0;
     position: relative;
-    border: 1px solid var(--offlight);
+    /* border: 1px solid var(--offlight); */
     height: 42vh;
+	box-shadow: 17px 88px 60px -100px rgba(79, 94, 120, .18), 11px 0 20px -9px rgba(79, 94, 120, .1);
 }
 .testimonial-list-redux li { 
 	position: absolute;
