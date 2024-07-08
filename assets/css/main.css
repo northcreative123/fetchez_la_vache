@@ -574,7 +574,7 @@ section#blog_cta .chunklet {
 	/* background-image: var(--secondarygradient-off); */
     border-radius: 1rem;
     padding: 2rem;
-    text-align: center;
+    /* text-align: center; */
     min-height: 28vh;
 }
 section#videographer_cta .chunklet h3,
@@ -585,15 +585,14 @@ section#blog_cta .chunklet h3 {
 }
 section#videographer_cta .chunklet img.background,
 section#blog_cta .chunklet img.background {
-    /* position: absolute;
-    left: -10rem;
+    /* left: -10rem;
     top: 0;
 	height: 100%; */
 
 	position: absolute;
-    right: 4rem;
-    top: -3rem;
-    height: 80%;
+    right: 7rem;
+    top: 0rem;
+    height: 69%;
 }
 
 section#blog_hero {

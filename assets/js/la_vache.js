@@ -61,7 +61,17 @@ let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
 // async functions must remove the class on completion
 $('.web-feature').addClass('loading') // TODO: only add class to parent container?
 
+const link_fixer = () => {
 
+    let legacy_links = $('a[data-wf-loc]')
+    let prod_url = 'https://www.northcreative.us'
+    legacy_links.each(function( index ) {
+        let path = $( this ).data('wf-loc')
+        $( this ).attr("href", prod_url+path)
+        //console.log( $( this ).data('wf-loc') )
+    })
+
+}
 
 
 const post_sniff_data = async ( data ) => { 
@@ -127,6 +137,8 @@ const handle_sniff = () => {
 
 
 $( function() {
+
+    link_fixer()
 
     // mobile menu trigger - TODO: refactor
     $('.royals-w-cheese .burger').click( function () {

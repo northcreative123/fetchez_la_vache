@@ -638,8 +638,8 @@ $( function() {
   	attach_search_event()
 	attach_fake_search_event()
 
-	let sniff_city = JSON.parse( localStorage.getItem('location') ).city
-	$('#home_hero h2').append('<span class="city-sniff"><br>'+sniff_city+'</span>')
+	//let sniff_city = JSON.parse( localStorage.getItem('location') ).city
+	//$('#home_hero h2 .where-actually').html('<span>in '+sniff_city+'</span>')
 
 })
 
