@@ -931,6 +931,15 @@ section.hero div.chunklet > img {
 	transform: rotate(-3deg);
 }
 
+div.center-all {
+    text-align: center;
+    margin: 25% auto;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+span.where-actually span { display: block; }
 
 /*  
 				<h2><span class="hero-what">Video </span><span class="hero-where">Anywhere.</span></h2>
@@ -947,7 +956,7 @@ section.hero div.chunklet h4 {
     margin: 0;
     padding: 0 2rem;
     color: var(--lightest);
-    white-space: nowrap;
+    /* white-space: nowrap; */
     line-height: 80%;
 	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
 		0px 8px 13px rgba(0,0,0,0.1),
@@ -1078,13 +1087,14 @@ section#network_search form.videographer-search { width: 50%; }
 
 /* hero overrides */
 section#home_hero form.videographer-search {
-	position: absolute;
+	/* position: absolute; */
     z-index: 11;
-    right: 25%;
-    top: 50%;
-    width: 50%;
-	padding: 0;
-	/* transform: rotateY(6deg); */
+    /* right: 25%;
+    top: 50%; */
+    max-width: 50%;
+    padding: 0;
+    /* transform: rotateY(6deg); */
+    margin: 1rem auto;
 }
 section#home_hero form.videographer-search legend { 
 	/* display: none; */
@@ -1509,7 +1519,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 	opacity: 0;
     overflow: hidden;
     height: 42vh;
-    padding: 2rem 4rem;
+    padding: 4rem 4rem 2rem;
 	transition: opacity 1s;
 	z-index: 7;
 	display: flex;
@@ -1528,14 +1538,21 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     flex: 1;
 }
 .testimonial-list-redux li .card a img { 
-	height: 2rem;
+	height: 3rem;
 }
 .testimonial-list-redux > li > .card blockquote {
-    margin: 0;
-    padding: 2rem 0;
-    font-size: 1rem;
-    line-height: 1.5rem;
+	margin: 0;
+    padding: 1rem 0 2rem;
+    font-size: 1.1rem;
+    line-height: 1.25rem;
     border: unset;
+}
+.testimonial-list-redux > li > .card cite {
+    display: block;
+    text-align: right;
+    font-size: 1.25rem;
+    padding: 0;
+    font-style: normal;
 }
 
 
@@ -1795,6 +1812,8 @@ div.featured-industries .card-panel .image-frame {
 }
 .testimonial-list > li > .card .image-frame:after,
 .testimonial-list > li > .card .image-frame:before,
+.testimonial-list-redux > li > .image-frame:after
+.testimonial-list-redux > li > .image-frame:before
 div.featured-industries .card-panel .image-frame:after,
 div.featured-industries .card-panel .image-frame:before {
 	display: block;
@@ -1822,12 +1841,14 @@ div.featured-industries .card-panel .image-frame:before {
 	cursor: pointer;
 }
 .testimonial-list > li > .card .image-frame:after,
+.testimonial-list-redux > li > .image-frame:after,
 div.featured-industries .card-panel .image-frame:after {
 	background: var(--primegradient-off);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 .testimonial-list > li > .card .image-frame:hover:after,
+.testimonial-list-redux > li > .image-frame:hover:after,
 div.featured-industries .card-panel .image-frame:hover:after { 
 	color: var(--darkest); 
 	background: var(--lightest);
@@ -1837,10 +1858,12 @@ div.featured-industries .card-panel .image-frame:hover:after {
 	-webkit-text-fill-color: transparent;
 }
 .testimonial-list > li > .card .image-frame:hover:before,
+.testimonial-list-redux > li > .image-frame:hover:before,
 div.featured-industries .card-panel .image-frame:hover:before { 
 	opacity: 1; 
 }
 .testimonial-list > li > .card .image-frame img,
+.testimonial-list-redux > li > .image-frame img,
 div.featured-industries .card-panel .image-frame img {
     max-width: 100%;
     max-height: 15rem;
@@ -1850,6 +1873,7 @@ div.featured-industries .card-panel .image-frame img {
 	cursor: pointer;
 }
 .testimonial-list > li > .card .image-frame:hover img,
+.testimonial-list-redux > li > .image-frame:hover img,
 div.featured-industries .card-panel .image-frame:hover img {
 	opacity: 1;
 }
