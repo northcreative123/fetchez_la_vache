@@ -472,20 +472,42 @@ $( function() {
 		})
 
 	}
+	/*
+	let carousel_interval = 5000
+	let carousel_timer = setInterval( () => {
+		console.log("...next")
+		$('.testimonial-list-redux').parent().find('.show-btn.show-next').trigger('click')
+		carousel_interval = 5000
+	}, carousel_interval )
+	*/
 	const attach_testimonial_redux_events = () => {
 
 		const container = $('.testimonial-list-redux').parent()
-		const prev = container.append('<button class="show-btn show-prev">PREV</button>')
-		const next = container.append('<button class="show-btn show-next">NEXT</button>')
+		container.find('li:first-child').addClass('active')
+		container.append('<button class="show-btn show-prev"><i class="fa-solid fa-chevron-left"></i></button><button class="show-btn show-next"><i class="fa-solid fa-chevron-right"></i></button>')
 
-		$( 'ul.testimonial-list-redux > li > a' ).on( "click", function( e ) {
+		container.find('.show-btn').on( "click", function( e ) {
 
-			e.preventDefault()
-			const link = $(e.currentTarget)
-			const section = link.closest('.testimonial-list-redux')
-			const item = link.parent()
-			section.find('>li').removeClass('active')
-			item.addClass('active')
+			if ( $(this).is('.show-next')) {
+				//console.log('NEXT')
+				//clearInterval(carousel_timer)
+				let parent_el = $(this).parent()
+				let panels = parent_el.find('li')
+				let current = parent_el.find('.active')
+				let next_panel = current.next().length ? current.next() : parent_el.find('li:first-child')
+				current.removeClass('active')
+				next_panel.addClass('active')
+			} else {
+				//console.log('PREV')
+				//clearInterval(carousel_timer)
+				let parent_el = $(this).parent()
+				let panels = parent_el.find('li')
+				let current = parent_el.find('.active')
+				let prev_panel = current.prev().length ? current.prev() : parent_el.find('li:last-child')
+				current.removeClass('active')
+				prev_panel.addClass('active')
+			}
+			//carousel_interval = 10000
 
 		})
 

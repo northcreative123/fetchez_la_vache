@@ -1488,6 +1488,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 	border-radius: 50%;
     margin-top: -25px;
 	background: var(--primelight);
+	color: var(--lightest);
 }
 .featured-testimonials .show-btn.show-prev { left: 0; }
 .featured-testimonials .show-btn.show-next { right: 0; }
@@ -1509,7 +1510,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     overflow: hidden;
     height: 42vh;
     padding: 2rem 4rem;
-	transition: opacity .5s;
+	transition: opacity 1s;
 	z-index: 7;
 	display: flex;
 	gap: 2rem;
@@ -1528,6 +1529,13 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 }
 .testimonial-list-redux li .card a img { 
 	height: 2rem;
+}
+.testimonial-list-redux > li > .card blockquote {
+    margin: 0;
+    padding: 2rem 0;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border: unset;
 }
 
 
@@ -1700,7 +1708,7 @@ ul.industry-list {
     margin: 0;
     padding: 0;
     text-align: left;
-    flex: 1.5;
+    flex: 1;
     padding: 1rem;
     display: inline-block;
 }
