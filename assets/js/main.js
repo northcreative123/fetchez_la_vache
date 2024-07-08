@@ -140,6 +140,33 @@ const attach_search_event = () => {
 	})
 }
 
+// $('#cta_section .cta-link')
+const attach_fake_search_event = () => {
+
+	$('#cta_section .cta-link').on( "click", function( e ) {
+
+		e.preventDefault()
+		const input = $(e.currentTarget).parent().find($('.search-input'))
+		const address = input.val()
+
+		if ( address.length >= 4 ) {
+
+			//$(e.currentTarget).removeClass('result error').addClass('searching')
+			!is_prod && console.log('searched address: ' + address)
+			//const address_ll = geocode_address(address, $(e.currentTarget))
+			//!is_prod && console.log('address lat/lon: ', address_ll)
+
+		} else {
+
+			//!is_prod && console.log('invalid address: ' + address)
+			//$(e.currentTarget).find('input.search-input').focus()
+			//$(e.currentTarget).find('.result-block p').html('Search must contain <strong>more than 3 characters</strong>.')
+			//$(e.currentTarget).addClass('result error')
+
+		}
+	})
+}
+
 
 
 /* ****************************************
@@ -610,6 +637,7 @@ $( function() {
 
 	// videographer search
   	attach_search_event()
+	attach_fake_search_event()
 
 	let sniff_city = JSON.parse( localStorage.getItem('location') ).city
 	$('#home_hero h2').append('<span class="city-sniff"><br>'+sniff_city+'</span>')

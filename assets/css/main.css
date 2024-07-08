@@ -1000,7 +1000,8 @@ form.videographer-search legend {
     font-weight: 400;
     font-size: 1rem;
 }
-form.videographer-search input.search-input {
+form.videographer-search input.search-input,
+#cta_section input.search-input  {
 	width: 100%;
     font-size: 1.25rem;
     padding: .5rem 3rem .5rem 1rem;
@@ -1011,6 +1012,7 @@ form.videographer-search input.search-input {
 	/* https://codepen.io/sdthornton/pen/wBZdXq?editors=1100 */
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	font-weight: normal;
 }
 form.videographer-search:focus-within input[type=text].search-input {
     border: 2px solid #aaa;
@@ -1865,6 +1867,8 @@ section .chunklet p.standout {
 	margin: 0;
 	padding: 0;
 }
+#cta_section label span { display: none; }
+#cta_section a.cta-link { margin: 1rem 0 0; }
 #cta_section h2 { 
 	white-space: nowrap;
     margin: 0 0 1rem; 
