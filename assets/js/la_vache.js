@@ -49,11 +49,22 @@ const console_pride_style = "padding: 10px 0 20px; font-weight: bold; font-size:
 */
 
 
-/* AIRTABLE: */
-// TODO: Hide & establish domain restrictions for all API keys ( Zapier )
-const AT_token = 'patcr2ZswB25Nu6lZ.7ce9948f870abc242d363be37aeebbd37396bb89ff3e02e33c77891efc770f75'
-let Airtable = require('airtable')
-let NC_base = new Airtable({apiKey: AT_token}).base('appDFrLNc39IyI21f')
+const animate_CSS = (element, animation, prefix = 'animate__') =>  new Promise(( resolve, reject ) => {
+
+    const animationName = `${prefix}${animation}`
+    const node = document.querySelector(element)
+
+    node.classList.add(`${prefix}animated`, animationName)
+
+    function handleAnimationEnd(event) {
+        event.stopPropagation()
+        node.classList.remove(`${prefix}animated`, animationName)
+        resolve('Animation ended')
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd, {once: true})
+
+})
 
 
 
@@ -144,31 +155,5 @@ $( function() {
     $('.royals-w-cheese .burger').click( function () {
         $('body').toggleClass('nav-open')
     })
-
-
-    // DEPRECATE...
-    /*
-    let loc = get_loc()
-    NC_base('User Sniff').create([
-        {
-            "fields": {
-                "Name": "Tag: " + visitor_log.tag + ", Stamp: " + Date.now(),
-                "Host": visitor_log.host,
-                "Page": visitor_log.page,
-                "Title": visitor_log.title,
-                "Datetime": visitor_log.datetime,
-                "Location": loc
-            }
-        }
-    ], function (err, records) {
-        if (err) {
-            console.error(err)
-            return
-        }
-        records.forEach(function (record) {
-            !is_prod && console.log( '%c 🙊 View logged: ', console_revisit_style, record.getId() )
-        })
-    })
-    */
 
 })

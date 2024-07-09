@@ -265,61 +265,6 @@
 
             }
 
-            /*
-            const get_blog_data = async () => {
-
-                !is_prod && console.log( 'slug: ', slug )
-
-                let blog_data
-                let blog_links = []
-                
-                const records = await NC_base('Blog Posts').select({
-                    view: "Grid view"
-                }).eachPage(function page(records, fetchNextPage) {
-                
-                    records.forEach( function( record ) {
-                        let title = record.get('Title')
-                        let url_slug = record.get('URL Slug')
-                        let updated = record.get('Updated On')
-                        let hero_image = record.get('Main Image')
-                        let thumbnail = record.get('Thumbnail')
-                        let body = record.get('Post Body')
-                        let is_published = record.get('Published')
-                        if ( is_published ) {
-                            if ( slug && slug === url_slug ) {
-                                blog_data = { 
-                                    "title": title, 
-                                    "url_slug": url_slug,
-                                    "updated": updated,
-                                    "hero_image": hero_image,
-                                    "body": body
-                                }
-                            } else {
-                                blog_links.push({ 
-                                    "title": title, 
-                                    "url_slug": url_slug,
-                                    "updated": updated,
-                                    "hero_image": hero_image
-                                })
-                            }
-                        }
-                    })
-                    fetchNextPage()
-                
-                }, function done(err) {
-                    if (err) { 
-                        console.error(err)
-                        return
-                    } else { 
-                        //!is_prod && console.log('Features: ', blog_data) 
-                        populate_blog( blog_data )
-                        prepare_blog_links( blog_links )
-                    }
-                })
-                
-            }
-            */
-            //get_blog_data()
 
 
             // https://api-proxy-five-omega.vercel.app/wfapi/db/blog-data

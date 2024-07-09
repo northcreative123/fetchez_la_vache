@@ -620,35 +620,12 @@ const lancez_la_vache = async ( data ) => {
 }
 
 const handle_booking = ( response_container ) => {
+    
     !is_prod && console.log('SUBMIT')
     record_data = prepare_record_data()
     console.log('record data:\n', record_data )
 
     !is_local && lancez_la_vache( record_data )
-
-    /*
-    NC_base('Web Booking').create([
-        {
-            "fields": record_data
-        }
-    ], function (err, records) {
-        if (err) {
-            console.error(err)
-            response_container.find('.step-fields').append(`<dl><dt>error:</dt><dd>${err}</dd></dl>`)
-            response_container.addClass('error')
-            return
-        }
-        records.forEach(function (record) {
-            !is_prod && console.log(record.getId())
-        })
-        response_container.find('.step-fields').remove('.thx').append(`<h2 class="thx">Thank you ${record_data['First Name']}!</h2>`)
-        response_container.addClass('complete')
-        localStorage.removeItem("booking_data")
-        localStorage.removeItem("searched_address")
-        $('.progress-bar').removeClass(('progress-bar-animated'))
-    })
-    */
-
 
 }
 

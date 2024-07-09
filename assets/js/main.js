@@ -567,7 +567,7 @@ $( function() {
 
         feature_data.forEach(function( data ) { 
 			//testimony_markup += '<li class=""><a href="" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><q>""</q><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
-			testimony_markup += '<li class=""><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><div class="card"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'"><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
+			testimony_markup += '<li class=""><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><div class="card animate__animated animate__fadeInUp"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'"><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
 		})
 
 		parent.append(testimony_markup).find('li:first-child').addClass('active')
@@ -639,49 +639,6 @@ $( function() {
 
 	}
 	$('.web-feature').length && fetchez_la_vache()
-
-	/* TODO: Deprecate
-	const get_web_features = async () => {
-
-		let web_featured = []
-
-		const records = await NC_base('Clients').select({
-			view: "Grid view"
-		}).eachPage(function page(records, fetchNextPage) {
-		
-			records.forEach( function( record ) {
-				let client = record.get('Name')
-				let logo_url = record.get('Logo Optimized')
-				let features = record.get('Web Features') // []
-				let industry = record.get('Industry') // []
-				let featured_video = record.get('Featured Video')
-				let contact = record.get('Testimonial - Reviewer Name')
-				let testimonial = record.get('Testimonial')
-				web_featured.push({ 
-					"name": client, 
-					"logo_url": logo_url ? logo_url[0].url : "nope",
-					"web_features": features,
-					"industry": industry,
-					"featured_video": featured_video,
-					"testimonial": testimonial,
-					"contact": contact
-				})
-			})
-			fetchNextPage()
-		
-		}, function done(err) {
-			if (err) { 
-				console.error(err)
-				return
-			} else { 
-				//!is_prod && console.log('Features: ', web_featured) 
-				prepare_web_features( web_featured )
-			}
-		})
-		
-	}
-	$('.web-feature').length && get_web_features()
-	*/
 
 
 
