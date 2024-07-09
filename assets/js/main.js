@@ -4,6 +4,37 @@
  *
  * ***************************************/
 
+// A bity hacky, but effective for now
+function fillInAddress() {
+
+	var place = autocomplete.getPlace()
+	//console.log(place)
+
+}
+function fillInAddress2() {
+
+	var place = autocomplete2.getPlace()
+	console.log(place.formatted_address)
+	localStorage.setItem('cta_address', place.formatted_address)
+
+}
+function initAutocomplete() {
+
+	autocomplete = new google.maps.places.Autocomplete( (document.getElementById('hero_search')), {
+		types: ['geocode'],
+		componentRestrictions: { country: ['us'] }
+	})
+
+	autocomplete2 = new google.maps.places.Autocomplete( (document.getElementById('fld_fake_search')), {
+		types: ['geocode'],
+		componentRestrictions: { country: ['us'] }
+	})
+
+	autocomplete.addListener('place_changed', fillInAddress)
+	autocomplete2.addListener('place_changed', fillInAddress2)
+	is_prod && document.getElementById('hero_search').focus()
+}
+
 const get_points_in_radius = ( points, center, radius ) => {
 
 	// const earthRadius = 6371 // in kilometers
@@ -155,11 +186,10 @@ const attach_fake_search_event = () => {
 			window.location = $(this).attr('href')
 
 		} else {
-
 			// validation?
-
 		}
 	})
+
 }
 
 
@@ -289,9 +319,12 @@ $( function() {
 
 		// Get the elements position relative to the viewport
 		let bb = element.getBoundingClientRect()
-		let padding = 200
+		let padding = 500
 		// Check if the element is outside the viewport, Then invert the returned value because you want to know the opposite
-		return !( (bb.top + padding) > innerHeight || (bb.bottom - padding) < 0)
+		let in_view = !( (bb.top + padding) > innerHeight || (bb.bottom - padding) < 0)
+		console.log('in view?: ', in_view)
+		return in_view
+		// return !( (bb.top + padding) > innerHeight || (bb.bottom - padding) < 0)
 
 	}
 
@@ -326,6 +359,7 @@ $( function() {
 		$('body.audience-select').length && $('#audience_buttons').css('bottom', down_value)
 
 	}
+	
 	const set_scroll_listener = () => {
 
 		document.addEventListener( 'mousemove', ( event ) => {
@@ -337,6 +371,7 @@ $( function() {
 
 		})
 
+		let last_scrolltop = 0
 		window.addEventListener( 'scroll', ( event ) => {
 
 			let offset_calc = window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
@@ -353,22 +388,40 @@ $( function() {
 				$('body > header').addClass('shrink')
 			}
 
-
 			// Check the viewport status
 			// let shady_element = document.querySelector('.do-the-shady-thing')
 			// in_viewport( shady_element ) ? document.body.classList.add( 'shade-active' ) : document.body.classList.remove( 'shade-active' )
 
 			/*
-			let process_element = document.querySelector('section#process')
+			let process_element = document.querySelector('section#process .scrolljacker')
 			let scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop()
-			console.log(scrollTop)
+			console.log('body top: ' + scrollTop)
+			
+			let scrolling_down =  ( scrollTop > last_scrolltop )
+			let scroll_direction = scrolling_down ? 'down' : 'up'
+			last_scrolltop = scrollTop
+
+			let jacker = $('section#process .scrolljacker')
+			// $('body').scrollTop()
+			// $('div').offset().top
+			// $('div').scrollTop()
+			// let at_bottom = jacker.scrollTop() + jacker.outerHeight() >= jacker.prop("scrollHeight")
+			let at_bottom = $(window).scrollTop() >= jacker.offset().top + jacker.outerHeight() - window.innerHeight
+			let at_top = jacker.scrollTop() === 0
+
+			console.log('scroll direction: ' + scroll_direction)
 			if ( in_viewport( process_element ) ) {
-				document.body.classList.add( 'scrolljack' )
-				$('html').not('.noscroll').addClass('noscroll').css('top',-scrollTop)
+				//document.body.classList.add( 'shade-active' )
+				$('body').addClass( 'scrolljack' )
+				$('html').not('.noscroll').addClass('noscroll') //.css('top',-scrollTop)
+				console.log('jacker at top: ' + at_top + ' ...or bottom?: ' + at_bottom)
+
 			} else {
-				scrollTop = parseInt($('html').css('top'))
+				//document.body.classList.remove( 'shade-active' )
+				//scrollTop = parseInt($('html').css('top'))
+				$('body').removeClass( 'scrolljack' )
 				$('html').removeClass('noscroll')
-				$('html,body').scrollTop(-scrollTop)
+				//$('html,body').scrollTop(-scrollTop)
 			}
 			*/
 
@@ -677,42 +730,5 @@ $( function() {
   	attach_search_event()
 	attach_fake_search_event()
 
-	//let sniff_city = JSON.parse( localStorage.getItem('location') ).city
-	//$('#home_hero h2 .where-actually').html('<span>in '+sniff_city+'</span>')
-
 })
 
-
-
-
-function fillInAddress() {
-
-	var place = autocomplete.getPlace()
-	//console.log(place)
-
-}
-
-function fillInAddress2() {
-
-	var place = autocomplete2.getPlace()
-	console.log(place.formatted_address)
-	localStorage.setItem('cta_address', place.formatted_address)
-
-}
-
-function initAutocomplete() {
-
-	autocomplete = new google.maps.places.Autocomplete( (document.getElementById('hero_search')), {
-		types: ['geocode'],
-		componentRestrictions: { country: ['us'] }
-	})
-
-	autocomplete2 = new google.maps.places.Autocomplete( (document.getElementById('fld_fake_search')), {
-		types: ['geocode'],
-		componentRestrictions: { country: ['us'] }
-	})
-
-	autocomplete.addListener('place_changed', fillInAddress)
-	autocomplete2.addListener('place_changed', fillInAddress2)
-	document.getElementById('hero_search').focus()
-}

@@ -303,7 +303,7 @@ const prepopulate_booking_form = () => {
 
     if ( booking_data.fld_hero_search ) {
         get_map_embed( booking_data.fld_hero_search )
-        verify_complete_address()
+        //verify_complete_address()
         validateStep()
     }
 }
