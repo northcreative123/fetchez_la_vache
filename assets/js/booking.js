@@ -310,9 +310,19 @@ const prepopulate_booking_form = () => {
 
 const prepare_form = () => {
 
-	const pre_search = localStorage.getItem('searched_address')
-	pre_search && $('form#booking').addClass('prepopulate')
-	pre_search && prepopulate_booking_form()
+    const cta_search = localStorage.getItem('cta_address') || null
+    if ( cta_search ) {
+
+        $('#fld_hero_search').val(cta_search)
+        localStorage.removeItem("cta_address")
+
+    } else {
+
+        const pre_search = localStorage.getItem('searched_address')
+        pre_search && $('form#booking').addClass('prepopulate')
+        pre_search && prepopulate_booking_form()
+        
+    }
 
 }
 

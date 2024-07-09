@@ -147,20 +147,16 @@ const attach_fake_search_event = () => {
 		e.preventDefault()
 		const input = $(e.currentTarget).parent().find($('.search-input'))
 		const address = input.val()
+		const cta_search = localStorage.getItem('cta_address') || null
 
-		if ( address.length >= 4 ) {
+		if ( cta_search ) {
 
-			//$(e.currentTarget).removeClass('result error').addClass('searching')
-			!is_prod && console.log('searched address: ' + address)
-			//const address_ll = geocode_address(address, $(e.currentTarget))
-			//!is_prod && console.log('address lat/lon: ', address_ll)
+			!is_prod && console.log('Address: ', cta_search)
+			window.location = $(this).attr('href')
 
 		} else {
 
-			//!is_prod && console.log('invalid address: ' + address)
-			//$(e.currentTarget).find('input.search-input').focus()
-			//$(e.currentTarget).find('.result-block p').html('Search must contain <strong>more than 3 characters</strong>.')
-			//$(e.currentTarget).addClass('result error')
+			// validation?
 
 		}
 	})
@@ -688,20 +684,35 @@ $( function() {
 
 
 
-let autocomplete, address1Field
-const initAutocomplete = () => {
 
-	address1Field = document.querySelector("#hero_search")
+function fillInAddress() {
 
-	// Create the autocomplete object, restricting the search predictions to addresses in the US and Canada.
-	autocomplete = new google.maps.places.Autocomplete(address1Field, {
-		componentRestrictions: { country: ["us", "ca"] },
-		fields: ["address_components", "geometry"],
-		types: ["address"],
-	})
-	address1Field.focus()
+	var place = autocomplete.getPlace()
+	//console.log(place)
 
 }
-if ( $('form.videographer-search').length ) {
-	window.initAutocomplete = initAutocomplete
+
+function fillInAddress2() {
+
+	var place = autocomplete2.getPlace()
+	console.log(place.formatted_address)
+	localStorage.setItem('cta_address', place.formatted_address)
+
+}
+
+function initAutocomplete() {
+
+	autocomplete = new google.maps.places.Autocomplete( (document.getElementById('hero_search')), {
+		types: ['geocode'],
+		componentRestrictions: { country: ['us'] }
+	})
+
+	autocomplete2 = new google.maps.places.Autocomplete( (document.getElementById('fld_fake_search')), {
+		types: ['geocode'],
+		componentRestrictions: { country: ['us'] }
+	})
+
+	autocomplete.addListener('place_changed', fillInAddress)
+	autocomplete2.addListener('place_changed', fillInAddress2)
+	document.getElementById('hero_search').focus()
 }

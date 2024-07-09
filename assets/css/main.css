@@ -2060,9 +2060,10 @@ section .chunklet p.standout {
 }
 #cta_section label span { 
 	/* display: none; */
-	padding: .5rem 0 1.5rem;
+	padding: .5rem 0 1rem;
     display: block;
     font-size: 1.25rem;
+	font-weight: normal;
 }
 #cta_section a.cta-link { margin: 1rem 0 0; }
 #cta_section h2 { 
