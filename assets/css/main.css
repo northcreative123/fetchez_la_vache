@@ -597,6 +597,7 @@ section#videographer_cta .chunklet a {
     position: absolute;
     left: 52%;
     top: 28%;
+    z-index: 10;
 }
 section#videographer_cta .chunklet img.background,
 section#blog_cta .chunklet img.background {
@@ -1639,14 +1640,14 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 }
 .testimonial-list-redux > li > .card blockquote {
 	margin: 0;
-    padding: 1rem 0 2rem;
+    padding: 1rem 2rem 2rem 0;
     font-size: 1.1rem;
     line-height: 1.25rem;
     border: unset;
 }
 .testimonial-list-redux > li > .card cite {
     display: block;
-    text-align: right;
+    text-align: left;
     font-size: 1.25rem;
     padding: 0;
     font-style: normal;
@@ -2057,7 +2058,12 @@ section .chunklet p.standout {
 	margin: 0;
 	padding: 0;
 }
-#cta_section label span { display: none; }
+#cta_section label span { 
+	/* display: none; */
+	padding: .5rem 0 1.5rem;
+    display: block;
+    font-size: 1.25rem;
+}
 #cta_section a.cta-link { margin: 1rem 0 0; }
 #cta_section h2 { 
 	white-space: nowrap;
