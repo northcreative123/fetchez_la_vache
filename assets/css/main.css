@@ -1493,10 +1493,10 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 	z-index: 9;
 	position: absolute;
 	top: 50%;
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-    margin-top: -25px;
+	height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    margin-top: -21px;
 	background: var(--primelight);
 	color: var(--lightest);
 }
@@ -1508,22 +1508,22 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     margin: 0 25px;
     padding: 0;
     position: relative;
-    /* border: 1px solid var(--offlight); */
-    height: 42vh;
-	box-shadow: 17px 88px 60px -100px rgba(79, 94, 120, .18), 11px 0 20px -9px rgba(79, 94, 120, .1);
+    border: 1px solid var(--offlight);
+    height: 350px;
+    box-shadow: 17px 88px 60px -100px rgba(79, 94, 120, .18), 11px 0 20px -9px rgba(79, 94, 120, .1);
+    display: block;
 }
 .testimonial-list-redux li { 
 	position: absolute;
     top: 0;
     left: 0;
-	opacity: 0;
+    opacity: 0;
     overflow: hidden;
-    height: 42vh;
-    padding: 4rem 4rem 2rem;
-	transition: opacity 1s;
-	z-index: 7;
-	display: flex;
-	gap: 2rem;
+    height: 100%;
+    padding: 0;
+    transition: opacity 1s;
+    z-index: 7;
+    display: block;
 }
 .testimonial-list-redux li.active { 
 	opacity: 1;
@@ -1531,13 +1531,92 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 }
 .testimonial-list-redux > li > .card {
 	width: 50%;
-	flex: 1;
+    /* flex: 1; */
+    margin-left: 50%;
+    padding: 2.5rem 2rem;
+	position: relative;
+    min-height: 350px;
+}
+.testimonial-list-redux > li > .card:before {
+	content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -3rem;
+    background: var(--lightest);
+    width: 6rem;
+    transform: skewX(-12deg);
+    z-index: -1;
 }
 .testimonial-list-redux > li > .image-frame {
 	width: 50%;
-    flex: 1;
+    /* flex: 1; */
+    position: absolute;
+    height: 100%;
+    overflow: hidden;
 }
-.testimonial-list-redux li .card a img { 
+
+/* .testimonial-list-redux li .image-frame:after, */
+.testimonial-list-redux li .image-frame:before {
+	display: block;
+    height: 3.25rem;
+    width: 3.25rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    content: "\f144";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 4rem;
+    margin: -1.5rem 0 0 -1.5rem;
+    color: var(--lightest);
+    /* background: var(--lightest); */
+    border-radius: 50%;
+    line-height: 3.25rem;
+    text-align: center;
+	z-index: 10;
+	opacity: 1;
+	cursor: pointer;
+}
+/*
+.testimonial-list-redux li .image-frame:after {
+	background: var(--primegradient-off);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.testimonial-list-redux li .image-frame:hover:after { 
+	color: var(--darkest); 
+	background: var(--lightest);
+	opacity: 1; 
+	background: var(--primegradient-on);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.testimonial-list-redux li .image-frame:hover:before { 
+	opacity: 1; 
+}
+*/
+.testimonial-list-redux li .image-frame img {
+    /* max-width: 100%; */
+    /* max-height: 15rem; */
+    /* border-radius: 1rem; */
+    border: 1px solid transparent;
+    opacity: .9;
+    cursor: pointer;
+    height: 100%;
+    max-width: unset;
+}
+.testimonial-list-redux li .image-frame:hover img {
+	opacity: 1;
+}
+
+
+.testimonial-list-redux li .card img { 
 	height: 3rem;
 }
 .testimonial-list-redux > li > .card blockquote {
@@ -1559,7 +1638,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 .featured-testimonials {
 	display: block;
 	position: relative;
-    min-height: 42vh;
+    min-height: 350px;
 }
 
 
@@ -1810,11 +1889,9 @@ div.featured-industries .card-panel .image-frame {
 	position: relative;
 	cursor: pointer;
 }
-.testimonial-list > li > .card .image-frame:after,
+/* .testimonial-list > li > .card .image-frame:after, */
 .testimonial-list > li > .card .image-frame:before,
-.testimonial-list-redux > li > .image-frame:after
-.testimonial-list-redux > li > .image-frame:before
-div.featured-industries .card-panel .image-frame:after,
+/* div.featured-industries .card-panel .image-frame:after, */
 div.featured-industries .card-panel .image-frame:before {
 	display: block;
     height: 3.25rem;
@@ -1829,26 +1906,27 @@ div.featured-industries .card-panel .image-frame:before {
     content: "\f144";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    font-size: 3rem;
+    font-size: 4rem;
     margin: -1.5rem 0 0 -1.5rem;
-    color: var(--darkest);
-    background: var(--lightest);
+    color: var(--lightest);
+    /* background: var(--lightest); */
     border-radius: 50%;
     line-height: 3.25rem;
     text-align: center;
 	z-index: 10;
-	opacity: .7;
+	opacity: 1;
 	cursor: pointer;
 }
+/*
 .testimonial-list > li > .card .image-frame:after,
-.testimonial-list-redux > li > .image-frame:after,
+.testimonial-list-redux li .image-frame:after,
 div.featured-industries .card-panel .image-frame:after {
 	background: var(--primegradient-off);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 .testimonial-list > li > .card .image-frame:hover:after,
-.testimonial-list-redux > li > .image-frame:hover:after,
+.testimonial-list-redux li .image-frame:hover:after,
 div.featured-industries .card-panel .image-frame:hover:after { 
 	color: var(--darkest); 
 	background: var(--lightest);
@@ -1858,22 +1936,22 @@ div.featured-industries .card-panel .image-frame:hover:after {
 	-webkit-text-fill-color: transparent;
 }
 .testimonial-list > li > .card .image-frame:hover:before,
-.testimonial-list-redux > li > .image-frame:hover:before,
+.testimonial-list-redux li .image-frame:hover:before,
 div.featured-industries .card-panel .image-frame:hover:before { 
 	opacity: 1; 
 }
+*/
 .testimonial-list > li > .card .image-frame img,
-.testimonial-list-redux > li > .image-frame img,
 div.featured-industries .card-panel .image-frame img {
     max-width: 100%;
-    max-height: 15rem;
+    /* max-height: 15rem; */
 	border-radius: 1rem;
 	border: 1px solid transparent;
 	opacity: .9;
 	cursor: pointer;
 }
 .testimonial-list > li > .card .image-frame:hover img,
-.testimonial-list-redux > li > .image-frame:hover img,
+.testimonial-list-redux li .image-frame:hover img,
 div.featured-industries .card-panel .image-frame:hover img {
 	opacity: 1;
 }
@@ -2328,11 +2406,11 @@ img.logo-map {
 	position: relative;
 	cursor: pointer;
 }
-.video-ticker-section-image-frame:after,
+/* .video-ticker-section-image-frame:after, */
 .video-ticker-section-image-frame:before {
 	display: block;
-    height: 3rem;
-    width: 3rem;
+    height: 3.25rem;
+    width: 3.25rem;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -2343,17 +2421,18 @@ img.logo-map {
     content: "\f144";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    font-size: 3rem;
+    font-size: 4rem;
     margin: -1.5rem 0 0 -1.5rem;
-    color: var(--darkest);
-    background: var(--lightest);
+    color: var(--lightest);
+    /* background: var(--lightest); */
     border-radius: 50%;
-    line-height: 3rem;
+    line-height: 3.25rem;
     text-align: center;
 	z-index: 10;
-	opacity: .7;
-    /* border: 3px solid transparent; */
+	opacity: 1;
+	cursor: pointer;
 }
+/*
 .video-ticker-section-image-frame:after {
 	background: var(--primegradient-off);
 	-webkit-background-clip: text;
@@ -2370,6 +2449,7 @@ img.logo-map {
 .video-ticker-section-image-frame:hover:before { 
 	opacity: 1; 
 }
+*/
 .logo-ticker-section-image-frame img,
 .video-ticker-section-image-frame img {
     max-width: 11rem;
@@ -2718,7 +2798,7 @@ p.instruction:before {
 
     color: var(--primedark);
     display: inline-block;
-    font-weight: 500;
+    font-weight: 900;
     position: absolute;
     left: 1rem;
 }
@@ -3030,7 +3110,7 @@ p.powered {
     text-align: center;
     line-height: 2rem;
     display: inline-block;
-    font-weight: 500;
+    font-weight: 900;
 }
 .ol-fancy > li:first-child:before {
 	content: "\f590";

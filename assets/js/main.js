@@ -518,7 +518,7 @@ $( function() {
 
         feature_data.forEach(function( data ) { 
 			//testimony_markup += '<li class=""><a href="" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><div class="card"><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><q>""</q><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
-			testimony_markup += '<li class=""><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><div class="card"><a href="" title="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'" /></a><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
+			testimony_markup += '<li class=""><div class="image-frame play-inline" title="'+data.name+'" data-vimeo-id="'+data.featured_video+'" data-url="https://vimeo.com/'+data.featured_video+'" data-client="'+data.name+'"><img alt="'+data.name+'" aria-hidden="false" src="https://vumbnail.com/'+data.featured_video+'.jpg" /></div><div class="card"><img alt="'+data.name+'" aria-hidden="false" src="'+data.logo_url+'"><blockquote>'+data.testimonial+'</blockquote><cite>'+data.contact+'</cite></div></li>'
 		})
 
 		parent.append(testimony_markup).find('li:first-child').addClass('active')
