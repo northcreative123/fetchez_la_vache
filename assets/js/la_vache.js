@@ -9,8 +9,8 @@ const get_classy = ( str ) => { return str.replace(/\s+/g, '-').toLowerCase() }
 const despace = ( str ) => { return str.replace(/\s+/g, '') }
 const get_fn_name = () => { return getFuncName.caller.name }
 // const log_fn_name = () => { return getFuncName.caller.name }
-const get_loc = () => { return 'Loc Sniffing Inactive' }
-// const get_loc = () => { return localStorage.getItem('location') || 'unknown' } // user IP sniff - TODO: REMOVE (or detail in privacy/terms)
+//const get_loc = () => { return 'Loc Sniffing Inactive' }
+const get_loc = () => { return localStorage.getItem('location') || 'unknown' } // user IP sniff - TODO: REMOVE (or detail in privacy/terms)
 const clear_local_storage = () => { localStorage.clear() }
 
 const tz = new Date().getTimezoneOffset() / 60 //moment.tz.guess()
