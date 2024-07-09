@@ -577,11 +577,26 @@ section#blog_cta .chunklet {
     /* text-align: center; */
     min-height: 28vh;
 }
+div.cta-copy {
+	width: 50%;
+    padding: 2rem 1rem;
+}
+div.cta-copy p {
+	padding: 0;
+	color: var(--lightest);
+}
 section#videographer_cta .chunklet h3,
 section#blog_cta .chunklet h3 { 
-	color: var(--lightest); 
-	z-index: 10; 
-    text-align: left; 
+	color: var(--lightest);
+    z-index: 10;
+    text-align: left;
+    margin: 0;
+    padding: 2rem 0 1rem;
+}
+section#videographer_cta .chunklet a {
+    position: absolute;
+    left: 52%;
+    top: 28%;
 }
 section#videographer_cta .chunklet img.background,
 section#blog_cta .chunklet img.background {
@@ -590,7 +605,7 @@ section#blog_cta .chunklet img.background {
 	height: 100%; */
 
 	position: absolute;
-    right: 7rem;
+    right: 5rem;
     top: 0rem;
     height: 69%;
 }
@@ -1190,6 +1205,9 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
     background-position: center;
     padding: 1rem 0;
 }
+#process .process-tile-list-stepped li.tile h2 {
+    margin: 0 0 .5rem;
+}
 #process .process-tile-list-stepped li.tile img.process-preview { 
 	position: absolute;
     top: 0;
@@ -1315,7 +1333,7 @@ div.process-container, .timeline {
 #process .process-tile-list li.tile:hover h5 span { 
 	background: var(--lightest);
 }
-#process p { padding: 1rem; }
+#process p { padding: 1rem 0; }
 #process .process-tile-list .tile video {
 	width: 100%;
 	position: absolute;
@@ -1508,7 +1526,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     margin: 0 25px;
     padding: 0;
     position: relative;
-    border: 1px solid var(--offlight);
+    /* border: 1px solid var(--offlight); */
     height: 350px;
     box-shadow: 17px 88px 60px -100px rgba(79, 94, 120, .18), 11px 0 20px -9px rgba(79, 94, 120, .1);
     display: block;
@@ -1606,7 +1624,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     /* max-height: 15rem; */
     /* border-radius: 1rem; */
     border: 1px solid transparent;
-    opacity: .9;
+    opacity: 1;
     cursor: pointer;
     height: 100%;
     max-width: unset;
