@@ -568,12 +568,12 @@ section#home_hero {}
 section#portfolio_tickers {}
 section#process {}
 section#client_types {}
-section#testimonials {}
-section#industries_served { min-height: auto !important; }
+section#testimonials { min-height: 56vh; }
+section#industries_served { min-height: 52vh; }
 section#cta_section {}
 section#videographer_cta,
 section#blog_cta {
-	min-height: 44vh;
+	min-height: 36vh;
 }
 section#videographer_cta .chunklet,
 section#blog_cta .chunklet {
@@ -1114,7 +1114,7 @@ section#home_hero form.videographer-search {
     z-index: 11;
     /* right: 25%;
     top: 50%; */
-    max-width: 50%;
+	max-width: 40rem;
     padding: 0;
     /* transform: rotateY(6deg); */
     margin: 1rem auto;
@@ -1539,6 +1539,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     height: 350px;
     box-shadow: 17px 88px 60px -100px rgba(79, 94, 120, .18), 11px 0 20px -9px rgba(79, 94, 120, .1);
     display: block;
+	border-radius: 1rem;
 }
 .testimonial-list-redux li { 
 	position: absolute;
@@ -1551,6 +1552,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     transition: opacity 1s;
     z-index: 7;
     display: block;
+	border-radius: 1rem;
 }
 .testimonial-list-redux li.active { 
 	opacity: 1;
@@ -1638,6 +1640,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     cursor: pointer;
     height: 100%;
     max-width: unset;
+	border-radius: 1rem;
 }
 .testimonial-list-redux li .image-frame:hover img {
 	opacity: 1;
@@ -2014,6 +2017,7 @@ section.videographers-content.enabled {
 	max-width: 80%;
 	margin-left: auto;
 	margin-right: auto;
+	/* background: var(--lightest); */
 }
 section .chunklet h3 {
     padding: 2rem 10vw;
@@ -2028,6 +2032,8 @@ section .chunklet h3 {
 section .chunklet h3.head-center { text-align: center; }
 section .chunklet h3.head-right { text-align: right; }
 section .chunklet h3 i { display: none; }
+
+section#portfolio_tickers .chunklet h3 { font-size: 1.25rem; }
 
 section .chunklet p.standout {
 	background: rgba(255, 255, 255, .75);
@@ -2049,7 +2055,7 @@ section .chunklet p.standout {
     background-position: left center;
 }
 #cta_section .chunklet {
-    padding: 8rem 0 0 46vw;
+    padding: 4rem 0 0 46vw;
     min-height: 36rem;
 	/* background: rgba(0, 0, 0, .1); */
 }
@@ -2237,8 +2243,10 @@ footer.global-footer nav > ul > li.non-linky > ul {
     gap: 2rem;
 }
 footer.global-footer nav > ul > li.non-linky > ul > li {}
-footer.global-footer nav > ul > li.non-linky li li { padding: 0 0 5% 0; }
-footer.global-footer nav > ul > li.non-linky li:first-child li { padding: 0 0 15% 0; }
+footer.global-footer nav > ul > li.non-linky li li { 
+    padding: .25rem;
+    display: inline-block;	
+}
 footer.global-footer nav > ul > li:hover { background: var(--offlight2); }
 footer.global-footer nav a { color: var(--darkest); }
 footer.global-footer nav > ul > li > a {

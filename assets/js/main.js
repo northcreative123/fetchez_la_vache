@@ -537,24 +537,38 @@ $( function() {
 
 		container.find('.show-btn').on( "click", function( e ) {
 
+		let parent_el = $(this).parent()
+		let panels = parent_el.find('li')
+		let current, next_panel
+
 			if ( $(this).is('.show-next')) {
+
 				//console.log('NEXT')
 				//clearInterval(carousel_timer)
-				let parent_el = $(this).parent()
-				let panels = parent_el.find('li')
-				let current = parent_el.find('.active')
-				let next_panel = current.next().length ? current.next() : parent_el.find('li:first-child')
+				current = parent_el.find('.active')
+				next_panel = current.next().length ? current.next() : parent_el.find('li:first-child')
+
 				current.removeClass('active')
 				next_panel.addClass('active')
+				
+				/*
+				animateCSS('.my-element', 'bounce') // or
+				animateCSS('.my-element', 'bounce').then(( message ) => {
+					// Do something after the animation
+				})
+				*/
+
 			} else {
+
 				//console.log('PREV')
 				//clearInterval(carousel_timer)
-				let parent_el = $(this).parent()
-				let panels = parent_el.find('li')
-				let current = parent_el.find('.active')
-				let prev_panel = current.prev().length ? current.prev() : parent_el.find('li:last-child')
+				current = parent_el.find('.active')
+				next_panel = current.prev().length ? current.prev() : parent_el.find('li:last-child')
+
 				current.removeClass('active')
-				prev_panel.addClass('active')
+				next_panel.addClass('active')
+
+				
 			}
 			//carousel_interval = 10000
 
