@@ -433,6 +433,44 @@ $( function() {
 
 
 
+	const attach_process_events = () => {
+
+		const container = $('.process-tile-list-stepped').parent()
+		container.find('li:first-child').addClass('active')
+		container.append('<button class="show-btn show-prev"><i class="fa-solid fa-chevron-left"></i></button><button class="show-btn show-next"><i class="fa-solid fa-chevron-right"></i></button>')
+
+		container.find('.show-btn').on( "click", function( e ) {
+
+		let parent_el = $(this).parent()
+		let panels = parent_el.find('li')
+		let current, next_panel
+
+			if ( $(this).is('.show-next')) {
+
+				current = parent_el.find('.active')
+				next_panel = current.next().length ? current.next() : parent_el.find('li:first-child')
+
+				current.removeClass('active')
+				next_panel.addClass('active')
+
+			} else {
+
+				current = parent_el.find('.active')
+				next_panel = current.prev().length ? current.prev() : parent_el.find('li:last-child')
+
+				current.removeClass('active')
+				next_panel.addClass('active')
+
+				
+			}
+
+		})
+
+	}
+	//attach_process_events()
+
+
+
 	/* ****************************************
 	 * [ DATA-DRIVEN SHOWCASES ]
 	 *
@@ -681,7 +719,7 @@ $( function() {
 		//attach_shady_events( shady_things )
 
 	}
-	$('.do-the-shady-thing').length && do_the_shady( $('.do-the-shady-thing') )
+	//$('.do-the-shady-thing').length && do_the_shady( $('.do-the-shady-thing') )
 
 
 

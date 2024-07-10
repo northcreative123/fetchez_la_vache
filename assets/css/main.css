@@ -553,7 +553,7 @@ body.shade-active #shady_shade {
 }
 .do-the-shady-thing:hover,
 body.shade-active .do-the-shady-thing {
-    z-index: 1000;
+    /* z-index: 1000; */
 	/* background: var(--lightest); */
 }
 
@@ -1589,7 +1589,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 .featured-testimonials .show-btn.show-prev { left: 0; }
 .featured-testimonials .show-btn.show-next { right: 0; }
 
-.testimonial-list-redux {
+.slideshow-blob {
 	list-style: none;
     margin: 0 25px;
     padding: 0;
@@ -1600,7 +1600,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     display: block;
 	border-radius: 1rem;
 }
-.testimonial-list-redux li { 
+.slideshow-blob li { 
 	position: absolute;
     top: 0;
     left: 0;
@@ -1613,7 +1613,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     display: block;
 	border-radius: 1rem;
 }
-.testimonial-list-redux li.active { 
+.slideshow-blob li.active { 
 	opacity: 1;
 	z-index: 8;
 }
@@ -2111,7 +2111,7 @@ section .chunklet p.standout {
 	background-repeat: no-repeat;
 	padding: 0;
 	background-size: 69%;
-    background-position: left center;
+    background-position: left top;
 }
 #cta_section .chunklet {
     padding: 4rem 0 0 46vw;
