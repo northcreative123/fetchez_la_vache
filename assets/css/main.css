@@ -764,8 +764,8 @@ section#blog_content .chunklet time {
 body > header.global-header {
 	z-index: 100;
 	position: fixed;
-	background: var(--darkest);  
-    /* background: rgba(0, 0, 0, 0.2); */
+	/* background: var(--darkest);  
+    background: rgba(0, 0, 0, 0.2); */
 	overflow: visible;
 	top: 0;
 	left: 0;
@@ -844,7 +844,7 @@ header.global-header nav > ul > li > a {
 	/* letter-spacing: 2px;  */
 }
 header.global-header nav > ul > li > a:hover { 
-	background: var(--darkest); 
+	/* background: var(--darkest); */
 }
 header.global-header.shrink nav > ul > li > a:hover { 
 	background: var(--lightest);
