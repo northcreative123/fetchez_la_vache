@@ -135,6 +135,7 @@ const handle_sniff = () => {
         "Page": visitor_log.page,
         "Title": visitor_log.title,
         "Datetime": visitor_log.datetime,
+        "Browser Tag": visitor_log.tag,
         "Location": loc
     }
 

@@ -351,8 +351,10 @@ $( function() {
 		// header animation
 		if ( scroll_percent > 3 ) {
 			$('body > header').addClass('shrink')
+			$('header nav img.nc-doodle').attr('src', 'assets/images/compass-icon.svg')
 		} else {
 			$('body > header').removeClass('shrink')
+			$('header nav .nc-doodle').attr('src', 'assets/images/compass-icon-white.svg')
 		}
 
 		// audience buttons animation

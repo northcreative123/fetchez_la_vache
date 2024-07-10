@@ -1,5 +1,7 @@
 
 :root {
+	--navlink-hover: rgba( 129, 129, 139, .5);
+	--navlink-current: rgba(0, 0, 0, 1);
 	--offlight: rgba(243, 243, 246, 1);
 	--offlight2: rgba(250, 250, 250, 1);
 	--lightest: rgba(255, 255, 255, 1);
@@ -15,7 +17,6 @@
 	--secondarygradient-on: linear-gradient(to right, #aaa, #ccc);
 	--error-color: #800;
 	--error-color-light: rgb(255, 0, 0);
-	--link-current: #800;
 
 	--base-radius: .5rem;
 	--base2-radius: 1rem;
@@ -763,7 +764,7 @@ section#blog_content .chunklet time {
 body > header.global-header {
 	z-index: 100;
 	position: fixed;
-	background: rgba(255, 255, 255, 0);  
+	background: var(--darkest);  
     /* background: rgba(0, 0, 0, 0.2); */
 	overflow: visible;
 	top: 0;
@@ -771,19 +772,26 @@ body > header.global-header {
 	right: 0;
     padding: 0 3rem;
 }
+header.global-header nav ul > li > a {
+	font-family: "Noto Sans", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    transition: color .4s;
+	text-transform: capitalize;
+}
 header.global-header.shrink { 
-	background: rgba(255, 255, 255, 1); 
+	background: var(--lightest); 
 }
 header.global-header nav > ul > li > a { 
 	color: var(--lightest); 
-	font-weight: 500;
-	/* text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8), 0px 1px 3px rgba(0, 0, 0, 0.5), 0px 18px 23px rgba(0, 0, 0, 0.1); */
+	font-weight: 400;
 }
 header.global-header nav > ul > li > a:hover { 
 	text-decoration: none;
+	/* text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.8), 0px 1px 3px rgba(255, 255, 255, 0.5), 0px 18px 23px rgba(255, 255, 255, 0.1); */
 }
 header.global-header.shrink nav > ul > li > a { 
-	color: #000; 
+	color: var(--darkest); 
 	font-weight: normal;
 	text-shadow: none;
 }
@@ -812,7 +820,17 @@ header.global-header.shrink h1.logo {
 	background-image: url(../images/logos/nc_horiz_black_full.png);
 }
 header.global-header h1.logo a { display: block; height: 100%; width: 100%; }
-header.global-header nav { display: inline-block; margin: 0; padding: 0; float: none; vertical-align: middle; }
+header.global-header nav { 
+	display: inline-block; 
+	margin: 0; 
+	padding: 0; 
+	float: none; 
+	vertical-align: middle; 
+
+	/* position: absolute;
+    top: 1.25rem;
+    right: 15rem; */
+}
 
 header.global-header nav ul {
 	margin: 0;
@@ -820,11 +838,24 @@ header.global-header nav ul {
 	list-style: none;
 }
 header.global-header nav > ul > li { display: inline-block; position: relative; }
-header.global-header nav > ul > li > a { padding: 1rem; font-size: 1rem; letter-spacing: 2px; }
-header.global-header nav > ul > li > a:hover { background: var(--darkest); }
-header.global-header.shrink nav > ul > li > a:hover { background: var(--offlight); }
-header.global-header nav > ul > li > a.w--current { color: var(--link-current); font-weight: 500; }
-
+header.global-header nav > ul > li > a { 
+	padding: 1rem; 
+	font-size: 1.2rem; 
+	/* letter-spacing: 2px;  */
+}
+header.global-header nav > ul > li > a:hover { 
+	background: var(--darkest); 
+}
+header.global-header.shrink nav > ul > li > a:hover { 
+	background: var(--lightest);
+	color: var(--navlink-hover);
+}
+/* webflow's current page nav class (w--current): */
+header.global-header nav > ul > li > a.w--current { 
+	color: var(--navlink-current); 
+	font-weight: 500; 
+}
+/*
 header.global-header nav > ul > li.parent > a:after { 
 	display: inline-block;
 	padding: 0 .5rem;
@@ -839,16 +870,19 @@ header.global-header nav > ul > li.parent > a:after {
 header.global-header nav > ul > li.parent:hover > a:after { 
 	content: "\f0d8";
 }
-
-div.mega-menu,
-header.global-header nav > ul > li > ul {
-	border: 1px solid var(--darkest);
-	background: var(--lightest);
-	padding: .5rem 2rem;
+*/
+header.global-header nav > ul > li.parent > a img.nc-doodle {
+	height: 1.25rem;
+	transform: rotate(0deg);
+	transition: all 0.3s;
 }
+header.global-header nav > ul > li.parent > a:hover img.nc-doodle {
+	transform: rotate(180deg);
+}
+
 header nav a {
-	text-transform: uppercase;
-	white-space: nowrap;
+	/* text-transform: uppercase;
+	white-space: nowrap; */
 
 	vertical-align: top;
     color: var(--darkest);
@@ -860,15 +894,30 @@ header nav a {
     display: inline-block;
     position: relative;
 }
-ul.sub { padding: 1rem 2rem !important }
+/* ul.sub { padding: 1rem 2rem !important } */
 div.mega-menu ul.sub { padding: 0 !important }
-ul.sub a { 
+header.global-header nav ul > li ul.sub a { 
 	padding: .1rem 0;
 	display: block;
-	/* text-decoration: none; */
-}
-ul.sub a:hover { color: var(--darkest); }
+	margin-bottom: .75rem;
+	min-width: 12rem;
+	text-decoration: none;
 
+    font-weight: 400;
+    transition: color .4s;
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+	text-transform: capitalize;
+}
+ul.sub a:hover { color: var(--navlink-hover); text-decoration: none; }
+/*
+div.mega-menu,
+header.global-header nav > ul > li > ul {
+	border: 1px solid var(--darkest);
+	background: var(--lightest);
+	padding: .5rem 2rem;
+}
+*/
 header.global-header nav > ul > li > ul,
 header.global-header nav > ul div.mega-menu { 
 	display: none; 
@@ -877,6 +926,15 @@ header.global-header nav > ul div.mega-menu {
 	top: 100%; 
     min-width: 100%;
     max-width: 750px;
+
+	
+    background-color: var(--lightest);
+    border-radius: 2rem;
+    padding: 2rem 3rem;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(20, 20, 43, .08);
+
+	/* margin: 2rem 0 0 -20vw; */
 
 	/* max-height: 0;
 	opacity: 0; */
@@ -893,10 +951,10 @@ div.mega-menu {
 	padding: 0;
 	/* border-radius: 0 0 .5rem .5rem; */
 }
-div.panels { display: flex; gap: 1rem; }
+div.panels { display: flex; gap: 3rem; }
 div.menu-panel { 
 	flex: 1;
-	padding: 1.5rem 2rem;
+	padding: 0;
 	}
 div.mega-menu .footer {
 	background: var(--darkest);
@@ -2248,6 +2306,14 @@ footer.global-footer nav > ul > li.non-linky li li {
     padding: .25rem;
     display: inline-block;	
 }
+footer.global-footer nav > ul > li.non-linky ul ul {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+footer.global-footer nav > ul > li.non-linky li li:hover { 
+    font-weight: 500;
+}
 footer.global-footer nav > ul > li:hover { background: var(--offlight2); }
 footer.global-footer nav a { color: var(--darkest); }
 footer.global-footer nav > ul > li > a {
@@ -2425,11 +2491,11 @@ img.logo-map {
 .logo-ticker-section-logos-slide,
 .video-ticker-section-videos-slide {
 	display: inline-block;
-	animation: 24s ticker infinite linear;
+	animation: 30s ticker infinite linear;
 	animation-delay: .2s;
 }
 .video-ticker-section-videos-slide {
-	animation: 36s ticker infinite linear;
+	animation: 45s ticker infinite linear;
 	animation-delay: .2s;
 }
 .logo-ticker-section-image-container,

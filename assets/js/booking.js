@@ -567,6 +567,7 @@ const prepare_record_data = () => { // TODO: remove null values
 
     formatted_data["Booking Date Time"] = datetime
     formatted_data["Name And Contact"] = formatted_data["First Name"] + ( formatted_data["Last Name"] ? ' ' + formatted_data["Last Name"] : '' ) + ': ' + pref
+    formatted_data["Browser Tag"] = user_tag || 'unknown'
 
     delete formatted_data["Booking Date"]
     delete formatted_data["Booking Time"]
@@ -620,7 +621,7 @@ const lancez_la_vache = async ( data ) => {
 }
 
 const handle_booking = ( response_container ) => {
-    
+
     !is_prod && console.log('SUBMIT')
     record_data = prepare_record_data()
     console.log('record data:\n', record_data )
