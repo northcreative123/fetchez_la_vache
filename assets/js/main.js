@@ -321,9 +321,13 @@ $( function() {
 		let bb = element.getBoundingClientRect()
 		let padding = 500
 		// Check if the element is outside the viewport, Then invert the returned value because you want to know the opposite
-		let in_view = !( (bb.top + padding) > innerHeight || (bb.bottom - padding) < 0)
-		console.log('in view?: ', in_view)
-		return in_view
+		let in_view = !( (bb.top + padding) > innerHeight || (bb.bottom - padding ) < 0)
+		let above_vp = (bb.top + padding) > innerHeight
+		let below_vp = (bb.bottom - ( padding + 150)) < 0
+		//console.log('in view?: ', in_view)
+		//console.log('above?: ', above_vp)
+		//console.log('below?: ', below_vp)
+		return { "in_view": in_view, "above": above_vp, "below": below_vp } 
 		// return !( (bb.top + padding) > innerHeight || (bb.bottom - padding) < 0)
 
 	}
@@ -361,7 +365,12 @@ $( function() {
 		$('body.audience-select').length && $('#audience_buttons').css('bottom', down_value)
 
 	}
-	
+	// console.log($('body > header').height())
+	// console.log($('body > header').innerHeight())
+	// console.log($('body > header').outerHeight())
+	//let jacked_sticky = parseInt( window.innerHeight / 3.5 )
+	//let jacked_sticky = parseInt( $(".scrolljacker .right-jacked")[0].offsetTop )
+	// console.log('Jacked Top: ', jacked_top)
 	const set_scroll_listener = () => {
 
 		document.addEventListener( 'mousemove', ( event ) => {
@@ -394,38 +403,61 @@ $( function() {
 			// let shady_element = document.querySelector('.do-the-shady-thing')
 			// in_viewport( shady_element ) ? document.body.classList.add( 'shade-active' ) : document.body.classList.remove( 'shade-active' )
 
-			/*
+			
 			let process_element = document.querySelector('section#process .scrolljacker')
 			let scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop()
-			console.log('body top: ' + scrollTop)
+			//console.log('body top: ' + scrollTop)
 			
-			let scrolling_down =  ( scrollTop > last_scrolltop )
-			let scroll_direction = scrolling_down ? 'down' : 'up'
+			let scrolling_down = ( scrollTop > last_scrolltop )
+			scrolling_down && $('body').addClass('scrolling-down').removeClass('scrolling-up')
+			!scrolling_down && $('body').addClass('scrolling-up').removeClass('scrolling-down')
 			last_scrolltop = scrollTop
 
-			let jacker = $('section#process .scrolljacker')
-			// $('body').scrollTop()
-			// $('div').offset().top
-			// $('div').scrollTop()
-			// let at_bottom = jacker.scrollTop() + jacker.outerHeight() >= jacker.prop("scrollHeight")
-			let at_bottom = $(window).scrollTop() >= jacker.offset().top + jacker.outerHeight() - window.innerHeight
-			let at_top = jacker.scrollTop() === 0
+			let steps = $(process_element).find('.tile') // data-image
+			let el_vp_loc = in_viewport( process_element )
 
-			console.log('scroll direction: ' + scroll_direction)
-			if ( in_viewport( process_element ) ) {
+			let jacked = $(process_element).find('.right-jack')
+
+			let vp_height = parseInt( window.innerHeight )
+			//console.log('Viewport Height: ', vp_height)
+			let vp_top = $('body > header').height()
+			let vp_bottom = parseInt( $("section#process")[0].getBoundingClientRect().bottom + $("section#process")[0].getBoundingClientRect().height )
+			let jacked_top = parseInt( $("section#process")[0].getBoundingClientRect().top )
+			let jacked_bottom = parseInt( jacked_top + $(process_element).parent().height() )
+			//console.log('Viewport Top: ' + vp_top + ', Jacked Top: ', jacked_top)
+			//console.log('Viewport Bottom: ' + vp_height + ', Jacked Bottom: ', jacked_bottom)
+
+			let jack_active = ( jacked_top <= vp_top && jacked_bottom >= vp_height )
+			//console.log('-- Active?: ', jack_active)
+			
+			if ( jack_active ) {
+
 				//document.body.classList.add( 'shade-active' )
-				$('body').addClass( 'scrolljack' )
-				$('html').not('.noscroll').addClass('noscroll') //.css('top',-scrollTop)
-				console.log('jacker at top: ' + at_top + ' ...or bottom?: ' + at_bottom)
+				$(process_element).addClass( 'in-view' ).removeClass('above-vp below-vp')
+				$(process_element).parent().addClass('fixed')
+				let current_step = 1
+				steps.each( function( index ) {
+					let elementTop = $(this).offset().top
+					let elementBottom = elementTop + $(this).outerHeight()
+					let viewportTop = $( window ).scrollTop()
+					let viewportBottom = viewportTop + $( window ).height()
+					//let balls = elementBottom > viewportTop && elementTop < viewportBottom
+					//console.log('balls: ', balls +' '+ index)
+					if ( elementBottom > ( viewportTop - 200 ) && elementTop < ( viewportBottom - 200 ) ) { current_step = index+1 }
+				})
+				$(process_element).attr('data-step', current_step)
+				jacked.css('top', '21rem')
+				
 
 			} else {
+
 				//document.body.classList.remove( 'shade-active' )
-				//scrollTop = parseInt($('html').css('top'))
-				$('body').removeClass( 'scrolljack' )
-				$('html').removeClass('noscroll')
-				//$('html,body').scrollTop(-scrollTop)
+				let new_class = el_vp_loc.below ? 'below-vp' : 'above-vp'
+				$(process_element).removeClass( 'in-view above-vp below-vp' ).addClass(new_class)
+				$(process_element).parent().removeClass('fixed')
+				jacked.css('top', 'auto')
+				
 			}
-			*/
 
 		})
 
