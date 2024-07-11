@@ -436,7 +436,7 @@ $( function() {
 				//document.body.classList.add( 'shade-active' )
 				$(process_element).addClass( 'in-view' ).removeClass('above-vp below-vp')
 				$(process_element).parent().addClass('fixed')
-				let current_step = 1
+				let current_step = 0
 				steps.each( function( index ) {
 					let elementTop = $(this).offset().top
 					let elementBottom = elementTop + $(this).outerHeight()

@@ -1346,14 +1346,24 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
 	position: absolute;
     top: 0;
     right: 0;
+	z-index: 9;
+	visibility: hidden;
 	opacity: 0;
-	transition: opacity 1s;
+	
+	/* animation: slow-fade-in 2s forwards 2s; */
+	transition: all 1s;
 }
-#process .scrolljacker[data-step="1"] .jack-spacer:nth-child(1) img.process-preview { opacity: 1; }
-#process .scrolljacker[data-step="2"] .jack-spacer:nth-child(2) img.process-preview { opacity: 1; }
-#process .scrolljacker[data-step="3"] .jack-spacer:nth-child(3) img.process-preview { opacity: 1; }
-#process .scrolljacker[data-step="4"] .jack-spacer:nth-child(4) img.process-preview { opacity: 1; }
-#process .scrolljacker[data-step="5"] .jack-spacer:nth-child(5) img.process-preview { opacity: 1; }
+#process .scrolljacker[data-step="1"] .jack-spacer:nth-child(1) img.process-preview { opacity: 1; z-index: 10; visibility: visible; }
+#process .scrolljacker[data-step="2"] .jack-spacer:nth-child(2) img.process-preview { opacity: 1; z-index: 10; visibility: visible; }
+#process .scrolljacker[data-step="3"] .jack-spacer:nth-child(3) img.process-preview { opacity: 1; z-index: 10; visibility: visible; }
+#process .scrolljacker[data-step="4"] .jack-spacer:nth-child(4) img.process-preview { opacity: 1; z-index: 10; visibility: visible; }
+#process .scrolljacker[data-step="5"] .jack-spacer:nth-child(5) img.process-preview { opacity: 1; z-index: 10; visibility: visible; }
+
+@keyframes slow-fade-in {
+	0% { opacity: 0; }
+	50% { opacity: 0; visibility: visible; }
+	100% { opacity: 1; visibility: visible; }
+}
 
 #process .scrolljacker { position: relative; }
 #process .scrolljacker aside.left-jack { 
