@@ -431,7 +431,7 @@ $( function() {
 			let jack_below = jacked_bottom < vp_height
 			//console.log('-- Active?: ', jack_active)
 			
-			if ( jack_active ) {
+			if ( jack_active ) { // TODO: check out https://scrollmagic.io/docs/index.html
 
 				//document.body.classList.add( 'shade-active' )
 				$(process_element).addClass( 'in-view' ).removeClass('above-vp below-vp')

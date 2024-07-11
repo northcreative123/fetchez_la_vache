@@ -1273,11 +1273,14 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
     padding: 1rem 0; */
 
 	margin: 0;
-	padding: 0;
-	height: 69vh;
+	padding: 12rem 0 0;
+	height: 79vh;
 }
 #process .process-tile-list-stepped li.tile:last-child,
-#process .scrolljacker .jack-spacer:last-child { height: 49vh; }
+#process .scrolljacker .jack-spacer:last-child { 
+	height: 52vh;
+    padding: 0;
+}
 /*
 #process .scrolljacker.in-view li.tile:last-child,
 #process .scrolljacker.in-view .jack-spacer:nth-child(5) {
@@ -1294,8 +1297,8 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
 /* #process .chunklet.fixed { background: red; } */
 #process .chunklet h3 {
     padding: 8rem 10vw 5rem;
-	transition: all .3s;
-	/* opacity: 0;
+	/* transition: all .3s;
+	opacity: 0;
 	transition: opacity .3s;	 */
 }
 #process .chunklet.fixed h3 {
@@ -1322,12 +1325,16 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
 
 #process .scrolljacker .jack-spacer {
 	display: block;
-    height: 69vh;
+    height: 79vh;
 }
 #process .scrolljacker.in-view .jack-spacer {
 	display: inline;
     height: unset;
 }
+/*
+#process .scrolljacker.below-vp .jack-spacer,
+#process .scrolljacker.below-vp li.tile { height: 99vh; }
+*/
 #process .scrolljacker img.process-preview { 
     border-radius: var(--base2-radius);
     width: 38vw;
