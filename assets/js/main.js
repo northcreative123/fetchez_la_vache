@@ -314,7 +314,7 @@ $( function() {
 
 	let hovered_element
 	let mouse_X = 0, mouse_Y = 0
-
+/*
 	const in_viewport = ( element ) => {
 
 		// Get the elements position relative to the viewport
@@ -331,7 +331,7 @@ $( function() {
 		// return !( (bb.top + padding) > innerHeight || (bb.bottom - padding) < 0)
 
 	}
-
+*/
 	//let myElement = document.querySelector('div')
 
 	const set_scroll_hover = ( element ) => {
@@ -414,7 +414,7 @@ $( function() {
 			last_scrolltop = scrollTop
 
 			let steps = $(process_element).find('.tile') // data-image
-			let el_vp_loc = in_viewport( process_element )
+			//let el_vp_loc = in_viewport( process_element )
 
 			let jacked = $(process_element).find('.right-jack')
 
@@ -428,6 +428,7 @@ $( function() {
 			//console.log('Viewport Bottom: ' + vp_height + ', Jacked Bottom: ', jacked_bottom)
 
 			let jack_active = ( jacked_top <= vp_top && jacked_bottom >= vp_height )
+			let jack_below = jacked_bottom < vp_height
 			//console.log('-- Active?: ', jack_active)
 			
 			if ( jack_active ) {
@@ -452,7 +453,7 @@ $( function() {
 			} else {
 
 				//document.body.classList.remove( 'shade-active' )
-				let new_class = el_vp_loc.below ? 'below-vp' : 'above-vp'
+				let new_class = jack_below ? 'below-vp' : 'above-vp'
 				$(process_element).removeClass( 'in-view above-vp below-vp' ).addClass(new_class)
 				$(process_element).parent().removeClass('fixed')
 				jacked.css('top', 'auto')
