@@ -586,8 +586,8 @@ section#blog_cta .chunklet {
     min-height: 28vh;
 }
 div.cta-copy {
-	width: 50%;
-    padding: 2rem 1rem;
+	width: 56%;
+    padding: 3rem 0 0 2rem;
 }
 div.cta-copy p {
 	padding: 0;
@@ -598,13 +598,14 @@ section#blog_cta .chunklet h3 {
 	color: var(--lightest);
     z-index: 10;
     text-align: left;
-    margin: 0;
-    padding: 2rem 0 1rem;
+    padding: 0 0 1rem;
+    line-height: 2.5rem;
+    margin: auto;
 }
 section#videographer_cta .chunklet a {
     position: absolute;
-    left: 52%;
-    top: 28%;
+	right: 27rem;
+    top: 6.5rem;
     z-index: 10;
 }
 section#videographer_cta .chunklet img.background,
@@ -614,8 +615,8 @@ section#blog_cta .chunklet img.background {
 	height: 100%; */
 
 	position: absolute;
-    right: 5rem;
-    top: 0rem;
+	right: 6rem;
+    top: 1rem;
     height: 69%;
 }
 
@@ -940,7 +941,9 @@ header.global-header nav > ul div.mega-menu {
 	opacity: 0; */
 }
 header.global-header nav > ul > li:hover > div.mega-menu,
-header.global-header nav > ul > li:hover > ul { 
+header.global-header nav > ul > li:hover > ul,
+header.global-header nav > ul > li a:focus + div.mega-menu,
+header.global-header nav > ul > li a:focus + ul { 
 	display: block; 
 	/* animation: mega-grow .5s forwards ease-in; */
 }
@@ -1351,7 +1354,7 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
 	opacity: 0;
 	
 	/* animation: slow-fade-in 2s forwards 2s; */
-	transition: all 1s;
+	transition: all 2s;
 }
 #process .scrolljacker[data-step="1"] .jack-spacer:nth-child(1) img.process-preview { opacity: 1; z-index: 10; visibility: visible; }
 #process .scrolljacker[data-step="2"] .jack-spacer:nth-child(2) img.process-preview { opacity: 1; z-index: 10; visibility: visible; }
@@ -3793,6 +3796,7 @@ fieldset.step-success article button {
 	display: none;
 	z-index: 1001;
 }
+/*
 .royals-w-cheese .burger {
     border: 1px solid rgba(0, 0, 0, 1);
     outline: none;
@@ -3834,14 +3838,14 @@ body.nav-open .royals-w-cheese .burger-close { display: flex; }
     width: 40px;
 }
 .royals-w-cheese .burger:hover .strip div {
-    /* background: white; */
+    background: white; 
 }
 
 .royals-w-cheese .burger-strip div {
     transition: all .65s cubic-bezier(0.075, 0.82, 0.165, 1)
 }
-
-/* BURGER CLOSE */
+*/
+/* BURGER CLOSE 
 .burger:hover .burger-strip-close div:first-child {
     transform: translateY(13px) rotate(0deg) ;
 }
@@ -3855,8 +3859,8 @@ body.nav-open .royals-w-cheese .burger-close { display: flex; }
     transform: scale(.7) rotate(45deg);
     transition: all .25s ease .05s;
 }
-
-/* BURGER OPEN */
+*/
+/* BURGER OPEN 
 .burger:hover .burger-strip-open {
     transform: scale(.85);
 }
@@ -3871,5 +3875,5 @@ body.nav-open .royals-w-cheese .burger-close { display: flex; }
     width: 20px;
     transform: translateY(-8px) rotate(30deg);
 }
-
+*/
 

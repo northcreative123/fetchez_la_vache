@@ -158,7 +158,7 @@ $( function() {
     link_fixer()
 
     // mobile menu trigger - TODO: refactor
-    $('.royals-w-cheese .burger').click( function () {
+    $('.royals-w-cheese .logo-map').click( function () {
         $('body').toggleClass('nav-open')
     })
 

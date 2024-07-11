@@ -30,6 +30,18 @@
 
 /* tablets */
 @media screen and (max-width: 991px) {
+
+
+	header.global-header h1.logo {
+		background-image: url(../images/logos/nc_horiz_white.png);
+	}
+	header.global-header.shrink h1.logo {
+		background-image: url(../images/logos/nc_horiz_black.png);
+	}
+	header.global-header.shrink .royals-w-cheese .logo-map {
+		background-image: url(../images/logos/nc_map.svg);
+	}
+
 	/* mobile menu */
 	.royals-w-cheese {
 		display: inline-block;
@@ -38,23 +50,58 @@
         height: 80px;
         vertical-align: middle;
 	}
+	.royals-w-cheese .logo-map {
+		width: 50px;
+		height: 50px;
+		cursor: pointer;
+		margin: 1rem;
+		background-image: url(../images/logos/nc_map_white.svg);
+		background-size: contain;
+		background-repeat: no-repeat;
+		overflow: hidden;
+		background-position: center;
+		position: relative;
+		transition: .5s ease-in-out;
+		transform: rotate(0deg);
+	}
+	.nav-open .royals-w-cheese .logo-map, .royals-w-cheese .logo-map:hover { transform: rotate(180deg); }
+	.nav-open .royals-w-cheese .logo-map:hover { transform: rotate(0deg); }
+	header.global-header .cta-link { margin-right: 8rem; display: none; }
+	/*
+	.royals-w-cheese .logo-map:after {
+		display: block;
+        padding: 0;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        content: "\f0d7";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        height: 30px;
+        width: 21px;
+        position: absolute;
+        right: 0;
+        top: 16px;
+        font-size: 2rem;
+	}
+	.nav-open .royals-w-cheese .logo-map:after { content: "\f0d8"; }
+	*/
     header.global-header .nav-menu-wrapper {
-        background-color: rgba(0, 0, 0, .9);
+		background-color: rgba(0, 0, 0, .9);
         right: 100vw;
-		padding: 1rem 2rem;
-		height: 100vh;
-		top: 0;
-		overflow: auto;
-		position: fixed;
-		width: 80vw;
+        padding: 3rem 5rem;
+        height: auto;
+        top: 6rem;
+        overflow: auto;
+        position: fixed;
+        width: 100vw;
         z-index: 1000;
-		transition: right .5s ease-in-out;
+        transition: right .5s ease-in-out;
     }
-	body.nav-open header.global-header .nav-menu-wrapper { right: 10vw; }
+	body.nav-open header.global-header .nav-menu-wrapper { right: 0; }
 	header.global-header nav > ul > li > div.mega-menu, 
 	header.global-header nav > ul > li > ul {
-		display: block !important;
-		animation: none !important;
 		color: var(--lightest);
 		position: relative;
 		left: unset;
@@ -102,10 +149,14 @@
 	}
 	div.mega-menu ul.sub {
 		padding: 0 1rem !important;
+		display: flex;
+        gap: 0 2rem;
+        flex-wrap: wrap;
 	}	
 	header.global-header nav ul.sub a {
 		padding: .1rem 0 0 1rem;
-    	border-left: 1px solid;
+		display: inline-block;
+    	/* border-left: 1px solid; */
 	}
 	header.global-header div.mega-menu .footer {
 		display: none;
