@@ -162,4 +162,11 @@ $( function() {
         $('body').toggleClass('nav-open')
     })
 
+    screen.orientation.addEventListener("change", () => {
+        console.log('The orientation of the screen is: ', screen.orientation)
+        if ( !navigator.xr && self.isMobile && screen.orientation && screen.orientation.lock ) {
+            screen.orientation.lock('portrait')
+        }
+    })
+
 })

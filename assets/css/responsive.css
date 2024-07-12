@@ -27,7 +27,8 @@
 
 	body.nav-open { overflow: hidden; }
     body.nav-open header.global-header .nav-menu-wrapper {
-        height: 69vh;
+		height: 69vh;
+        top: 3.5rem;
     }
 
 
@@ -66,7 +67,9 @@
 	}
 
 
-
+    section#cta_section {
+		min-height: unset;
+    }
 	#cta_section .chunklet {
 		padding: 0;
 		min-height: unset;
