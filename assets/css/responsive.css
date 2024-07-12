@@ -233,6 +233,9 @@
 		top: 20%;
 		left: 48%;
 	}
+	.testimonial-list-redux li .image-frame:after {
+		display: none;
+	}
 	.testimonial-list-redux > li > .card {
 		width: 100%;
 		flex: unset; 

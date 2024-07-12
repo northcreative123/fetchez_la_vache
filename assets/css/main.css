@@ -1735,6 +1735,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     min-height: 350px;
 	background: var(--lightest);
 }
+/*
 .testimonial-list-redux > li > .card:before {
 	content: "";
     display: block;
@@ -1747,6 +1748,7 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
     transform: skewX(-12deg);
     z-index: -1;
 }
+*/
 .testimonial-list-redux > li > .image-frame {
 	width: 50%;
     /* flex: 1; */
@@ -1780,6 +1782,17 @@ ul.tile-list li.tile:hover { transform: scale(1.1); z-index: 10; clip-path: none
 	z-index: 10;
 	opacity: 1;
 	cursor: pointer;
+}
+.testimonial-list-redux li .image-frame:after {
+	content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 90%;
+    background: var(--lightest);
+    width: 20%;
+    transform: skewX(-12deg);
 }
 /*
 .testimonial-list-redux li .image-frame:after {
