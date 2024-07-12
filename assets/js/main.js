@@ -353,6 +353,7 @@ $( function() {
 		let scroll_percent = parseInt( Math.abs(offset) * 100 )
 
 		// header animation
+		// let doodle_prefix = $('header nav img.nc-doodle')[0].attr('src').split('compass-icon')[0]
 		if ( scroll_percent > 2 ) {
 			$('body > header').addClass('shrink')
 			$('header nav img.nc-doodle').attr('src', 'assets/images/compass-icon.svg')
