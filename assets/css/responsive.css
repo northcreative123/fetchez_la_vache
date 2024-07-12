@@ -438,6 +438,9 @@
 	}
 
 	/* FOOTER */
+	footer.global-footer .logo {
+		width: 15rem;
+	}
 	footer.global-footer nav > ul {
 		flex-wrap: wrap;
 		gap: 0 1rem;

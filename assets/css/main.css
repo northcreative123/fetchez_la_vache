@@ -2384,7 +2384,7 @@ footer.global-footer .logo { /* https://www.pngtosvg.com */
     margin: .25rem;
     background-position: center;
 }
-footer.global-footer .logo:hover { transform: scale(1.1); }
+/* footer.global-footer .logo:hover { transform: scale(1.1); } */
 footer.global-footer .logo a { display: block; height: 100%; width: 100%; }
 footer.global-footer nav { 
 	display: block;
@@ -3801,93 +3801,8 @@ fieldset.step-success article button {
 }
 
 
-
-
-
-
-
 .royals-w-cheese {
 	display: none;
 	z-index: 1001;
 }
-/*
-.royals-w-cheese .burger {
-    border: 1px solid rgba(0, 0, 0, 1);
-    outline: none;
-    width: 55px;
-    height: 55px;
-    border-radius: .5rem;
-    background: white;
-    box-shadow: rgb(136 165 191 / 48%) 6px 2px 16px 0px, rgb(255 255 255 / 80%) -6px -2px 16px 0px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 8px;
-    transition: all .5s ease;
-    margin: 1em;
-	position: absolute;
-}
-.royals-w-cheese .burger-close { display: none; }
-body.nav-open .royals-w-cheese .burger-open { display: none; }
-body.nav-open .royals-w-cheese .burger-close { display: flex; }
-
-.royals-w-cheese .burger span {
-  text-indent: -10000px;
-  display: block;
-  width: 0;
-}
-.royals-w-cheese .royals-w-cheese .burger:hover {
-    background: rgb(56 56 56);
-}
-.royals-w-cheese .burger-strip {
-    transition: all .5s ease;
-}
-.royals-w-cheese .strip div {
-    height: 3px;
-    border-radius: 2px;
-    background: rgb(56 56 56);
-    margin: 10px;
-    transition: all .55s cubic-bezier(0.075, 0.82, 0.165, 1);
-    width: 40px;
-}
-.royals-w-cheese .burger:hover .strip div {
-    background: white; 
-}
-
-.royals-w-cheese .burger-strip div {
-    transition: all .65s cubic-bezier(0.075, 0.82, 0.165, 1)
-}
-*/
-/* BURGER CLOSE 
-.burger:hover .burger-strip-close div:first-child {
-    transform: translateY(13px) rotate(0deg) ;
-}
-.burger:hover .burger-strip-close div:nth-child(2) {
-    opacity: 0;
-}
-.burger:hover .burger-strip-close div:last-child {
-    transform: translateY(-13px) rotate(90deg) ;
-}
-.burger:hover .burger-strip-close {
-    transform: scale(.7) rotate(45deg);
-    transition: all .25s ease .05s;
-}
-*/
-/* BURGER OPEN 
-.burger:hover .burger-strip-open {
-    transform: scale(.85);
-}
-.burger:hover .burger-strip-open div:first-child {
-    width: 20px;
-    transform: translateY(8px) rotate(-30deg);
-}
-.burger:hover .burger-strip-open div:nth-child(2) {
-    width: 38px;
-}
-.burger:hover .burger-strip-open div:last-child {
-    width: 20px;
-    transform: translateY(-8px) rotate(30deg);
-}
-*/
 
