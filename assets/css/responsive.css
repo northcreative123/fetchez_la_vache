@@ -18,7 +18,7 @@
 
 	/* HEADER & NAV */
 	body > header.global-header {
-		padding: 0;
+		padding: .5rem;
 	}
 	header.global-header h1.logo {
 		margin: .5rem 1rem;
@@ -33,7 +33,7 @@
 		display: none;
 	} */
 	.royals-w-cheese .logo-map {
-        margin: .5rem !important;
+        margin: 1rem 0 0 .5rem !important;
 		width: 45px !important;
 		height: 45px !important;
 	}
@@ -42,7 +42,7 @@
     body.nav-open header.global-header .nav-menu-wrapper {
 		max-height: 69vh;
 		min-height: 42vh;
-        top: 3.5rem;
+        top: 4.5rem;
     }
 
 
@@ -473,3 +473,7 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}
+
+@media only screen and (min-width: 1400px) { 
+	html { font-size: 120%; }
+}
