@@ -113,7 +113,7 @@ const post_sniff_data = async ( data ) => {
         })
         .then(( json ) => {
     
-            !is_prod && console.log('%c 🤓 Proxy test:', console_data_style, json)
+            // !is_prod && console.log('%c 🤓 Proxy test:', console_data_style, json)
         
         })
         .catch(( err ) => { 
@@ -163,9 +163,9 @@ $( function() {
     })
 
     screen.orientation.addEventListener("change", () => {
-        console.log('The orientation of the screen is: ', screen.orientation)
+        console.log( 'The orientation of the screen is: ', screen.orientation.type )
         if ( !navigator.xr && self.isMobile && screen.orientation && screen.orientation.lock ) {
-            screen.orientation.lock('portrait')
+            screen.orientation.lock( 'portrait-primary' )
         }
     })
 

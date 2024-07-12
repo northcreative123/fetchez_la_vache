@@ -3,6 +3,19 @@
 
 @media only screen and (max-width: 480px) {
 
+	/* GENERAL */
+	.button-primary {
+		padding: .75rem 1rem;
+	}
+
+	section .chunklet h3 {
+        font-size: 1.5rem !important;
+        padding: 2rem 1rem !important;
+		line-height: 1.5rem !important;
+		margin: 0 !important;
+    }
+
+	/* HEADER & NAV */
 	body > header.global-header {
 		padding: 0;
 	}
@@ -15,26 +28,27 @@
         right: 0;
         width: 69px;
     }
-	header .user-options .cta-link {
+	/* header .user-options .cta-link {
 		display: none;
-	}
+	} */
 	.royals-w-cheese .logo-map {
         margin: .5rem !important;
 		width: 45px !important;
 		height: 45px !important;
 	}
 
-
 	body.nav-open { overflow: hidden; }
     body.nav-open header.global-header .nav-menu-wrapper {
-		height: 69vh;
+		max-height: 69vh;
+		min-height: 42vh;
         top: 3.5rem;
     }
 
 
-
+	/* HERO */
 	div.center-all {
 		margin: 33vh auto;
+        padding: 0 1rem;
 	}
 	section.hero div.chunklet h2 { font-size: 2.25rem; }
 	section#home_hero form.videographer-search {
@@ -57,7 +71,7 @@
 		line-height: 1.25rem;
 	}
 
-
+	/* MARQUEES */
 	section#portfolio_tickers .chunklet h3 {
 		font-size: 1.25rem !important;
 	}
@@ -72,7 +86,7 @@
 		border-radius: unset;
 	}
 
-
+	/* BIZ CTA */
     section#cta_section {
 		min-height: unset;
     }
@@ -88,7 +102,7 @@
 		font-size: 1rem;
 	}
 
-
+	/* PROCESS */
 	#process .scrolljacker aside.left-jack {
 		flex: unset;
 		width: unset;
@@ -113,8 +127,7 @@
         margin-left: 10%;
 	}
 
-
-
+	/* INDUSTRIES */
 	div.featured-industries {
 		display: unset;
 	}
@@ -126,7 +139,7 @@
 		margin: .2rem;
 	}
 
-
+	/* CLIENT TYPES */
 	#client_types .split-half:last-child { display: none; }
 	ul.tile-list li.tile { width: auto; }
 	ul.tile-list li.tile div {
@@ -137,7 +150,7 @@
 		margin: 0;
 	}
 
-
+	/* TESTIMONIALS */
 	section#testimonials .chunklet {
         max-width: 96%;
     }
@@ -184,24 +197,14 @@
 	.testimonial-list-redux > li > .card blockquote {
 		margin: 0;
 		padding: 1rem 0;
-		font-size: 1rem;
+		font-size: .9rem;
 		line-height: 1rem;
 	}
 
-
+	/* VID CTA */
 	section#videographer_cta .chunklet img.background, section#blog_cta .chunklet img.background {
 		position: unset;
 	}
-
-
-	section .chunklet h3 {
-        font-size: 1.5rem !important;
-        padding: 2rem 1rem !important;
-		line-height: 1.5rem !important;
-		margin: 0 !important;
-    }
-
-
 	div.cta-copy {
 		padding: 0;
 		width: auto;
@@ -213,28 +216,14 @@
 		position: unset;
 	}
 
-
-	footer.global-footer nav > ul {
-		flex-wrap: wrap;
-		gap: 0 1rem;
-	}
-	footer.global-footer nav > ul li { flex: auto; }
-
-
-	body.booking > main aside.split-half:first-child {
-		display: none;
-	}
-	body.booking > main aside.split-half {
-		padding: 4rem 4vw 1rem;
-	}
-
-
 }
 
 /* tablets */
 @media screen and (max-width: 991px) {
 
-
+	header .user-options .cta-link {
+		display: none;
+	}
 	header.global-header h1.logo {
 		background-image: url(../images/logos/nc_horiz_white.png);
 	}
@@ -293,7 +282,7 @@
     header.global-header .nav-menu-wrapper {
 		background-color: rgba(0, 0, 0, .9);
         right: 100vw;
-        padding: 3rem 5rem;
+        padding: 1rem 3rem 3rem;
         height: auto;
         top: 6rem;
         overflow: auto;
@@ -329,7 +318,7 @@
 
 	header.global-header nav > ul > li > a,
 	header.global-header.shrink nav > ul > li > a { 
-		padding: 1rem 0; 
+		padding: 1rem 0 0; 
         display: block;
         /* border-bottom: 1px solid rgba(255, 255, 255, .5); */
 		color: var(--lightest);
@@ -359,6 +348,8 @@
 	header.global-header nav ul.sub a {
 		padding: .1rem 0 0 1rem;
 		display: inline-block;
+		
+    	margin-bottom: 0 !important;
     	/* border-left: 1px solid; */
 	}
 	header.global-header div.mega-menu .footer {
@@ -391,6 +382,23 @@
 	#lvideo-wrap.mini, #lvideo-wrap.mini:after, #lvideo-wrap.mini .lvideo-overlay {
 		width: 69%;
 	}
+
+	/* FOOTER */
+	footer.global-footer nav > ul {
+		flex-wrap: wrap;
+		gap: 0 1rem;
+	}
+	footer.global-footer nav > ul li { flex: auto; }
+
+	/* BOOKING */
+	body.booking > main aside.split-half:first-child {
+		display: none;
+	}
+	body.booking > main aside.split-half {
+		padding: 4rem 4vw 1rem;
+	}
+
+
 }
 
 /* Extra small devices (phones, 600px and down)
