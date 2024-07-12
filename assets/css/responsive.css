@@ -210,6 +210,16 @@
 		gap: 0 1rem;
 	}
 	footer.global-footer nav > ul li { flex: auto; }
+
+
+	body.booking > main aside.split-half:first-child {
+		display: none;
+	}
+	body.booking > main aside.split-half {
+		padding: 4rem 4vw 1rem;
+	}
+
+
 }
 
 /* tablets */
