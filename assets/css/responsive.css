@@ -23,6 +23,15 @@
 		width: 45px !important;
 		height: 45px !important;
 	}
+
+
+	body.nav-open { overflow: hidden; }
+    body.nav-open header.global-header .nav-menu-wrapper {
+        height: 69vh;
+    }
+
+
+
 	div.center-all {
 		margin: 33vh auto;
 	}
