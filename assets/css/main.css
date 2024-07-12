@@ -1344,17 +1344,18 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
     max-width: unset;
 	box-shadow: 17px 88px 60px -100px rgba(79, 94, 120, .5), 11px 0 20px -9px rgba(79, 94, 120, .5);
     margin-top: 3rem;
+	visibility: hidden;
+	z-index: 9;
+	opacity: 0;
+	
+	/* animation: slow-fade-in 2s forwards 2s; */
+	transition: all 2s;
 }
 #process .scrolljacker.in-view img.process-preview { 
 	position: absolute;
     top: 0;
     right: 0;
-	z-index: 9;
-	visibility: hidden;
-	opacity: 0;
-	
-	/* animation: slow-fade-in 2s forwards 2s; */
-	transition: all 2s;
+
 }
 #process .scrolljacker[data-step="1"] .jack-spacer:nth-child(1) img.process-preview { opacity: 1; z-index: 10; visibility: visible; }
 #process .scrolljacker[data-step="2"] .jack-spacer:nth-child(2) img.process-preview { opacity: 1; z-index: 10; visibility: visible; }

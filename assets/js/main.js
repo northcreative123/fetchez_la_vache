@@ -403,61 +403,67 @@ $( function() {
 			// let shady_element = document.querySelector('.do-the-shady-thing')
 			// in_viewport( shady_element ) ? document.body.classList.add( 'shade-active' ) : document.body.classList.remove( 'shade-active' )
 
+
+			if ( window.innerWidth > 480 ) {
 			
-			let process_element = document.querySelector('section#process .scrolljacker')
-			let scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop()
-			//console.log('body top: ' + scrollTop)
-			
-			let scrolling_down = ( scrollTop > last_scrolltop )
-			scrolling_down && $('body').addClass('scrolling-down').removeClass('scrolling-up')
-			!scrolling_down && $('body').addClass('scrolling-up').removeClass('scrolling-down')
-			last_scrolltop = scrollTop
-
-			let steps = $(process_element).find('.tile') // data-image
-			//let el_vp_loc = in_viewport( process_element )
-
-			let jacked = $(process_element).find('.right-jack')
-
-			let vp_height = parseInt( window.innerHeight )
-			//console.log('Viewport Height: ', vp_height)
-			let vp_top = $('body > header').height()
-			let vp_bottom = parseInt( $("section#process")[0].getBoundingClientRect().bottom + $("section#process")[0].getBoundingClientRect().height )
-			let jacked_top = parseInt( $("section#process")[0].getBoundingClientRect().top )
-			let jacked_bottom = parseInt( jacked_top + $(process_element).parent().height() )
-			//console.log('Viewport Top: ' + vp_top + ', Jacked Top: ', jacked_top)
-			//console.log('Viewport Bottom: ' + vp_height + ', Jacked Bottom: ', jacked_bottom)
-
-			let jack_active = ( jacked_top <= vp_top && jacked_bottom >= vp_height )
-			let jack_below = jacked_bottom < vp_height
-			//console.log('-- Active?: ', jack_active)
-			
-			if ( jack_active ) { // TODO: check out https://scrollmagic.io/docs/index.html
-
-				//document.body.classList.add( 'shade-active' )
-				$(process_element).addClass( 'in-view' ).removeClass('above-vp below-vp')
-				$(process_element).parent().addClass('fixed')
-				let current_step = 0
-				steps.each( function( index ) {
-					let elementTop = $(this).offset().top
-					let elementBottom = elementTop + $(this).outerHeight()
-					let viewportTop = $( window ).scrollTop()
-					let viewportBottom = viewportTop + $( window ).height()
-					//let balls = elementBottom > viewportTop && elementTop < viewportBottom
-					//console.log('balls: ', balls +' '+ index)
-					if ( elementBottom > ( viewportTop - 200 ) && elementTop < ( viewportBottom - 200 ) ) { current_step = index+1 }
-				})
-				$(process_element).attr('data-step', current_step)
-				jacked.css('top', '21rem')
+				let process_element = document.querySelector('section#process .scrolljacker')
+				let scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop()
+				//console.log('body top: ' + scrollTop)
 				
+				let scrolling_down = ( scrollTop > last_scrolltop )
+				scrolling_down && $('body').addClass('scrolling-down').removeClass('scrolling-up')
+				!scrolling_down && $('body').addClass('scrolling-up').removeClass('scrolling-down')
+				last_scrolltop = scrollTop
+
+				let steps = $(process_element).find('.tile') // data-image
+				//let el_vp_loc = in_viewport( process_element )
+
+				let jacked = $(process_element).find('.right-jack')
+
+				let vp_height = parseInt( window.innerHeight )
+				//console.log('Viewport Height: ', vp_height)
+				let vp_top = $('body > header').height()
+				let vp_bottom = parseInt( $("section#process")[0].getBoundingClientRect().bottom + $("section#process")[0].getBoundingClientRect().height )
+				let jacked_top = parseInt( $("section#process")[0].getBoundingClientRect().top )
+				let jacked_bottom = parseInt( jacked_top + $(process_element).parent().height() )
+				//console.log('Viewport Top: ' + vp_top + ', Jacked Top: ', jacked_top)
+				//console.log('Viewport Bottom: ' + vp_height + ', Jacked Bottom: ', jacked_bottom)
+
+				let jack_active = ( jacked_top <= vp_top && jacked_bottom >= vp_height )
+				let jack_below = jacked_bottom < vp_height
+				//console.log('-- Active?: ', jack_active)
+				
+				if ( jack_active ) { // TODO: check out https://scrollmagic.io/docs/index.html
+
+					//document.body.classList.add( 'shade-active' )
+					$(process_element).addClass( 'in-view' ).removeClass('above-vp below-vp')
+					$(process_element).parent().addClass('fixed')
+					let current_step = 0
+					steps.each( function( index ) {
+						let elementTop = $(this).offset().top
+						let elementBottom = elementTop + $(this).outerHeight()
+						let viewportTop = $( window ).scrollTop()
+						let viewportBottom = viewportTop + $( window ).height()
+						//let balls = elementBottom > viewportTop && elementTop < viewportBottom
+						//console.log('balls: ', balls +' '+ index)
+						if ( elementBottom > ( viewportTop - 200 ) && elementTop < ( viewportBottom - 200 ) ) { current_step = index+1 }
+					})
+					$(process_element).attr('data-step', current_step)
+					jacked.css('top', '21rem')
+					
+
+				} else {
+
+					//document.body.classList.remove( 'shade-active' )
+					let new_class = jack_below ? 'below-vp' : 'above-vp'
+					$(process_element).removeClass( 'in-view above-vp below-vp' ).addClass(new_class)
+					$(process_element).parent().removeClass('fixed')
+					jacked.css('top', 'auto')
+					
+				}
 
 			} else {
-
-				//document.body.classList.remove( 'shade-active' )
-				let new_class = jack_below ? 'below-vp' : 'above-vp'
-				$(process_element).removeClass( 'in-view above-vp below-vp' ).addClass(new_class)
-				$(process_element).parent().removeClass('fixed')
-				jacked.css('top', 'auto')
-				
+				$('html').addClass('mobile')
 			}
 
 		})
