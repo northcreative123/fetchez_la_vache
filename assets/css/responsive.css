@@ -50,6 +50,12 @@
 		font-size: 1rem;
 		line-height: 1.2rem;
 	}
+	form.videographer-search.result .result-block p {
+		margin: 0;
+		padding: 1rem;
+		font-size: 1rem;
+		line-height: 1.25rem;
+	}
 
 
 	section#portfolio_tickers .chunklet h3 {
