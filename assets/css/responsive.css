@@ -122,7 +122,7 @@
 		height: 32rem;
 	}
 	#process .scrolljacker img.process-preview {
-		width: 80%;
+		width: 90%;
 		max-width: unset;
 		margin-top: unset; 
 		margin: 0 auto;
@@ -149,10 +149,14 @@
 	}
 	ul.industry-list {
 		padding: 0;
+        text-align: center;
 	}
 	ul.industry-list li {
-		padding: .25rem .5rem .25rem 3rem;
+		padding: .25rem .5rem .25rem 3.25rem;
 		margin: .2rem;
+	}
+	div.featured-industries .card-panel .card {
+		padding: 0 1rem 1rem;
 	}
 
 
@@ -165,17 +169,28 @@
 		min-height: unset;
 	}
 	#cta_section .chunklet #cta_wrap {
-		padding: 9rem 1rem 1rem;
+		padding: 9rem 2rem 1rem;
 		background: unset;
 	}
 	#cta_section label span {
 		font-size: 1rem;
 	}
+	#cta_section .chunklet label {
+		margin: 0 -1rem .5rem;
+	}
 
 
 	/* CLIENT TYPES */
+	#client_types .split-half:first-child {
+		flex: unset;
+		padding: 0 1rem;
+	}
 	#client_types .split-half:last-child { display: none; }
-	ul.tile-list li.tile { width: auto; }
+	ul.tile-list li.tile { 
+		width: auto; 
+		min-height: unset;
+        padding: 0 1rem;
+	}
 	ul.tile-list li.tile div {
 		padding: 0;
 	}
