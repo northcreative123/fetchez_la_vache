@@ -3,18 +3,32 @@
 
 @media only screen and (max-width: 480px) {
 
-	header .user-options .cta-link {
-		position: absolute;
-        white-space: nowrap;
-		width: 40vw;
-        top: 6rem;
-        right: 20vw;
-		text-align: center;
+	body > header.global-header {
+		padding: 0;
 	}
-	section.hero div.chunklet h2 { font-size: 2.5rem; }
+	header.global-header h1.logo {
+		margin: .5rem 1rem;
+		max-width: 269px;
+	}
+	header.global-header div.user-options {
+        top: 0;
+        right: 0;
+        width: 69px;
+    }
+	header .user-options .cta-link {
+		display: none;
+	}
+	.royals-w-cheese .logo-map {
+        margin: .5rem !important;
+		width: 45px !important;
+		height: 45px !important;
+	}
+	div.center-all {
+		margin: 33vh auto;
+	}
+	section.hero div.chunklet h2 { font-size: 2.25rem; }
 	section#home_hero form.videographer-search {
-		right: 10%;
-		width: 84%;
+		width: 90%;
 	}
 	form.videographer-search button.search-submit { width: 2.7rem; }
 	form.videographer-search button.search-submit span { display: none; }
@@ -22,10 +36,171 @@
 		padding: .75rem 1rem;
 		min-width: 10rem;
 	}
+	form.videographer-search .result-block p {
+		font-size: 1rem;
+		line-height: 1.2rem;
+	}
 
+
+	section#portfolio_tickers .chunklet h3 {
+		font-size: 1.25rem !important;
+	}
 	#lvideo-wrap.mini, #lvideo-wrap.mini:after, #lvideo-wrap.mini .lvideo-overlay {
 		width: 100% !important;
 	}
+	.video-ticker-section-videos-slide {
+		animation: 35s ticker infinite linear;
+	}
+	#lvideo-wrap.mini, #lvideo-wrap.mini:after, #lvideo-wrap.mini .lvideo-overlay,
+	#lvideo-wrap.mini video, #lvideo-wrap.mini iframe {
+		border-radius: unset;
+	}
+
+
+
+	#cta_section .chunklet {
+		padding: 0;
+		min-height: unset;
+	}
+	#cta_section .chunklet #cta_wrap {
+		padding: 9rem 1rem 1rem;
+		background: unset;
+	}
+	#cta_section label span {
+		font-size: 1rem;
+	}
+
+
+	#process .scrolljacker aside.left-jack {
+		flex: unset;
+		width: unset;
+		padding: unset;
+	}
+	#process .process-tile-list-stepped li.tile {
+		margin: 0;
+		padding: 10rem 2rem;
+		height: unset;
+	}
+	#process .process-tile-list-stepped li.tile h2 {
+		margin: 0;
+		font-size: 1.5rem;
+		line-height: 1.5rem;
+	}
+	#process .scrolljacker .jack-spacer {
+		height: 0rem;
+	}
+	#process .scrolljacker img.process-preview {
+		width: 80%;
+		margin-top: unset; 
+        margin-left: 10%;
+	}
+
+
+
+	div.featured-industries {
+		display: unset;
+	}
+	ul.industry-list {
+		padding: 0;
+	}
+	ul.industry-list li {
+		padding: .25rem .5rem .25rem 3rem;
+		margin: .2rem;
+	}
+
+
+	#client_types .split-half:last-child { display: none; }
+	ul.tile-list li.tile { width: auto; }
+	ul.tile-list li.tile div {
+		padding: 0;
+	}
+	ul.tile-list li.tile h4 {
+		font-size: 1.5rem;
+		margin: 0;
+	}
+
+
+	section#testimonials .chunklet {
+        max-width: 96%;
+    }
+	.featured-testimonials {
+		height: 440px;
+	}
+	.slideshow-blob {
+		height: 100%;
+	}
+	.slideshow-blob li {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		padding: 0;
+		width: 100%;
+	}
+	.testimonial-list-redux > li > .image-frame {
+		width: 100%;
+		flex: unset; 
+		position: unset; 
+		height: unset;
+		overflow: hidden;
+	}
+	.testimonial-list-redux li .image-frame img {
+		width: 100%;
+		height: unset;
+	}
+	.testimonial-list-redux li .image-frame:before {
+		top: 20%;
+		left: 48%;
+	}
+	.testimonial-list-redux > li > .card {
+		width: 100%;
+		flex: unset; 
+		margin-left: 0; 
+		padding: 1rem 2rem;
+		position: relative;
+		min-height: unset;
+	}
+	.testimonial-list-redux li .card img {
+		height: 2rem;
+	}
+	.testimonial-list-redux > li > .card blockquote {
+		margin: 0;
+		padding: 1rem 0;
+		font-size: 1rem;
+		line-height: 1rem;
+	}
+
+
+	section#videographer_cta .chunklet img.background, section#blog_cta .chunklet img.background {
+		position: unset;
+	}
+
+
+	section .chunklet h3 {
+        font-size: 1.5rem !important;
+        padding: 2rem 1rem !important;
+		line-height: 1.5rem !important;
+		margin: 0 !important;
+    }
+
+
+	div.cta-copy {
+		padding: 0;
+		width: auto;
+	}
+	div.cta-copy h3 {
+		padding: 0 0 1rem !important;
+	}
+	section#videographer_cta .chunklet a {
+		position: unset;
+	}
+
+
+	footer.global-footer nav > ul {
+		flex-wrap: wrap;
+		gap: 0 1rem;
+	}
+	footer.global-footer nav > ul li { flex: auto; }
 }
 
 /* tablets */
@@ -162,15 +337,10 @@
 		display: none;
 	}
 
-	header.global-header div.user-options {
-		top: .5rem;
-		right: 2rem;
-	}
 
 	section.hero div.chunklet h2 { white-space: unset; top: 38%; }
-	section#home_hero form.videographer-search { right: 20%; width: 60%; }
 
-	section .chunklet { max-width: unset; }
+	section .chunklet { max-width: 92%; }
 	section .chunklet h3 { font-size: 2rem; padding: 1rem 12vw; }
 
 	/* styles by section */
@@ -185,14 +355,10 @@
 
 	section#portfolio_tickers .logo-ticker-section-image-frame img { max-height: 3rem; }
 	section#portfolio_tickers .video-ticker-section-image-frame,
-	section#portfolio_tickers .video-ticker-section-image-frame img { max-width: 40vw; }
+	section#portfolio_tickers .video-ticker-section-image-frame img { max-width: 69vw; }
 
 	section#industries_served .industry-list li { min-width: unset; }
 
-	section#testimonials .testimonial-list > li > a > img {
-		max-height: 3rem;
-		max-width: 9rem;
-	}
 
 	#lvideo-wrap.mini, #lvideo-wrap.mini:after, #lvideo-wrap.mini .lvideo-overlay {
 		width: 69%;
