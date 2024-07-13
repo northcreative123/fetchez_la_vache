@@ -356,10 +356,10 @@ $( function() {
 		// let doodle_prefix = $('header nav img.nc-doodle')[0].attr('src').split('compass-icon')[0]
 		if ( scroll_percent > 2 ) {
 			$('body > header').addClass('shrink')
-			$('header nav img.nc-doodle').attr('src', 'assets/images/compass-icon.svg')
+			//$('header nav img.nc-doodle').attr('src', 'assets/images/compass-icon.svg')
 		} else {
 			$('body > header').removeClass('shrink')
-			$('header nav .nc-doodle').attr('src', 'assets/images/compass-icon-white.svg')
+			//$('header nav .nc-doodle').attr('src', 'assets/images/compass-icon-white.svg')
 		}
 
 		// audience buttons animation

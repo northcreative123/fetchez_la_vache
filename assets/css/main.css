@@ -100,7 +100,7 @@ div.w-embed:after {
 } 
   
 /* core layout & typography */
-
+/* html { font-size: 62.5%; } */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
 }
@@ -856,22 +856,30 @@ header.global-header nav > ul > li > a.w--current {
 	color: var(--navlink-current); 
 	font-weight: 500; 
 }
-/*
+
 header.global-header nav > ul > li.parent > a:after { 
 	display: inline-block;
-	padding: 0 .5rem;
-	font-style: normal;
-	font-variant: normal;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	content: "\f0d7";
-	font-family: "Font Awesome 5 Free"; 
-	font-weight: 900;
+	padding: 0;
+	content: "";
+	background-image: url(../images/compass-icon-white.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 26px;
+    width: 26px;
+    margin: 0;
+    background-position: center;
+	transition: all 0.3s;
+	transform: rotate(0deg);
+    vertical-align: middle;
+}
+header.global-header.shrink nav > ul > li.parent > a:after { 
+	display: inline-block;
+	background-image: url(../images/compass-icon.svg);
 }
 header.global-header nav > ul > li.parent:hover > a:after { 
-	content: "\f0d8";
+	transform: rotate(180deg);
 }
-*/
+/*
 header.global-header nav > ul > li.parent > a img.nc-doodle {
 	height: 1.25rem;
 	transform: rotate(0deg);
@@ -880,7 +888,7 @@ header.global-header nav > ul > li.parent > a img.nc-doodle {
 header.global-header nav > ul > li.parent > a:hover img.nc-doodle {
 	transform: rotate(180deg);
 }
-
+*/
 header nav a {
 	/* text-transform: uppercase;
 	white-space: nowrap; */
