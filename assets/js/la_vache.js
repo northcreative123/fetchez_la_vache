@@ -89,6 +89,8 @@ const link_fixer = () => {
 
 }
 
+if ( window.innerWidth <= 480 ) { $('html').addClass('mobile') }
+console.log(window.innerWidth)
 
 const post_sniff_data = async ( data ) => { 
     

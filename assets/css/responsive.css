@@ -3,11 +3,39 @@
 
 @media only screen and (max-width: 480px) {
 
+
+	.mobile .split-panel,
+	.mobile .col_2-1-1,
+	.mobile .col_2-2-1,
+	.mobile .col_2-1-2,
+	.mobile .col_3-1-1-1,
+	.mobile .col_4-2-1-1,
+	.mobile .col-3-wrap { display: unset; }
+	.mobile .col-3-wrap > * { width: unset; }
+	.split-half {
+		padding: 1rem;
+	}
+
+	.styleguide section.full-centered-chunk, .styleguide section.businesses-content, .styleguide section.videographers-content {
+		overflow: hidden;
+	}
+	.styleguide > header:before, .styleguide .chunklet:before {
+		left: 4vw;
+	}
+	.styleguide > header:after, .styleguide .chunklet:after {
+		right: 4vw;
+	}
+	.styleguide pre {
+		white-space: pre-wrap;
+	}
+
 	/* GENERAL */
 	.button-primary {
 		padding: .75rem 1rem;
 	}
-
+	section .chunklet {
+		/* min-height: 100vh !important; */
+    }
 	section .chunklet h3 {
         font-size: 1.5rem !important;
         padding: 2rem 1rem !important;
@@ -96,14 +124,14 @@
 		padding: unset;
 		z-index: 10;
 	}
-	#process .scrolljacker aside.right-jack {
-		width: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: 9;
-	}
+    #process .scrolljacker aside.right-jack {
+        width: 100%;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0 !important;
+        z-index: 9 !important;
+    }
 	#process .process-tile-list-stepped li.tile,
 	#process .process-tile-list-stepped li.tile:last-child {
         margin: 13rem 0 0;
@@ -117,19 +145,44 @@
 	}
 	#process .scrolljacker .jack-spacer,
 	#process .scrolljacker .jack-spacer:last-child {
-		display: block;
-		text-align: center;
-		height: 32rem;
+		display: block !important;
+        text-align: center;
+        height: 32rem !important;
 	}
-	#process .scrolljacker img.process-preview {
-		width: 90%;
-		max-width: unset;
-		margin-top: unset; 
-		margin: 0 auto;
-		visibility: unset; 
-		z-index: 9;
-		opacity: unset;
-		transition: all 2s;
+    #process .scrolljacker img.process-preview {
+        width: 90%;
+        max-width: unset;
+        margin-top: unset;
+        margin: 0 auto;
+        visibility: visible !important;
+        z-index: 9;
+        opacity: 1 !important;
+        transition: all 2s;
+        position: relative !important;
+    }
+	#process .chunklet.fixed h3 {
+		position: fixed;
+		top: 4.5rem;
+		background: var(--lightest);
+		width: 100%;
+		left: 0;
+		z-index: 11;
+		height: unset;
+        padding: 2rem !important;
+	}
+	#process .chunklet.fixed h3:after {
+		content: "";
+		background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+		top: 99%;
+		display: block;
+		height: 1rem;
+		position: absolute;
+		width: 100%;
+	}
+	#process .chunklet.fixed .title-spacer {
+		display: block;
+		height: 6rem;
+		/* background: orange; */
 	}
 	/*
 
