@@ -7,13 +7,13 @@
 // A bity hacky, but effective for now
 function fillInAddress() {
 
-	var place = autocomplete.getPlace()
+	let place = autocomplete.getPlace()
 	//console.log(place)
 
 }
 function fillInAddress2() {
 
-	var place = autocomplete2.getPlace()
+	let place = autocomplete2.getPlace()
 	console.log(place.formatted_address)
 	localStorage.setItem('cta_address', place.formatted_address)
 

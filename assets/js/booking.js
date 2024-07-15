@@ -633,7 +633,7 @@ const handle_booking = ( response_container ) => {
 
 function fillInAddress() {
 
-	var place = autocomplete.getPlace()
+	let place = autocomplete.getPlace()
 	//console.log(place)
 
 }
