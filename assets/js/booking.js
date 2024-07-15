@@ -1,4 +1,24 @@
 
+function fillInAddress() {
+
+	let place = autocomplete.getPlace()
+	//console.log(place)
+
+}
+
+function initAutocomplete() {
+
+	autocomplete = new google.maps.places.Autocomplete( (document.getElementById('fld_hero_search')), {
+		types: ['geocode'],
+		componentRestrictions: { country: ['us'] }
+	})
+
+	autocomplete.addListener('place_changed', fillInAddress)
+	// is_prod && 
+	document.getElementById('fld_hero_search').focus()
+}
+
+
 const send_email = () => {
     let senderName = 'El Hefe'
     //let attName = csvFileName + moment().format() + '.csv'
@@ -630,22 +650,3 @@ const handle_booking = ( response_container ) => {
 
 }
 
-
-function fillInAddress() {
-
-	let place = autocomplete.getPlace()
-	//console.log(place)
-
-}
-
-function initAutocomplete() {
-
-	autocomplete = new google.maps.places.Autocomplete( (document.getElementById('fld_hero_search')), {
-		types: ['geocode'],
-		componentRestrictions: { country: ['us'] }
-	})
-
-	autocomplete.addListener('place_changed', fillInAddress)
-	// is_prod && 
-	document.getElementById('fld_hero_search').focus()
-}
