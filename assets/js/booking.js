@@ -631,21 +631,21 @@ const handle_booking = ( response_container ) => {
 }
 
 
+function fillInAddress() {
 
-let autocomplete, address1Field
-const initAutocomplete = () => {
-
-	address1Field = document.querySelector("#fld_hero_search")
-
-	// Create the autocomplete object, restricting the search predictions to addresses in the US and Canada.
-	autocomplete = new google.maps.places.Autocomplete(address1Field, {
-		componentRestrictions: { country: ["us", "ca"] },
-		fields: ["address_components", "geometry"],
-		types: ["address"],
-	})
-	address1Field.focus()
+	var place = autocomplete.getPlace()
+	//console.log(place)
 
 }
-if ( $('form#booking').length ) {
-	window.initAutocomplete = initAutocomplete
+
+function initAutocomplete() {
+
+	autocomplete = new google.maps.places.Autocomplete( (document.getElementById('fld_hero_search')), {
+		types: ['geocode'],
+		componentRestrictions: { country: ['us'] }
+	})
+
+	autocomplete.addListener('place_changed', fillInAddress)
+	// is_prod && 
+	document.getElementById('fld_hero_search').focus()
 }
