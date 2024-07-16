@@ -249,6 +249,7 @@ h5,
 h6 {
     margin-bottom: 10px;
     font-weight: bold;
+    color: unset;
 }
 
 h1 {
