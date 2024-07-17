@@ -15,7 +15,7 @@ function initAutocomplete() {
 
 	autocomplete.addListener('place_changed', fillInAddress)
 	// is_prod && 
-	//document.getElementById('fld_hero_search').focus()
+	document.getElementById('fld_hero_search').focus()
 }
 
 
@@ -416,7 +416,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 		multi_form.find(".progress-bar").css("width", percent + "%")
 	}
 
-    //$('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
+    $('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
 
 	multi_form.find('input, textarea, select').on( "change keyup blur", function( e ) {
         if ( $(this).is('#fld_hero_search') && e.which == 13 ) {
@@ -506,12 +506,11 @@ function init_select_tags() {
 $( function() {
 
     if ( $('form#booking').length ) {
+        prepare_form()
         adjust_datepickers()
         init_select_tags()
-        attach_search_event()
-        prepare_form()
         init_multi_step_form( $('#booking'), 1 )
-        $('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
+        attach_search_event()
     }
 
     $( "form#booking" ).on( "submit", function( event ) {
