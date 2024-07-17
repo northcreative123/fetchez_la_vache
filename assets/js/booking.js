@@ -508,9 +508,9 @@ $( function() {
     if ( $('form#booking').length ) {
         adjust_datepickers()
         init_select_tags()
-        init_multi_step_form( $('#booking'), 1 )
         attach_search_event()
         prepare_form()
+        init_multi_step_form( $('#booking'), 1 )
     }
 
     $( "form#booking" ).on( "submit", function( event ) {
