@@ -416,7 +416,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 		multi_form.find(".progress-bar").css("width", percent + "%")
 	}
 
-    $('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
+    //$('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
 
 	multi_form.find('input, textarea, select').on( "change keyup blur", function( e ) {
         if ( $(this).is('#fld_hero_search') && e.which == 13 ) {
@@ -511,6 +511,7 @@ $( function() {
         attach_search_event()
         prepare_form()
         init_multi_step_form( $('#booking'), 1 )
+        $('input[type=tel]').inputmask({"mask": "(999) 999-9999"})
     }
 
     $( "form#booking" ).on( "submit", function( event ) {
