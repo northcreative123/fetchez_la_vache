@@ -3,6 +3,24 @@
 <head>
 	<title>North Creative | Get Started</title>
 
+	<script>
+		// Remove WebFlow BS styling!!!
+		const linkElements = document.querySelectorAll('link')
+		linkElements.forEach(( link ) => {
+			if ( link.href.includes('https://cdn.prod.website-files.com') && link.href.includes('/css/') ) {
+				link.remove()
+				return
+			}
+		})
+
+		let speed_log = []
+		const GO = performance.now()
+		const to_seconds = ( ms ) => { return ( parseInt( performance.now() - GO ) / 1000 ) + "s" }
+		document.addEventListener('readystatechange', function() { speed_log.push({ "event" : "RS: "+document.readyState, "time" : to_seconds() }) })
+		document.addEventListener('DOMContentLoaded', function() { speed_log.push({ "event" : "DOM Loaded", "time" : to_seconds() }) }, false)
+		window.addEventListener('load', function() { speed_log.push({ "event" : "UI Loaded", "time" : to_seconds() }); console.log('Load Times: ', speed_log)}, false)
+	</script>
+
 	<!-- Mobile Specific Metas
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,10 +47,6 @@
 	<!-- Scripts
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<script src="https://kit.fontawesome.com/38512c2854.js" crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js" crossorigin="anonymous"></script>
 
     <!-- https://raw.githubusercontent.com/northcreative123/fetchez_la_vache/main/ -->
 	
@@ -411,6 +425,12 @@
     <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='clr7rkrbx00j5a5d5mvkjhimk' height='600px' width='400px'></zapier-interfaces-chatbot-embed> -->
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA&loading=async&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
+    
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js" crossorigin="anonymous"></script>
+    
     <script src="assets/js/location.js"></script> <!-- ??? -->
 	<script src="assets/js/data.js"></script>
 	<!-- <script src="assets/js/playa.js"></script> -->
