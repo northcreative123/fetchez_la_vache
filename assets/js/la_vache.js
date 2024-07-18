@@ -1,6 +1,6 @@
 
 const current_url = window.location.href
-const is_prod = window.location.hostname === 'northcreative'
+const is_prod = window.location.hostname === 'northcreative' // || window.location.hostname === 'webflow'
 const is_local = current_url.includes('file://')
 localStorage.setItem( 'env_prod', is_prod )
 
