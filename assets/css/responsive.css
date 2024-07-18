@@ -118,6 +118,7 @@
 
 
 	/* PROCESS */
+	
 	#process .scrolljacker aside.left-jack {
 		flex: unset;
 		width: unset;
@@ -184,16 +185,19 @@
 		height: 6rem;
 		/* background: orange; */
 	}
-	/*
+	
+	.mobile #process .split-panel {
+		display: block;
+	}
 
 	#process .scrolljacker .jack-spacer {
 		height: 0rem;
 	}
 	#process .scrolljacker img.process-preview {
-		width: 80%;
-		margin-top: unset; 
-        margin-left: 10%;
-	} */
+		width: 90%;
+        margin-top: -26vh;
+        margin-left: 0;
+	} 
 
 
 	/* INDUSTRIES */
