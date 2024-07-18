@@ -440,7 +440,7 @@ $( function() {
 
 					//document.body.classList.add( 'shade-active' )
 					$(process_element).addClass( 'in-view' ).removeClass('above-vp below-vp')
-					$(process_element).closest('.chunklet').find('h3').addClass('fixed')
+					$(process_element).closest('.chunklet').addClass('fixed')
 					let current_step = 0
 					steps.each( function( index ) {
 						let elementTop = $(this).offset().top
@@ -460,7 +460,7 @@ $( function() {
 					//document.body.classList.remove( 'shade-active' )
 					let new_class = jack_below ? 'below-vp' : 'above-vp'
 					$(process_element).removeClass( 'in-view above-vp below-vp' ).addClass(new_class)
-					$(process_element).closest('.chunklet').find('h3').removeClass('fixed')
+					$(process_element).closest('.chunklet').removeClass('fixed')
 					jacked.css('top', 'auto')
 					
 				}
