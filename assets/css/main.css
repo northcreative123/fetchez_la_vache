@@ -823,7 +823,7 @@ header.global-header.shrink h1.logo {
 header.global-header h1.logo a { display: block; height: 100%; width: 100%; }
 header.global-header nav { 
 	display: inline-block; 
-	margin: 0; 
+	margin: .5rem 0 0;
 	padding: 0; 
 	float: none; 
 	vertical-align: middle; 

@@ -33,7 +33,7 @@ function initAutocomplete() {
 	autocomplete.addListener('place_changed', fillInAddress)
 	autocomplete2.addListener('place_changed', fillInAddress2)
 	// is_prod && 
-	document.getElementById('hero_search').focus()
+	//document.getElementById('hero_search').focus()
 }
 
 const get_points_in_radius = ( points, center, radius ) => {

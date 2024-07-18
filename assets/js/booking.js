@@ -15,7 +15,7 @@ function initAutocomplete() {
 
 	autocomplete.addListener('place_changed', fillInAddress)
 	// is_prod && 
-	document.getElementById('fld_hero_search').focus()
+	//document.getElementById('fld_hero_search').focus()
 }
 
 
