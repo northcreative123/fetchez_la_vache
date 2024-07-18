@@ -313,11 +313,16 @@
 
 
 	/* VID CTA */
+	section#videographer_cta .chunklet, section#blog_cta .chunklet {
+		min-height: 38vh;
+		position: relative;
+	}
 	section#videographer_cta .chunklet img.background, section#blog_cta .chunklet img.background {
 		position: absolute !important;
 		right: 0rem;
 		bottom: 0rem;
 		height: 13rem;
+		top: unset;
 	}
 	div.cta-copy {
 		padding: 0;
