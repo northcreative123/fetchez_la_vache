@@ -623,11 +623,13 @@ const lancez_la_vache = async ( data ) => {
         .then(( json ) => {
     
             !is_prod && console.log('%c 🤓 Proxy test:', console_data_style, json)
+            $('fieldset.step-success').addClass('complete')
         
         })
         .catch(( err ) => { 
     
             const error = 'Error posting data: ' + JSON.stringify( err )
+            $('fieldset.step-success').addClass('error')
             !is_prod && console.log( error )
             return error
     
@@ -635,6 +637,7 @@ const lancez_la_vache = async ( data ) => {
         
     } catch ( e ) {
         //!is_prod && console.log( 'lancez_la_vache error: ', e )
+        $('fieldset.step-success').addClass('error')
         return e
     }    
 
