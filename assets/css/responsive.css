@@ -255,7 +255,7 @@
 	ul.tile-list li.tile { 
 		width: auto; 
 		min-height: unset;
-        padding: 0 1rem;
+        padding: 0 1rem 2rem;
 	}
 	ul.tile-list li.tile div {
 		padding: 0;
