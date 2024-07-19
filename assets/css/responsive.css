@@ -344,6 +344,27 @@
 		position: unset;
 	}
 
+
+	form#booking span.booking-summary {
+		padding: 1rem 1rem;
+		display: block;
+		background: var(--offlight);
+		margin: 0 0 1rem;
+		border-radius: .5rem;
+	}
+	form#booking span.booking-summary dl, form#booking span.booking-summary dt {
+		padding: 0;
+	}
+	form#booking span.booking-summary dd {
+		line-height: 1.25rem;
+	}
+	.booking-summary dd span {
+		display: block;
+		width: 100%;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
 }
 
 /* tablets */
@@ -529,7 +550,7 @@
 		display: none;
 	}
 	body.booking > main aside.split-half {
-		padding: 4rem 4vw 10rem;
+		padding: 6rem 4vw 10rem;
 	}
 
 

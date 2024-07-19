@@ -459,7 +459,7 @@ const format_summary = ( data_obj ) => {
     const entries = Object.entries( summary )
     let html_summary = ""
     entries.forEach(([key, value]) => {
-        if ( value && value.length )  html_summary += `<dl><dt>${key}</dt><dd>${value}</dd></dl>`
+        if ( value && value.length )  html_summary += `<dl><dt>${key}</dt><dd><span>${value}</span></dd></dl>`
     })
 
     return html_summary
