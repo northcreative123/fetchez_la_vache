@@ -87,6 +87,10 @@ const link_fixer = () => {
         //console.log( $( this ).data('wf-loc') )
     })
 
+    $('a[href^="#"]').click( function( e ) {
+        e.preventDefault()
+    })
+
 }
 
 if ( window.innerWidth <= 480 ) { $('html').addClass('mobile') }

@@ -367,6 +367,17 @@ $( function() {
 		$('body.audience-select').length && $('#audience_buttons').css('bottom', down_value)
 
 	}
+
+	const update_header = () => {
+		let offset_calc = window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
+		document.body.style.setProperty('--scroll', offset_calc)
+		if ( $('body.home').length > 0 ) {
+			move_stuff( offset_calc )
+		} else {
+			$('body > header').addClass('shrink')
+		}
+	}
+
 	// console.log($('body > header').height())
 	// console.log($('body > header').innerHeight())
 	// console.log($('body > header').outerHeight())
@@ -795,6 +806,7 @@ $( function() {
 	// videographer search
   	attach_search_event()
 	attach_fake_search_event()
+	update_header()
 
 })
 
