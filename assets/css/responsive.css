@@ -403,10 +403,10 @@
 		background-position: center;
 		position: relative;
 		transition: .5s ease-in-out;
-		/* transform: rotate(0deg); */
+		transform: rotate3d(0, 1, 0, 0deg);
 	}
-	/* .nav-open .royals-w-cheese .logo-map, .royals-w-cheese .logo-map:hover { transform: rotate(180deg); }
-	.nav-open .royals-w-cheese .logo-map:hover { transform: rotate(0deg); } */
+	.royals-w-cheese .logo-map:hover,
+	.royals-w-cheese .logo-map:focus { transform: rotate3d(0, 1, 0, 360deg); }
 	header.global-header .cta-link { margin-right: 8rem; display: none; }
 	/*
 	.royals-w-cheese .logo-map:after {
