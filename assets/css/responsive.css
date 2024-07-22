@@ -146,7 +146,7 @@
 	#process .process-tile-list-stepped li.tile:last-child {
         margin: 13rem 0 0;
         padding: 0 2rem;
-        height: 19rem;
+        height: 20rem;
 	}
 	#process .process-tile-list-stepped li.tile h2 {
 		margin: 0;
@@ -157,7 +157,7 @@
 	#process .scrolljacker .jack-spacer:last-child {
 		display: block !important;
         text-align: center;
-        height: 32rem !important;
+        height: 33rem !important;
 	}
     #process .scrolljacker img.process-preview {
         width: 90%;
