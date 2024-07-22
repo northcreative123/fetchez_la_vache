@@ -345,6 +345,10 @@
 	}
 
 
+
+	form label {
+		margin-bottom: .5rem;
+	}
 	form#booking span.booking-summary {
 		padding: 1rem 1rem;
 		display: block;

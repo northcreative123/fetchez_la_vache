@@ -19,27 +19,6 @@ function initAutocomplete() {
 }
 
 
-const send_email = () => {
-    let senderName = 'El Hefe'
-    //let attName = csvFileName + moment().format() + '.csv'
-    Email.send({
-        Host : "smtp.gmail.com",
-        Username : "mrjeffhill@gmail.com",
-        Password : "bebgbivpimoiruwm",
-        To : "jhill@northcreative.us",
-        From : "jhill@northcreative.us",
-        Subject : "A message from: " + senderName,
-        Body : "<html><h2>What up yo?!</h2><p>From: <strong>" + senderName + "</strong></p><p><em>OMG IT WORKS!!! :)</em></p></html>"
-        /*
-        Attachments: [{
-            name: attName,
-            data: csvPath
-        }] */
-    }).then(
-        message => !is_prod && console.log(message)
-    )
-}
-
 const tz_from_latlon = async ( ll_obj ) => {
     // { "lat": 42.3778496, "lng": -83.4688607 }
     // https://www.geotimezone.com/
@@ -124,7 +103,7 @@ const attach_search_event = () => {
 		const address = input.val()
         //console.log('CLICK!: ', input.val())
 
-		if ( address.length >= 5 ) {
+		if ( address.length > 0 ) {
 			geocode_address(address, $(e.currentTarget).parent())
 		}
 	})
@@ -334,6 +313,7 @@ const prepare_form = () => {
     if ( cta_search ) {
 
         $('#fld_hero_search').val(cta_search)
+        get_map_embed( cta_search )
         localStorage.removeItem("cta_address")
 
     } else {
@@ -346,13 +326,14 @@ const prepare_form = () => {
 
 }
 
-const validateStep = (field) => {
+const validateStep = ( field ) => {
     let next_button = $('fieldset.current button.next')
     let required = $('fieldset.current').find('input, textarea, select').filter('[required]')
     //!is_prod && console.log('req #: ' + required.length)
     let is_gtg = true
     required.each( function( index ) {
         let is_valid = $( this ).valid()
+        //console.log('field: ' + $(this).attr('id') + ', valid?: ' + is_valid)
         if ( !is_valid ) is_gtg = false
     })
     next_button.prop( "disabled", !is_gtg )
@@ -431,7 +412,7 @@ const init_multi_step_form = ( multi_form, start_step ) => {
 		
 	})
 
-	validateStep()
+	validateStep( $('#fld_hero_search') )
 
 }
 
@@ -506,11 +487,11 @@ function init_select_tags() {
 $( function() {
 
     if ( $('form#booking').length ) {
+        attach_search_event()
         prepare_form()
         adjust_datepickers()
         init_select_tags()
         init_multi_step_form( $('#booking'), 1 )
-        attach_search_event()
     }
 
     $( "form#booking" ).on( "submit", function( event ) {
@@ -535,10 +516,6 @@ $( function() {
         localStorage.removeItem("searched_address")
         location.reload()
     })
-
-    // $('.send-email').click( function () {
-    //     send_email()
-    // })
 
 })
 
