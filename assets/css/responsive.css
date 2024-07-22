@@ -411,8 +411,22 @@
 	}
 	.royals-w-cheese .logo-map:hover,
 	.royals-w-cheese .logo-map:focus { transform: rotate3d(0, 1, 0, 360deg); }
+	.nav-open .royals-w-cheese .logo-map { transform: rotate3d(0, 1, 0, 0deg); }
+	.nav-open .royals-w-cheese .logo-map:focus { transform: rotate3d(0, 1, 0, 360deg); }
+
 	header.global-header .cta-link { margin-right: 8rem; display: none; }
 	/*
+
+
+.royals-w-cheese .logo-map {
+	transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(0deg) rotateY(360deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px) skewX(0deg) skewY(0deg);
+}
+.cube-wrap {
+	perspective: 1000px;
+	perspective-origin: 50% 50%;
+}
+
+
 	.royals-w-cheese .logo-map:after {
 		display: block;
         padding: 0;
