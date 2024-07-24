@@ -324,7 +324,7 @@
 
 	/* VID CTA */
 	section#videographer_cta .chunklet, section#blog_cta .chunklet {
-		min-height: 22rem;
+		min-height: 24rem;
 		position: relative;
 	}
 	section#videographer_cta .chunklet img.background, section#blog_cta .chunklet img.background {
