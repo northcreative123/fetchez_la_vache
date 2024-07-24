@@ -3097,6 +3097,7 @@ select, textarea {
     line-height: 1.8rem;
     font-weight: normal;
 	background-color: var(--lightest);
+    min-height: 2.5rem;
 }
 textarea { line-height: 1.25rem; }
 select {
