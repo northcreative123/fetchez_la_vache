@@ -938,12 +938,12 @@ header.global-header nav > ul div.mega-menu {
 
 	
     background-color: var(--lightest);
-    border-radius: 2rem;
+    border-radius: 1rem;
     padding: 2rem 3rem;
     overflow: hidden;
     box-shadow: 0 2px 12px rgba(20, 20, 43, .08);
 
-	/* margin: 2rem 0 0 -20vw; */
+	margin: 1rem 0 0 -4rem;
 
 	/* max-height: 0;
 	opacity: 0; */
@@ -1026,7 +1026,7 @@ section.hero div.chunklet > img {
 
 div.center-all {
     text-align: center;
-    margin: 38vh auto;
+    margin: 30vh auto;
     position: absolute;
     width: 100%;
     top: 0;
@@ -1067,7 +1067,7 @@ section.hero div.chunklet h4 {
 }
 section.hero div.chunklet h2 span,
 section.hero div.chunklet h4 span {
-    /* display: block; */
+    display: block;
 }
 section.hero div.chunklet span.hero-what { 
 	/* font-family: 'BDSans ExtReg', 'Gruppo', sans-serif;  */
@@ -1269,6 +1269,35 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
 	position: relative;
 	list-style: none;
 }
+#process .process-tile-list-stepped > li h2:before {
+    content: "1";
+
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+
+	font-size: 1rem;
+
+    margin: 0 .5rem 0 -2rem;
+    background-color: var(--primedark);
+    color: var(--lightest);
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    text-align: center;
+    line-height: 2rem;
+    display: inline-block;
+    position: absolute;
+    left: 2rem;
+    text-indent: 0;
+}
+#process .process-tile-list-stepped > li:nth-child(2) h2:before { content: "2"; }
+#process .process-tile-list-stepped > li:nth-child(3) h2:before { content: "3"; }
+#process .process-tile-list-stepped > li:nth-child(4) h2:before { content: "4"; }
+#process .process-tile-list-stepped > li:nth-child(5) h2:before { content: "5"; }
 #process .process-tile-list-stepped li.tile {
     /* border: 1px solid var(--offlight);
     border-radius: var(--base-radius); */
@@ -1284,30 +1313,20 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
     padding: 1rem 0; */
 
 	margin: 0;
-	padding: 12rem 0 0;
-	height: 79vh;
+	padding: 0;
+	height: 26rem;
 }
-#process .process-tile-list-stepped li.tile:last-child,
-#process .scrolljacker .jack-spacer:last-child { 
-	height: 52vh;
-    padding: 0;
-}
-/*
-#process .scrolljacker.in-view li.tile:last-child,
-#process .scrolljacker.in-view .jack-spacer:nth-child(5) {
-	height: 0;
-	display: inline-block;
-}
-#process .scrolljacker.in-view .jack-spacer:nth-child(5) { position: unset; }
-*/
+
 #process .process-tile-list-stepped li.tile h2 {
     margin: 0 0 .5rem;
+	font-size: 1.75rem;
+    text-indent: 2.5rem;
 }
 .title-spacer { display: none; }
 .fixed .title-spacer { display: block; height: 17rem; }
 /* #process .chunklet.fixed { background: red; } */
 #process .chunklet h3 {
-    padding: 8rem 10vw 5rem;
+    padding: 5rem 10vw 2rem;
 	/* transition: all .3s;
 	opacity: 0;
 	transition: opacity .3s;	 */
@@ -1320,7 +1339,7 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
     display: block;
     width: 100%;
     z-index: 10;
-	padding: 8rem 10vw 2rem;
+	padding: 5rem 10vw 2rem;
 	opacity: 1;
     /* border-bottom: 1px solid var(--offlight); */
 }
@@ -1336,7 +1355,8 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
 
 #process .scrolljacker .jack-spacer {
 	display: block;
-    height: 79vh;
+    min-height: 26.5rem;
+    padding-top: 1rem;
 }
 #process .scrolljacker.in-view .jack-spacer {
 	display: inline;
@@ -1351,16 +1371,16 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
     width: 38vw;
     max-width: unset;
 	box-shadow: 17px 88px 60px -100px rgba(79, 94, 120, .5), 11px 0 20px -9px rgba(79, 94, 120, .5);
-    margin-top: 3rem;
-	visibility: hidden;
+    /* margin-top: 3rem; */
+	/* visibility: hidden; */
 	z-index: 9;
-	opacity: 0;
+	/* opacity: 0; */
 	
 	/* animation: slow-fade-in 2s forwards 2s; */
-	transition: all 2s;
+	/* transition: all 2s; */
 }
 #process .scrolljacker.in-view img.process-preview { 
-	position: absolute;
+	/* position: absolute; */
     top: 0;
     right: 0;
 

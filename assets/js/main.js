@@ -315,25 +315,6 @@ $( function() {
 
 	let hovered_element
 	let mouse_X = 0, mouse_Y = 0
-/*
-	const in_viewport = ( element ) => {
-
-		// Get the elements position relative to the viewport
-		let bb = element.getBoundingClientRect()
-		let padding = 500
-		// Check if the element is outside the viewport, Then invert the returned value because you want to know the opposite
-		let in_view = !( (bb.top + padding) > innerHeight || (bb.bottom - padding ) < 0)
-		let above_vp = (bb.top + padding) > innerHeight
-		let below_vp = (bb.bottom - ( padding + 150)) < 0
-		//console.log('in view?: ', in_view)
-		//console.log('above?: ', above_vp)
-		//console.log('below?: ', below_vp)
-		return { "in_view": in_view, "above": above_vp, "below": below_vp } 
-		// return !( (bb.top + padding) > innerHeight || (bb.bottom - padding) < 0)
-
-	}
-*/
-	//let myElement = document.querySelector('div')
 
 	const set_scroll_hover = ( element ) => {
 
@@ -354,13 +335,10 @@ $( function() {
 		let scroll_percent = parseInt( Math.abs(offset) * 100 )
 
 		// header animation
-		// let doodle_prefix = $('header nav img.nc-doodle')[0].attr('src').split('compass-icon')[0]
 		if ( scroll_percent > 2 ) {
 			$('body > header').addClass('shrink')
-			//$('header nav img.nc-doodle').attr('src', 'assets/images/compass-icon.svg')
 		} else {
 			$('body > header').removeClass('shrink')
-			//$('header nav .nc-doodle').attr('src', 'assets/images/compass-icon-white.svg')
 		}
 
 		// audience buttons animation
@@ -378,12 +356,6 @@ $( function() {
 		}
 	}
 
-	// console.log($('body > header').height())
-	// console.log($('body > header').innerHeight())
-	// console.log($('body > header').outerHeight())
-	//let jacked_sticky = parseInt( window.innerHeight / 3.5 )
-	//let jacked_sticky = parseInt( $(".scrolljacker .right-jacked")[0].offsetTop )
-	// console.log('Jacked Top: ', jacked_top)
 	const set_scroll_listener = () => {
 
 		document.addEventListener( 'mousemove', ( event ) => {
@@ -412,128 +384,17 @@ $( function() {
 				$('body > header').addClass('shrink')
 			}
 
-			// Check the viewport status
-			// let shady_element = document.querySelector('.do-the-shady-thing')
-			// in_viewport( shady_element ) ? document.body.classList.add( 'shade-active' ) : document.body.classList.remove( 'shade-active' )
-
 			let process_element = document.querySelector('section#process .scrolljacker')
 			let scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop()
-			//console.log('body top: ' + scrollTop)
 			
 			let scrolling_down = ( scrollTop > last_scrolltop )
 			scrolling_down && $('body').addClass('scrolling-down').removeClass('scrolling-up')
 			!scrolling_down && $('body').addClass('scrolling-up').removeClass('scrolling-down')
 			last_scrolltop = scrollTop
 
-			let steps = $(process_element).find('.tile') // data-image
-			//let el_vp_loc = in_viewport( process_element )
-
-			let jacked = $(process_element).find('.right-jack')
-
-			let vp_height = parseInt( window.innerHeight )
-			//console.log('Viewport Height: ', vp_height)
-			let vp_top = $('body > header').height()
-			let vp_bottom = parseInt( $("section#process")[0].getBoundingClientRect().bottom + $("section#process")[0].getBoundingClientRect().height )
-			let jacked_top = parseInt( $("section#process")[0].getBoundingClientRect().top )
-			let jacked_bottom = parseInt( jacked_top + $(process_element).parent().height() )
-			//console.log('Viewport Top: ' + vp_top + ', Jacked Top: ', jacked_top)
-			//console.log('Viewport Bottom: ' + vp_height + ', Jacked Bottom: ', jacked_bottom)
-
-			let jack_active = ( jacked_top <= vp_top && jacked_bottom >= vp_height )
-			let jack_below = jacked_bottom < vp_height
-			//console.log('-- Active?: ', jack_active)
-
-			if ( window.innerWidth > 480 ) {
-			
-
-				
-				if ( jack_active ) { // TODO: check out https://scrollmagic.io/docs/index.html
-
-					//document.body.classList.add( 'shade-active' )
-					$(process_element).addClass( 'in-view' ).removeClass('above-vp below-vp')
-					$(process_element).closest('.chunklet').addClass('fixed')
-					let current_step = 0
-					steps.each( function( index ) {
-						let elementTop = $(this).offset().top
-						let elementBottom = elementTop + $(this).outerHeight()
-						let viewportTop = $( window ).scrollTop()
-						let viewportBottom = viewportTop + $( window ).height()
-						//let balls = elementBottom > viewportTop && elementTop < viewportBottom
-						//console.log('balls: ', balls +' '+ index)
-						if ( elementBottom > ( viewportTop - 200 ) && elementTop < ( viewportBottom - 200 ) ) { current_step = index+1 }
-					})
-					$(process_element).attr('data-step', current_step)
-					jacked.css('top', '21rem')
-					
-
-				} else {
-
-					//document.body.classList.remove( 'shade-active' )
-					let new_class = jack_below ? 'below-vp' : 'above-vp'
-					$(process_element).removeClass( 'in-view above-vp below-vp' ).addClass(new_class)
-					$(process_element).closest('.chunklet').removeClass('fixed')
-					jacked.css('top', 'auto')
-					
-				}
-
-			} else {
-				/*
-				if ( jack_active ) { // TODO: check out https://scrollmagic.io/docs/index.html
-
-					$(process_element).addClass( 'in-view' ).removeClass('above-vp below-vp')
-					$(process_element).parent().addClass('fixed')
-
-				} else {
-
-					let new_class = jack_below ? 'below-vp' : 'above-vp'
-					$(process_element).removeClass( 'in-view above-vp below-vp' ).addClass(new_class)
-					$(process_element).parent().removeClass('fixed')
-					
-				}
-				*/
-			}
-
 		})
 
 	}
-
-
-
-	const attach_process_events = () => {
-
-		const container = $('.process-tile-list-stepped').parent()
-		container.find('li:first-child').addClass('active')
-		container.append('<button class="show-btn show-prev"><i class="fa-solid fa-chevron-left"></i></button><button class="show-btn show-next"><i class="fa-solid fa-chevron-right"></i></button>')
-
-		container.find('.show-btn').on( "click", function( e ) {
-
-		let parent_el = $(this).parent()
-		let panels = parent_el.find('li')
-		let current, next_panel
-
-			if ( $(this).is('.show-next')) {
-
-				current = parent_el.find('.active')
-				next_panel = current.next().length ? current.next() : parent_el.find('li:first-child')
-
-				current.removeClass('active')
-				next_panel.addClass('active')
-
-			} else {
-
-				current = parent_el.find('.active')
-				next_panel = current.prev().length ? current.prev() : parent_el.find('li:last-child')
-
-				current.removeClass('active')
-				next_panel.addClass('active')
-
-				
-			}
-
-		})
-
-	}
-	//attach_process_events()
 
 
 
