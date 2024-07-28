@@ -149,7 +149,7 @@
 	#process .process-tile-list-stepped li.tile,
 	#process .process-tile-list-stepped li.tile:last-child {
         margin: 13rem 0 0;
-        padding: 0 1rem 0;
+        padding: 1rem 1rem 0;
         height: 20rem;
 	}
 	#process .process-tile-list-stepped li.tile h2 {
