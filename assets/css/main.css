@@ -875,7 +875,7 @@ header.global-header nav > ul > li.parent > a:after {
 }
 header.global-header.shrink nav > ul > li.parent > a:after { 
 	display: inline-block;
-	background-image: url(../images/compass-icon.svg);
+	/* background-image: url(../images/compass-icon.svg); */
 }
 header.global-header nav > ul > li.parent:hover > a:after { 
 	transform: rotate(180deg);
@@ -1270,6 +1270,7 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
 	position: relative;
 	list-style: none;
 }
+#process .process-tile-list-stepped > li h2 { line-height: 2rem; }
 #process .process-tile-list-stepped > li h2:before {
     content: "1";
 
@@ -1286,10 +1287,10 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
     background-color: var(--primedark);
     color: var(--lightest);
     border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
+	height: 1.75rem;
+    width: 1.75rem;
     text-align: center;
-    line-height: 2rem;
+    line-height: 1.75rem;
     display: inline-block;
     position: absolute;
     left: 2rem;
@@ -1321,7 +1322,7 @@ section#home_hero div.chunklet form.videographer-search.error .result-block a.ct
 #process .process-tile-list-stepped li.tile h2 {
     margin: 0 0 .5rem;
 	font-size: 1.75rem;
-    text-indent: 2.5rem;
+    text-indent: 2rem;
 }
 .title-spacer { display: none; }
 .fixed .title-spacer { display: block; height: 17rem; }

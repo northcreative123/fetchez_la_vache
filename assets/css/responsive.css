@@ -156,7 +156,7 @@
 		margin: 0;
 		font-size: 1.5rem;
 		line-height: 1.5rem;
-		text-indent: 2rem;
+		text-indent: 1.75rem;
 	}
 	#process .process-tile-list-stepped > li h2:before {
 		font-size: .75rem;
@@ -470,14 +470,15 @@
 		display: block;
 	}
 
-	header.global-header nav > ul > li > a,
-	header.global-header.shrink nav > ul > li > a { 
-		padding: 1rem 0 0; 
+    header.global-header nav > ul > li > a, 
+	header.global-header.shrink nav > ul > li > a {
+        padding: 1rem 0 0;
         display: block;
         /* border-bottom: 1px solid rgba(255, 255, 255, .5); */
-		color: var(--lightest);
+        color: var(--lightest) !important;
         font-size: 1.5rem;
-	}
+        background: unset !important;
+    }
 	header.global-header nav > ul > li > a:after { background-image: url(../images/compass-icon-white.svg); }
 	header.global-header nav div.panels {
 		display: block;
