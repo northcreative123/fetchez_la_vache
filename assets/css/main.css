@@ -782,6 +782,7 @@ header.global-header nav ul > li > a {
 }
 header.global-header.shrink { 
 	background: var(--lightest); 
+    box-shadow: 0px 4px 9px -6px rgba(0, 0, 0, .2);
 }
 header.global-header nav > ul > li > a { 
 	color: var(--lightest); 
@@ -1067,7 +1068,7 @@ section.hero div.chunklet h4 {
 }
 section.hero div.chunklet h2 span,
 section.hero div.chunklet h4 span {
-    display: block;
+    /* display: block; */
 }
 section.hero div.chunklet span.hero-what { 
 	/* font-family: 'BDSans ExtReg', 'Gruppo', sans-serif;  */
