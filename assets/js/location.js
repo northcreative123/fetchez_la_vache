@@ -18,7 +18,7 @@ const getUserLocation = async ( ip ) => {
         !is_prod && console.log('Location data: ', data)
         !is_prod && console.log('Lat/Lon: ' + data.loc)
 
-        $('#home_hero').length && $('#home_hero h2 .where-actually').html('<span>in '+data.city+'</span>')
+        $('#home_hero').length && $('#home_hero h2 .where-actually').html('<span>in '+data.region+'</span>')
 
         return data.city
 
