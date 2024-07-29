@@ -875,7 +875,7 @@ header.global-header nav > ul > li.parent > a:after {
 }
 header.global-header.shrink nav > ul > li.parent > a:after { 
 	display: inline-block;
-	/* background-image: url(../images/compass-icon.svg); */
+	background-image: url(../images/compass-icon.svg);
 }
 header.global-header nav > ul > li.parent:hover > a:after { 
 	transform: rotate(180deg);

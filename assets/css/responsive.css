@@ -479,7 +479,9 @@
         font-size: 1.5rem;
         background: unset !important;
     }
+	header.global-header.shrink nav > ul > li.parent > a:after,
 	header.global-header nav > ul > li > a:after { background-image: url(../images/compass-icon-white.svg); }
+
 	header.global-header nav div.panels {
 		display: block;
 	}
