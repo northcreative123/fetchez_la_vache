@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+	<title>North Creative | Home</title>
+	<meta name="description" content="This is the meta description">
+	<meta name="keywords" content="tag 1, tag 2, tag 3">
+
+	<script>
+		// Remove WebFlow BS styling!!!
+		const linkElements = document.querySelectorAll('link')
+		linkElements.forEach(( link ) => {
+			if ( link.href.includes('https://cdn.prod.website-files.com') && link.href.includes('/css/') ) {
+				link.remove()
+				return
+			}
+		})
+
+		let speed_log = []
+		const GO = performance.now()
+		const to_seconds = ( ms ) => { return ( parseInt( performance.now() - GO ) / 1000 ) + "s" }
+		document.addEventListener('readystatechange', function() { speed_log.push({ "event" : "RS: "+document.readyState, "time" : to_seconds() }) })
+		document.addEventListener('DOMContentLoaded', function() { speed_log.push({ "event" : "DOM Loaded", "time" : to_seconds() }) }, false)
+		window.addEventListener('load', function() { speed_log.push({ "event" : "UI Loaded", "time" : to_seconds() }); console.log('Load Times: ', speed_log)}, false)
+	</script>
+
+	<!-- Mobile Specific Metas
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link href="https://assets-global.website-files.com/63fbf496c1ef8e3b436600f3/643f14763f12832853854be9_favicon-32x32.png" rel="shortcut icon" type="image/x-icon">
+
+	<!-- FONT
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<!-- <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'> -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Text:ital@0;1&family=Figtree:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Text:ital@0;1&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+	<!-- CSS
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"> <!-- https://animate.style/ -->
+	<!-- <link href="assets/css/wf-reset.css" rel="stylesheet"> -->
+	<link href="assets/css/fonts.css" rel="stylesheet">
+	<!-- <link href="assets/css/main.css" rel="stylesheet">
+	<link href="assets/css/responsive.css" rel="stylesheet"> -->
+    <link href="assets/css/refactored.css" rel="stylesheet">
+
+	<!-- Scripts
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<script src="https://kit.fontawesome.com/38512c2854.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	
+</head>
+
+<!-- <body class="audience-select"> -->
+<body class="home">
+	
+	<header id="global_header" class="global-header">
+		<h1 class="logo"><a href="index.html" title="Homepage">North Creative</a></h1>
+		<nav class="nav-menu-wrapper">
+			<ul>
+				<li>
+					<a href="#" data-wf-loc="/videos">Video Marketing</a>
+				</li>
+				<li class="parent">
+					<a href="#">Services</a>
+					<div class="mega-menu">
+					<div class="panels">
+						<div class="menu-panel">
+							<h4>Who We're For</h4>
+							<ul class="sub">
+								<li><a href="#" data-wf-loc="/client-types/corporate-and-enterprise">Corporate & Enterprise</a></li>
+								<li><a href="#" data-wf-loc="/client-types/marketing-agencies">Marketing Agencies</a></li>
+								<li><a href="#" data-wf-loc="/client-types/marketing-teams">In-House Teams</a></li>
+								<li><a href="#" data-wf-loc="/client-types/small-business">Small Business</a></li>
+							</ul>
+						</div>
+						<div class="menu-panel">
+							<h4>What We Do</h4>
+							<ul class="sub">
+								<li><a href="#" data-wf-loc="/service-types/video-for-social-media">Video for Social Media</a></li>
+								<li><a href="#" data-wf-loc="/service-types/video-for-website">Video for Website</a></li>
+								<li><a href="#" data-wf-loc="/service-types/video-ads-and-streaming">Video Ads and Streaming</a></li>
+								<li><a href="#" data-wf-loc="/service-types/custom-video">Custom Video</a></li>
+							</ul>
+						</div>
+						<div class="menu-panel">
+						    <h4>temporary...</h4>
+                            <p>lorem ipsum</p> 
+                            <ul class="sub">
+                                <li><a href="styleguide.html">Style Guide</a></li>
+                                <li><a href="#" class="w3c" target="_blank">W3C Validation</a></li>
+                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="https://github.com/northcreative123/fetchez_la_vache" target="_blank">github</a></li>
+                                <li><a href="https://raw.githack.com/northcreative123/fetchez_la_vache/main/index.html" target="_blank">githack</a></li>
+                                <li><a href="https://north-creative-2-0.webflow.io/" target="_blank">WebFlow</a></li>
+                            </ul>
+						</div> 
+					</div>
+					<div class="footer">menu footer</div>
+					</div>
+				</li>
+				<li class="parent">
+					<a href="#">Resources</a>
+					<ul class="sub">
+						<li><a href="#" data-wf-loc="/hiring">Hiring Nationwide</a></li>
+						<li><a href="blog.html" data-wf-loc="/blog">Blog Posts</a></li>
+						<li><a href="#" data-wf-loc="/login">Login</a></li>
+					</ul>
+				</li>
+				<li><a href="#" data-wf-loc="/contact">Contact</a></li>
+			</ul>
+		</nav>
+		<div class="user-options">
+			<a href="book.html" class="cta-link button-primary">Get Started</a>
+			
+            <div class="royals-w-cheese">
+                <div class="logo-map burger-open"></div>
+            </div>
+
+		</div>
+	</header>
+
+	<main id="page_wrapper" class="page-wrapper">
+
+
+
+		<section id="home_hero" class="section hero full-centered-chunk">
+			<div class="div-block chunklet">
+                
+				<div class="hero-flick">
+					<video id="hero_video" src="assets/video/hero-24f-br5.mp4" poster="assets/images/hero_bg_1.jpg" loop muted autoplay playsinline></video>
+				</div>
+
+                <div class="center-all">
+                    <h2>Order video <span class="what-actually">for business</span> <span class="where-actually">anywhere</span></h2>
+                    <form class="videographer-search">
+                        <fieldset>
+                            <legend>Search our nationwide network of videographers.</legend>
+                            <input type="search" id="hero_search" name="hero_search" class="search-input" placeholder="Where are we filming?">
+                            <button type="submit" class="search-submit button-primary"><span>Search </span>
+                                <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
+                            </button>
+                        </fieldset>
+                        <div class="result-block">
+                            <p></p>
+                            <a href="book.html" class="cta-button button-primary">Get Started</a>
+                        </div>
+                    </form>
+                </div>
+
+			</div>
+		</section>
+
+<!-- 
+
+		<section id="portfolio_tickers" class="full-centered-chunk businesses-content">
+			<div class="div-block chunklet">
+				<h3 class="head-center">Trusted by corporate, agencies, and in-house teams</h3>
+				<div class="logo-ticker-section-logos-grid"><div class="logo-ticker-section-logos-container web-feature"></div></div>
+				<div id="video_scroll_1" class="video-ticker-section-videos-grid"><div class="video-ticker-section-videos-container web-feature"></div></div>
+				<div id="video_scroll_2" class="video-ticker-section-videos-grid"><div class="video-ticker-section-videos-container web-feature"></div></div>
+			</div>
+		</section>
+
+
+
+		<section id="process" class="full-centered-chunk businesses-content">
+			<div class="div-block chunklet">
+				<h3>End-to-end solution for video</h3>
+				<div data-step="1" class="split-panel scrolljacker">
+					<aside class="split-half left-jack">
+						<ol class="process-tile-list-stepped">
+							<li class="tile">
+                                <img src="assets/images/process-1-min.jpg" class="process-preview" alt="temp">
+								<h4 class="process-pre-header">Get Started</h4>
+								<h2 class="process-header">Search for Videographers Near You</h2>
+								<p>Input your relative shooting address in the search bar to find videographers near you. Then, fill out a simple form characterizing your video
+									and book a call.</p>
+                                <a href="book.html">Get Started <i class="fa-solid fa-chevron-right" data-icon="f054"></i></a>
+							</li>
+							<li class="tile">
+                                <img src="assets/images/process-2-min.jpg" class="process-preview" alt="temp">
+								<h4 class="process-pre-header">Pre-Production</h4>
+								<h2 class="process-header">We Deliver Your Video Plan</h2>
+								<p>Your video plan may include a shot list, shooting schedule, scriptwriting, and other insights related to shooting that contribute to creating a
+									great video. We ensure all pre-production documents are communicated to you for your approval.</p>
+                                <a href="book.html">Get Started <i class="fa-solid fa-chevron-right" data-icon="f054"></i></a>
+							</li>
+							<li class="tile">
+                                <img src="assets/images/process-3-min.jpg" class="process-preview" alt="temp">
+								<h4 class="process-pre-header">Production</h4>
+								<h2 class="process-header">Videographer Films at Your Location</h2>
+								<p>Upon confirming your video strategy, a skilled North Creative videographer will arrive at your designated location. Rest assured, they are
+									thoroughly trained and veted to deliver high-quality footage at your business premises.</p>
+                                <a href="book.html">Get Started <i class="fa-solid fa-chevron-right" data-icon="f054"></i></a>
+							</li>
+							<li class="tile">
+                                <img src="assets/images/process-4-min.jpg" class="process-preview" alt="temp">
+								<h4 class="process-pre-header">Post-Production</h4>
+								<h2 class="process-header">Editing Your Video</h2>
+								<p>We choose the most electrifying music to complement your video. If your package requires graphics, we enlist top-tier motion graphics artists to
+									infuse your video with captivating effects that will dazzle viewers.</p>
+                                <a href="book.html">Get Started <i class="fa-solid fa-chevron-right" data-icon="f054"></i></a>
+							</li>
+							<li class="tile">
+                                <img src="assets/images/process-5-min.jpg" class="process-preview" alt="temp">
+								<h4 class="process-pre-header">Delivery</h4>
+								<h2 class="process-header">Video Uploaded to You</h2>
+								<p>We deliver your video in standard file formats, optimized for your preferred platform—be it social media, your website, or a streaming service.
+									Our configurations matter. You have the opportunity to request revisions at any stage prior to the final
+									delivery.</p>
+                                <a href="book.html">Get Started <i class="fa-solid fa-chevron-right" data-icon="f054"></i></a>
+							</li>
+						</ol>
+					</aside>
+					<aside class="split-half right-jack">
+                        <span class="jack-spacer"><img src="assets/images/process-1-min.jpg" class="process-preview" alt="temp"></span>
+                        <span class="jack-spacer"><img src="assets/images/process-2-min.jpg" class="process-preview" alt="temp"></span>
+                        <span class="jack-spacer"><img src="assets/images/process-3-min.jpg" class="process-preview" alt="temp"></span>
+                        <span class="jack-spacer"><img src="assets/images/process-4-min.jpg" class="process-preview" alt="temp"></span>
+                        <span class="jack-spacer"><img src="assets/images/process-5-min.jpg" class="process-preview" alt="temp"></span>
+                    </aside> 
+				</div>
+			</div>
+		</section>
+
+
+
+		<section id="industries_served" class="full-centered-chunk businesses-content">
+			<div class="div-block chunklet">
+				<h3>Videography for any industry</h3>
+				<div class="featured-industries web-feature">
+					<div class="card-panel">card</div>
+					<ul class="industry-list">
+						<li data-industry="Oil & Gas"><i class="fa-solid fa-oil-well"></i> Oil & Gas</li>
+						<li data-industry="Dental"><i class="fa-solid fa-tooth"></i> Dental</li>
+						<li data-industry="Construction"><i class="fa-solid fa-person-digging"></i> Construction</li>
+						<li data-industry="Software"><i class="fa-solid fa-tablet-screen-button"></i> Software</li>
+						<li data-industry="Healthcare"><i class="fa-solid fa-staff-snake"></i> Healthcare</li>
+						<li data-industry="Finance"><i class="fa-solid fa-sack-dollar"></i> Finance</li>
+						<li data-industry="Legal"><i class="fa-solid fa-scale-unbalanced"></i> Legal</li>
+						<li data-industry="Cannabis"><i class="fa-solid fa-cannabis"></i> Cannabis</li>
+						<li data-industry="Restaurant"><i class="fa-solid fa-utensils"></i> Restaurant</li>
+						<li data-industry="Food & Beverage"><i class="fa-solid fa-burger"></i> Food & Beverage</li>
+						<li data-industry="Community Service"><i class="fa-solid fa-handshake-angle"></i> Community Service</li>
+						<li data-industry="Church"><i class="fa-solid fa-church"></i> Church</li>
+						<li data-industry="Street Apparel"><i class="fa-solid fa-shirt"></i> Street Apparel</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+
+
+		<section id="cta_section" class="full-centered-chunk businesses-content do-the-shady-thing">
+			<div class="div-block chunklet">
+				<div id="cta_wrap" class="">
+					<h2 class="clever">Where <em><span class="swap-a">Local</span><span class="swap-b">Nationwide</span></em> <br>Businesses <br>Find <em><span class="swap-a">Nationwide</span><span class="swap-b">Local</span></em> <br>Appeal</h2>
+                    <label for="fld_fake_search"><span>Search & Order Video for Business</span>
+                        <input type="search" id="fld_fake_search" name="fld_fake_search" class="search-input" placeholder="Where are we filming?">
+                    </label>
+                    <a href="book.html" class="cta-link button-primary">Get Started</a>
+				</div>
+			</div>
+		</section>
+
+
+
+		<section id="client_types" class="full-centered-chunk businesses-content">
+			<div class="div-block chunklet">
+				<h3 class="">For all shapes and sizes</h3>
+				<div class="split-panel">
+					<aside class="split-half">
+                        <ul class="tile-list">
+                            <li class="tile">
+                                <div>
+                                    <img src="assets/images/icons/icon-corp.svg" alt="Corporations" class="client-icon">
+                                    <h4><i class="fa-solid fa-building"></i> Corporations</h4>
+                                    <p>Communicate complex messages with engaging video storytelling</p>
+                                    <a href="#" data-wf-loc="/client-types/corporate-and-enterprise">Learn more <i class="fa-solid fa-arrow-right" data-icon="f061"></i></a>
+                                </div>
+                            </li>
+                            <li class="tile">
+                                <div>
+                                    <img src="assets/images/icons/icon-agency.svg" alt="Marketing Agencies" class="client-icon">
+                                    <h4><i class="fa-solid fa-comments-dollar"></i> Marketing Agencies</h4>
+                                    <p>Offer video production services to expand your agency's offerings</p>
+                                    <a href="#" data-wf-loc="/client-types/marketing-agencies">Learn more <i class="fa-solid fa-arrow-right" data-icon="f061"></i></a>
+                                </div>
+                            </li>
+                            <li class="tile">
+                                <div>
+                                    <img src="assets/images/icons/icon-inhouse.svg" alt="In-House Teams" class="client-icon">
+                                    <h4><i class="fa-solid fa-person-chalkboard"></i> In-House Teams</h4>
+                                    <p>Create consistent video content to support your marketing strategy</p>
+                                    <a href="#" data-wf-loc="/client-types/marketing-teams">Learn more <i class="fa-solid fa-arrow-right" data-icon="f061"></i></a>
+                                </div>
+                            </li>
+                            <li class="tile">
+                                <div>
+                                    <img src="assets/images/icons/icon-small-biz.svg" alt="Small Business" class="client-icon">
+                                    <h4><i class="fa-solid fa-shop"></i> Small Business</h4>
+                                    <p>Boost your online presence with engaging videos</p>
+                                    <a href="#" data-wf-loc="/client-types/small-business">Learn more <i class="fa-solid fa-arrow-right" data-icon="f061"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+					</aside>
+					<aside class="split-half"></aside>
+				</div>
+			</div>
+		</section>
+
+
+
+		<section id="testimonials" class="full-centered-chunk businesses-content">
+			<div class="div-block chunklet">
+				<h3>See our testimonials</h3>
+				<div class="featured-testimonials">
+                    <ul class="testimonial-list-redux web-feature slideshow-blob"></ul>
+                </div>
+			</div>
+		</section>
+ -->
+
+
+		<section id="videographer_cta" class="full-centered-chunk businesses-content">
+			<div class="div-block chunklet">
+				<img class="background" src="assets/images/dude.png" alt="videographer">
+                <div class="cta-copy">
+                    <h3>Are you a videographer?</h3>
+                    <p>Film with businesses & earn money on your schedule.</p>
+                    <a href="#" class="button-secondary" data-wf-loc="/hiring">Learn more 
+                        <i class="fa-solid fa-arrow-right" data-icon="f061"></i>
+                    </a>                
+                </div>
+			</div>
+		</section>
+
+
+
+		<footer id="global_footer" class="global-footer">
+			<section class="section full-centered-chunk">
+				<div class="div-block chunklet">
+
+					<div class="logo"><a href="index.html" title="Homepage">North Creative</a></div>
+
+					<ul class="social">
+						<li><a href="https://www.facebook.com/northcreativeus/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i><span> Facebook</span></a></li>
+						<li><a href="https://twitter.com/NorthCreativeUS" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i><span> X</span></a></li>
+						<li><a href="https://www.linkedin.com/company/northcreativeus/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i><span> LinkedIn</span></a></li>
+						<li><a href="https://www.youtube.com/@northcreativeus" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i><span> YouTube</span></a></li>
+						<li><a href="https://www.instagram.com/northcreativeus" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i><span> Instagram</span></a></li>
+					</ul>
+
+					<nav class="nav-menu-wrapper">
+						<ul>
+							<li>
+								<ul class="submenu">
+									<li><a href="#" data-wf-loc="/">Home</a></li>
+									<li><a href="book.html">Get Started</a></li>
+									<li><a href="#" data-wf-loc="/videos">Videos</a></li>
+									<li><a href="#" data-wf-loc="/contact">Contact</a></li>
+									<li><a href="#" data-wf-loc="/login">Login</a></li>
+									<li><a href="#" data-wf-loc="/hiring">Hiring</a></li>
+									<li><a href="#" data-wf-loc="/terms">Terms</a></li>
+									<li><a href="#" data-wf-loc="/privacy">Privacy</a></li>
+								</ul>
+							</li>
+							<li>
+								<h5>Who We're For</h5>
+								<ul class="submenu">
+									<li><a href="#" data-wf-loc="/client-types/corporate-and-enterprise">Corporate & Enterprise</a></li>
+									<li><a href="#" data-wf-loc="/client-types/marketing-agencies">Marketing Agencies</a></li>
+									<li><a href="#" data-wf-loc="/client-types/marketing-teams">In-House Teams</a></li>
+									<li><a href="#" data-wf-loc="/client-types/small-business">Small Business</a></li>
+								</ul>
+							</li>
+							<li>
+								<h5>What We Do</h5>
+								<ul class="submenu">
+									<li><a href="#" data-wf-loc="/service-types/video-for-social-media">Video for Social Media</a></li>
+									<li><a href="#" data-wf-loc="/service-types/video-for-website">Video for Website</a></li>
+									<li><a href="#" data-wf-loc="/service-types/video-ads-and-streaming">Video for Ads and Streaming</a></li>
+									<li><a href="#" data-wf-loc="/service-types/custom-video">Custom Video</a></li>
+								</ul>
+							</li>
+                            <li class="non-linky">
+                                <ul>
+                                    <li>
+                                        <h5>Service Areas</h5>
+                                        <ul>
+                                            <li>New York</li>
+                                            <li>Chicago</li>
+                                            <li>Los Angeles</li>
+                                            <li>Houston</li>
+                                            <li>Miami</li>
+                                            <li>Detroit</li>
+                                            <li>San Diego</li>
+                                            <li>San Francisco</li>
+                                            <li>Austin</li>
+                                            <li>Charlotte</li>
+                                            <li>Phoenix</li>
+                                            <li>Dallas</li>
+                                            <li>Nashville</li>
+                                            <li>Indianapolis</li>
+                                            <li>Kansas City</li>
+                                            <li>Seattle</li>
+                                            <li>San Antonio</li>
+                                            <li>Cincinnati</li>
+                                            <li>Louisville</li>
+                                            <li>Boston</li>
+                                            <li>Denver</li>
+                                            <li>Las Vegas</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+						</ul>
+					</nav>
+
+					<img class="logo-map" src="assets/images/logos/nc_map.svg" alt="North Creative">
+
+				</div>
+			</section>
+		</footer>
+			
+	</main>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBc8GJ2R3syEBVsuYVeiLGja1crMId7-JA&loading=async&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><!-- https://github.com/kenwheeler/slick -->
+	
+	<script src="assets/js/location.js"></script> 
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/playa.js"></script>
+	<script src="assets/js/la_vache.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html>

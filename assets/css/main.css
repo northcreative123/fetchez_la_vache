@@ -936,18 +936,12 @@ header.global-header nav > ul div.mega-menu {
 	top: 100%; 
     min-width: 100%;
     max-width: 750px;
-
-	
     background-color: var(--lightest);
     border-radius: 1rem;
     padding: 2rem 3rem;
     overflow: hidden;
     box-shadow: 0 2px 12px rgba(20, 20, 43, .08);
-
-	margin: 1rem 0 0 -4rem;
-
-	/* max-height: 0;
-	opacity: 0; */
+	margin: 0 0 0 -4rem;
 }
 header.global-header nav > ul > li:hover > div.mega-menu,
 header.global-header nav > ul > li:hover > ul,
@@ -1035,10 +1029,6 @@ div.center-all {
 }
 span.where-actually span { display: block; }
 
-/*  
-				<h2><span class="hero-what">Video </span><span class="hero-where">Anywhere.</span></h2>
-				<h4><span class="hero-what">Videographers </span><span class="hero-where">Nationwide.</span></h4>
-*/
 section.hero div.chunklet h2,
 section.hero div.chunklet h4 {
     text-align: center !important;
